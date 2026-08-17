@@ -1,50 +1,73 @@
-# Java
+# Java — Curso Completo desde Cero hasta Experto con Spring Boot
 
-> Ruta de aprendizaje completa de Java (17+) en español: guías de estudio, ejercicios por niveles y proyectos integradores.
+Curso completo de Java en español: fundamentos, POO, colecciones, excepciones,
+concurrencia y Spring Boot, con 30 ejercicios progresivos y un proyecto final.
 
-Java es uno de los lenguajes más usados del mundo: potencia aplicaciones empresariales, Android, sistemas backend y big data. Es un lenguaje **tipado estáticamente** y **orientado a objetos**, con una JVM (Máquina Virtual de Java) que garantiza portabilidad: *escribe una vez, ejecuta en cualquier lugar*.
+## Estructura
 
-Esta ruta parte desde cero en Java. Cada guía introduce la teoría con ejemplos ejecutables y enlaza a los ejercicios que la refuerzan. Todo el código usa **Java 17+** y solo la librería estándar (JDK).
+```
+es/01-programming/java/
+├── README.md                     (este archivo)
+├── 01-fundamentos.md
+├── 02-oop.md
+├── 03-colecciones.md
+├── 04-excepciones.md
+├── 05-concurrencia.md
+├── 06-spring-boot.md
+├── ejercicios/
+│   ├── README.md
+│   ├── nivel-01-fundamentos/     (6 ejercicios)
+│   ├── nivel-02-basico/          (6 ejercicios)
+│   ├── nivel-03-intermedio/      (6 ejercicios)
+│   ├── nivel-04-avanzado/        (6 ejercicios)
+│   ├── nivel-05-experto/         (6 ejercicios)
+│   └── proyectos/
+│       └── proyecto-final/       (Sistema de Biblioteca con Spring Boot)
+└── resources/
+```
 
 ## Guías de estudio
 
-| Guía | Contenido |
-|---|---|
-| [01 — Fundamentos](01-fundamentos.md) | El método `main`, tipos, variables, operadores, condicionales y bucles |
-| [02 — POO](02-oop.md) | Clases, objetos, encapsulación, constructores y métodos |
-| [03 — Colecciones](03-colecciones.md) | `ArrayList`, `HashMap`, `HashSet` y streams |
-| [04 — Excepciones](04-excepciones.md) | `try/catch/finally`, `throw`, excepciones checked y unchecked |
-| [05 — Concurrencia](05-concurrencia.md) | Threads, `ExecutorService` y `synchronized` |
+| # | Guía | Contenido |
+|---|------|-----------|
+| 1 | [Fundamentos](./01-fundamentos.md) | JVM, variables, tipos, operadores, control de flujo, arrays, strings |
+| 2 | [POO](./02-oop.md) | Clases, encapsulamiento, herencia, polimorfismo, interfaces, Builder |
+| 3 | [Colecciones](./03-colecciones.md) | List, Set, Map, Streams, Comparator |
+| 4 | [Excepciones](./04-excepciones.md) | try-catch, excepciones personalizadas, try-with-resources |
+| 5 | [Concurrencia](./05-concurrencia.md) | Threads, synchronized, ExecutorService, productor-consumidor |
+| 6 | [Spring Boot](./06-spring-boot.md) | REST controllers, JPA, DTOs, seguridad con JWT |
 
-## Ejercicios por nivel
+## Ejercicios (30 en total, 6 por nivel)
 
-Cada ejercicio incluye enunciado, requisitos, pistas y solución. Compila y ejecuta cada solución con:
+Ver el índice completo en [`ejercicios/README.md`](./ejercicios/README.md).
 
-```bash
-javac Ejercicio.java
-java Ejercicio
-```
+| Nivel | Carpeta | Tema |
+|-------|---------|------|
+| 1 — Fundamentos | `ejercicios/nivel-01-fundamentos/` | Sintaxis básica |
+| 2 — Básico | `ejercicios/nivel-02-basico/` | Métodos, clases, colecciones |
+| 3 — Intermedio | `ejercicios/nivel-03-intermedio/` | Herencia, interfaces, streams |
+| 4 — Avanzado | `ejercicios/nivel-04-avanzado/` | Concurrencia, anotaciones, testing |
+| 5 — Experto | `ejercicios/nivel-05-experto/` | Proyectos integradores |
 
-| Nivel | Dificultad | Ejercicios |
-|---|---|---|
-| [Nivel 01 — Fundamentos](ejercicios/nivel-01-fundamentos/) | ⭐ 1/5 | Hola mundo, variables y tipos, operadores, bucles, arrays y strings |
-| [Nivel 02 — Básico](ejercicios/nivel-02-basico/) | ⭐⭐ 2/5 | Métodos, clases y objetos, encapsulación, `ArrayList`, excepciones y enums |
-| [Nivel 03 — Intermedio](ejercicios/nivel-03-intermedio/) | ⭐⭐⭐ 3/5 | Herencia y polimorfismo, interfaces, colecciones, genéricos, streams y lambdas |
-| [Nivel 04 — Avanzado](ejercicios/nivel-04-avanzado/) | ⭐⭐⭐⭐ 4/5 | Streams avanzados, threads, `synchronized`, try-with-resources, anotaciones y testing |
-| [Nivel 05 — Experto](ejercicios/nivel-05-experto/) | ⭐⭐⭐⭐⭐ 5/5 | CLI, servidor socket, caché LRU, productor-consumidor, API REST y mini-proyecto |
+Cada ejercicio incluye:
+- `README.md` — enunciado, requisitos, pistas y solución
+- `Main.java` — stub con `TODO`s para completar
+- `MainTest.java` — suite de tests ejecutable con `java`
 
-Índice completo con los 30 ejercicios: [ejercicios/README.md](ejercicios/README.md)
+## Proyecto final
 
-## Proyectos
+[Sistema de Gestión de Biblioteca con Spring Boot](./ejercicios/proyectos/proyecto-final/README.md) —
+API REST completa con autores, libros, usuarios y préstamos, JWT, JPA y tests.
 
-Al terminar los niveles, integra todo lo aprendido con los [3 proyectos integradores](ejercicios/proyectos/README.md):
+## Scripts
 
-1. **Gestor de biblioteca CLI** — aplicación de consola con persistencia en archivo.
-2. **API REST con el JDK** — servidor HTTP usando `com.sun.net.httpserver` con datos en memoria y en disco.
-3. **Sistema de chat por sockets** — servidor y clientes concurrentes comunicándose por TCP.
+`../../../scripts/new-exercise-java.sh` — genera el andamiaje (README + stub + test) para un nuevo ejercicio.
 
-## Requisitos
+## Al terminar el curso serás capaz de
 
-- **JDK 17 o superior** (recomendado JDK 21 LTS). Descárgalo en [Adoptium](https://adoptium.net/) o usa un gestor como SDKMAN.
-- Verifica tu instalación con `java -version` y `javac -version`.
-- Cualquier editor de texto sirve; los IDEs (IntelliJ, Eclipse, VS Code) añaden autocompletado y depuración.
+1. Programar en Java con confianza
+2. Aplicar POO en proyectos reales
+3. Manejar colecciones, excepciones y concurrencia
+4. Desarrollar APIs REST con Spring Boot
+5. Escribir tests para garantizar la calidad del código
+6. Entender el ecosistema Java en profundidad
