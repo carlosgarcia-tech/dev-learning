@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# new-exercise.sh — Crea un ejercicio nuevo con plantilla (enunciado + requisitos +
-# pistas + solución plegable) en es/ y en/.
+# new-exercise.sh — Crea un ejercicio nuevo con archivos reales + tests (spec v2)
+# en es/ y en/. Genera: <slug>.md (enunciado), <slug>.<ext> (stub), <slug>.test.<ext> (tests).
 #
 # Uso:
 #   scripts/new-exercise.sh <seccion/tema> <nivel> <nombre> [es|en]
 #
-#   nivel:  1 | 2 | 3 | 4 | 5  (alias)
-#           nivel-01-fundamentos | nivel-02-basico | nivel-03-intermedio
-#           nivel-04-avanzado | nivel-05-experto
-#
+#   nivel:  1|2|3|4|5  (alias) o nivel-XX-*
 #   ejemplo: scripts/new-exercise.sh 01-programming/javascript 1 variables-y-tipos
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -42,32 +39,68 @@ esac
 LEVEL_NUM="${LEVEL#nivel-}"
 LEVEL_NUM="${LEVEL_NUM%%-*}"
 
-# Título legible: variables-y-tipos -> Variables y Tipos
 TITLE="$(echo "$NAME" | sed -E 's/[-_]/ /g; s/(^| )([a-z])/\U\1\2/g')"
+
+# Detectar extensión según el tema
+detect_ext() {
+  local topic="$1"
+  case "$topic" in
+    python) echo "py" ;;
+    go) echo "go" ;;
+    typescript) echo "ts" ;;
+    java) echo "java" ;;
+    rust) echo "rs" ;;
+    cpp) echo "cpp" ;;
+    csharp) echo "cs" ;;
+    php) echo "php" ;;
+    ruby) echo "rb" ;;
+    kotlin) echo "kt" ;;
+    swift) echo "swift" ;;
+    sql|postgresql|mysql) echo "sql" ;;
+    *) echo "js" ;;
+  esac
+}
+TOPIC="$(basename "$TOPIC_PATH")"
+EXT="$(detect_ext "$TOPIC")"
 
 for lang in "${LANGS[@]}"; do
   dir="$ROOT/$lang/$TOPIC_PATH/ejercicios/$LEVEL"
   [ -d "$dir" ] || { echo "No existe: $dir (ejecuta scripts/init.sh)" >&2; exit 1; }
 
   next=1
-  for f in "$dir"/ejercicio-*.md; do
+  for f in "$dir"/ejercicio-*.md "$dir"/exercise-*.md; do
     [ -e "$f" ] || continue
-    n="$(basename "$f" | sed -E 's/^ejercicio-([0-9]+)-.*/\1/')"
+    n="$(basename "$f" | sed -E 's/^(ejercicio|exercise)-([0-9]+)-.*/\2/')"
     [ "$n" -gt "$next" ] && next="$n"
   done
   next=$((next + 1))
   num="$(printf '%02d' "$next")"
-  file="$dir/ejercicio-$num-$NAME.md"
-  [ -f "$file" ] && { echo "Ya existe: $file" >&2; exit 1; }
+
+  base="$(basename "$TOPIC_PATH")-none"
+  if [ "$lang" = "es" ]; then
+    file_md="$dir/ejercicio-$num-$NAME.md"
+    file_impl="$dir/ejercicio-$num-$NAME.$EXT"
+    file_test="$dir/ejercicio-$num-$NAME.test.$EXT"
+    test_cmd="node --test $(basename "$file_test")"
+    [ "$EXT" = "py" ] && test_cmd="python3 -m unittest $(basename "$file_test" .py)"
+    [ "$EXT" = "go" ] && test_cmd="go test ./..."
+  else
+    file_md="$dir/exercise-$num-$NAME.md"
+    file_impl="$dir/exercise-$num-$NAME.$EXT"
+    file_test="$dir/exercise-$num-$NAME.test.$EXT"
+    test_cmd="node --test $(basename "$file_test")"
+    [ "$EXT" = "py" ] && test_cmd="python3 -m unittest $(basename "$file_test" .py)"
+    [ "$EXT" = "go" ] && test_cmd="go test ./..."
+  fi
+  [ -f "$file_md" ] && { echo "Ya existe: $file_md" >&2; exit 1; }
 
   if [ "$lang" = "es" ]; then
-    cat > "$file" <<'EOF'
-# Ejercicio __NUM__ — __TITLE__
+    cat > "$file_md" <<EOF
+# Ejercicio $num — $TITLE
 
-- **Nivel:** __LEVEL__/5
-- **Tema:** __TOPIC__
+- **Nivel:** $LEVEL_NUM/5
+- **Tema:** $TOPIC_PATH
 - **Tiempo estimado:** 15 min
-- **Cumplido cuando:** [ ] logras el objetivo con criterios claros
 
 ## Enunciado
 
@@ -76,8 +109,7 @@ Describe aquí qué debe hacer el programa, qué datos usa y qué salida esperad
 ## Requisitos
 
 - [ ] Requisito 1
-- [ ] Requisito 2
-- [ ] Ejecutarlo localmente y verificar el resultado
+- [ ] Los tests pasan: \`$test_cmd\`
 
 ## Pistas
 
@@ -93,30 +125,41 @@ Describe aquí qué debe hacer el programa, qué datos usa y qué salida esperad
 <details>
 <summary>Mostrar solución</summary>
 
-```text
-/* Escribe aquí el código o los pasos de la solución */
-```
+\`\`\`\`$EXT
+/* Escribe aquí el código de la solución */
+\`\`\`\`
 
 </details>
 EOF
+    cat > "$file_impl" <<'EOF'
+// TODO: completa esta implementación para que los tests pasen.
+module.exports = {
+  // TODO: definir las funciones/valores que esperan los tests.
+};
+EOF
+    cat > "$file_test" <<'EOF'
+// TODO: escribe los tests que verifican la implementación.
+// Ejemplo con node:test:
+// const { test } = require("node:test");
+// const assert = require("node:assert/strict");
+// const impl = require("./<slug>");
+EOF
   else
-    cat > "$file" <<'EOF'
-# Exercise __NUM__ — __TITLE__
+    cat > "$file_md" <<EOF
+# Exercise $num — $TITLE
 
-- **Level:** __LEVEL__/5
-- **Topic:** __TOPIC__
+- **Level:** $LEVEL_NUM/5
+- **Topic:** $TOPIC_PATH
 - **Estimated time:** 15 min
-- **Done when:** [ ] you reach the goal with clear criteria
 
 ## Statement
 
-Describe what the program should do, which inputs it uses, and the expected output.
+Describe what the program should do, inputs and expected output.
 
 ## Requirements
 
 - [ ] Requirement 1
-- [ ] Requirement 2
-- [ ] Run it locally and verify the result
+- [ ] Tests pass: \`$test_cmd\`
 
 ## Hints
 
@@ -132,14 +175,28 @@ Describe what the program should do, which inputs it uses, and the expected outp
 <details>
 <summary>Show solution</summary>
 
-```text
-/* Write the code or steps of the solution here */
-```
+\`\`\`\`$EXT
+/* Write the solution code here */
+\`\`\`\`
 
 </details>
 EOF
+    cat > "$file_impl" <<'EOF'
+// TODO: implement this so the tests pass.
+module.exports = {
+  // TODO: define the functions/values the tests expect.
+};
+EOF
+    cat > "$file_test" <<'EOF'
+// TODO: write tests that verify the implementation.
+// Example with node:test:
+// const { test } = require("node:test");
+// const assert = require("node:assert/strict");
+// const impl = require("./<slug>");
+EOF
   fi
 
-  sed -i "s/__NUM__/$num/g; s/__TITLE__/$TITLE/g; s/__LEVEL__/$LEVEL_NUM/g; s|__TOPIC__|$TOPIC_PATH|g" "$file"
-  echo "✔ $file"
+  echo "✔ $file_md"
+  echo "✔ $file_impl"
+  echo "✔ $file_test"
 done
