@@ -1,6 +1,12 @@
 # Proyectos integradores
 
-Proyectos completos para poner en práctica todo lo aprendido en los 5 niveles. Cada proyecto tiene **requisitos por fases**: completa una fase antes de pasar a la siguiente. Están ordenados de menor a mayor complejidad.
+Proyectos completos para poner en práctica todo lo aprendido en los 5 niveles. Están ordenados de menor a mayor complejidad y cada uno tiene **requisitos por fases**: completa una fase antes de pasar a la siguiente.
+
+| # | Proyecto | Dificultad | Conceptos |
+|---|---|---|---|
+| 1 | App CLI de gestión de inventario | ⭐⭐ | CLI, `node:fs`, JSON, validaciones |
+| 2 | API REST con archivo | ⭐⭐⭐⭐ | `node:http`, CRUD, JSON, validaciones |
+| 3 | **[PROYECTO FINAL — API REST de MiTienda](proyecto-final/)** | ⭐⭐⭐⭐⭐ | REST, persistencia, auth HMAC, validaciones, asincronía, reportes, tests |
 
 ---
 
@@ -8,7 +14,7 @@ Proyectos completos para poner en práctica todo lo aprendido en los 5 niveles. 
 
 **Dificultad:** ⭐⭐ (nivel 02-03)
 
-Una aplicación de consola que gestiona un inventario de productos persistido en `inventario.json`, similar al ejercicio de tareas CLI pero con más funcionalidad.
+Una aplicación de consola que gestiona un inventario de productos persistido en `inventario.json`.
 
 ### Fase 1 — CRUD básico
 
@@ -57,30 +63,38 @@ Una API REST en Node puro (`node:http`) para gestionar usuarios, con datos persi
 
 ---
 
-## Proyecto 3 — App full-stack simulada
+## Proyecto 3 — PROYECTO FINAL: API REST de MiTienda
 
-**Dificultad:** ⭐⭐⭐⭐⭐ (nivel 05)
+**Dificultad:** ⭐⭐⭐⭐⭐ (nivel 05, exigente)
 
-Una mini aplicación de tareas (todo list) donde un **servidor HTTP** sirve tanto el frontend (HTML + JS del navegador) como la API. Todo con Node puro, sin librerías.
+El proyecto que cierra la ruta: una **API REST completa en Node.js puro** para gestionar el catálogo, los pedidos y los reportes de una tienda. Integra **todo** lo aprendido:
 
-### Fase 1 — Servidor con frontend
+- **REST en Node puro** (`node:http`) con códigos de estado correctos y JSON consistente.
+- **Persistencia real en JSON** (`node:fs`) cargada al arrancar y guardada en cada mutación.
+- **Autenticación básica con tokens HMAC** (`node:crypto`, `timingSafeEqual`).
+- **Validaciones** exhaustivas en productos y pedidos.
+- **Asincronía** (lectura de body, ciclo de vida del servidor).
+- **Reportes** de inventario y ventas.
+- **Suite de tests** con `node:test` que solo pasa cuando el proyecto está completo.
 
-- [ ] `GET /` sirve una página HTML con un formulario y una lista.
-- [ ] `GET /app.js` sirve el JavaScript del navegador.
-- [ ] La página se carga y muestra las tareas existentes.
+### Requisitos clave
 
-### Fase 2 — API de tareas
+- `POST /api/auth/login` emite un token `payload.firma` (HMAC-SHA256); el resto de rutas exigen `Authorization: Bearer <token>` (401 si es inválido/expirado).
+- CRUD de `/api/productos` con búsqueda, filtros de precio, orden y paginación.
+- `/api/pedidos` que valida stock, lo descuenta y calcula totales.
+- `/api/reportes/inventario` y `/api/reportes/ventas`.
+- **Cero dependencias**: solo módulos `node:`.
 
-- [ ] `GET /tareas` → lista de tareas (en memoria).
-- [ ] `POST /tareas` → crea una tarea desde el formulario.
-- [ ] `PUT /tareas/:id/toggle` → marca completada/no completada.
-- [ ] El frontend usa `fetch` y actualiza la lista sin recargar.
+### Entrega
 
-### Fase 3 — Persistencia y pulido
+- **Especificación completa** (contexto, requisitos funcionales/no funcionales, fases, **45 criterios de aceptación**, rúbrica): [`proyecto-final/README.md`](proyecto-final/README.md).
+- **Punto de partida con TODOs**: [`proyecto-final/starter/`](proyecto-final/starter/).
+- **Suite de tests** que debe pasar el 100%: [`proyecto-final/tests/`](proyecto-final/tests/).
 
-- [ ] Guardar las tareas en `tareas.json`.
-- [ ] Manejar errores de red en el frontend con `.catch`.
-- [ ] Estilos CSS básicos para la interfaz.
+```bash
+cd proyecto-final
+node --test        # debe pasar el 100% cuando el proyecto esté completo
+```
 
 ---
 
@@ -88,4 +102,5 @@ Una mini aplicación de tareas (todo list) donde un **servidor HTTP** sirve tant
 
 - Ejecuta y prueba cada fase antes de continuar.
 - Usa `node --watch` (Node 18+) para recargar automáticamente durante el desarrollo.
-- Vuelve a las [guías](../) o a los ejercicios del nivel correspondiente si algo se te atasca.
+- Vuelve a las [guías](../../../) o a los ejercicios del nivel correspondiente si algo se te atasca.
+- En el proyecto final, implementa en este orden: `db.js` → `server.js` → `auth.js` → handlers → tests.

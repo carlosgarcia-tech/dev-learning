@@ -31,6 +31,7 @@ Queue: front -> 3
 - [ ] Verificar el comportamiento LIFO del stack y FIFO de la queue.
 - [ ] Manejar el caso de `pop`/`dequeue` sobre una estructura vacía (devolver `undefined` o lanzar error definido).
 - [ ] Ejecutarlo localmente con `node estructuras.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-06-estructuras-de-datos.test.js`.
 
 ## Pistas
 
@@ -94,17 +95,21 @@ class Queue {
   }
 }
 
-const pila = new Stack();
-for (const letra of ["a", "b", "c"]) pila.push(letra);
-console.log(`Stack: saca "${pila.pop()}"`);
-console.log(`Stack: saca "${pila.pop()}"`);
-console.log(`Stack: peek -> "${pila.peek()}"`);
+if (require.main === module) {
+  const pila = new Stack();
+  for (const letra of ["a", "b", "c"]) pila.push(letra);
+  console.log(`Stack: saca "${pila.pop()}"`);
+  console.log(`Stack: saca "${pila.pop()}"`);
+  console.log(`Stack: peek -> "${pila.peek()}"`);
 
-const cola = new Queue();
-for (const n of [1, 2, 3]) cola.enqueue(n);
-console.log(`Queue: saca ${cola.dequeue()}`);
-console.log(`Queue: saca ${cola.dequeue()}`);
-console.log(`Queue: front -> ${cola.front()}`);
+  const cola = new Queue();
+  for (const n of [1, 2, 3]) cola.enqueue(n);
+  console.log(`Queue: saca ${cola.dequeue()}`);
+  console.log(`Queue: saca ${cola.dequeue()}`);
+  console.log(`Queue: front -> ${cola.front()}`);
+}
+
+module.exports = { Stack, Queue };
 ````
 
 </details>

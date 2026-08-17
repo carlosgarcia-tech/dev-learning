@@ -28,6 +28,7 @@ Cuadrados: [ 1, 4, 9, 16, 25 ]
 - [ ] Crear al menos 3 arrow functions, una con retorno implícito y una con bloque `{}`.
 - [ ] Usar una arrow como callback dentro de `map`.
 - [ ] Ejecutarlo localmente con `node arrows.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-02-arrow-functions.test.js`.
 
 ## Pistas
 
@@ -54,13 +55,18 @@ const describir = (nombre, edad) => {
   return `${nombre} tiene ${edad} años`;
 };
 
-const numeros = [1, 2, 3, 4, 5];
-const cuadrados = numeros.map((n) => n * n);
+function calcularCuadrados(numeros) {
+  return numeros.map((n) => n * n);
+}
 
-console.log(`doble(6): ${doble(6)}`);
-console.log(`cuadrado(9): ${cuadrado(9)}`);
-console.log(`describir: ${describir("Ana", 30)}`);
-console.log(`Cuadrados: ${cuadrados}`);
+if (require.main === module) {
+  console.log(`doble(6): ${doble(6)}`);
+  console.log(`cuadrado(9): ${cuadrado(9)}`);
+  console.log(`describir: ${describir("Ana", 30)}`);
+  console.log(`Cuadrados: ${calcularCuadrados([1, 2, 3, 4, 5])}`);
+}
+
+module.exports = { doble, cuadrado, describir, calcularCuadrados };
 ````
 
 </details>

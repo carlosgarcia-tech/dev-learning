@@ -40,6 +40,7 @@ No encontrado
 - [ ] Leer el query string con la clase global `URL`.
 - [ ] Enviar `Content-Type`, `Content-Length` y códigos 200/404 correctos.
 - [ ] Ejecutarlo localmente con `node servidor.js` y probarlo con curl.
+- [ ] Los tests pasan: `node --test ejercicio-02-servidor-http.test.js`.
 
 ## Pistas
 
@@ -67,52 +68,41 @@ const productos = [
   { nombre: "Mouse", precio: 20 },
 ];
 
-const servidor = http.createServer((req, res) => {
-  const url = new URL(req.url, `http://localhost:${PUERTO}`);
-  const ruta = url.pathname;
+function responder(res, codigo, tipo, cuerpo) {
+  res.writeHead(codigo, {
+    "Content-Type": `${tipo}; charset=utf-8`,
+    "Content-Length": Buffer.byteLength(cuerpo),
+  });
+  res.end(cuerpo);
+}
 
-  if (ruta === "/") {
-    const cuerpo = "Bienvenido al servidor de Node.js";
-    res.writeHead(200, {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Content-Length": Buffer.byteLength(cuerpo),
-    });
-    res.end(cuerpo);
-  } else if (ruta === "/hora") {
-    const cuerpo = new Date().toISOString();
-    res.writeHead(200, {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Content-Length": Buffer.byteLength(cuerpo),
-    });
-    res.end(cuerpo);
-  } else if (ruta === "/saludo") {
-    const nombre = url.searchParams.get("nombre") || "mundo";
-    const cuerpo = `Hola, ${nombre}!`;
-    res.writeHead(200, {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Content-Length": Buffer.byteLength(cuerpo),
-    });
-    res.end(cuerpo);
-  } else if (ruta === "/productos") {
-    const cuerpo = JSON.stringify(productos);
-    res.writeHead(200, {
-      "Content-Type": "application/json; charset=utf-8",
-      "Content-Length": Buffer.byteLength(cuerpo),
-    });
-    res.end(cuerpo);
-  } else {
-    const cuerpo = "No encontrado";
-    res.writeHead(404, {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Content-Length": Buffer.byteLength(cuerpo),
-    });
-    res.end(cuerpo);
-  }
-});
+function crearServidor() {
+  return http.createServer((req, res) => {
+    const url = new URL(req.url, `http://localhost:${PUERTO}`);
+    const ruta = url.pathname;
 
-servidor.listen(PUERTO, () => {
-  console.log(`Servidor escuchando en http://localhost:${PUERTO}`);
-});
+    if (ruta === "/") {
+      responder(res, 200, "text/plain", "Bienvenido al servidor de Node.js");
+    } else if (ruta === "/hora") {
+      responder(res, 200, "text/plain", new Date().toISOString());
+    } else if (ruta === "/saludo") {
+      const nombre = url.searchParams.get("nombre") || "mundo";
+      responder(res, 200, "text/plain", `Hola, ${nombre}!`);
+    } else if (ruta === "/productos") {
+      responder(res, 200, "application/json", JSON.stringify(productos));
+    } else {
+      responder(res, 404, "text/plain", "No encontrado");
+    }
+  });
+}
+
+if (require.main === module) {
+  crearServidor().listen(PUERTO, () => {
+    console.log(`Servidor escuchando en http://localhost:${PUERTO}`);
+  });
+}
+
+module.exports = { crearServidor, responder, PUERTO, productos };
 ````
 
 </details>

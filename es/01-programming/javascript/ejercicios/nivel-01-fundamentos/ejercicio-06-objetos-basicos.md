@@ -31,6 +31,7 @@ Premios ganados: 2
 - [ ] Modificar una propiedad existente y añadir nuevas.
 - [ ] Incluir un array dentro del objeto.
 - [ ] Ejecutarlo localmente con `node objetos.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-06-objetos-basicos.test.js`.
 
 ## Pistas
 
@@ -50,24 +51,33 @@ Premios ganados: 2
 <summary>Mostrar solución</summary>
 
 ````javascript
-const pelicula = {
-  titulo: "El Padrino",
-  anio: 1972,
-  director: "Coppola",
-  duracionMin: 175,
-};
+function crearPelicula() {
+  return {
+    titulo: "El Padrino",
+    anio: 1972,
+    director: "Coppola",
+    duracionMin: 175,
+  };
+}
 
-console.log(`Título: ${pelicula.titulo}`);
-console.log(`Año: ${pelicula["anio"]}`);
+function enriquecer(pelicula) {
+  pelicula.duracionMin = 195;
+  pelicula.genero = "Drama";
+  pelicula.premios = ["Oscar", "Globo de Oro"];
+  return pelicula;
+}
 
-pelicula.duracionMin = 195;
-console.log(`Nueva duración: ${pelicula.duracionMin}`);
+if (require.main === module) {
+  const pelicula = crearPelicula();
+  console.log(`Título: ${pelicula.titulo}`);
+  console.log(`Año: ${pelicula["anio"]}`);
+  enriquecer(pelicula);
+  console.log(`Nueva duración: ${pelicula.duracionMin}`);
+  console.log(pelicula);
+  console.log(`Premios ganados: ${pelicula.premios.length}`);
+}
 
-pelicula.genero = "Drama";
-pelicula.premios = ["Oscar", "Globo de Oro"];
-
-console.log(pelicula);
-console.log(`Premios ganados: ${pelicula.premios.length}`);
+module.exports = { crearPelicula, enriquecer };
 ````
 
 </details>

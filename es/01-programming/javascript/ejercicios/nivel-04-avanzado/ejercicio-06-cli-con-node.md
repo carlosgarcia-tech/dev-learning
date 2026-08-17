@@ -38,6 +38,7 @@ Comando desconocido: foo
 - [ ] Implementar al menos 3 comandos.
 - [ ] Validar que los números sean válidos con `Number.isNaN`.
 - [ ] Ejecutarlo localmente con `node cli.js <comando> <n>` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-06-cli-con-node.test.js`.
 
 ## Pistas
 
@@ -57,11 +58,12 @@ Comando desconocido: foo
 <summary>Mostrar solución</summary>
 
 ````javascript
-const args = process.argv.slice(2);
+function sumar(a, b) {
+  return a + b;
+}
 
-if (args.length === 0) {
-  console.log("Uso: node cli.js <comando> <numero>");
-  process.exit(1);
+function restar(a, b) {
+  return a - b;
 }
 
 function factorial(n) {
@@ -69,41 +71,47 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 
-const [comando, a, b] = args;
+function procesarComando(args) {
+  if (args.length === 0) {
+    return "Uso: node cli.js <comando> <numero>";
+  }
 
-switch (comando) {
-  case "suma": {
-    const n1 = Number(a);
-    const n2 = Number(b);
-    if (Number.isNaN(n1) || Number.isNaN(n2)) {
-      console.log("Argumento inválido");
-    } else {
-      console.log(n1 + n2);
+  const [comando, a, b] = args;
+
+  switch (comando) {
+    case "suma": {
+      const n1 = Number(a);
+      const n2 = Number(b);
+      if (Number.isNaN(n1) || Number.isNaN(n2)) {
+        return "Argumento inválido";
+      }
+      return String(sumar(n1, n2));
     }
-    break;
-  }
-  case "resta": {
-    const n1 = Number(a);
-    const n2 = Number(b);
-    if (Number.isNaN(n1) || Number.isNaN(n2)) {
-      console.log("Argumento inválido");
-    } else {
-      console.log(n1 - n2);
+    case "resta": {
+      const n1 = Number(a);
+      const n2 = Number(b);
+      if (Number.isNaN(n1) || Number.isNaN(n2)) {
+        return "Argumento inválido";
+      }
+      return String(restar(n1, n2));
     }
-    break;
-  }
-  case "factorial": {
-    const n = Number(a);
-    if (Number.isNaN(n) || n < 0) {
-      console.log("Argumento inválido");
-    } else {
-      console.log(factorial(n));
+    case "factorial": {
+      const n = Number(a);
+      if (Number.isNaN(n) || n < 0) {
+        return "Argumento inválido";
+      }
+      return String(factorial(n));
     }
-    break;
+    default:
+      return `Comando desconocido: ${comando}`;
   }
-  default:
-    console.log(`Comando desconocido: ${comando}`);
 }
+
+if (require.main === module) {
+  console.log(procesarComando(process.argv.slice(2)));
+}
+
+module.exports = { sumar, restar, factorial, procesarComando };
 ````
 
 </details>

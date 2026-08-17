@@ -30,6 +30,7 @@ Fin
 - [ ] Capturar errores de promesas con `try/catch`.
 - [ ] Combinar `await` con `Promise.all`.
 - [ ] Ejecutarlo localmente con `node async-await.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-01-async-await.test.js`.
 
 ## Pistas
 
@@ -62,28 +63,27 @@ function simularPeticion(ms, fallar = false) {
 }
 
 async function obtenerDatos(fallar) {
-  try {
-    const resultado = await simularPeticion(200, fallar);
-    console.log(resultado);
-  } catch (error) {
-    console.log(`Error: ${error.message}`);
-  }
+  const resultado = await simularPeticion(200, fallar);
+  return resultado;
 }
 
 async function obtenerTodo() {
-  const todas = await Promise.all([
+  return Promise.all([
     simularPeticion(100),
     simularPeticion(200),
     simularPeticion(300),
   ]);
-  console.log(`Todas: ${todas}`);
 }
 
-console.log("Inicio");
-obtenerDatos(false);
-obtenerDatos(true);
-obtenerTodo();
-console.log("Fin");
+if (require.main === module) {
+  console.log("Inicio");
+  obtenerDatos(false).then((r) => console.log(r));
+  obtenerDatos(true).catch((error) => console.log(`Error: ${error.message}`));
+  obtenerTodo().then((todas) => console.log(`Todas: ${todas}`));
+  console.log("Fin");
+}
+
+module.exports = { simularPeticion, obtenerDatos, obtenerTodo };
 ````
 
 </details>

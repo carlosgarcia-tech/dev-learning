@@ -31,6 +31,7 @@ Callback async: dato leído
 - [ ] Usar un callback dentro de `map`.
 - [ ] Simular asincronía con `setTimeout`.
 - [ ] Ejecutarlo localmente con `node callbacks.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-04-callbacks.test.js`.
 
 ## Pistas
 
@@ -57,29 +58,33 @@ function operacion(a, b, callback) {
 function suma(a, b) {
   return a + b;
 }
+
 function resta(a, b) {
   return a - b;
 }
+
 function multiplica(a, b) {
   return a * b;
 }
 
-console.log(`operacion suma: ${operacion(5, 3, suma)}`);        // 8
-console.log(`operacion resta: ${operacion(5, 3, resta)}`);      // 2
-console.log(`operacion multiplica: ${operacion(5, 3, multiplica)}`); // 15
-
 function procesarLista(lista, transformacion) {
   return lista.map(transformacion);
 }
-const duplicados = procesarLista([1, 2, 3, 4, 5], (n) => n * 2);
-console.log(`Lista transformada: ${duplicados}`); // [2, 4, 6, 8, 10]
 
 function leerDato(callback) {
   setTimeout(() => callback("dato leído"), 500);
 }
 
-console.log("(esperando 500 ms...)");
-leerDato((dato) => console.log(`Callback async: ${dato}`));
+if (require.main === module) {
+  console.log(`operacion suma: ${operacion(5, 3, suma)}`);
+  console.log(`operacion resta: ${operacion(5, 3, resta)}`);
+  console.log(`operacion multiplica: ${operacion(5, 3, multiplica)}`);
+  console.log(`Lista transformada: ${procesarLista([1, 2, 3, 4, 5], (n) => n * 2)}`);
+  console.log("(esperando 500 ms...)");
+  leerDato((dato) => console.log(`Callback async: ${dato}`));
+}
+
+module.exports = { operacion, suma, resta, multiplica, procesarLista, leerDato };
 ````
 
 </details>

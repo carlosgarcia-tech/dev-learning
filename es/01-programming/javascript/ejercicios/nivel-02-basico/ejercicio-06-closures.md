@@ -32,6 +32,7 @@ porTres(5): 15
 - [ ] Crear al menos 2 contadores independientes.
 - [ ] Implementar `crearMultiplicador` con closure.
 - [ ] Ejecutarlo localmente con `node closures.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-06-closures.test.js`.
 
 ## Pistas
 
@@ -68,24 +69,26 @@ function crearContador() {
   };
 }
 
-const contadorA = crearContador();
-const contadorB = crearContador();
-
-console.log(`A incrementa: ${contadorA.incrementar()}`);
-console.log(`A incrementa: ${contadorA.incrementar()}`);
-console.log(`B incrementa: ${contadorB.incrementar()}`);
-console.log(`A decrementa: ${contadorA.decrementar()}`);
-console.log(`A obtener: ${contadorA.obtener()}`);
-console.log(`B obtener: ${contadorB.obtener()}`);
-
 function crearMultiplicador(n) {
   return (x) => x * n;
 }
 
-const porDos = crearMultiplicador(2);
-const porTres = crearMultiplicador(3);
-console.log(`porDos(5): ${porDos(5)}`);
-console.log(`porTres(5): ${porTres(5)}`);
+if (require.main === module) {
+  const contadorA = crearContador();
+  const contadorB = crearContador();
+  console.log(`A incrementa: ${contadorA.incrementar()}`);
+  console.log(`A incrementa: ${contadorA.incrementar()}`);
+  console.log(`B incrementa: ${contadorB.incrementar()}`);
+  console.log(`A decrementa: ${contadorA.decrementar()}`);
+  console.log(`A obtener: ${contadorA.obtener()}`);
+  console.log(`B obtener: ${contadorB.obtener()}`);
+  const porDos = crearMultiplicador(2);
+  const porTres = crearMultiplicador(3);
+  console.log(`porDos(5): ${porDos(5)}`);
+  console.log(`porTres(5): ${porTres(5)}`);
+}
+
+module.exports = { crearContador, crearMultiplicador };
 ````
 
 </details>

@@ -29,6 +29,7 @@ Completados de los 3 primeros: 1
 - [ ] Procesar JSON con `respuesta.json()`.
 - [ ] Usar `Promise.all` con varias peticiones.
 - [ ] Ejecutarlo localmente con `node fetch-json.js` (Node 18+ incluye `fetch`) y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-02-fetch-y-json.test.js`.
 
 ## Pistas
 
@@ -59,29 +60,29 @@ async function obtenerTodo(id) {
   return respuesta.json();
 }
 
-async function mostrarUno() {
-  try {
-    const todo = await obtenerTodo(1);
-    console.log(
-      `Todo 1: "${todo.title}" - completado: ${todo.completed}`
-    );
-  } catch (error) {
-    console.log(`Fallo: ${error.message}`);
-  }
-}
-
 async function obtenerVarios() {
-  try {
-    const todos = await Promise.all([obtenerTodo(1), obtenerTodo(2), obtenerTodo(3)]);
-    const completados = todos.filter((t) => t.completed).length;
-    console.log(`Completados de los 3 primeros: ${completados}`);
-  } catch (error) {
-    console.log(`Fallo: ${error.message}`);
-  }
+  return Promise.all([obtenerTodo(1), obtenerTodo(2), obtenerTodo(3)]);
 }
 
-mostrarUno();
-obtenerVarios();
+if (require.main === module) {
+  (async () => {
+    try {
+      const todo = await obtenerTodo(1);
+      console.log(`Todo 1: "${todo.title}" - completado: ${todo.completed}`);
+    } catch (error) {
+      console.log(`Fallo: ${error.message}`);
+    }
+    try {
+      const todos = await obtenerVarios();
+      const completados = todos.filter((t) => t.completed).length;
+      console.log(`Completados de los 3 primeros: ${completados}`);
+    } catch (error) {
+      console.log(`Fallo: ${error.message}`);
+    }
+  })();
+}
+
+module.exports = { obtenerTodo, obtenerVarios };
 ````
 
 </details>

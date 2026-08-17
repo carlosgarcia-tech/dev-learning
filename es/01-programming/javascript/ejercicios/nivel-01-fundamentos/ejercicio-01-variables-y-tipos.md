@@ -29,6 +29,7 @@ Soy Ana, tengo 30 años, nací en Lima y es true que estudio programación.
 - [ ] Imprimir los 4 tipos con `typeof`.
 - [ ] La frase final usa template literals con `${}`.
 - [ ] Ejecutarlo localmente con `node variables.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-01-variables-y-tipos.test.js`.
 
 ## Pistas
 
@@ -48,19 +49,30 @@ Soy Ana, tengo 30 años, nací en Lima y es true que estudio programación.
 <summary>Mostrar solución</summary>
 
 ````javascript
-const nombre = "Ana";
-const ciudad = "Lima";
-let edad = 30;
-const programacion = true;
+function crearDatos() {
+  return { nombre: "Ana", ciudad: "Lima", edad: 30, programacion: true };
+}
 
-console.log(`nombre es de tipo ${typeof nombre}`);
-console.log(`ciudad es de tipo ${typeof ciudad}`);
-console.log(`edad es de tipo ${typeof edad}`);
-console.log(`programacion es de tipo ${typeof programacion}`);
+function tiposDe(datos) {
+  return [
+    `nombre es de tipo ${typeof datos.nombre}`,
+    `ciudad es de tipo ${typeof datos.ciudad}`,
+    `edad es de tipo ${typeof datos.edad}`,
+    `programacion es de tipo ${typeof datos.programacion}`,
+  ];
+}
 
-console.log(
-  `Soy ${nombre}, tengo ${edad} años, nací en ${ciudad} y es ${programacion} que estudio programación.`
-);
+function formatearDescripcion(datos) {
+  return `Soy ${datos.nombre}, tengo ${datos.edad} años, nací en ${datos.ciudad} y es ${datos.programacion} que estudio programación.`;
+}
+
+if (require.main === module) {
+  const datos = crearDatos();
+  for (const linea of tiposDe(datos)) console.log(linea);
+  console.log(formatearDescripcion(datos));
+}
+
+module.exports = { crearDatos, tiposDe, formatearDescripcion };
 ````
 
 </details>

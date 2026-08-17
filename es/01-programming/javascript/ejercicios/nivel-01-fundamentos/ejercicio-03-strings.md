@@ -33,6 +33,7 @@ Template: Aprendo "JavaScript es genial" hoy
 - [ ] Usar `.length`, `.trim()`, `.toUpperCase()`, `.toLowerCase()`, `.includes()` y `.split()`.
 - [ ] Concatenar con `+` y con template literals.
 - [ ] Ejecutarlo localmente con `node strings.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-03-strings.test.js`.
 
 ## Pistas
 
@@ -52,18 +53,39 @@ Template: Aprendo "JavaScript es genial" hoy
 <summary>Mostrar solución</summary>
 
 ````javascript
-const frase = "  JavaScript es genial  ";
+function analizarFrase(frase) {
+  return {
+    longitud: frase.length,
+    sinEspacios: frase.trim(),
+    mayusculas: frase.toUpperCase(),
+    minusculas: frase.toLowerCase(),
+    contieneGenial: frase.includes("genial"),
+    palabras: frase.trim().split(" "),
+  };
+}
 
-console.log(`Longitud: ${frase.length}`);
-console.log(`Sin espacios: "${frase.trim()}"`);
-console.log(`Mayúsculas: ${frase.toUpperCase()}`);
-console.log(`Minúsculas: ${frase.toLowerCase()}`);
-console.log(`¿Contiene "genial"? ${frase.includes("genial")}`);
-console.log(`Palabras: ${frase.trim().split(" ")}`);
+function concatenar(limpia) {
+  return {
+    concatenacion: "Me encanta: " + limpia + "!",
+    template: `Aprendo "${limpia}" hoy`,
+  };
+}
 
-const limpia = frase.trim();
-console.log("Concatenación: " + "Me encanta: " + limpia + "!");
-console.log(`Template: Aprendo "${limpia}" hoy`);
+if (require.main === module) {
+  const frase = "  JavaScript es genial  ";
+  const analizado = analizarFrase(frase);
+  console.log(`Longitud: ${analizado.longitud}`);
+  console.log(`Sin espacios: "${analizado.sinEspacios}"`);
+  console.log(`Mayúsculas: ${analizado.mayusculas}`);
+  console.log(`Minúsculas: ${analizado.minusculas}`);
+  console.log(`¿Contiene "genial"? ${analizado.contieneGenial}`);
+  console.log(`Palabras: ${analizado.palabras}`);
+  const concat = concatenar(analizado.sinEspacios);
+  console.log(concat.concatenacion);
+  console.log(concat.template);
+}
+
+module.exports = { analizarFrase, concatenar };
 ````
 
 </details>

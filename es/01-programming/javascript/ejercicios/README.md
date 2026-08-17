@@ -69,4 +69,4 @@ Mini apps CLI, servidor HTTP, caché LRU, EventEmitter, API REST y pipelines de 
 
 ## Proyectos integradores
 
-[Proyectos integradores](proyectos/README.md) — 3 proyectos por fases: app CLI, API REST con archivo y app full-stack simulada.
+[Proyectos integradores](proyectos/README.md) — 3 proyectos por fases: app CLI, API REST con archivo y el **[PROYECTO FINAL: API REST de MiTienda](proyectos/proyecto-final/README.md)** (auth HMAC, persistencia, validaciones, reportes y tests).

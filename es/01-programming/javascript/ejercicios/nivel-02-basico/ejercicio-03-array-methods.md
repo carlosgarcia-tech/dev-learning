@@ -39,6 +39,7 @@ Primero < 25: Camisa
 - [ ] Usar `find` para localizar un producto.
 - [ ] No modificar el array original con los métodos.
 - [ ] Ejecutarlo localmente con `node array-methods.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-03-array-methods.test.js`.
 
 ## Pistas
 
@@ -58,29 +59,40 @@ Primero < 25: Camisa
 <summary>Mostrar solución</summary>
 
 ````javascript
-const productos = [
+const PRODUCTOS = [
   { nombre: "Camisa", precio: 20, stock: 5 },
   { nombre: "Pantalón", precio: 35, stock: 0 },
   { nombre: "Zapatos", precio: 50, stock: 8 },
   { nombre: "Sombrero", precio: 15, stock: 2 },
 ];
 
-const nombres = productos.map((p) => p.nombre);
-console.log(`Nombres: ${nombres}`);
+function obtenerNombres(productos) {
+  return productos.map((p) => p.nombre);
+}
 
-const conIVA = productos.map((p) => ({
-  nombre: p.nombre,
-  precio: Math.round(p.precio * 1.18 * 100) / 100,
-}));
-console.log("Con IVA:", conIVA);
+function conIVA(productos) {
+  return productos.map((p) => ({
+    nombre: p.nombre,
+    precio: Math.round(p.precio * 1.18 * 100) / 100,
+  }));
+}
 
-const conStock = productos.filter((p) => p.stock > 0);
-console.log(
-  `Con stock: ${conStock.map((p) => p.nombre).join(", ")}`
-);
+function conStock(productos) {
+  return productos.filter((p) => p.stock > 0);
+}
 
-const primeroBarato = productos.find((p) => p.precio < 25);
-console.log(`Primero < 25: ${primeroBarato.nombre}`);
+function primeroBarato(productos) {
+  return productos.find((p) => p.precio < 25);
+}
+
+if (require.main === module) {
+  console.log(`Nombres: ${obtenerNombres(PRODUCTOS)}`);
+  console.log("Con IVA:", conIVA(PRODUCTOS));
+  console.log(`Con stock: ${conStock(PRODUCTOS).map((p) => p.nombre).join(", ")}`);
+  console.log(`Primero < 25: ${primeroBarato(PRODUCTOS).nombre}`);
+}
+
+module.exports = { PRODUCTOS, obtenerNombres, conIVA, conStock, primeroBarato };
 ````
 
 </details>

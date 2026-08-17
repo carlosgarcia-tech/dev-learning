@@ -48,6 +48,7 @@ $ node tareas.js listar
 - [ ] Crear el archivo con `[]` si no existe.
 - [ ] Manejar errores de lectura/escritura con try/catch.
 - [ ] Ejecutarlo localmente con `node tareas.js` y verificar los comandos.
+- [ ] Los tests pasan: `node --test ejercicio-01-gestor-de-tareas-cli.test.js`.
 
 ## Pistas
 
@@ -73,86 +74,99 @@ const path = require("node:path");
 
 const ARCHIVO = path.join(__dirname, "tareas.json");
 
-function leerTareas() {
-  try {
-    if (!fs.existsSync(ARCHIVO)) {
-      fs.writeFileSync(ARCHIVO, "[]");
-    }
-    const contenido = fs.readFileSync(ARCHIVO, "utf-8");
-    return JSON.parse(contenido);
-  } catch (error) {
-    console.error("Error al leer tareas:", error.message);
-    return [];
+function leerTareas(archivo) {
+  if (!fs.existsSync(archivo)) {
+    fs.writeFileSync(archivo, "[]");
   }
+  const contenido = fs.readFileSync(archivo, "utf-8");
+  return JSON.parse(contenido);
 }
 
-function guardarTareas(tareas) {
-  fs.writeFileSync(ARCHIVO, JSON.stringify(tareas, null, 2));
+function guardarTareas(archivo, tareas) {
+  fs.writeFileSync(archivo, JSON.stringify(tareas, null, 2));
 }
 
-function listar() {
-  const tareas = leerTareas();
-  if (tareas.length === 0) {
-    console.log("No hay tareas.");
-    return;
-  }
-  for (const tarea of tareas) {
-    const estado = tarea.completada ? "[x]" : "[ ]";
-    console.log(`${tarea.id}. ${estado} ${tarea.texto}`);
-  }
+function siguienteId(tareas) {
+  return Math.max(0, ...tareas.map((t) => t.id)) + 1;
 }
 
-function agregar(texto) {
-  const tareas = leerTareas();
-  const id = Math.max(0, ...tareas.map((t) => t.id)) + 1;
-  tareas.push({ id, texto, completada: false });
-  guardarTareas(tareas);
-  console.log(`Tarea añadida con id ${id}: ${texto}`);
+function agregarTarea(tareas, texto) {
+  const tarea = { id: siguienteId(tareas), texto, completada: false };
+  return { tareas: [...tareas, tarea], tarea };
 }
 
-function completar(id) {
-  const tareas = leerTareas();
+function completarTarea(tareas, id) {
   const tarea = tareas.find((t) => t.id === id);
   if (!tarea) {
-    console.log(`No existe la tarea con id ${id}`);
-    return;
+    return { tareas, encontrada: false };
   }
-  tarea.completada = true;
-  guardarTareas(tareas);
-  console.log(`Tarea ${id} completada`);
+  const modificadas = tareas.map((t) => (t.id === id ? { ...t, completada: true } : t));
+  return { tareas: modificadas, encontrada: true };
 }
 
-function eliminar(id) {
-  const tareas = leerTareas();
+function eliminarTarea(tareas, id) {
   const filtradas = tareas.filter((t) => t.id !== id);
-  if (filtradas.length === tareas.length) {
-    console.log(`No existe la tarea con id ${id}`);
-    return;
+  return { tareas: filtradas, eliminada: filtradas.length !== tareas.length };
+}
+
+function formatear(tareas) {
+  return tareas.map((t) => `${t.id}. ${t.completada ? "[x]" : "[ ]"} ${t.texto}`);
+}
+
+if (require.main === module) {
+  const [comando, ...resto] = process.argv.slice(2);
+  let tareas = leerTareas(ARCHIVO);
+
+  switch (comando) {
+    case "listar": {
+      if (tareas.length === 0) {
+        console.log("No hay tareas.");
+        break;
+      }
+      for (const linea of formatear(tareas)) console.log(linea);
+      break;
+    }
+    case "agregar": {
+      const resultado = agregarTarea(tareas, resto.join(" "));
+      guardarTareas(ARCHIVO, resultado.tareas);
+      console.log(`Tarea añadida con id ${resultado.tarea.id}: ${resultado.tarea.texto}`);
+      break;
+    }
+    case "completar": {
+      const resultado = completarTarea(tareas, Number(resto[0]));
+      if (!resultado.encontrada) {
+        console.log(`No existe la tarea con id ${resto[0]}`);
+        break;
+      }
+      guardarTareas(ARCHIVO, resultado.tareas);
+      console.log(`Tarea ${resto[0]} completada`);
+      break;
+    }
+    case "eliminar": {
+      const resultado = eliminarTarea(tareas, Number(resto[0]));
+      if (!resultado.eliminada) {
+        console.log(`No existe la tarea con id ${resto[0]}`);
+        break;
+      }
+      guardarTareas(ARCHIVO, resultado.tareas);
+      console.log(`Tarea ${resto[0]} eliminada`);
+      break;
+    }
+    default:
+      console.log("Uso: node tareas.js <listar|agregar|completar|eliminar> ...");
   }
-  guardarTareas(filtradas);
-  console.log(`Tarea ${id} eliminada`);
 }
 
-const [comando, ...resto] = process.argv.slice(2);
-
-switch (comando) {
-  case "listar":
-    listar();
-    break;
-  case "agregar":
-    agregar(resto.join(" "));
-    break;
-  case "completar":
-    completar(Number(resto[0]));
-    break;
-  case "eliminar":
-    eliminar(Number(resto[0]));
-    break;
-  default:
-    console.log(
-      "Uso: node tareas.js <listar|agregar|completar|eliminar> ..."
-    );
-}
+module.exports = {
+  ARCHIVO,
+  leerTareas,
+  guardarTareas,
+  siguienteId,
+  agregarTarea,
+  completarTarea,
+  eliminarTarea,
+  formatear,
+};
 ````
 
 </details>

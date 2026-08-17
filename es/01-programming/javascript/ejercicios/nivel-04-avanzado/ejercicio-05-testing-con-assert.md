@@ -40,6 +40,7 @@ Todas las pruebas pasaron
 - [ ] Probar casos válidos e inválidos (incluido `assert.throws`).
 - [ ] Que el script falle con un mensaje claro si una aserción no se cumple.
 - [ ] Ejecutarlo localmente con `node testing.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-05-testing-con-assert.test.js`.
 
 ## Pistas
 
@@ -59,8 +60,6 @@ Todas las pruebas pasaron
 <summary>Mostrar solución</summary>
 
 ````javascript
-const assert = require("node:assert");
-
 function sumar(a, b) {
   return a + b;
 }
@@ -87,20 +86,24 @@ function probar(nombre, fn) {
   }
 }
 
-probar("sumar(2, 3) === 5", () => assert.strictEqual(sumar(2, 3), 5));
-probar("sumar(-1, 1) === 0", () => assert.strictEqual(sumar(-1, 1), 0));
-probar('esPalindromo("reconocer") === true', () =>
-  assert.strictEqual(esPalindromo("reconocer"), true)
-);
-probar('esPalindromo("Hola") === false', () =>
-  assert.strictEqual(esPalindromo("Hola"), false)
-);
-probar("dividir(1, 0) lanza error", () =>
-  assert.throws(() => dividir(1, 0), /cero/)
-);
-probar("dividir(10, 2) === 5", () => assert.strictEqual(dividir(10, 2), 5));
+if (require.main === module) {
+  const assert = require("node:assert");
+  probar("sumar(2, 3) === 5", () => assert.strictEqual(sumar(2, 3), 5));
+  probar("sumar(-1, 1) === 0", () => assert.strictEqual(sumar(-1, 1), 0));
+  probar('esPalindromo("reconocer") === true', () =>
+    assert.strictEqual(esPalindromo("reconocer"), true)
+  );
+  probar('esPalindromo("Hola") === false', () =>
+    assert.strictEqual(esPalindromo("Hola"), false)
+  );
+  probar("dividir(1, 0) lanza error", () =>
+    assert.throws(() => dividir(1, 0), /cero/)
+  );
+  probar("dividir(10, 2) === 5", () => assert.strictEqual(dividir(10, 2), 5));
+  console.log("Todas las pruebas pasaron");
+}
 
-console.log("Todas las pruebas pasaron");
+module.exports = { sumar, esPalindromo, dividir, probar };
 ````
 
 </details>

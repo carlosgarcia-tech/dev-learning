@@ -33,6 +33,7 @@ shift() quita: correr -> [ 'estudiar', 'cocinar', 'dormir' ]
 - [ ] Usar `push`, `pop`, `unshift` y `shift`.
 - [ ] Imprimir el valor devuelto por `pop` y `shift` (devuelven el elemento quitado).
 - [ ] Ejecutarlo localmente con `node arrays.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-04-arrays-basicos.test.js`.
 
 ## Pistas
 
@@ -51,23 +52,55 @@ shift() quita: correr -> [ 'estudiar', 'cocinar', 'dormir' ]
 <summary>Mostrar solución</summary>
 
 ````javascript
-const tareas = ["estudiar", "cocinar", "dormir"];
+function primerElemento(arr) {
+  return arr[0];
+}
 
-console.log(`Longitud: ${tareas.length}`);
-console.log(`Primero: ${tareas[0]}`);
-console.log(`Último: ${tareas[tareas.length - 1]}`);
+function ultimoElemento(arr) {
+  return arr[arr.length - 1];
+}
 
-tareas.push("leer");
-console.log(`Después de push: ${tareas}`);
+function agregarAlFinal(arr, item) {
+  arr.push(item);
+  return arr;
+}
 
-const quitadoPop = tareas.pop();
-console.log(`pop() quita: ${quitadoPop} -> ${tareas}`);
+function quitarDelFinal(arr) {
+  const quitado = arr.pop();
+  return { quitado, array: arr };
+}
 
-tareas.unshift("correr");
-console.log(`Después de unshift: ${tareas}`);
+function agregarAlInicio(arr, item) {
+  arr.unshift(item);
+  return arr;
+}
 
-const quitadoShift = tareas.shift();
-console.log(`shift() quita: ${quitadoShift} -> ${tareas}`);
+function quitarDelInicio(arr) {
+  const quitado = arr.shift();
+  return { quitado, array: arr };
+}
+
+if (require.main === module) {
+  const tareas = ["estudiar", "cocinar", "dormir"];
+  console.log(`Longitud: ${tareas.length}`);
+  console.log(`Primero: ${primerElemento(tareas)}`);
+  console.log(`Último: ${ultimoElemento(tareas)}`);
+  console.log(`Después de push: ${agregarAlFinal(tareas, "leer")}`);
+  const pop = quitarDelFinal(tareas);
+  console.log(`pop() quita: ${pop.quitado} -> ${pop.array}`);
+  console.log(`Después de unshift: ${agregarAlInicio(tareas, "correr")}`);
+  const shift = quitarDelInicio(tareas);
+  console.log(`shift() quita: ${shift.quitado} -> ${shift.array}`);
+}
+
+module.exports = {
+  primerElemento,
+  ultimoElemento,
+  agregarAlFinal,
+  quitarDelFinal,
+  agregarAlInicio,
+  quitarDelInicio,
+};
 ````
 
 </details>

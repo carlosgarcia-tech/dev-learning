@@ -29,6 +29,7 @@ Tras desuscribir, solo responde un suscriptor
 - [ ] El singleton debe devolver siempre la misma referencia.
 - [ ] El observer debe permitir suscribir, emitir y desuscribir.
 - [ ] Ejecutarlo localmente con `node patrones.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-03-patrones-de-diseno.test.js`.
 
 ## Pistas
 
@@ -49,7 +50,7 @@ Tras desuscribir, solo responde un suscriptor
 
 ````javascript
 const contadorModule = (() => {
-  let cuenta = 0; // privado: solo accesible dentro del closure
+  let cuenta = 0;
   return {
     incrementar() {
       cuenta++;
@@ -61,11 +62,6 @@ const contadorModule = (() => {
   };
 })();
 
-console.log(
-  `Module: cuenta ${contadorModule.incrementar()}, ${contadorModule.incrementar()}, ${contadorModule.incrementar()}`
-);
-console.log(`module.cuenta está oculto: ${contadorModule.cuenta}`); // undefined
-
 class Configuracion {
   constructor() {
     if (Configuracion.instancia) {
@@ -75,10 +71,6 @@ class Configuracion {
     Configuracion.instancia = this;
   }
 }
-
-const conf1 = new Configuracion();
-const conf2 = new Configuracion();
-console.log(`Singleton: ¿misma instancia? ${conf1 === conf2}`); // true
 
 class Evento {
   constructor() {
@@ -100,16 +92,26 @@ class Evento {
   }
 }
 
-const evento = new Evento();
-const sus1 = (m) => console.log(`Suscriptor 1 recibió: ${m}`);
-const sus2 = (m) => console.log(`Suscriptor 2 recibió: ${m}`);
+if (require.main === module) {
+  console.log(
+    `Module: cuenta ${contadorModule.incrementar()}, ${contadorModule.incrementar()}, ${contadorModule.incrementar()}`
+  );
+  console.log(`module.cuenta está oculto: ${contadorModule.cuenta}`);
+  const conf1 = new Configuracion();
+  const conf2 = new Configuracion();
+  console.log(`Singleton: ¿misma instancia? ${conf1 === conf2}`);
 
-evento.suscribir(sus1);
-evento.suscribir(sus2);
-evento.emitir("Hola desde observer");
+  const evento = new Evento();
+  const sus1 = (m) => console.log(`Suscriptor 1 recibió: ${m}`);
+  const sus2 = (m) => console.log(`Suscriptor 2 recibió: ${m}`);
+  evento.suscribir(sus1);
+  evento.suscribir(sus2);
+  evento.emitir("Hola desde observer");
+  evento.desuscribir(sus2);
+  evento.emitir("Tras desuscribir, solo responde un suscriptor");
+}
 
-evento.desuscribir(sus2);
-evento.emitir("Tras desuscribir, solo responde un suscriptor");
+module.exports = { contadorModule, Configuracion, Evento };
 ````
 
 </details>

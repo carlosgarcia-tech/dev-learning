@@ -31,6 +31,7 @@ unir: a,b,c
 - [ ] Usar destructuring de array con rest.
 - [ ] Usar spread en arrays y en objetos.
 - [ ] Ejecutarlo localmente con `node destructuring.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-04-destructuring-y-spread.test.js`.
 
 ## Pistas
 
@@ -50,29 +51,56 @@ unir: a,b,c
 <summary>Mostrar solución</summary>
 
 ````javascript
-const persona = { nombre: "Luis", edad: 28, ciudad: "Quito" };
-const { nombre, ciudad } = persona;
-console.log(`nombre: ${nombre}, ciudad: ${ciudad}`);
+const PERSONA = { nombre: "Luis", edad: 28, ciudad: "Quito" };
 
-const { edad: anios } = persona;
-console.log(`anios: ${anios}`);
+const PUNTO = [10, 20, 30];
 
-const punto = [10, 20, 30];
-const [x, y, ...resto] = punto;
-console.log(`x: ${x}, y: ${y}, resto: ${resto}`);
+function extraerPersona(persona) {
+  const { nombre, ciudad } = persona;
+  return `nombre: ${nombre}, ciudad: ${ciudad}`;
+}
 
-const a = [1, 2, 3];
-const b = [4, 5, 6];
-const combinado = [...a, ...b];
-console.log(`Combinado: ${combinado}`);
+function extraerEdad(persona) {
+  const { edad: anios } = persona;
+  return anios;
+}
 
-const copia = { ...persona, activo: true };
-console.log("Copia:", copia);
+function extraerPunto(punto) {
+  const [x, y, ...resto] = punto;
+  return `x: ${x}, y: ${y}, resto: [${resto}]`;
+}
+
+function combinarArrays(a, b) {
+  return [...a, ...b];
+}
+
+function copiarPersona(persona) {
+  return { ...persona, activo: true };
+}
 
 function unir(...args) {
   return args.join(",");
 }
-console.log(`unir: ${unir("a", "b", "c")}`);
+
+if (require.main === module) {
+  console.log(extraerPersona(PERSONA));
+  console.log(`anios: ${extraerEdad(PERSONA)}`);
+  console.log(extraerPunto(PUNTO));
+  console.log(`Combinado: ${combinarArrays([1, 2, 3], [4, 5, 6])}`);
+  console.log("Copia:", copiarPersona(PERSONA));
+  console.log(`unir: ${unir("a", "b", "c")}`);
+}
+
+module.exports = {
+  PERSONA,
+  PUNTO,
+  extraerPersona,
+  extraerEdad,
+  extraerPunto,
+  combinarArrays,
+  copiarPersona,
+  unir,
+};
 ````
 
 </details>

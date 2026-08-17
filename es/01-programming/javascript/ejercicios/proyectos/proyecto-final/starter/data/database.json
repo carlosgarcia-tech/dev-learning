@@ -1,0 +1,7 @@
+{
+  "productos": [],
+  "pedidos": [],
+  "usuarios": [
+    { "id": 1, "usuario": "admin", "clave": "admin123" }
+  ]
+}

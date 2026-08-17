@@ -34,6 +34,6 @@ Cada ejercicio incluye enunciado, requisitos, pistas y solución. Ejecuta cada s
 
 Al terminar los niveles, integra todo lo aprendido con los [3 proyectos integradores](ejercicios/proyectos/README.md):
 
-1. **Gestor de tareas CLI** — aplicación de consola persistente en JSON.
+1. **App CLI de gestión de inventario** — aplicación de consola persistente en JSON.
 2. **API REST con archivo** — servidor HTTP que guarda datos en disco.
-3. **App full-stack simulada** — frontend y backend funcionando juntos con datos en memoria.
+3. **[PROYECTO FINAL: API REST de MiTienda](ejercicios/proyectos/proyecto-final/)** — REST en Node puro, persistencia JSON, auth HMAC, validaciones, reportes y tests.

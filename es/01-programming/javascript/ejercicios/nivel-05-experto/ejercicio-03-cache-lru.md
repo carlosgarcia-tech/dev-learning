@@ -39,6 +39,7 @@ console.log(cache.tamaño());     // 2
 - [ ] `obtener` actualiza el orden de uso.
 - [ ] `poner` sobre elementos existentes no duplica entradas.
 - [ ] Ejecutarlo localmente con `node lru.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-03-cache-lru.test.js`.
 
 ## Pistas
 
@@ -68,7 +69,7 @@ class CachéLRU {
     if (!this.map.has(clave)) return null;
     const valor = this.map.get(clave);
     this.map.delete(clave);
-    this.map.set(clave, valor); // reinsertar al final = más reciente
+    this.map.set(clave, valor);
     return valor;
   }
 
@@ -87,16 +88,19 @@ class CachéLRU {
   }
 }
 
-const cache = new CachéLRU(2);
-cache.poner("a", 1);
-cache.poner("b", 2);
-cache.obtener("a"); // ahora "a" es el más reciente
-cache.poner("c", 3); // expulsa "b"
+if (require.main === module) {
+  const cache = new CachéLRU(2);
+  cache.poner("a", 1);
+  cache.poner("b", 2);
+  cache.obtener("a");
+  cache.poner("c", 3);
+  console.log(cache.obtener("a")); // 1
+  console.log(cache.obtener("b")); // null
+  console.log(cache.obtener("c")); // 3
+  console.log(cache.tamaño());     // 2
+}
 
-console.log(cache.obtener("a")); // 1
-console.log(cache.obtener("b")); // null
-console.log(cache.obtener("c")); // 3
-console.log(cache.tamaño());     // 2
+module.exports = { CachéLRU };
 ````
 
 </details>

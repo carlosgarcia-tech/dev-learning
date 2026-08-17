@@ -43,6 +43,7 @@ $ curl -X POST http://localhost:4000/productos -H "Content-Type: application/jso
 - [ ] Devolver códigos de estado correctos: 200, 201, 400, 404.
 - [ ] Validar los datos del POST.
 - [ ] Ejecutarlo localmente con `node api.js` y probarlo con curl.
+- [ ] Los tests pasan: `node --test ejercicio-05-api-rest-minima.test.js`.
 
 ## Pistas
 
@@ -92,41 +93,47 @@ function leerBody(req) {
   });
 }
 
-const servidor = http.createServer(async (req, res) => {
-  const url = new URL(req.url, `http://localhost:${PUERTO}`);
-  const partes = url.pathname.split("/").filter(Boolean);
+function crearServidor() {
+  return http.createServer(async (req, res) => {
+    const url = new URL(req.url, `http://localhost:${PUERTO}`);
+    const partes = url.pathname.split("/").filter(Boolean);
 
-  if (partes[0] !== "productos") {
-    return responder(res, 404, { error: "No encontrado" });
-  }
-
-  if (req.method === "GET" && partes.length === 1) {
-    return responder(res, 200, productos);
-  }
-
-  if (req.method === "GET" && partes.length === 2) {
-    const id = Number(partes[1]);
-    const producto = productos.find((p) => p.id === id);
-    if (!producto) return responder(res, 404, { error: "No encontrado" });
-    return responder(res, 200, producto);
-  }
-
-  if (req.method === "POST" && partes.length === 1) {
-    const datos = await leerBody(req);
-    if (!datos || typeof datos.nombre !== "string" || typeof datos.precio !== "number") {
-      return responder(res, 400, { error: "Datos inválidos" });
+    if (partes[0] !== "productos") {
+      return responder(res, 404, { error: "No encontrado" });
     }
-    const nuevo = { id: siguienteId++, nombre: datos.nombre, precio: datos.precio };
-    productos.push(nuevo);
-    return responder(res, 201, nuevo);
-  }
 
-  responder(res, 405, { error: "Método no permitido" });
-});
+    if (req.method === "GET" && partes.length === 1) {
+      return responder(res, 200, productos);
+    }
 
-servidor.listen(PUERTO, () => {
-  console.log(`API escuchando en http://localhost:${PUERTO}`);
-});
+    if (req.method === "GET" && partes.length === 2) {
+      const id = Number(partes[1]);
+      const producto = productos.find((p) => p.id === id);
+      if (!producto) return responder(res, 404, { error: "No encontrado" });
+      return responder(res, 200, producto);
+    }
+
+    if (req.method === "POST" && partes.length === 1) {
+      const datos = await leerBody(req);
+      if (!datos || typeof datos.nombre !== "string" || typeof datos.precio !== "number") {
+        return responder(res, 400, { error: "Datos inválidos" });
+      }
+      const nuevo = { id: siguienteId++, nombre: datos.nombre, precio: datos.precio };
+      productos.push(nuevo);
+      return responder(res, 201, nuevo);
+    }
+
+    responder(res, 405, { error: "Método no permitido" });
+  });
+}
+
+if (require.main === module) {
+  crearServidor().listen(PUERTO, () => {
+    console.log(`API escuchando en http://localhost:${PUERTO}`);
+  });
+}
+
+module.exports = { crearServidor, responder, leerBody, PUERTO };
 ````
 
 </details>

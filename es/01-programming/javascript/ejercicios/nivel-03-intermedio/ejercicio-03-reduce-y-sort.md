@@ -26,10 +26,11 @@ const ventas = [
 Salida esperada:
 
 ```
-Ingresos totales: 3650
+Ingresos totales: 3450
 Producto con mayor ingreso: Laptop (2400)
 Unidades totales: 20
-Orden por precio (desc): [Monitor(300), Teclado(50), Mouse(20), Laptop(800)] -> el primero es Laptop
+Mayor precio: Laptop (800)
+Menor cantidad: Monitor (2)
 ```
 
 ## Requisitos
@@ -38,6 +39,7 @@ Orden por precio (desc): [Monitor(300), Teclado(50), Mouse(20), Laptop(800)] -> 
 - [ ] Usar `sort` con comparadores (ascendente y descendente).
 - [ ] Ordenar copias con `[...ventas]` sin mutar el original.
 - [ ] Ejecutarlo localmente con `node reduce-sort.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-03-reduce-y-sort.test.js`.
 
 ## Pistas
 
@@ -57,31 +59,54 @@ Orden por precio (desc): [Monitor(300), Teclado(50), Mouse(20), Laptop(800)] -> 
 <summary>Mostrar solución</summary>
 
 ````javascript
-const ventas = [
+const VENTAS = [
   { producto: "Laptop", cantidad: 3, precio: 800 },
   { producto: "Mouse", cantidad: 10, precio: 20 },
   { producto: "Monitor", cantidad: 2, precio: 300 },
   { producto: "Teclado", cantidad: 5, precio: 50 },
 ];
 
-const ingresoDe = (v) => v.cantidad * v.precio;
+function ingresosTotales(ventas) {
+  return ventas.reduce((acc, v) => acc + v.cantidad * v.precio, 0);
+}
 
-const total = ventas.reduce((acc, v) => acc + ingresoDe(v), 0);
-console.log(`Ingresos totales: ${total}`); // 3650
+function mayorIngreso(ventas) {
+  return ventas.reduce((mejor, v) =>
+    v.cantidad * v.precio > mejor.cantidad * mejor.precio ? v : mejor
+  );
+}
 
-const mayor = ventas.reduce((mejor, v) =>
-  ingresoDe(v) > ingresoDe(mejor) ? v : mejor
-);
-console.log(`Producto con mayor ingreso: ${mayor.producto} (${ingresoDe(mayor)})`);
+function unidadesTotales(ventas) {
+  return ventas.reduce((acc, v) => acc + v.cantidad, 0);
+}
 
-const unidades = ventas.reduce((acc, v) => acc + v.cantidad, 0);
-console.log(`Unidades totales: ${unidades}`); // 20
+function ordenarPorPrecioDesc(ventas) {
+  return [...ventas].sort((a, b) => b.precio - a.precio);
+}
 
-const porPrecio = [...ventas].sort((a, b) => b.precio - a.precio);
-console.log(`Mayor precio: ${porPrecio[0].producto} (${porPrecio[0].precio})`);
+function ordenarPorCantidadAsc(ventas) {
+  return [...ventas].sort((a, b) => a.cantidad - b.cantidad);
+}
 
-const porCantidad = [...ventas].sort((a, b) => a.cantidad - b.cantidad);
-console.log(`Menor cantidad: ${porCantidad[0].producto} (${porCantidad[0].cantidad})`);
+if (require.main === module) {
+  console.log(`Ingresos totales: ${ingresosTotales(VENTAS)}`);
+  const mayor = mayorIngreso(VENTAS);
+  console.log(`Producto con mayor ingreso: ${mayor.producto} (${mayor.cantidad * mayor.precio})`);
+  console.log(`Unidades totales: ${unidadesTotales(VENTAS)}`);
+  const porPrecio = ordenarPorPrecioDesc(VENTAS);
+  console.log(`Mayor precio: ${porPrecio[0].producto} (${porPrecio[0].precio})`);
+  const porCantidad = ordenarPorCantidadAsc(VENTAS);
+  console.log(`Menor cantidad: ${porCantidad[0].producto} (${porCantidad[0].cantidad})`);
+}
+
+module.exports = {
+  VENTAS,
+  ingresosTotales,
+  mayorIngreso,
+  unidadesTotales,
+  ordenarPorPrecioDesc,
+  ordenarPorCantidadAsc,
+};
 ````
 
 </details>

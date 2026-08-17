@@ -29,6 +29,7 @@ Error: No se puede dividir entre cero
 - [ ] Encadenar `.then` y capturar con `.catch`.
 - [ ] Usar `Promise.all` para ejecutar en paralelo.
 - [ ] Ejecutarlo localmente con `node promesas.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-05-promesas.test.js`.
 
 ## Pistas
 
@@ -64,21 +65,25 @@ function dividir(a, b) {
   });
 }
 
-simularDescarga("video.mp4", 300)
-  .then((resultado) => {
-    console.log(resultado);
-    return resultado;
-  })
-  .then((resultado) => console.log(`Reproduciendo ${resultado}`));
+if (require.main === module) {
+  simularDescarga("video.mp4", 300)
+    .then((resultado) => {
+      console.log(resultado);
+      return resultado;
+    })
+    .then((resultado) => console.log(`Reproduciendo ${resultado}`));
 
-Promise.all([
-  simularDescarga("a.txt", 100),
-  simularDescarga("b.txt", 200),
-  simularDescarga("c.txt", 150),
-]).then((resultados) => console.log(`Descarga en paralelo: ${resultados}`));
+  Promise.all([
+    simularDescarga("a.txt", 100),
+    simularDescarga("b.txt", 200),
+    simularDescarga("c.txt", 150),
+  ]).then((resultados) => console.log(`Descarga en paralelo: ${resultados}`));
 
-dividir(10, 0).catch((error) => console.log(`Error: ${error.message}`));
-dividir(10, 2).then((r) => console.log(`División válida: ${r}`));
+  dividir(10, 0).catch((error) => console.log(`Error: ${error.message}`));
+  dividir(10, 2).then((r) => console.log(`División válida: ${r}`));
+}
+
+module.exports = { simularDescarga, dividir };
 ````
 
 </details>

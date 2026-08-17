@@ -45,6 +45,7 @@ Nota: el orden del ejemplo es solo ilustrativo; la salida correcta depende del s
 - [ ] Crear la función `pipeline(etapas, datos)` que encadene etapas con `reduce`.
 - [ ] Cada etapa es una función pura que recibe y devuelve datos.
 - [ ] Ejecutarlo localmente con `node pipeline.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-06-pipeline-de-datos.test.js`.
 
 ## Pistas
 
@@ -65,7 +66,7 @@ Nota: el orden del ejemplo es solo ilustrativo; la salida correcta depende del s
 <summary>Mostrar solución</summary>
 
 ````javascript
-const ventas = [
+const VENTAS = [
   { region: "Norte", vendedor: "Ana", monto: 1200, fecha: "2026-01-15" },
   { region: "Sur", vendedor: "Luis", monto: 800, fecha: "2026-01-16" },
   { region: "Norte", vendedor: "Ana", monto: 500, fecha: "2026-02-02" },
@@ -74,34 +75,52 @@ const ventas = [
   { region: "Sur", vendedor: "Ana", monto: 300, fecha: "2026-03-05" },
 ];
 
-const soloFebrero = (datos) => datos.filter((v) => v.fecha.startsWith("2026-02"));
+function soloFebrero(datos) {
+  return datos.filter((v) => v.fecha.startsWith("2026-02"));
+}
 
-const proyectar = (datos) =>
-  datos.map(({ region, vendedor, monto }) => ({ region, vendedor, monto }));
+function proyectar(datos) {
+  return datos.map(({ region, vendedor, monto }) => ({ region, vendedor, monto }));
+}
 
-const agruparPorVendedor = (datos) =>
-  datos.reduce((acc, v) => {
+function agruparPorVendedor(datos) {
+  return datos.reduce((acc, v) => {
     acc[v.vendedor] = (acc[v.vendedor] || 0) + v.monto;
     return acc;
   }, {});
+}
 
-const ordenarPorTotal = (agrupado) =>
-  Object.entries(agrupado).sort((a, b) => b[1] - a[1]);
+function ordenarPorTotal(agrupado) {
+  return Object.entries(agrupado).sort((a, b) => b[1] - a[1]);
+}
 
-const formatear = (entradas) => entradas.map(([vendedor, total]) => `${vendedor}: ${total}`);
+function formatear(entradas) {
+  return entradas.map(([vendedor, total]) => `${vendedor}: ${total}`);
+}
 
 function pipeline(etapas, datosIniciales) {
   return etapas.reduce((datos, etapa) => etapa(datos), datosIniciales);
 }
 
-const resultado = pipeline(
-  [soloFebrero, proyectar, agruparPorVendedor, ordenarPorTotal, formatear],
-  ventas
-);
-
-for (const linea of resultado) {
-  console.log(linea);
+if (require.main === module) {
+  const resultado = pipeline(
+    [soloFebrero, proyectar, agruparPorVendedor, ordenarPorTotal, formatear],
+    VENTAS
+  );
+  for (const linea of resultado) {
+    console.log(linea);
+  }
 }
+
+module.exports = {
+  VENTAS,
+  soloFebrero,
+  proyectar,
+  agruparPorVendedor,
+  ordenarPorTotal,
+  formatear,
+  pipeline,
+};
 ````
 
 </details>

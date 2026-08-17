@@ -32,6 +32,7 @@ Suma sin argumentos: 0
 - [ ] Usar parámetros rest (`...`) en al menos una función.
 - [ ] Usar un valor por defecto en un parámetro.
 - [ ] Ejecutarlo localmente con `node funciones.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-01-funciones.test.js`.
 
 ## Pistas
 
@@ -67,13 +68,17 @@ function potencia(base, exponente = 2) {
   return base ** exponente;
 }
 
-console.log(saludar("Ana"));
-console.log(`7 es par: ${esPar(7)}`);
-console.log(`8 es par: ${esPar(8)}`);
-console.log(`Suma de 1,2,3,4: ${sumarTodos(1, 2, 3, 4)}`);
-console.log(`Suma sin argumentos: ${sumarTodos()}`);
-console.log(`3^2 (por defecto): ${potencia(3)}`);
-console.log(`3^4: ${potencia(3, 4)}`);
+if (require.main === module) {
+  console.log(saludar("Ana"));
+  console.log(`7 es par: ${esPar(7)}`);
+  console.log(`8 es par: ${esPar(8)}`);
+  console.log(`Suma de 1,2,3,4: ${sumarTodos(1, 2, 3, 4)}`);
+  console.log(`Suma sin argumentos: ${sumarTodos()}`);
+  console.log(`3^2 (por defecto): ${potencia(3)}`);
+  console.log(`3^4: ${potencia(3, 4)}`);
+}
+
+module.exports = { saludar, esPar, sumarTodos, potencia };
 ````
 
 </details>

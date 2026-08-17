@@ -31,6 +31,7 @@ La operación terminó
 - [ ] Capturar con `try/catch` e imprimir `error.message`.
 - [ ] Usar `finally` en al menos una llamada.
 - [ ] Ejecutarlo localmente con `node errores.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-05-manejo-de-errores.test.js`.
 
 ## Pistas
 
@@ -65,29 +66,30 @@ function parsearJSON(texto) {
   }
 }
 
-try {
-  console.log(`raíz de 9: ${raizCuadrada(9)}`);
-} finally {
-  console.log("La operación terminó");
+if (require.main === module) {
+  try {
+    console.log(`raíz de 9: ${raizCuadrada(9)}`);
+  } finally {
+    console.log("La operación terminó");
+  }
+  try {
+    raizCuadrada(-4);
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
+  try {
+    console.log(`parseado: ${parsearJSON('{"a": 1}')}`);
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
+  try {
+    parsearJSON("texto roto");
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
 }
 
-try {
-  raizCuadrada(-4);
-} catch (error) {
-  console.log(`Error: ${error.message}`);
-}
-
-try {
-  console.log(`parseado: ${parsearJSON('{"a": 1}')}`);
-} catch (error) {
-  console.log(`Error: ${error.message}`);
-}
-
-try {
-  parsearJSON("texto roto");
-} catch (error) {
-  console.log(`Error: ${error.message}`);
-}
+module.exports = { raizCuadrada, parsearJSON };
 ````
 
 </details>

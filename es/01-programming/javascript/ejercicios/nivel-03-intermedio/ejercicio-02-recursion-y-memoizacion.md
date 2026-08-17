@@ -28,6 +28,7 @@ fibMemo(40): 102334155
 - [ ] La versión memoizada debe ser notablemente más rápida para `n` grandes.
 - [ ] Contar las llamadas de la versión sin memoizar con un contador.
 - [ ] Ejecutarlo localmente con `node recursion.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-02-recursion-y-memoizacion.test.js`.
 
 ## Pistas
 
@@ -52,9 +53,7 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 
-let llamadas = 0;
 function fibonacci(n) {
-  llamadas++;
   if (n === 0) return 0;
   if (n === 1) return 1;
   return fibonacci(n - 1) + fibonacci(n - 2);
@@ -68,10 +67,21 @@ function fibMemo(n, cache = {}) {
   return cache[n];
 }
 
-console.log(`factorial(5): ${factorial(5)}`); // 120
-console.log(`fibonacci(10): ${fibonacci(10)}`); // 55
-console.log(`fibonacci llama ${llamadas} veces sin memoizar`);
-console.log(`fibMemo(40): ${fibMemo(40)}`); // 102334155
+if (require.main === module) {
+  let llamadas = 0;
+  function contarFibonacci(n) {
+    llamadas++;
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+    return contarFibonacci(n - 1) + contarFibonacci(n - 2);
+  }
+  console.log(`factorial(5): ${factorial(5)}`);
+  console.log(`fibonacci(10): ${fibonacci(10)}`);
+  console.log(`fibonacci llama ${llamadas} veces sin memoizar`);
+  console.log(`fibMemo(40): ${fibMemo(40)}`);
+}
+
+module.exports = { factorial, fibonacci, fibMemo };
 ````
 
 </details>

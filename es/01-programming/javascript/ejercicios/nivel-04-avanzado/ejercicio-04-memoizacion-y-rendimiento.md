@@ -28,6 +28,7 @@ Throttle: ejecución 4
 - [ ] Implementar `throttle` usando marcas de tiempo o timer.
 - [ ] La prueba con timers demuestra que el debounce ejecuta 1 vez y el throttle unas 4 en 1 segundo.
 - [ ] Ejecutarlo localmente con `node perf.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-04-memoizacion-y-rendimiento.test.js`.
 
 ## Pistas
 
@@ -66,28 +67,28 @@ function throttle(fn, limite) {
   };
 }
 
-let conteoDebounce = 0;
-const debounced = debounce(() => {
-  conteoDebounce++;
-  console.log(`Debounce: ejecución número ${conteoDebounce}`);
-}, 300);
+if (require.main === module) {
+  let conteoDebounce = 0;
+  const debounced = debounce(() => {
+    conteoDebounce++;
+    console.log(`Debounce: ejecución número ${conteoDebounce}`);
+  }, 300);
+  for (let i = 0; i < 5; i++) debounced();
+  console.log("(5 llamadas rápidas al debounce; solo una debe ejecutarse al final)");
 
-for (let i = 0; i < 5; i++) {
-  debounced();
+  let ejecuciones = 0;
+  const throttled = throttle(() => {
+    ejecuciones++;
+    console.log(`Throttle: ejecución ${ejecuciones}`);
+  }, 250);
+  const intervalo = setInterval(() => throttled(), 100);
+  setTimeout(() => {
+    clearInterval(intervalo);
+    console.log("Fin de la prueba de throttle");
+  }, 1000);
 }
-console.log("(5 llamadas rápidas al debounce; solo una debe ejecutarse al final)");
 
-let ejecuciones = 0;
-const throttled = throttle(() => {
-  ejecuciones++;
-  console.log(`Throttle: ejecución ${ejecuciones}`);
-}, 250);
-
-const intervalo = setInterval(() => throttled(), 100);
-setTimeout(() => {
-  clearInterval(intervalo);
-  console.log("Fin de la prueba de throttle");
-}, 1000);
+module.exports = { debounce, throttle };
 ````
 
 </details>

@@ -38,6 +38,7 @@ El producto 30 está entre 10 y 50
 - [ ] Usar `if/else if/else` para clasificar el producto.
 - [ ] Usar un operador ternario para par/impar.
 - [ ] Ejecutarlo localmente con `node operadores.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-02-operadores-y-condicionales.test.js`.
 
 ## Pistas
 
@@ -57,32 +58,57 @@ El producto 30 está entre 10 y 50
 <summary>Mostrar solución</summary>
 
 ````javascript
-const a = 10;
-const b = 3;
-
-console.log(`Suma: ${a + b}`);
-console.log(`Resta: ${a - b}`);
-console.log(`Multiplicacion: ${a * b}`);
-console.log(`Division: ${a / b}`);
-console.log(`Modulo: ${a % b}`);
-console.log(`Potencia: ${a ** b}`);
-
-console.log(`${a} > ${b}: ${a > b}`);
-console.log(`${a} < ${b}: ${a < b}`);
-console.log(`${a} >= ${b}: ${a >= b}`);
-console.log(`${a} === ${b}: ${a === b}`);
-console.log(`${a} !== ${b}: ${a !== b}`);
-
-const producto = a * b;
-if (producto > 50) {
-  console.log(`El producto ${producto} es mayor a 50`);
-} else if (producto >= 10) {
-  console.log(`El producto ${producto} está entre 10 y 50`);
-} else {
-  console.log(`El producto ${producto} es menor a 10`);
+function operaciones(a, b) {
+  return {
+    suma: a + b,
+    resta: a - b,
+    multiplicacion: a * b,
+    division: a / b,
+    modulo: a % b,
+    potencia: a ** b,
+  };
 }
 
-console.log(`${a} es ${a % 2 === 0 ? "par" : "impar"}`);
+function comparaciones(a, b) {
+  return [a > b, a < b, a >= b, a === b, a !== b];
+}
+
+function clasificarProducto(a, b) {
+  const producto = a * b;
+  if (producto > 50) {
+    return `El producto ${producto} es mayor a 50`;
+  } else if (producto >= 10) {
+    return `El producto ${producto} está entre 10 y 50`;
+  } else {
+    return `El producto ${producto} es menor a 10`;
+  }
+}
+
+function parOImpar(n) {
+  return n % 2 === 0 ? "par" : "impar";
+}
+
+if (require.main === module) {
+  const a = 10;
+  const b = 3;
+  const op = operaciones(a, b);
+  console.log(`Suma: ${op.suma}`);
+  console.log(`Resta: ${op.resta}`);
+  console.log(`Multiplicacion: ${op.multiplicacion}`);
+  console.log(`Division: ${op.division}`);
+  console.log(`Modulo: ${op.modulo}`);
+  console.log(`Potencia: ${op.potencia}`);
+  const [mayor, menor, mayorIgual, estrictamenteIgual, distinto] = comparaciones(a, b);
+  console.log(`${a} > ${b}: ${mayor}`);
+  console.log(`${a} < ${b}: ${menor}`);
+  console.log(`${a} >= ${b}: ${mayorIgual}`);
+  console.log(`${a} === ${b}: ${estrictamenteIgual}`);
+  console.log(`${a} !== ${b}: ${distinto}`);
+  console.log(clasificarProducto(a, b));
+  console.log(`${a} es ${parOImpar(a)}`);
+}
+
+module.exports = { operaciones, comparaciones, clasificarProducto, parOImpar };
 ````
 
 </details>

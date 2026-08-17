@@ -27,6 +27,7 @@ Suma del 1 al 100: 5050
 - [ ] Usar los tres tipos de bucle (`for`, `while`, `for...of`).
 - [ ] La suma del 1 al 100 debe dar exactamente 5050.
 - [ ] Ejecutarlo localmente con `node bucles.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-05-bucles.test.js`.
 
 ## Pistas
 
@@ -46,32 +47,51 @@ Suma del 1 al 100: 5050
 <summary>Mostrar solución</summary>
 
 ````javascript
-// 1) for del 1 al 5
-let salidaFor = "for:";
-for (let i = 1; i <= 5; i++) {
-  salidaFor += ` ${i}`;
+function numerosFor() {
+  const numeros = [];
+  for (let i = 1; i <= 5; i++) {
+    numeros.push(i);
+  }
+  return numeros;
 }
-console.log(salidaFor);
 
-// 2) while: cuenta regresiva del 5 al 1
-let salidaWhile = "while:";
-let n = 5;
-while (n >= 1) {
-  salidaWhile += ` ${n}`;
-  n--;
+function cuentaRegresiva() {
+  const numeros = [];
+  let n = 5;
+  while (n >= 1) {
+    numeros.push(n);
+    n--;
+  }
+  return numeros;
 }
-console.log(salidaWhile);
 
-// 3) for...of
-const frutas = ["manzana", "pera", "uva"];
-console.log("for...of:", frutas.join(", "));
-
-// 4) suma del 1 al 100
-let total = 0;
-for (let i = 1; i <= 100; i++) {
-  total += i;
+function recorrer(frutas) {
+  let resultado = "";
+  let primero = true;
+  for (const fruta of frutas) {
+    if (!primero) resultado += ", ";
+    resultado += fruta;
+    primero = false;
+  }
+  return resultado;
 }
-console.log(`Suma del 1 al 100: ${total}`);
+
+function suma1aN(n) {
+  let total = 0;
+  for (let i = 1; i <= n; i++) {
+    total += i;
+  }
+  return total;
+}
+
+if (require.main === module) {
+  console.log(`for: ${numerosFor().join(" ")}`);
+  console.log(`while: ${cuentaRegresiva().join(" ")}`);
+  console.log(`for...of: ${recorrer(["manzana", "pera", "uva"])}`);
+  console.log(`Suma del 1 al 100: ${suma1aN(100)}`);
+}
+
+module.exports = { numerosFor, cuentaRegresiva, recorrer, suma1aN };
 ````
 
 </details>

@@ -28,6 +28,7 @@ setter: Error: El nombre no puede estar vacío
 - [ ] Implementar al menos un getter y un setter con validación.
 - [ ] Llamar al método del padre con `super.metodo()`.
 - [ ] Ejecutarlo localmente con `node clases.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-01-clases.test.js`.
 
 ## Pistas
 
@@ -84,15 +85,18 @@ class Perro extends Animal {
   }
 }
 
-const rex = new Perro("Rex", "Labrador");
-console.log(`descripcion: ${rex.descripcion}`);
-console.log(`hablar: ${rex.hablar()}`);
-
-try {
-  rex.nombre = "";
-} catch (error) {
-  console.log(`setter: Error: ${error.message}`);
+if (require.main === module) {
+  const rex = new Perro("Rex", "Labrador");
+  console.log(`descripcion: ${rex.descripcion}`);
+  console.log(`hablar: ${rex.hablar()}`);
+  try {
+    rex.nombre = "";
+  } catch (error) {
+    console.log(`setter: Error: ${error.message}`);
+  }
 }
+
+module.exports = { Animal, Perro };
 ````
 
 </details>

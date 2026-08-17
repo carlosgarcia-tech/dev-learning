@@ -41,6 +41,7 @@ console.log(emisor.listeners("saludo")); // []
 - [ ] `off` debe eliminar exactamente el listener indicado.
 - [ ] `emit` debe pasar los argumentos a cada listener.
 - [ ] Ejecutarlo localmente con `node event-emitter.js` y verificar la salida.
+- [ ] Los tests pasan: `node --test ejercicio-04-event-emitter.test.js`.
 
 ## Pistas
 
@@ -102,21 +103,20 @@ class EventEmitter {
   }
 }
 
-const emisor = new EventEmitter();
+if (require.main === module) {
+  const emisor = new EventEmitter();
+  const saludar = (nombre) => console.log(`Hola, ${nombre}!`);
+  const despedir = (nombre) => console.log(`Adiós, ${nombre}!`);
+  emisor.on("saludo", saludar);
+  emisor.once("saludo", despedir);
+  emisor.emit("saludo", "Ana");
+  emisor.emit("saludo", "Luis");
+  emisor.off("saludo", saludar);
+  emisor.emit("saludo", "Pedro");
+  console.log(emisor.listeners("saludo"));
+}
 
-const saludar = (nombre) => console.log(`Hola, ${nombre}!`);
-const despedir = (nombre) => console.log(`Adiós, ${nombre}!`);
-
-emisor.on("saludo", saludar);
-emisor.once("saludo", despedir);
-
-emisor.emit("saludo", "Ana"); // Hola, Ana! + Adiós, Ana!
-emisor.emit("saludo", "Luis"); // solo Hola, Luis!
-
-emisor.off("saludo", saludar);
-emisor.emit("saludo", "Pedro"); // nada
-
-console.log(emisor.listeners("saludo")); // []
+module.exports = { EventEmitter };
 ````
 
 </details>
