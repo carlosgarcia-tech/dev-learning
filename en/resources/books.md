@@ -1,3 +1,0 @@
-# books
-
-_Pending._

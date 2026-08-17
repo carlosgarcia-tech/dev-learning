@@ -1,3 +1,0 @@
-# javascript
-
-_Pending._
