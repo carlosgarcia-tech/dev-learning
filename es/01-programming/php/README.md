@@ -1,20 +1,41 @@
-# php
+# PHP
 
-> Guía de estudio + ejercicios por niveles.
+> Ruta de aprendizaje completa de PHP 8 en español: guías de estudio, 30 ejercicios por niveles con tests y proyectos integradores.
 
-## Guías
+PHP impulsa más del 75% de los sitios web del mundo (WordPress, Laravel, Symfony). Este lenguaje vive en el servidor: recibe peticiones HTTP, se conecta a bases de datos, genera HTML o JSON y entrega la respuesta. Dominarlo te abre las puertas al desarrollo web backend clásico y a frameworks modernos.
 
-_Pendientes por escribir._
+Esta ruta asume que sabes lo básico de programación pero parte desde cero en PHP. Cada guía introduce la teoría con ejemplos ejecutables y enlaza a los ejercicios que la refuerzan.
 
-## Ejercicios
+> **Nota de entorno:** en este espacio de aprendizaje **PHP no está instalado**, así que los ejercicios no se pueden ejecutar aquí. Cada ejercicio incluye un comando de test (`php ejercicio-0N-slug_test.php`) para que lo ejecutes en tu máquina con PHP 8 o superior.
 
-Ver [ejercicios/](ejercicios/)
+## Guías de estudio
 
-| Nivel | Estado |
+| Guía | Contenido |
 |---|---|
-| [nivel-01-fundamentos](ejercicios/nivel-01-fundamentos/) | ⬜ |
-| [nivel-02-basico](ejercicios/nivel-02-basico/) | ⬜ |
-| [nivel-03-intermedio](ejercicios/nivel-03-intermedio/) | ⬜ |
-| [nivel-04-avanzado](ejercicios/nivel-04-avanzado/) | ⬜ |
-| [nivel-05-experto](ejercicios/nivel-05-experto/) | ⬜ |
-| [proyectos](ejercicios/proyectos/) | ⬜ |
+| [01 — Fundamentos](01-fundamentos.md) | Variables, tipos, operadores, condicionales y bucles |
+| [02 — Funciones y arrays](02-funciones-y-arrays.md) | Funciones, ámbito, closures y arrays indexados/asociativos |
+| [03 — OOP](03-oop.md) | Clases, herencia, interfaces, traits, namespaces y autoload |
+| [04 — PDO y bases de datos](04-pdo-y-bases-de-datos.md) | Conexiones PDO, SQL seguro, consultas y transacciones |
+| [05 — Errores y Composer](05-errores-y-composer.md) | Excepciones, manejo de errores, Composer y autoload PSR-4 |
+
+## Ejercicios por nivel
+
+Cada ejercicio incluye **enunciado, requisitos, pistas y solución** (plegable), más un archivo de implementación (*stub* con `TODO`) y un script de tests con aserciones. Ejecuta los tests con `php ejercicio-0N-slug_test.php`.
+
+| Nivel | Dificultad | Ejercicios |
+|---|---|---|
+| [Nivel 01 — Fundamentos](ejercicios/nivel-01-fundamentos/) | ⭐ 1/5 | Variables, operadores, bucles, arrays, strings y funciones |
+| [Nivel 02 — Básico](ejercicios/nivel-02-basico/) | ⭐⭐ 2/5 | Funciones avanzadas, arrays asociativos, archivos, excepciones, clases e include |
+| [Nivel 03 — Intermedio](ejercicios/nivel-03-intermedio/) | ⭐⭐⭐ 3/5 | Herencia, interfaces, traits, closures, namespaces y Composer |
+| [Nivel 04 — Avanzado](ejercicios/nivel-04-avanzado/) | ⭐⭐⭐⭐ 4/5 | PDO, transacciones, sesiones, API REST, testing y patrones |
+| [Nivel 05 — Experto](ejercicios/nivel-05-experto/) | ⭐⭐⭐⭐⭐ 5/5 | Gestor de tareas CLI, blog con PDO, caché LRU, MVC, sistema de archivos y cliente de API REST |
+
+Índice completo: [ejercicios/README.md](ejercicios/README.md)
+
+## Proyectos
+
+Al terminar los niveles, integra todo lo aprendido con los [3 proyectos integradores](ejercicios/proyectos/README.md):
+
+1. **Gestor de tareas CLI** — aplicación de consola persistente en JSON.
+2. **Mini blog con PDO** — aplicación web con base de datos y sesiones.
+3. **[PROYECTO FINAL: Blog de gestión de artículos](ejercicios/proyectos/proyecto-final/)** — PHP puro, persistencia en archivo, autenticación por sesión, validaciones y tests.
