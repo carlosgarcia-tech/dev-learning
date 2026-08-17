@@ -1,0 +1,15 @@
+usuario|titulo|nota
+Ana|El viaje|5
+Luis|El viaje|4
+Marta|Futuro lejano|5
+Luis|Futuro lejano|4
+Ana|Risas garantizadas|3
+Marta|Risas garantizadas|2
+titulo|media|valoraciones
+Futuro lejano|4.5|2
+El viaje|4.5|2
+Risas garantizadas|2.5|2
+titulo|generos
+El viaje|Drama, Acción
+Risas garantizadas|Comedia
+Futuro lejano|Ciencia ficción, Acción

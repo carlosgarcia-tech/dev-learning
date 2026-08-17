@@ -47,6 +47,7 @@ INSERT INTO pedidos (id, cliente_id, total) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-04-vistas-test.sh`
 
 ## Pistas
 

@@ -1,0 +1,11 @@
+-- Consulta 07: CLIENTES INACTIVOS
+--
+-- Objetivo: encontrar los clientes que NO han realizado ningún pedido
+-- en marzo de 2024. Usa NOT EXISTS con una subconsulta correlacionada.
+--
+-- Debe devolver:
+--   cliente → c.nombre
+--   email   → c.email
+--
+-- Ordena por nombre ascendente.
+-- TODO: escribe aquí tu consulta

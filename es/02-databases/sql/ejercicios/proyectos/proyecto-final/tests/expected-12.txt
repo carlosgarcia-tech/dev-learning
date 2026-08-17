@@ -1,0 +1,11 @@
+producto|fecha|tipo|cantidad|stock_acumulado
+Teclado Mecánico|2024-01-01 08:00:00|entrada|25|25
+Mouse Inalámbrico|2024-01-01 08:00:00|entrada|40|40
+Monitor 24"|2024-01-01 08:00:00|entrada|12|12
+Silla Ergonómica|2024-01-01 08:00:00|entrada|5|5
+Escritorio|2024-01-01 08:00:00|entrada|8|8
+Auriculares|2024-01-01 08:00:00|entrada|30|30
+Webcam HD|2024-01-01 08:00:00|entrada|20|20
+Libro de SQL|2024-01-01 08:00:00|entrada|50|50
+Libro de Python|2024-01-01 08:00:00|entrada|45|45
+Taza Oficina|2024-01-01 08:00:00|entrada|60|60

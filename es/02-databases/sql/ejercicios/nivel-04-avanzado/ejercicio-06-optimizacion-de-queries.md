@@ -53,6 +53,7 @@ FROM serie;
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-06-optimizacion-de-queries-test.sh`
 
 ## Pistas
 

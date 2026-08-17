@@ -13,7 +13,7 @@ Dada la tabla `ventas`, escribe una consulta por cada métrica:
 3. `AVG`: importe medio por venta (redondeado a 2 decimales).
 4. `MIN` y `MAX`: venta mínima y máxima en una sola consulta.
 
-Puedes usar alias con `AS` para nombrar las columnas de salida. Resultado esperado: 8 ventas, ingresos totales de `1214.00`.
+Puedes usar alias con `AS` para nombrar las columnas de salida. Resultado esperado: **8 ventas**, ingresos totales de **596.80**, importe medio de **74.60**, venta mínima **19.90** y venta máxima **149.00**.
 
 ## Schema inicial
 
@@ -40,6 +40,7 @@ INSERT INTO ventas (id, producto, total, fecha) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-05-funciones-agregadas-test.sh`
 
 ## Pistas
 

@@ -11,7 +11,7 @@ Dadas las tablas `departamentos` y `empleados`:
 1. Escribe una consulta que muestre **todos los departamentos** con el nombre de sus empleados. Los departamentos sin empleados deben aparecer igualmente (con `NULL` en la columna de empleado). Usa `LEFT JOIN`.
 2. Escribe una consulta que muestre **todos los empleados**, tengan o no departamento (los huérfanos deben aparecer). En SQLite, simula el `RIGHT JOIN` invirtiendo las tablas.
 
-Resultado esperado: la consulta 1 devuelve 6 filas (2 departamentos sin empleados) y la consulta 2 devuelve 6 filas (1 empleado sin departamento).
+Resultado esperado: la consulta 1 devuelve 6 filas (solo el departamento `RRHH` queda sin empleados) y la consulta 2 devuelve 6 filas (1 empleado, `Pedro`, sin departamento).
 
 ## Schema inicial
 
@@ -47,6 +47,7 @@ INSERT INTO empleados (id, nombre, dept_id) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-02-left-y-right-join-test.sh`
 
 ## Pistas
 

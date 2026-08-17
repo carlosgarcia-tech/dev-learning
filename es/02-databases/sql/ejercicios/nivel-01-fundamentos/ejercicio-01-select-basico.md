@@ -38,6 +38,7 @@ INSERT INTO usuarios (id, nombre, email, edad, ciudad) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-01-select-basico-test.sh`
 
 ## Pistas
 

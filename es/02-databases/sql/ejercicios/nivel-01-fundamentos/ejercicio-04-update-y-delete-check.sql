@@ -1,0 +1,1 @@
+SELECT id, producto, total, estado FROM pedidos ORDER BY id;

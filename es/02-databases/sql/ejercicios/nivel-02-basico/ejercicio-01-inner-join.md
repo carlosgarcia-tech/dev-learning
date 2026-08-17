@@ -42,6 +42,7 @@ INSERT INTO libros (id, titulo, autor_id) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-01-inner-join-test.sh`
 
 ## Pistas
 

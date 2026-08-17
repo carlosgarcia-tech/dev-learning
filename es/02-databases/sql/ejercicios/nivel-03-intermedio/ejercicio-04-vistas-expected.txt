@@ -1,0 +1,4 @@
+cliente_id|cliente|total_gastado
+2|Luis|410.0
+1|Ana|330.0
+3|Marta|165.0

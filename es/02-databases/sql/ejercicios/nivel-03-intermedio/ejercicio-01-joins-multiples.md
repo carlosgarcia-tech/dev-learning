@@ -59,6 +59,7 @@ INSERT INTO matriculas (estudiante_id, curso_id, nota) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-01-joins-multiples-test.sh`
 
 ## Pistas
 

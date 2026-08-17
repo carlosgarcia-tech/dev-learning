@@ -1,0 +1,5 @@
+name
+idx_pedidos_cliente_fecha
+idx_pedidos_referencia
+QUERY PLAN
+`--SEARCH pedidos USING INDEX idx_pedidos_cliente_fecha (cliente_id=?)

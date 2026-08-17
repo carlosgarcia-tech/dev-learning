@@ -6,14 +6,13 @@
 
 ## Enunciado
 
-> ⚠️ Los stored procedures dependen del motor. Este ejercicio usa **PostgreSQL**. En SQLite no existe el lenguaje procedural: puedes probar la lógica equivalente con una consulta SQL normal.
+> ⚠️ Los stored procedures dependen del motor. Este ejercicio se verifica en **SQLite** con la lógica equivalente (un `UPDATE` directo), ya que SQLite no tiene lenguaje procedural. La versión **PostgreSQL** con `CREATE FUNCTION` se muestra en la solución como referencia.
 
-Dada la tabla `productos`, crea en PostgreSQL:
+Dada la tabla `productos`, en SQLite escribe el `UPDATE` que multiplique el precio de todos los productos de la categoría `'ropa'` por `0.90` (aplicar un **10% de descuento**).
 
-1. Una **función** `aplicar_descuento(categoria_param TEXT, porcentaje REAL)` que multiplique el precio de todos los productos de esa categoría por `(1 - porcentaje/100)` y devuelva el número de filas afectadas (con `RETURN`).
-2. Un **procedimiento/bloque anónimo** (`DO $$ ... $$`) que llame a la función para aplicar un 10% a la categoría `'ropa'` y verifique el cambio.
+La versión **PostgreSQL** (referencia, no verificable aquí) consiste en crear una **función** `aplicar_descuento(categoria_param TEXT, porcentaje REAL)` que multiplique el precio por `(1 - porcentaje/100)` y devuelva el número de filas afectadas, y llamarla con `SELECT aplicar_descuento('ropa', 10);`.
 
-Resultado esperado: el precio del `'Camiseta'` pasa de `20.00` a `18.00`.
+Resultado esperado: el precio del `'Camiseta'` pasa de `20.00` a `18.00` y el del `'Pantalon'` de `35.00` a `31.50`.
 
 ## Schema inicial
 
@@ -35,6 +34,7 @@ INSERT INTO productos (id, nombre, categoria, precio) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-04-stored-procedures-test.sh`
 
 ## Pistas
 
@@ -54,28 +54,33 @@ INSERT INTO productos (id, nombre, categoria, precio) VALUES
 <summary>Mostrar solución</summary>
 
 ````sql
--- PostgreSQL: función que aplica descuento y devuelve filas afectadas
-CREATE OR REPLACE FUNCTION aplicar_descuento(
-    categoria_param TEXT,
-    porcentaje REAL
-) RETURNS INTEGER AS $$
-DECLARE
-    filas INTEGER;
-BEGIN
-    UPDATE productos
-    SET precio = precio * (1 - porcentaje / 100)
-    WHERE categoria = categoria_param;
+-- SQLite (versión verificada): aplicar un 10% de descuento a 'ropa'
+UPDATE productos
+SET precio = precio * (1 - 10 / 100.0)
+WHERE categoria = 'ropa';
 
-    GET DIAGNOSTICS filas = ROW_COUNT;
-    RETURN filas;
-END;
-$$ LANGUAGE plpgsql;
+-- Verificación: Camiseta a 18.00, Pantalon a 31.50
+SELECT id, nombre, categoria, precio FROM productos ORDER BY id;
 
--- Llamar a la función (devuelve 2)
-SELECT aplicar_descuento('ropa', 10);
-
--- Verificación: Camiseta a 18.00
-SELECT * FROM productos ORDER BY id;
+-- PostgreSQL (referencia): función que aplica descuento y devuelve filas afectadas
+-- CREATE OR REPLACE FUNCTION aplicar_descuento(
+--     categoria_param TEXT,
+--     porcentaje REAL
+-- ) RETURNS INTEGER AS $$
+-- DECLARE
+--     filas INTEGER;
+-- BEGIN
+--     UPDATE productos
+--     SET precio = precio * (1 - porcentaje / 100)
+--     WHERE categoria = categoria_param;
+--
+--     GET DIAGNOSTICS filas = ROW_COUNT;
+--     RETURN filas;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- -- Llamar a la función (devuelve 2)
+-- SELECT aplicar_descuento('ropa', 10);
 ````
 
 </details>

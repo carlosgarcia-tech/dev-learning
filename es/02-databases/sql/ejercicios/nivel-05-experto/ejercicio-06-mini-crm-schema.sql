@@ -1,0 +1,2 @@
+-- No hay tabla inicial: el schema (clientes, contactos y oportunidades) forma
+-- parte del ejercicio y debe crearse en la solución junto con los datos.

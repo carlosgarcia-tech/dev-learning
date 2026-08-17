@@ -35,6 +35,7 @@ INSERT INTO inventario (id, producto, stock) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-05-transacciones-y-concurrencia-test.sh`
 
 ## Pistas
 
@@ -49,16 +50,28 @@ INSERT INTO inventario (id, producto, stock) VALUES
 
 </details>
 
+> Para el test automático, en `ejercicio-05-transacciones-y-concurrencia-solucion.sql` se escribe únicamente el bloque de la **sesión A** (el `BEGIN` + `UPDATE` **sin** `COMMIT` ni `ROLLBACK`): el script `test.sh` mantiene esa transacción abierta en una sesión, comprueba desde otra sesión que el cambio no es visible y que la escritura concurrente queda bloqueada, y al final la deshace con `ROLLBACK`. La secuencia manual con dos terminales es la siguiente:
+
 ## Solución
 
 <details>
 <summary>Mostrar solución</summary>
 
+En `solucion.sql` se escribe únicamente el bloque de la **sesión A** (el `BEGIN` + `UPDATE` **sin** `COMMIT` ni `ROLLBACK`); el test mantiene esa transacción abierta, comprueba el bloqueo y al final la deshace con `ROLLBACK`:
+
 ````sql
 -- SESIÓN A (terminal 1): escribir sin commitear
 BEGIN;
 UPDATE inventario SET stock = 5 WHERE id = 1;
--- No ejecutar COMMIT todavía
+-- No ejecutar COMMIT todavía: el test lo deshace después con ROLLBACK
+````
+
+Secuencia completa con dos terminales (para practicar manualmente):
+
+```
+-- SESIÓN A (terminal 1)
+BEGIN;
+UPDATE inventario SET stock = 5 WHERE id = 1;
 
 -- SESIÓN B (terminal 2): leer mientras A no ha commiteado
 SELECT stock FROM inventario WHERE id = 1;
@@ -78,6 +91,6 @@ UPDATE inventario SET stock = 5 WHERE id = 1;
 UPDATE inventario SET stock = 1 WHERE id = 2;
 -- SESIÓN A: COMMIT;  →  la sesión B ya puede completar
 COMMIT;
-````
+```
 
 </details>

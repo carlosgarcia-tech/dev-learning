@@ -32,6 +32,7 @@ INSERT INTO clientes (id, nombre, email) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-02-migraciones-test.sh`
 
 ## Pistas
 

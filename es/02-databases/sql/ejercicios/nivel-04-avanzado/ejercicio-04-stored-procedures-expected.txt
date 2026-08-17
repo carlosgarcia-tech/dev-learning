@@ -1,0 +1,4 @@
+id|nombre|categoria|precio
+1|Camiseta|ropa|18.0
+2|Pantalon|ropa|31.5
+3|Zapatillas|calzado|60.0

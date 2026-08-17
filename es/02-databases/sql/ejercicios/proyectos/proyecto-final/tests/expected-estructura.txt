@@ -1,0 +1,7 @@
+indicador|valor
+tablas|6
+tablas_objetivo|6
+fk_pedidos|1
+fk_detalle|2
+pk_detalle|2
+check_pedidos|2

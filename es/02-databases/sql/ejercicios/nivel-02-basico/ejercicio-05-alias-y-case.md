@@ -35,6 +35,7 @@ INSERT INTO pedidos (id, producto, total) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-05-alias-y-case-test.sh`
 
 ## Pistas
 

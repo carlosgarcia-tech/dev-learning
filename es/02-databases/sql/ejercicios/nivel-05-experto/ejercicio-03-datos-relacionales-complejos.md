@@ -73,6 +73,7 @@ INSERT INTO ratings (id, usuario_id, pelicula_id, nota) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-03-datos-relacionales-complejos-test.sh`
 
 ## Pistas
 

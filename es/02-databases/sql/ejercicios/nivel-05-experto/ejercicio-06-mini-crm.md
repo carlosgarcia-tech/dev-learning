@@ -12,7 +12,7 @@ Construye un **mini-CRM** para gestionar clientes, contactos y oportunidades de 
    - `clientes`: id, nombre, email único, telefono, empresa, fecha_alta.
    - `oportunidades`: id, cliente_id (FK), nombre_oportunidad, valor (REAL), estado (`'abierta'`, `'ganada'`, `'perdida'`).
    - `contactos`: id, cliente_id (FK), nombre, cargo, email, telefono.
-2. **Datos de ejemplo** coherentes (3 clientes, 4 contactos, 5 oportunidades en distintos estados).
+2. **Datos de ejemplo** coherentes (4 clientes —uno de ellos sin oportunidades—, 4 contactos y 5 oportunidades en distintos estados).
 3. **Consultas de reporte**:
    - a) Oportunidades **abiertas** por cliente (nombre del cliente, nombre de la oportunidad y valor).
    - b) **Valor total ganado** por cliente (suma de las oportunidades `'ganada'`).
@@ -29,6 +29,7 @@ El schema es parte del ejercicio (diseñalo tú). Datos sugeridos al crearlo.
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-06-mini-crm-test.sh`
 
 ## Pistas
 
@@ -81,7 +82,8 @@ CREATE TABLE oportunidades (
 INSERT INTO clientes (id, nombre, email, telefono, empresa) VALUES
     (1, 'Ana Gómez', 'ana@tech.com', '600111222', 'TechCorp'),
     (2, 'Luis Pérez', 'luis@soft.com', '600333444', 'SoftLab'),
-    (3, 'Marta Ruiz', 'marta@web.com', '600555666', 'WebAgency');
+    (3, 'Marta Ruiz', 'marta@web.com', '600555666', 'WebAgency'),
+    (4, 'Carlos Díaz', 'carlos@data.com', NULL, 'DataCorp');
 
 INSERT INTO contactos (id, cliente_id, nombre, cargo, email, telefono) VALUES
     (1, 1, 'Jorge', 'CTO', 'jorge@tech.com', '611111111'),
@@ -95,9 +97,8 @@ INSERT INTO oportunidades (id, cliente_id, nombre_oportunidad, valor, estado) VA
     (3, 2, 'Migración de datos', 8000, 'ganada'),
     (4, 2, 'Formación', 1500, 'perdida'),
     (5, 3, 'Rediseño web', 5000, 'abierta');
--- El cliente 3 tiene oportunidad; para probar (d) añade un cliente sin oportunidades:
-
--- INSERT INTO clientes (id, nombre, email) VALUES (4, 'Carlos Díaz', 'carlos@data.com');
+-- El cliente 4 (Carlos Díaz) NO tiene oportunidades, por lo que la consulta
+-- (d) debe mostrarlo.
 
 -- 3. Reportes
 -- a) Oportunidades abiertas por cliente

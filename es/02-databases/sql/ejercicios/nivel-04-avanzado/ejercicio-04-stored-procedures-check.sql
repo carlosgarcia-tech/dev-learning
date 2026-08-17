@@ -1,0 +1,1 @@
+SELECT id, nombre, categoria, precio FROM productos ORDER BY id;

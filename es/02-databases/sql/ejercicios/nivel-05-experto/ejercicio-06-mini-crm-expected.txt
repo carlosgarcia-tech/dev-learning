@@ -1,0 +1,12 @@
+nombre|nombre_oportunidad|valor
+Ana Gómez|Soporte premium|3000.0
+Marta Ruiz|Rediseño web|5000.0
+nombre|valor_ganado
+Ana Gómez|12000.0
+Luis Pérez|8000.0
+estado|cantidad
+ganada|2
+abierta|2
+perdida|1
+nombre|email
+Carlos Díaz|carlos@data.com

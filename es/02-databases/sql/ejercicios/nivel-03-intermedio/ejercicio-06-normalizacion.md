@@ -40,6 +40,7 @@ Parte del ejercicio de la tabla `pedidos_planos` de arriba (ya incluida).
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-06-normalizacion-test.sh`
 
 ## Pistas
 

@@ -1,0 +1,1 @@
+SELECT id, titular, saldo FROM cuentas ORDER BY id;

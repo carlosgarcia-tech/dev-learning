@@ -37,6 +37,7 @@ INSERT INTO empleados (id, nombre, dept_id, salario) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-02-window-functions-test.sh`
 
 ## Pistas
 

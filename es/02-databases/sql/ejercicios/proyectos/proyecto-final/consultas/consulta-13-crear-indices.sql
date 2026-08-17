@@ -1,0 +1,10 @@
+-- Consulta 13: CREAR ÍNDICES
+--
+-- Objetivo: crear los índices que aceleran las consultas frecuentes:
+--
+--   1. idx_pedidos_cliente   sobre pedidos(cliente_id)
+--   2. idx_detalle_producto  sobre detalle_pedidos(producto_id)
+--   3. idx_pedidos_fecha     sobre pedidos(fecha)
+--
+-- El test comprueba que los tres índices existen en sqlite_master.
+-- TODO: escribe aquí tu consulta

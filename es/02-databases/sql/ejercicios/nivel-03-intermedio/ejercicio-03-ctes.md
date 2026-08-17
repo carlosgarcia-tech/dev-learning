@@ -35,6 +35,7 @@ INSERT INTO pedidos (id, cliente_id, importe) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-03-ctes-test.sh`
 
 ## Pistas
 

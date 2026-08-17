@@ -1,0 +1,14 @@
+nombre|precio
+Boligrafo azul|1.2
+Cuaderno A5|2.5
+Carpeta de archivo|5.75
+Mouse inalambrico|19.9
+nombre|categoria|precio
+Libro de SQL|libros|29.99
+Teclado mecanico|informatica|85.0
+Libro de Python|libros|39.5
+Monitor 24 pulgadas|informatica|149.0
+nombre|precio
+Monitor 24 pulgadas|149.0
+Teclado mecanico|85.0
+Libro de Python|39.5

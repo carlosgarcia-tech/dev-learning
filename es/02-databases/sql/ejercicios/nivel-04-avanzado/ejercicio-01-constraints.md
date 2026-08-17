@@ -33,6 +33,7 @@ INSERT INTO departamentos (id, nombre) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-01-constraints-test.sh`
 
 ## Pistas
 

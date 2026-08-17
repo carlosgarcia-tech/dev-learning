@@ -1,0 +1,4 @@
+name
+idx_detalle_producto
+idx_pedidos_cliente
+idx_pedidos_fecha

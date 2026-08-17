@@ -37,6 +37,7 @@ INSERT INTO pedidos (id, referencia, cliente_id, fecha, total) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-02-indexes-test.sh`
 
 ## Pistas
 

@@ -1,0 +1,13 @@
+-- Consulta 11: PANEL DE INDICADORES (KPI)
+--
+-- Objetivo: devolver UNA ÚNICA FILA con métricas globales del negocio,
+-- combinando varias subconsultas escalares:
+--
+--   num_clientes      → total de clientes
+--   num_pedidos       → pedidos no cancelados
+--   ingresos_totales  → suma del total de pedidos no cancelados (2 dec.)
+--   ticket_medio      → media del total de pedidos no cancelados (2 dec.)
+--   unidades_vendidas → suma de cantidades de líneas de pedidos válidos
+--
+-- No lleva GROUP BY ni ORDER BY.
+-- TODO: escribe aquí tu consulta

@@ -1,0 +1,8 @@
+total_ventas
+8
+ingresos_totales
+596.8
+importe_medio
+74.6
+venta_minima|venta_maxima
+19.9|149.0

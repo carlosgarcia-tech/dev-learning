@@ -1,0 +1,14 @@
+-- Consulta 14: TRIGGER DE INVENTARIO
+--
+-- Objetivo: crear el trigger trg_descontar_stock que se dispare
+-- DESPUÉS de INSERT en detalle_pedidos y haga dos cosas de forma
+-- atómica:
+--
+--   1. UPDATE productos SET stock = stock - NEW.cantidad
+--      WHERE id = NEW.producto_id
+--   2. INSERT en inventario_movimientos (producto_id, tipo='salida',
+--      cantidad=NEW.cantidad, motivo='venta pedido ' || NEW.pedido_id)
+--
+-- El test inserta una línea nueva y comprueba el nuevo stock y el
+-- movimiento registrado.
+-- TODO: escribe aquí tu consulta

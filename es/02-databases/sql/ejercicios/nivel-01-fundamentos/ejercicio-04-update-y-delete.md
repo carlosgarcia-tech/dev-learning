@@ -39,6 +39,7 @@ INSERT INTO pedidos (id, cliente_id, producto, categoria, total, estado) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-04-update-y-delete-test.sh`
 
 ## Pistas
 

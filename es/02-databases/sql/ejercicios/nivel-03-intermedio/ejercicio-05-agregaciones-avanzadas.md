@@ -38,6 +38,7 @@ INSERT INTO ventas (id, region, vendedor, importe) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-05-agregaciones-avanzadas-test.sh`
 
 ## Pistas
 

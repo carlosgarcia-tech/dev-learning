@@ -27,6 +27,7 @@ Parte del ejercicio es diseñar el schema desde cero (no hay tabla inicial).
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-01-modelado-de-schema-test.sh`
 
 ## Pistas
 

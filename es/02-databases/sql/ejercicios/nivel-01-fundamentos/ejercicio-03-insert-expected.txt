@@ -1,0 +1,7 @@
+id|nombre|edad|curso
+1|Elena|20|DAW
+2|Hugo|22|DAM
+3|Sara|19|DAW
+4|Iker|21|DAM
+5|Nora|20|ASIR
+6|Diego|23|DAW

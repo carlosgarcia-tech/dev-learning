@@ -31,6 +31,7 @@ INSERT INTO cuentas (id, titular, saldo) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-03-transacciones-test.sh`
 
 ## Pistas
 

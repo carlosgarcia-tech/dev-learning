@@ -12,7 +12,7 @@ Dada la tabla `productos`, escribe las siguientes consultas:
 2. Los productos de la categoría `'libros'` o con precio **mayor o igual a 50**.
 3. Los **3 productos más caros** de toda la tabla.
 
-Resultado esperado: la consulta 1 devuelve 3 productos, la consulta 3 devuelve exactamente 3 filas.
+Resultado esperado: la consulta 1 devuelve **4 productos** con precio menor a 20 (Boligrafo azul 1.20, Cuaderno A5 2.50, Carpeta de archivo 5.75 y Mouse inalambrico 19.90), y la consulta 3 devuelve exactamente **3 filas** (Monitor 24 pulgadas, Teclado mecanico y Libro de Python, de mayor a menor precio).
 
 ## Schema inicial
 
@@ -39,6 +39,7 @@ INSERT INTO productos (id, nombre, categoria, precio) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-02-where-y-orden-test.sh`
 
 ## Pistas
 

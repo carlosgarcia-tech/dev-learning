@@ -59,6 +59,7 @@ INSERT INTO ventas (id, producto_id, vendedor_id, cantidad, fecha) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-04-reportes-de-negocio-test.sh`
 
 ## Pistas
 

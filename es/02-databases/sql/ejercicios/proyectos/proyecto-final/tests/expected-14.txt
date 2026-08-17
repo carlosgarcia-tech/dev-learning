@@ -1,0 +1,4 @@
+nombre|stock
+Teclado Mecánico|23
+tipo|cantidad|motivo
+salida|2|venta pedido 12

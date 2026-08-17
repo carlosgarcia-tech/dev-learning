@@ -1,0 +1,13 @@
+-- Consulta 02: TOTAL DE CADA PEDIDO CON SU CLIENTE
+--
+-- Objetivo: recalcular el total de cada pedido desde sus líneas de
+-- detalle (cantidad * precio_unitario) usando una CTE, e incluir el
+-- nombre del cliente.
+--
+-- Debe devolver:
+--   pedido_id → p.id
+--   cliente   → c.nombre
+--   total     → suma de la línea redondeada a 2 decimales
+--
+-- Ordena por pedido_id ascendente.
+-- TODO: escribe aquí tu consulta

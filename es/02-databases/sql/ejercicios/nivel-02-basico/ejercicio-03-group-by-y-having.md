@@ -38,6 +38,7 @@ INSERT INTO ventas (id, producto, total, fecha) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-03-group-by-y-having-test.sh`
 
 ## Pistas
 

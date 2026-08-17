@@ -1,0 +1,10 @@
+titulo|autor
+Cien años de soledad|Gabriel García
+El amor en tiempos de cólera|Gabriel García
+La casa de los espíritus|Isabel Allende
+Eva Luna|Isabel Allende
+La ciudad y los perros|Mario Vargas
+autor|num_libros
+Gabriel García|2
+Isabel Allende|2
+Mario Vargas|1

@@ -1,0 +1,13 @@
+-- Consulta 05: PRODUCTOS CON STOCK CRÍTICO
+--
+-- Objetivo: listar los productos activos con stock bajo (stock <= 8) y,
+-- mediante una subconsulta correlacionada, cuántas unidades se han
+-- vendido de cada uno (ignorando pedidos cancelados).
+--
+-- Debe devolver:
+--   producto          → pr.nombre
+--   stock             → pr.stock actual
+--   unidades_vendidas → unidades vendidas (subconsulta)
+--
+-- Ordena por stock ascendente y, en caso de empate, por nombre.
+-- TODO: escribe aquí tu consulta

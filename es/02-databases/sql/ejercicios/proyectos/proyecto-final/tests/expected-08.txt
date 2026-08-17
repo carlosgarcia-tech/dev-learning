@@ -1,0 +1,4 @@
+metodo|num_pagos|total_cobrado
+tarjeta|5|803.35
+transferencia|2|528.8
+paypal|2|355.9

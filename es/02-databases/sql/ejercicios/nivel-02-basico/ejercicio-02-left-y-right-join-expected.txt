@@ -1,0 +1,14 @@
+departamento|empleado
+Marketing|Marta
+RRHH|
+TI|Carlos
+TI|Lucia
+Ventas|Ana
+Ventas|Luis
+empleado|departamento
+Ana|Ventas
+Carlos|TI
+Lucia|TI
+Luis|Ventas
+Marta|Marketing
+Pedro|

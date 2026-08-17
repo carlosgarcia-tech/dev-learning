@@ -1,0 +1,11 @@
+-- Consulta 01: INGRESOS MENSUALES
+--
+-- Objetivo: calcular los ingresos de cada mes considerando SOLO los
+-- pedidos válidos (estado 'pagado', 'enviado' o 'entregado').
+--
+-- Debe devolver dos columnas:
+--   mes      → fecha en formato 'YYYY-MM' (usa strftime('%Y-%m', p.fecha))
+--   ingresos → suma de p.total redondeada a 2 decimales (ROUND(..., 2))
+--
+-- Ordena por mes ascendente.
+-- TODO: escribe aquí tu consulta

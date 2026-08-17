@@ -42,6 +42,7 @@ INSERT INTO clientes (id, nombre, email, telefono, ciudad, edad) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-06-like-y-filtros-test.sh`
 
 ## Pistas
 

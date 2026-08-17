@@ -1,0 +1,6 @@
+id|producto|total|estado
+1|Libro|25.0|entregado
+2|Tablet|330.0|enviado
+3|Auriculares|88.0|enviado
+4|Teclado|45.0|enviado
+5|Monitor|165.0|enviado

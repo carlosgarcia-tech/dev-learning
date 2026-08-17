@@ -38,6 +38,7 @@ INSERT INTO articulos (id, titulo, autor) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-06-limit-y-paginacion-test.sh`
 
 ## Pistas
 

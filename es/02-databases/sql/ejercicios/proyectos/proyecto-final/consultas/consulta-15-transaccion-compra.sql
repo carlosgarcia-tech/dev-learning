@@ -1,0 +1,16 @@
+-- Consulta 15: TRANSACCIÓN DE COMPRA COMPLETA
+--
+-- Objetivo: escribir una transacción que registre una compra completa
+-- de forma atómica (todo se confirma junto con COMMIT):
+--
+--   1. INSERT en pedidos: id 13, cliente_id 2, fecha '2024-03-20',
+--      estado 'pagado', total 328.98
+--   2. INSERT en detalle_pedidos: (13, 1, 2, 89.99) y (13, 3, 1, 149.00)
+--   3. Descontar el stock de los productos 1 (2 uds.) y 3 (1 ud.)
+--   4. INSERT en pagos: id 10, pedido_id 13, metodo 'tarjeta',
+--      monto 328.98, fecha '2024-03-20'
+--   5. COMMIT
+--
+-- El test verifica el estado final y, además, que una transacción que
+-- falla (producto inexistente) se deshace por completo con ROLLBACK.
+-- TODO: escribe aquí tu consulta

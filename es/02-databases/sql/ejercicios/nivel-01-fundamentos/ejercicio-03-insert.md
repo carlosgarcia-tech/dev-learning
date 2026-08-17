@@ -33,6 +33,7 @@ INSERT INTO estudiantes (id, nombre, email, edad, curso) VALUES
 
 - [ ] La consulta devuelve el resultado esperado
 - [ ] Ejecutarlo localmente (SQLite o PostgreSQL) y verificar
+- [ ] Los tests pasan: `bash ejercicio-03-insert-test.sh`
 
 ## Pistas
 

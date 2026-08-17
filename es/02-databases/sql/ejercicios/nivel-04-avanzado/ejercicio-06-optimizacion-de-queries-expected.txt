@@ -1,0 +1,4 @@
+name
+idx_trans_cliente_fecha
+QUERY PLAN
+`--SEARCH transacciones USING INDEX idx_trans_cliente_fecha (cliente_id=? AND fecha>?)
