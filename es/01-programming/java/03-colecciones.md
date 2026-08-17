@@ -1,180 +1,249 @@
-# 03 — Colecciones y Streams
+# 03 — Colecciones en Java
 
 ## Objetivos
 
-- [ ] Usar `ArrayList<E>` para listas dinámicas.
-- [ ] Usar `HashMap<K, V>` para mapas clave-valor.
-- [ ] Usar `HashSet<E>` para conjuntos sin duplicados.
-- [ ] Recorrer colecciones con bucles y con el bucle for-each.
-- [ ] Comprender las interfaces `List`, `Map`, `Set` y sus implementaciones.
-- [ ] Aplicar streams para filtrar, transformar y reducir datos.
+- [ ] Entender el Java Collections Framework
+- [ ] Usar `List` (`ArrayList`, `LinkedList`)
+- [ ] Usar `Set` (`HashSet`, `LinkedHashSet`, `TreeSet`)
+- [ ] Usar `Map` (`HashMap`, `LinkedHashMap`, `TreeMap`)
+- [ ] Ordenar colecciones con `Comparator` y `Comparable`
+- [ ] Usar la Stream API para procesar colecciones
+- [ ] Conocer las diferencias de rendimiento entre implementaciones
 
 ## Apuntes
 
-### La interfaz Collection
+### El Java Collections Framework
 
-Las colecciones de Java agrupan elementos en estructuras dinámicas. Las tres interfaces más importantes:
+Todas las colecciones implementan interfaces comunes: `Collection`, `List`, `Set`, `Queue`, `Map`
+(este último no extiende `Collection`, pero se considera parte del framework).
 
-- `List<E>` — secuencia ordenada, permite duplicados. Implementaciones: `ArrayList`, `LinkedList`.
-- `Set<E>` — no admite duplicados. Implementaciones: `HashSet`, `LinkedHashSet`, `TreeSet`.
-- `Map<K, V>` — asociaciones clave→valor (no extiende `Collection`). Implementaciones: `HashMap`, `LinkedHashMap`, `TreeMap`.
+```
+Collection
+├── List   (orden, permite duplicados)      → ArrayList, LinkedList, Vector
+├── Set    (sin duplicados)                 → HashSet, LinkedHashSet, TreeSet
+└── Queue  (FIFO / prioridad)                → LinkedList, PriorityQueue, ArrayDeque
 
-Todas usan **genéricos**: `<Tipo>` indica qué tipo de objetos guardan.
+Map (clave-valor, sin duplicados de clave)  → HashMap, LinkedHashMap, TreeMap
+```
 
-### ArrayList
-
-Lista redimensionable: crece automáticamente. Acceso por índice en O(1).
+### List
 
 ```java
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-List<String> frutas = new ArrayList<>();
-frutas.add("manzana");
-frutas.add("pera");
-frutas.add("uva");
-frutas.add(1, "mango");        // inserta en la posición 1
+List<String> nombres = new ArrayList<>();
+nombres.add("Ana");
+nombres.add("Juan");
+nombres.add(1, "María"); // inserta en posición 1
 
-System.out.println(frutas.size());    // 4
-System.out.println(frutas.get(0));    // manzana
-System.out.println(frutas.contains("uva")); // true
-frutas.remove("pera");
-frutas.remove(0);                     // por índice
+nombres.get(0);              // "Ana"
+nombres.set(0, "Andrea");    // reemplaza
+nombres.remove("Juan");      // elimina por valor
+nombres.remove(0);           // elimina por índice
+nombres.contains("María");   // true
+nombres.size();              // tamaño actual
+nombres.isEmpty();
 
-for (String fruta : frutas) {
-    System.out.println(fruta);
+// LinkedList: mejor para inserciones/eliminaciones frecuentes en los extremos
+LinkedList<Integer> lista = new LinkedList<>();
+lista.addFirst(1);
+lista.addLast(2);
+lista.removeFirst();
+
+// Recorrido
+for (String n : nombres) {
+    System.out.println(n);
 }
+nombres.forEach(System.out::println);
 ```
 
-- `List.of(...)` crea una lista **inmutable** (Java 9+): no puedes `add` ni `remove`.
-- Prefiere declarar el tipo como `List<String>` (la interfaz) y asignar `new ArrayList<>()`. Así puedes cambiar la implementación sin tocar el resto.
+### Set
 
-### HashMap
+```java
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+import java.util.Set;
 
-Guarda pares clave→valor. Las claves son únicas (si repites clave, sobrescribes el valor).
+Set<String> colores = new HashSet<>();       // sin orden garantizado
+colores.add("rojo");
+colores.add("rojo"); // ignorado, ya existe
+colores.add("azul");
+
+Set<String> ordenPorInsercion = new LinkedHashSet<>(); // mantiene orden de inserción
+Set<Integer> ordenNatural = new TreeSet<>();            // ordenado (requiere Comparable)
+ordenNatural.add(5);
+ordenNatural.add(1);
+ordenNatural.add(3); // resultado: [1, 3, 5]
+```
+
+### Map
 
 ```java
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 Map<String, Integer> edades = new HashMap<>();
-edades.put("Ana", 30);
-edades.put("Luis", 25);
-edades.put("Ana", 31);        // sobrescribe: Ana ahora vale 31
+edades.put("Ana", 25);
+edades.put("Juan", 30);
+edades.put("Ana", 26); // sobrescribe el valor anterior
 
-System.out.println(edades.get("Ana"));        // 31
-System.out.println(edades.containsKey("Luis")); // true
-System.out.println(edades.getOrDefault("Pepe", 0)); // 0 (no existe)
+int edad = edades.get("Ana");                 // 26
+int edadDefault = edades.getOrDefault("Luis", 0); // 0, no existe "Luis"
+boolean tieneJuan = edades.containsKey("Juan");
+edades.remove("Juan");
 
-for (String nombre : edades.keySet()) {
-    System.out.println(nombre + " -> " + edades.get(nombre));
+// Recorrido
+for (Map.Entry<String, Integer> entry : edades.entrySet()) {
+    System.out.println(entry.getKey() + " -> " + entry.getValue());
 }
+edades.forEach((nombre, e) -> System.out.println(nombre + ": " + e));
 
-for (Map.Entry<String, Integer> e : edades.entrySet()) {
-    System.out.println(e.getKey() + " -> " + e.getValue());
-}
+// TreeMap: mantiene las claves ordenadas
+Map<String, Integer> ordenado = new TreeMap<>(edades);
 ```
 
-### HashSet
-
-Conjunto sin duplicados. No garantiza orden. Rápido para comprobar pertenencia.
+### Comparable y Comparator
 
 ```java
-import java.util.HashSet;
-import java.util.Set;
-
-Set<String> tags = new HashSet<>();
-tags.add("java");
-tags.add("streams");
-tags.add("java");            // ignorado: ya existe
-
-System.out.println(tags.size());          // 2
-System.out.println(tags.contains("java")); // true
-```
-
-Para que un objeto propio se comporte bien en `HashSet`/`HashMap` necesita `equals()` y `hashCode()` consistentes (lo ves en la guía de excepciones/ejercicios).
-
-### Streams
-
-Un **stream** es una secuencia de operaciones sobre datos (Java 8+). No modifica la colección original: produce un resultado nuevo. Pipe de operaciones:
-
-1. **Fuente:** `lista.stream()`.
-2. **Operaciones intermedias:** `filter`, `map`, `sorted`, `distinct` — devuelven otro stream, son *lazy*.
-3. **Operación terminal:** `collect`, `forEach`, `count`, `reduce` — dispara la ejecución.
-
-```java
-import java.util.List;
-
-List<Integer> numeros = List.of(5, 3, 8, 1, 3, 9);
-
-List<Integer> paresOrdenados = numeros.stream()
-        .filter(n -> n % 2 == 0)          // 8
-        .sorted()
-        .collect(java.util.stream.Collectors.toList());
-
-long cantidadPares = numeros.stream()
-        .filter(n -> n % 2 == 0)
-        .count();                          // 1 (solo el 8)
-
-int suma = numeros.stream().mapToInt(n -> n).sum(); // 29
-
-numeros.stream().distinct().forEach(System.out::println);
-```
-
-- `map` transforma cada elemento: `nombres.stream().map(String::toUpperCase)`.
-- `reduce` combina todos los elementos en uno: `numeros.stream().reduce(0, (a, b) -> a + b)`.
-
-## Ejemplos de código
-
-```java
-// Filtrar y transformar una lista de personas
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class Persona {
+// Comparable: orden "natural" definido dentro de la propia clase
+public class Persona implements Comparable<Persona> {
     private String nombre;
     private int edad;
 
-    public Persona(String nombre, int edad) {
-        this.nombre = nombre;
-        this.edad = edad;
+    // constructor, getters...
+
+    @Override
+    public int compareTo(Persona otra) {
+        return Integer.compare(this.edad, otra.edad); // orden por edad ascendente
     }
+}
 
-    public String getNombre() { return nombre; }
-    public int getEdad() { return edad; }
+// Comparator: orden externo, tantos como se necesiten
+import java.util.Comparator;
+import java.util.List;
 
+List<Persona> personas = ...;
+personas.sort(Comparator.comparing(Persona::getNombre));
+personas.sort(Comparator.comparingInt(Persona::getEdad).reversed());
+personas.sort(
+    Comparator.comparing(Persona::getNombre)
+              .thenComparingInt(Persona::getEdad)
+);
+```
+
+### Stream API
+
+Los streams permiten procesar colecciones de forma declarativa (filtrar, transformar, reducir).
+
+```java
+import java.util.List;
+import java.util.stream.Collectors;
+
+List<Integer> numeros = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+// filter + map + collect
+List<Integer> paresAlCuadrado = numeros.stream()
+    .filter(n -> n % 2 == 0)
+    .map(n -> n * n)
+    .collect(Collectors.toList());
+// [4, 16, 36, 64, 100]
+
+// reduce
+int suma = numeros.stream().reduce(0, Integer::sum);
+
+// sorted, distinct, limit
+List<Integer> top3 = numeros.stream()
+    .sorted(Comparator.reverseOrder())
+    .distinct()
+    .limit(3)
+    .collect(Collectors.toList());
+
+// count, anyMatch, allMatch
+long cantidadPares = numeros.stream().filter(n -> n % 2 == 0).count();
+boolean hayMayorA5 = numeros.stream().anyMatch(n -> n > 5);
+
+// agrupar
+Map<Boolean, List<Integer>> agrupados = numeros.stream()
+    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+// convertir a Map
+Map<Integer, Integer> cuadrados = numeros.stream()
+    .collect(Collectors.toMap(n -> n, n -> n * n));
+```
+
+### Elección de la colección adecuada
+
+| Necesito... | Usa |
+|-------------|-----|
+| Acceso rápido por índice, orden de inserción | `ArrayList` |
+| Inserciones/eliminaciones frecuentes en extremos | `LinkedList` |
+| Elementos únicos, sin importar orden | `HashSet` |
+| Elementos únicos, orden de inserción | `LinkedHashSet` |
+| Elementos únicos, ordenados | `TreeSet` |
+| Pares clave-valor, acceso O(1) | `HashMap` |
+| Pares clave-valor, ordenados por clave | `TreeMap` |
+| Cola FIFO / con prioridad | `ArrayDeque` / `PriorityQueue` |
+
+### Errores Comunes
+
+| Error | Causa | Solución |
+|-------|-------|----------|
+| `ConcurrentModificationException` | Modificar una colección mientras se itera con `for-each` | Usar `Iterator.remove()` o `removeIf()` |
+| `UnsupportedOperationException` | Modificar una lista inmutable (`List.of(...)`) | Crear una copia mutable con `new ArrayList<>(lista)` |
+| `NullPointerException` en `HashMap` | Autoboxing de `null` al usar tipos primitivos envueltos | Verificar existencia con `containsKey`/`getOrDefault` |
+| Orden inesperado al iterar un `HashMap`/`HashSet` | No garantizan orden | Usar `LinkedHashMap`/`LinkedHashSet` o `TreeMap`/`TreeSet` |
+
+## Ejemplo de Código: Inventario con Streams
+
+```java
+package com.ejemplo;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public record Producto(String nombre, String categoria, double precio, int stock) {}
+
+public class Inventario {
     public static void main(String[] args) {
-        List<Persona> personas = List.of(
-                new Persona("Ana", 30),
-                new Persona("Luis", 17),
-                new Persona("Pepe", 25));
+        List<Producto> productos = List.of(
+            new Producto("Laptop", "Electrónica", 899.99, 5),
+            new Producto("Mouse", "Electrónica", 19.99, 50),
+            new Producto("Escritorio", "Muebles", 149.99, 8),
+            new Producto("Silla", "Muebles", 89.99, 12)
+        );
 
-        List<String> adultos = personas.stream()
-                .filter(p -> p.getEdad() >= 18)
-                .map(Persona::getNombre)
-                .collect(Collectors.toList());
+        // Valor total del inventario
+        double valorTotal = productos.stream()
+            .mapToDouble(p -> p.precio() * p.stock())
+            .sum();
+        System.out.printf("Valor total: %.2f%n", valorTotal);
 
-        System.out.println(adultos); // [Ana, Pepe]
+        // Agrupar por categoría
+        Map<String, List<Producto>> porCategoria = productos.stream()
+            .collect(Collectors.groupingBy(Producto::categoria));
+        porCategoria.forEach((cat, lista) ->
+            System.out.println(cat + ": " + lista.size() + " productos"));
+
+        // Producto más caro
+        productos.stream()
+            .max((a, b) -> Double.compare(a.precio(), b.precio()))
+            .ifPresent(p -> System.out.println("Más caro: " + p.nombre()));
     }
 }
 ```
 
-## Ejercicios relacionados
+## Ejercicios Relacionados
 
-- [Ejercicios nivel 03 — Intermedio](../ejercicios/nivel-03-intermedio/)
-
-## Errores comunes
-
-- **`List.of` y luego `add`** → lanza `UnsupportedOperationException` porque la lista es inmutable.
-- **Recorrer un `HashMap` y modificar su tamaño** → `ConcurrentModificationException`. Recoge antes lo que necesites o usa el stream.
-- **Suponer que `HashSet` mantiene orden** → no lo hace. Usa `LinkedHashSet` (orden de inserción) o `TreeSet` (orden natural).
-- **Duplicados en `HashMap`** → reinsertar una clave sobrescribe el valor; si esperabas conservarlo, revisa la lógica.
-- **Olvidar los genéricos** → `List lista = new ArrayList();` compila con warning y pierde seguridad de tipos.
-- **Usar `==` con elementos de colecciones** → para objetos (strings incluidos) usa `equals()`.
+- [Ejercicio 10: Listas y Colecciones](./ejercicios/nivel-02-basico/ejercicio-04-listas-y-colecciones/)
+- [Ejercicio 17: Streams](./ejercicios/nivel-03-intermedio/ejercicio-05-streams/)
+- [Ejercicio 18: Lambdas](./ejercicios/nivel-03-intermedio/ejercicio-06-lambdas/)
 
 ## Recursos
 
-- [Oracle — Collections Overview](https://docs.oracle.com/javase/tutorial/collections/intro/index.html)
-- [Java ArrayList API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html)
-- [Java Stream API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)
-- [Baeldung — Guide to Java Streams](https://www.baeldung.com/java-8-streams)
+- [Java Collections Framework (Oracle)](https://docs.oracle.com/javase/tutorial/collections/)
+- [Stream API (Oracle Docs)](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)

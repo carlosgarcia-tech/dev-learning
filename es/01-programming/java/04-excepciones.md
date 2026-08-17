@@ -1,160 +1,266 @@
-# 04 — Excepciones
+# 04 — Manejo de Excepciones en Java
 
 ## Objetivos
 
-- [ ] Distinguir excepciones checked, unchecked y errores.
-- [ ] Capturar excepciones con `try/catch` y varios `catch`.
-- [ ] Usar `finally` para código que se ejecuta siempre.
-- [ ] Lanzar excepciones con `throw` y `throws`.
-- [ ] Crear excepciones personalizadas.
-- [ ] Usar try-with-resources para cerrar recursos automáticamente.
+- [ ] Entender la jerarquía de excepciones en Java
+- [ ] Diferenciar excepciones *checked* y *unchecked*
+- [ ] Usar `try-catch-finally`
+- [ ] Crear excepciones personalizadas
+- [ ] Usar `try-with-resources`
+- [ ] Aplicar buenas prácticas en el manejo de errores
 
 ## Apuntes
 
-### Jerarquía de Throwable
+### Jerarquía de excepciones
 
-- `Throwable` — raíz de todo lo lanzable.
-- `Error` — problemas graves del JVM (p. ej. `OutOfMemoryError`). No se capturan normalmente.
-- `Exception` — problemas recuperables. Dos ramas:
-  - **Checked** — el compilador **obliga** a capturarlas o declararlas con `throws`. P. ej. `IOException`, `SQLException`, `FileNotFoundException`.
-  - **Unchecked** (subclases de `RuntimeException`) — no es obligatorio manejarlas; suelen ser errores de lógica. P. ej. `NullPointerException`, `IllegalArgumentException`, `ArithmeticException`, `IndexOutOfBoundsException`.
-
-```java
-// Checked: el compilador exige try/catch o throws
-try {
-    java.nio.file.Files.readString(java.nio.file.Path.of("datos.txt"));
-} catch (java.io.IOException e) {
-    System.out.println("No se pudo leer el archivo: " + e.getMessage());
-}
-
-// Unchecked: no obligatorio, pero conviene manejarla
-int x = 10;
-int y = 0;
-if (y != 0) {
-    System.out.println(x / y);
-} else {
-    System.out.println("No se puede dividir por cero");
-}
+```
+Throwable
+├── Error                  (errores graves de la JVM, no se capturan normalmente)
+│   └── OutOfMemoryError, StackOverflowError...
+└── Exception
+    ├── RuntimeException (unchecked, no obligan try-catch)
+    │   ├── NullPointerException
+    │   ├── ArrayIndexOutOfBoundsException
+    │   ├── ArithmeticException
+    │   ├── ClassCastException
+    │   └── IllegalArgumentException
+    └── Checked Exceptions (obligan try-catch o throws)
+        ├── IOException
+        ├── SQLException
+        └── ClassNotFoundException
 ```
 
-### try/catch/finally
+- **Checked**: el compilador exige capturarlas o declararlas con `throws`. Representan
+  condiciones externas recuperables (archivo no encontrado, fallo de red...).
+- **Unchecked** (`RuntimeException` y subclases): normalmente indican errores de
+  programación (índice fuera de rango, `null` inesperado...). No es obligatorio capturarlas.
 
-- `try` — bloque que puede lanzar excepciones.
-- `catch` — captura y maneja. Puede haber varios `catch`, del más específico al más general (¡el orden importa!).
-- `finally` — se ejecuta **siempre**, ocurra o no excepción. Ideal para liberar recursos (aunque hoy se prefiere try-with-resources).
-- `catch (A | B e)` — multi-catch para manejar varios tipos con el mismo código.
+### try-catch-finally
 
 ```java
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-public class Lector {
+public class EjemploExcepciones {
     public static void main(String[] args) {
         try {
-            String contenido = Files.readString(Path.of("datos.txt"));
-            System.out.println(contenido);
-        } catch (IOException e) {
-            System.out.println("Error de I/O: " + e.getMessage());
+            int resultado = 10 / 0; // lanza ArithmeticException
+            System.out.println(resultado);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: división por cero -> " + e.getMessage());
         } finally {
             System.out.println("Este bloque siempre se ejecuta");
+        }
+
+        // Múltiples catch
+        try {
+            int[] arr = new int[5];
+            arr[10] = 1;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Índice fuera de rango: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Otro error: " + e.getMessage());
+        }
+
+        // Multi-catch (Java 7+)
+        try {
+            Object obj = "texto";
+            Integer numero = (Integer) obj; // ClassCastException
+        } catch (ClassCastException | NullPointerException e) {
+            System.out.println("Error de tipo o nulo: " + e.getMessage());
         }
     }
 }
 ```
 
-### throw y throws
-
-- `throw` **lanza** una excepción (una instancia) en el código.
-- `throws` **declara** en la firma del método que puede propagar excepciones checked.
+### Lanzar excepciones con `throw` y `throws`
 
 ```java
-public double raiz(double n) throws IllegalArgumentException {
-    if (n < 0) {
-        throw new IllegalArgumentException("No existe raíz de un negativo: " + n);
+public class Validador {
+
+    // "throws" declara que el método puede lanzar una excepción checked
+    public static void leerArchivo(String ruta) throws java.io.IOException {
+        if (ruta == null || ruta.isEmpty()) {
+            throw new IllegalArgumentException("La ruta no puede estar vacía");
+        }
+        // ... lógica que puede lanzar IOException
     }
-    return Math.sqrt(n);
+
+    public static void validarEdad(int edad) {
+        if (edad < 0 || edad > 150) {
+            throw new IllegalArgumentException("Edad fuera de rango: " + edad);
+        }
+    }
 }
 ```
 
 ### Excepciones personalizadas
 
-Para modelar errores propios del dominio. Deben extender `Exception` (checked) o `RuntimeException` (unchecked).
-
 ```java
-public class SaldoInsuficienteException extends RuntimeException {
-    public SaldoInsuficienteException(String mensaje) {
+// Excepción checked personalizada
+public class SaldoInsuficienteException extends Exception {
+    private double saldoActual;
+    private double montoSolicitado;
+
+    public SaldoInsuficienteException(double saldoActual, double montoSolicitado) {
+        super(String.format("Saldo insuficiente: disponible %.2f, solicitado %.2f",
+                             saldoActual, montoSolicitado));
+        this.saldoActual = saldoActual;
+        this.montoSolicitado = montoSolicitado;
+    }
+
+    public double getSaldoActual() { return saldoActual; }
+    public double getMontoSolicitado() { return montoSolicitado; }
+}
+
+// Excepción unchecked personalizada
+public class RecursoNoEncontradoException extends RuntimeException {
+    public RecursoNoEncontradoException(String mensaje) {
         super(mensaje);
     }
 }
-```
 
-### Try-with-resources
-
-Desde Java 7, los recursos que implementan `AutoCloseable` se cierran solos al salir del `try`. No hace falta `finally`.
-
-```java
-import java.io.BufferedReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-public class Lector2 {
-    public static void main(String[] args) {
-        try (BufferedReader br = Files.newBufferedReader(Path.of("datos.txt"))) {
-            br.lines().forEach(System.out::println);
-        } catch (java.io.IOException e) {
-            System.out.println("Error leyendo: " + e.getMessage());
-        }
-    }
-}
-```
-
-## Ejemplos de código
-
-```java
-// Validador con excepción personalizada y captura
-public class Cuenta {
+public class CuentaBancaria {
     private double saldo;
 
-    public void retirar(double monto) {
-        if (monto <= 0) {
-            throw new IllegalArgumentException("El monto debe ser positivo");
-        }
+    public void retirar(double monto) throws SaldoInsuficienteException {
         if (monto > saldo) {
-            throw new SaldoInsuficienteException("Saldo insuficiente: tienes " + saldo);
+            throw new SaldoInsuficienteException(saldo, monto);
         }
         saldo -= monto;
     }
+}
 
+// Uso
+public class Main {
     public static void main(String[] args) {
-        Cuenta c = new Cuenta();
+        CuentaBancaria cuenta = new CuentaBancaria();
         try {
-            c.retirar(500);
+            cuenta.retirar(1000);
         } catch (SaldoInsuficienteException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("No se pudo retirar: " + e.getMessage());
         }
     }
 }
 ```
 
-## Ejercicios relacionados
+### try-with-resources
 
-- [Ejercicios nivel 02 — Básico](../ejercicios/nivel-02-basico/)
-- [Ejercicios nivel 04 — Avanzado](../ejercicios/nivel-04-avanzado/)
+Cierra automáticamente los recursos (`AutoCloseable`) al finalizar el bloque, incluso si
+ocurre una excepción. Reemplaza al patrón `try/finally { recurso.close(); }`.
 
-## Errores comunes
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-- **Olvidar que el `catch` debe ir antes de `finally`** → error de compilación si los ordenas mal.
-- **`catch (Exception e)` antes de `catch (IOException e)`** → el primero ya captura todo; el segundo nunca se alcanza (no compila).
-- **Tragarse la excepción** → `catch (Exception e) {}` vacío oculta errores. Al menos imprime `e.getMessage()`.
-- **Lanzar checked sin `throws`** → no compila. Declara `throws` en la firma o captúrala.
-- **Capturar `Error`** → salvo casos extremos, no se capturan (`OutOfMemoryError` no es recuperable).
-- **No usar try-with-resources** → abrir un `BufferedReader` sin cerrarlo puede dejar el archivo bloqueado.
-- **Propagar excepciones genéricas** → lanza la más específica posible y no `new Exception()` a secas.
+public class LectorArchivo {
+    public static void leer(String ruta) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        // br.close() se llama automáticamente, sin necesidad de finally
+    }
+}
+
+// Múltiples recursos
+public class CopiaArchivo {
+    public static void copiar(String origen, String destino) {
+        try (var in = new java.io.FileInputStream(origen);
+             var out = new java.io.FileOutputStream(destino)) {
+            in.transferTo(out);
+        } catch (IOException e) {
+            System.out.println("Error al copiar: " + e.getMessage());
+        }
+    }
+}
+
+// Clase propia compatible con try-with-resources
+public class ConexionSimulada implements AutoCloseable {
+    public void abrir() {
+        System.out.println("Conexión abierta");
+    }
+
+    @Override
+    public void close() {
+        System.out.println("Conexión cerrada");
+    }
+}
+```
+
+### Buenas prácticas
+
+1. **No capturar `Exception` genérica sin necesidad**: captura la excepción más específica posible.
+2. **No dejar bloques `catch` vacíos**: al menos registra el error (log).
+3. **No usar excepciones para control de flujo normal**: son costosas y confunden la lógica.
+4. **Incluir información útil en el mensaje**: qué falló y con qué datos.
+5. **Preferir excepciones unchecked para errores de programación**, y checked para
+   condiciones externas recuperables por quien llama.
+6. **Cerrar siempre los recursos**: usa `try-with-resources` en vez de `finally` manual.
+
+### Errores Comunes
+
+| Error | Causa | Solución |
+|-------|-------|----------|
+| `unreported exception ...; must be caught or declared to be thrown` | Excepción checked sin capturar ni declarar | Envolver en `try-catch` o agregar `throws` |
+| Excepción "tragada" silenciosamente | `catch` vacío | Registrar el error o relanzarlo |
+| `finally` no libera recursos correctamente | Cierre manual propenso a errores | Usar `try-with-resources` |
+| Captura de `Exception` oculta bugs reales | `catch (Exception e)` demasiado amplio | Capturar tipos específicos primero |
+
+## Ejemplo de Código: Validación con Excepciones Personalizadas
+
+```java
+package com.ejemplo;
+
+public class FormularioRegistro {
+
+    public static class EdadInvalidaException extends RuntimeException {
+        public EdadInvalidaException(String mensaje) { super(mensaje); }
+    }
+
+    public static class EmailInvalidoException extends RuntimeException {
+        public EmailInvalidoException(String mensaje) { super(mensaje); }
+    }
+
+    public static void validar(String nombre, int edad, String email) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre es obligatorio");
+        }
+        if (edad < 18 || edad > 120) {
+            throw new EdadInvalidaException("Edad fuera de rango permitido: " + edad);
+        }
+        if (email == null || !email.contains("@")) {
+            throw new EmailInvalidoException("Email inválido: " + email);
+        }
+    }
+
+    public static void main(String[] args) {
+        String[][] registros = {
+            {"Ana", "25", "ana@correo.com"},
+            {"Luis", "15", "luis@correo.com"},
+            {"Marta", "30", "marta.sin.arroba"}
+        };
+
+        for (String[] r : registros) {
+            try {
+                validar(r[0], Integer.parseInt(r[1]), r[2]);
+                System.out.println(r[0] + ": registro válido");
+            } catch (EdadInvalidaException | EmailInvalidoException e) {
+                System.out.println(r[0] + ": rechazado -> " + e.getMessage());
+            }
+        }
+    }
+}
+```
+
+## Ejercicios Relacionados
+
+- [Ejercicio 11: Excepciones](./ejercicios/nivel-02-basico/ejercicio-05-excepciones/)
+- [Ejercicio 21: Try-with-resources](./ejercicios/nivel-04-avanzado/ejercicio-03-try-with-resources/)
 
 ## Recursos
 
-- [Oracle — Exceptions](https://docs.oracle.com/javase/tutorial/essential/exceptions/index.html)
-- [Java Throwable API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html)
-- [Oracle — The try-with-resources Statement](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html)
-- [Baeldung — Exceptions in Java](https://www.baeldung.com/java-exceptions)
+- [Oracle: Exceptions Tutorial](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+- [Effective Java — Ítems sobre excepciones (Joshua Bloch)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)

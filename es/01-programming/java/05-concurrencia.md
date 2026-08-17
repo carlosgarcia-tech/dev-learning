@@ -1,196 +1,278 @@
-# 05 — Concurrencia
+# 05 — Concurrencia en Java
 
 ## Objetivos
 
-- [ ] Crear hilos extendiendo `Thread` o implementando `Runnable`.
-- [ ] Usar `ExecutorService` para gestionar pools de hilos.
-- [ ] Sincronizar acceso a recursos compartidos con `synchronized`.
-- [ ] Comprender la palabra clave `volatile`.
-- [ ] Evitar condiciones de carrera y *deadlocks*.
-- [ ] Usar `Future` para obtener resultados de tareas asíncronas.
+- [ ] Entender qué es un hilo (Thread) y cómo se crea
+- [ ] Usar `Runnable` y `Thread`
+- [ ] Entender condiciones de carrera y usar `synchronized`
+- [ ] Usar `ExecutorService` para gestionar pools de hilos
+- [ ] Implementar el patrón Productor-Consumidor
+- [ ] Conocer las clases del paquete `java.util.concurrent`
 
 ## Apuntes
 
-### Threads
-
-Un **hilo (thread)** es una unidad de ejecución independiente que corre en paralelo dentro del mismo proceso. Dos formas de crear uno:
-
-1. Extender `Thread` y sobrescribir `run()`.
-2. Implementar `Runnable` y pasarlo a un `Thread` (preferible: separa la tarea del hilo).
-
-`start()` lanza el hilo (¡no llames a `run()` directamente, lo ejecutarías en el mismo hilo!); `join()` espera a que termine.
+### Crear hilos
 
 ```java
 // Opción 1: extender Thread
-class MiHilo extends Thread {
+public class MiHilo extends Thread {
     @Override
     public void run() {
-        System.out.println("Soy un hilo: " + getName());
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+        }
     }
 }
 
-// Opción 2: implementar Runnable (recomendada)
-Runnable tarea = () -> System.out.println("Tarea en hilo: " + Thread.currentThread().getName());
+// Opción 2: implementar Runnable (preferido, permite extender otras clases)
+public class MiTarea implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+        }
+    }
+}
 
-public class Demo {
+public class Main {
     public static void main(String[] args) throws InterruptedException {
-        MiHilo h1 = new MiHilo();
-        Thread h2 = new Thread(tarea);
-        h1.start();
-        h2.start();
-        h1.join();  // espera a que h1 termine
-        h2.join();
-        System.out.println("Fin del programa");
+        MiHilo hilo1 = new MiHilo();
+        hilo1.start(); // NUNCA llamar a run() directamente, eso ejecuta en el mismo hilo
+
+        Thread hilo2 = new Thread(new MiTarea(), "hilo-tarea");
+        hilo2.start();
+
+        // Lambda (Runnable es una interfaz funcional)
+        Thread hilo3 = new Thread(() -> System.out.println("Hola desde lambda"));
+        hilo3.start();
+
+        // Esperar a que terminen
+        hilo1.join();
+        hilo2.join();
+        hilo3.join();
+
+        System.out.println("Todos los hilos terminaron");
     }
 }
 ```
 
-### ExecutorService
+### Condiciones de carrera y `synchronized`
 
-Crear hilos a mano por cada tarea es caro. Un `ExecutorService` gestiona un **pool** de hilos reutilizables:
-
-- `Executors.newFixedThreadPool(n)` — pool fijo de `n` hilos.
-- `Executors.newCachedThreadPool()` — crea hilos según la demanda.
-- `submit(Callable)` / `submit(Runnable)` — devuelve un `Future` con el resultado.
-- `invokeAll(...)` — ejecuta muchas tareas y espera a todas.
-- `shutdown()` — termina el pool tras completar las tareas en cola.
+Cuando varios hilos acceden y modifican el mismo estado compartido sin coordinación,
+pueden producirse resultados inconsistentes (*race conditions*).
 
 ```java
-import java.util.concurrent.*;
+public class ContadorInseguro {
+    private int contador = 0;
 
-public class DemoPool {
-    public static void main(String[] args) throws Exception {
-        ExecutorService pool = Executors.newFixedThreadPool(4);
+    public void incrementar() {
+        contador++; // NO es atómico: leer + sumar + escribir
+    }
 
-        Future<Integer> fut1 = pool.submit(() -> 2 + 3);
-        Future<Integer> fut2 = pool.submit(() -> 10 * 10);
-
-        System.out.println("fut1 = " + fut1.get()); // 5 (bloquea hasta el resultado)
-        System.out.println("fut2 = " + fut2.get()); // 100
-
-        pool.shutdown();
+    public int getContador() {
+        return contador;
     }
 }
-```
 
-### synchronized
-
-Cuando varios hilos tocan el mismo dato a la vez se produce una **condición de carrera**. La palabra clave `synchronized` garantiza que un solo hilo entre al bloque a la vez (cada objeto tiene un *monitor*).
-
-- Método `synchronized` — bloquea el objeto completo durante la ejecución.
-- Bloque `synchronized (objeto) { ... }` — bloquea solo una sección.
-- Aplica a **métodos estáticos** bloquea la clase.
-
-```java
-public class Contador {
-    private int valor = 0;
-
-    public synchronized void incrementar() {
-        valor++;
-    }
-
-    public synchronized int getValor() {
-        return valor;
-    }
-}
-```
-
-`volatile` garantiza visibilidad entre hilos (que un hilo vea al instante el cambio de otro) pero no exclusión mutua: sirve para flags, no para incrementos.
-
-### Riesgos: deadlock y carreras
-
-- **Deadlock:** dos hilos esperan un recurso que el otro tiene, y ninguno avanza. Se evita con un **orden fijo de adquisición de locks**.
-- **Condición de carrera:** el resultado depende del orden de ejecución. `i++` no es atómico (lee, suma, escribe).
-- **Problemas de visibilidad:** un hilo puede no ver cambios hechos por otro sin `synchronized`/`volatile`.
-
-### Patrones útiles
-
-- `BlockingQueue` (p. ej. `ArrayBlockingQueue`) — cola segura para productor-consumidor: `put` y `take` bloquean.
-- `CountDownLatch` — espera a que `n` operaciones terminen.
-- `CompletableFuture` (Java 8+) — composición de tareas asíncronas al estilo moderno.
-
-## Ejemplos de código
-
-```java
-// Suma paralela con ExecutorService
-import java.util.concurrent.*;
-
-public class SumaParalela {
-    public static void main(String[] args) throws Exception {
-        ExecutorService pool = Executors.newFixedThreadPool(4);
-        int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-        // Dividimos la suma en dos tareas
-        Future<Integer> mitad1 = pool.submit(() -> {
-            int s = 0;
-            for (int i = 0; i < 5; i++) s += numeros[i];
-            return s;
-        });
-        Future<Integer> mitad2 = pool.submit(() -> {
-            int s = 0;
-            for (int i = 5; i < 10; i++) s += numeros[i];
-            return s;
-        });
-
-        int total = mitad1.get() + mitad2.get();
-        System.out.println("Suma total: " + total); // 55
-
-        pool.shutdown();
-    }
-}
-```
-
-```java
-// Contador sincronizado con varios hilos
 public class ContadorSeguro {
-    private int valor = 0;
+    private int contador = 0;
 
+    // synchronized asegura que solo un hilo a la vez ejecute este método
     public synchronized void incrementar() {
-        valor++;
+        contador++;
     }
 
-    public synchronized int getValor() {
-        return valor;
+    public synchronized int getContador() {
+        return contador;
+    }
+}
+
+// Alternativa: bloque synchronized sobre un objeto de bloqueo específico
+public class ContadorConLock {
+    private int contador = 0;
+    private final Object lock = new Object();
+
+    public void incrementar() {
+        synchronized (lock) {
+            contador++;
+        }
+    }
+}
+
+// Alternativa moderna: AtomicInteger (sin bloqueos explícitos)
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class ContadorAtomico {
+    private final AtomicInteger contador = new AtomicInteger(0);
+
+    public void incrementar() {
+        contador.incrementAndGet();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        ContadorSeguro c = new ContadorSeguro();
-        Thread[] hilos = new Thread[10];
-        for (int i = 0; i < 10; i++) {
-            hilos[i] = new Thread(() -> {
-                for (int j = 0; j < 1000; j++) {
-                    c.incrementar();
-                }
-            });
-            hilos[i].start();
-        }
-        for (Thread t : hilos) {
-            t.join();
-        }
-        System.out.println("Valor final: " + c.getValor()); // 10000
+    public int getContador() {
+        return contador.get();
     }
 }
 ```
 
-## Ejercicios relacionados
+### ExecutorService (pools de hilos)
 
-- [Ejercicios nivel 04 — Avanzado](../ejercicios/nivel-04-avanzado/)
-- [Ejercicios nivel 05 — Experto](../ejercicios/nivel-05-experto/)
+Crear un `Thread` por tarea es costoso. `ExecutorService` reutiliza un conjunto de hilos.
 
-## Errores comunes
+```java
+import java.util.concurrent.*;
 
-- **Llamar a `run()` en vez de `start()`** → ejecuta la tarea en el hilo actual, sin paralelismo.
-- **No usar `join()` y esperar que el hilo haya terminado** → el `main` puede terminar antes que los hilos.
-- **Compartir estado sin `synchronized`** → condiciones de carrera: el resultado varía entre ejecuciones.
-- **Incrementar un `volatile` contando con seguridad** → `volatile` no hace atómico `i++`.
-- **Crear un hilo nuevo por cada tarea** → caro y difícil de escalar. Usa `ExecutorService`.
-- **Olvidar `shutdown()`** → el proceso puede quedar colgado sin terminar.
-- **`get()` sin manejar excepciones** → `Future.get()` lanza `InterruptedException` y `ExecutionException` (checked).
+public class EjemploExecutor {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+
+        // Enviar tareas sin resultado
+        for (int i = 0; i < 8; i++) {
+            int tareaId = i;
+            executor.submit(() -> System.out.println("Ejecutando tarea " + tareaId
+                + " en " + Thread.currentThread().getName()));
+        }
+
+        // Enviar una tarea con resultado (Callable + Future)
+        Future<Integer> resultado = executor.submit(() -> {
+            Thread.sleep(100);
+            return 42;
+        });
+        System.out.println("Resultado: " + resultado.get()); // bloquea hasta tener el valor
+
+        executor.shutdown(); // no acepta nuevas tareas
+        executor.awaitTermination(5, TimeUnit.SECONDS);
+    }
+}
+```
+
+### Productor-Consumidor con `BlockingQueue`
+
+```java
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class ProductorConsumidor {
+
+    public static void main(String[] args) {
+        BlockingQueue<Integer> cola = new LinkedBlockingQueue<>(10);
+
+        Runnable productor = () -> {
+            try {
+                for (int i = 0; i < 20; i++) {
+                    cola.put(i); // bloquea si la cola está llena
+                    System.out.println("Produjo: " + i);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
+
+        Runnable consumidor = () -> {
+            try {
+                for (int i = 0; i < 20; i++) {
+                    int valor = cola.take(); // bloquea si la cola está vacía
+                    System.out.println("Consumió: " + valor);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
+
+        new Thread(productor, "productor").start();
+        new Thread(consumidor, "consumidor").start();
+    }
+}
+```
+
+### `wait()`/`notify()` (versión manual, sin `BlockingQueue`)
+
+```java
+public class Buffer {
+    private int dato;
+    private boolean disponible = false;
+
+    public synchronized void producir(int valor) throws InterruptedException {
+        while (disponible) {
+            wait(); // espera a que el consumidor libere el buffer
+        }
+        dato = valor;
+        disponible = true;
+        notifyAll(); // avisa a los hilos en espera
+    }
+
+    public synchronized int consumir() throws InterruptedException {
+        while (!disponible) {
+            wait();
+        }
+        disponible = false;
+        notifyAll();
+        return dato;
+    }
+}
+```
+
+### Otras herramientas útiles de `java.util.concurrent`
+
+| Clase | Uso |
+|-------|-----|
+| `CountDownLatch` | Esperar a que N tareas terminen antes de continuar |
+| `CyclicBarrier` | Sincronizar varios hilos en un punto común, de forma reutilizable |
+| `Semaphore` | Limitar el número de hilos que acceden a un recurso simultáneamente |
+| `ConcurrentHashMap` | `Map` seguro para acceso concurrente sin bloquear todo el mapa |
+| `CompletableFuture` | Composición de tareas asíncronas (`thenApply`, `thenCombine`...) |
+
+### Errores Comunes
+
+| Error | Causa | Solución |
+|-------|-------|----------|
+| Resultados inconsistentes entre ejecuciones | Condición de carrera (estado compartido sin sincronizar) | `synchronized`, `Atomic*`, o estructuras concurrentes |
+| `IllegalMonitorStateException` | Llamar a `wait()`/`notify()` fuera de un bloque `synchronized` | Envolver en `synchronized (objeto)` |
+| Deadlock (bloqueo mutuo) | Dos hilos esperan bloqueos que el otro sostiene | Adquirir los locks siempre en el mismo orden |
+| Hilos "zombis" que no terminan | No llamar a `executor.shutdown()` | Cerrar siempre el `ExecutorService` |
+| `run()` en vez de `start()` | Confusión entre ambos métodos | `start()` crea un hilo nuevo; `run()` ejecuta en el hilo actual |
+
+## Ejemplo de Código: Descarga concurrente simulada
+
+```java
+package com.ejemplo;
+
+import java.util.List;
+import java.util.concurrent.*;
+
+public class DescargadorConcurrente {
+
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        List<String> archivos = List.of("archivo1.zip", "archivo2.zip", "archivo3.zip", "archivo4.zip");
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        List<Future<String>> resultados = new java.util.ArrayList<>();
+
+        for (String archivo : archivos) {
+            resultados.add(executor.submit(() -> descargar(archivo)));
+        }
+
+        for (Future<String> resultado : resultados) {
+            System.out.println(resultado.get());
+        }
+
+        executor.shutdown();
+    }
+
+    private static String descargar(String archivo) throws InterruptedException {
+        Thread.sleep((long) (Math.random() * 500)); // simula latencia de red
+        return archivo + " descargado por " + Thread.currentThread().getName();
+    }
+}
+```
+
+## Ejercicios Relacionados
+
+- [Ejercicio 19: Threads](./ejercicios/nivel-04-avanzado/ejercicio-01-threads/)
+- [Ejercicio 20: Sincronización](./ejercicios/nivel-04-avanzado/ejercicio-02-sincronizacion/)
+- [Ejercicio 28: Productor-Consumidor](./ejercicios/nivel-05-experto/ejercicio-04-productor-consumidor/)
 
 ## Recursos
 
-- [Oracle — Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
-- [Java ExecutorService API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ExecutorService.html)
-- [Java synchronized tutorial](https://docs.oracle.com/javase/tutorial/essential/concurrency/sync.html)
-- [Baeldung — ExecutorService Guide](https://www.baeldung.com/java-executor-service-tutorial)
-- [Baeldung — Java Concurrency](https://www.baeldung.com/java-concurrency)
+- [Oracle: Concurrency Tutorial](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
+- [java.util.concurrent (Javadoc)](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/package-summary.html)
