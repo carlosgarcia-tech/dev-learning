@@ -1,0 +1,39 @@
+# Compilados / binarios
+*.exe
+*.out
+*.class
+*.o
+*.obj
+*.bin
+
+# Go
+*.exe
+!go.sum
+go.work
+
+# Node
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# Bases de datos temporales (tests SQL)
+*.db
+*.sqlite
+*.sqlite3
+tmp.db
+tmp_actual.txt
+actual.txt
+
+# Entornos y logs
+.env
+*.log
+*.fifo
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Binarios sueltos (compilados por scripts de test)
+# Binarios generados por `go build`/`g++` dentro de ejercicios
