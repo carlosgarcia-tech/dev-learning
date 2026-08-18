@@ -61,7 +61,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | [Go](01-programming/go/) | 5 | 30 (carpetas) | ✅ | Structs, interfaces, concurrencia, genéricos, testing, proyecto final |
 | [Java](01-programming/java/) | 6 | 30 (carpetas) | ✅ | POO, streams, concurrencia, Spring Boot |
 | [TypeScript](01-programming/typescript/) | 6 | 30 (carpetas) | ✅ | Tipos, generics, async, Express |
-| [JavaScript](01-programming/javascript/) | 5 | 30 | ✅ | Formato plano (`.js` + `.md` + `.test.js`) |
+| [JavaScript](01-programming/javascript/) | 6 | 30 (carpetas) | ✅ | Fundamentos, async/await, Node.js + Express, proyecto final MiTienda |
 | [PHP](01-programming/php/) | 5 | 30 | ✅ | Formato plano (`.php` + `.md` + tests) |
 | [Python](01-programming/python/) | 6 | 30 (carpetas) | ✅ | Funciones, estructuras, asyncio, FastAPI/Django/Flask, proyecto final con FastAPI |
 | [Rust](01-programming/rust/) | 5 | 30 | — | Formato plano |
@@ -72,7 +72,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 - [x] Estructura completa aplanada en la raíz
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
 - [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python
-- [x] Lenguajes con 30 ejercicios en formato plano: JS, PHP, Rust
+- [x] Lenguajes con 30 ejercicios en formato plano: PHP, Rust
 - [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB, Redis) — solo esqueleto
 - [ ] Backend (HTTP, REST, GraphQL, Auth, Arquitectura)
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)

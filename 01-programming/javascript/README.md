@@ -15,10 +15,11 @@ Esta ruta asume que sabes lo básico de programación pero parte desde cero en J
 | [03 — Arrays y objetos](03-arrays-y-objetos.md) | Métodos de arrays, destructuring, spread/rest y JSON |
 | [04 — Async/Await](04-async-await.md) | Callbacks, promesas, async/await, fetch y errores |
 | [05 — Errores](05-errores.md) | throw, try/catch/finally, tipos de error y depuración |
+| [06 — Node.js y Express](06-node-y-express.md) | Módulo http, Express, middlewares, API REST, auth y testing |
 
 ## Ejercicios por nivel
 
-Cada ejercicio incluye enunciado, requisitos, pistas y solución. Ejecuta cada solución con `node archivo.js`.
+Cada ejercicio incluye enunciado, requisitos, pistas y solución. Ejecuta cada solución con `node index.js` y sus tests con `node --test index.test.js`.
 
 | Nivel | Dificultad | Ejercicios |
 |---|---|---|
@@ -28,7 +29,7 @@ Cada ejercicio incluye enunciado, requisitos, pistas y solución. Ejecuta cada s
 | [Nivel 04 — Avanzado](ejercicios/nivel-04-avanzado/) | ⭐⭐⭐⭐ 4/5 | Async/await, fetch, patrones, debounce/throttle, testing y CLI |
 | [Nivel 05 — Experto](ejercicios/nivel-05-experto/) | ⭐⭐⭐⭐⭐ 5/5 | CLI, servidor HTTP, caché LRU, EventEmitter, API REST y pipelines |
 
-Índice completo con los 30 ejercicios: [ejercicios/README.md](ejercicios/README.md)
+Índice completo con los 30 ejercicios en carpetas: [ejercicios/README.md](ejercicios/README.md)
 
 ## Proyectos
 
