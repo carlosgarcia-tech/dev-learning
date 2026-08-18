@@ -23,7 +23,7 @@ NUM_PADDED=$(printf "%02d" "$NUM")
 TITULO=$(echo "$SLUG" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
 
 # Directorio base del ejercicio (relativo a la raíz del repo)
-BASE_DIR="es/01-programming/typescript/ejercicios/$LEVEL"
+BASE_DIR="01-programming/typescript/ejercicios/$LEVEL"
 DIR="$BASE_DIR/ejercicio-$NUM_PADDED-$SLUG"
 
 mkdir -p "$DIR"

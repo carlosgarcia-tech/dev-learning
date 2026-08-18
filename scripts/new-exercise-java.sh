@@ -30,7 +30,7 @@ NIVEL_NUM=$(echo "$LEVEL" | cut -d'-' -f2 | sed 's/^0*//')
 
 # Directorio destino, relativo a este script (se asume ejecución desde scripts/)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DIR="$SCRIPT_DIR/../es/01-programming/java/ejercicios/$LEVEL/ejercicio-$NUM_PADDED-$SLUG"
+DIR="$SCRIPT_DIR/../01-programming/java/ejercicios/$LEVEL/ejercicio-$NUM_PADDED-$SLUG"
 mkdir -p "$DIR"
 
 # Crear README.md
