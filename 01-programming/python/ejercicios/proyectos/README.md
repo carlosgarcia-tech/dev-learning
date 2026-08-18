@@ -2,6 +2,12 @@
 
 Proyectos completos para poner en práctica todo lo aprendido en los 5 niveles. Cada proyecto tiene **requisitos por fases**: completa una fase antes de pasar a la siguiente. Están ordenados de menor a mayor complejidad.
 
+## Proyecto Final — Sistema de Gestión de Biblioteca
+
+**Dificultad:** ⭐⭐⭐⭐⭐ (nivel 05 + guía 06)
+
+Una [**API REST con FastAPI**](proyecto-final/README.md) para gestionar libros, miembros y préstamos con persistencia en JSON, validación con Pydantic y reportes. Incluye [`starter/`](proyecto-final/starter/) con el andamiaje y [`tests/`](proyecto-final/tests/) con la suite de tests de referencia.
+
 ---
 
 ## Proyecto 1 — Gestor de tareas CLI
