@@ -1,78 +1,99 @@
-# Ejercicios — Go
+# Ejercicios de Go — Índice
 
-30 ejercicios en 5 niveles de dificultad. Cada ejercicio tiene **enunciado, requisitos, pistas y solución** (plegable). Ejecuta cada solución con `go run archivo.go`. Para los ejercicios con tests usa `go test`.
+30 ejercicios progresivos (6 por nivel) + 3 proyectos integradores + 1 proyecto final. Cada ejercicio contiene:
+
+- `README.md` — enunciado, requisitos, pistas y solución
+- `main.go` — stub con `TODO`s para completar
+- `main_test.go` — runner de tests con el paquete `testing`
+- `go.mod` — módulo Go para ejecutar el ejercicio
+
+## Cómo ejecutar los tests
+
+Desde la carpeta del ejercicio:
+
+```bash
+go test -v ./...
+```
+
+> El runner usa el paquete `testing` de la biblioteca estándar: no requiere
+> dependencias externas. Ejecuta `go run .` para probar la solución.
 
 ## Nivel 01 — Fundamentos (1/5)
 
 Variables, tipos, operadores, condicionales, bucles, slices y maps.
 
-| # | Ejercicio | Enlace |
-|---|---|---|
-| 01 | Variables y tipos | [ejercicio-01-variables-y-tipos.md](nivel-01-fundamentos/ejercicio-01-variables-y-tipos.md) |
-| 02 | Operadores y condicionales | [ejercicio-02-operadores-y-condicionales.md](nivel-01-fundamentos/ejercicio-02-operadores-y-condicionales.md) |
-| 03 | Bucles | [ejercicio-03-bucles.md](nivel-01-fundamentos/ejercicio-03-bucles.md) |
-| 04 | Funciones básicas | [ejercicio-04-funciones-basicas.md](nivel-01-fundamentos/ejercicio-04-funciones-basicas.md) |
-| 05 | Arrays y slices | [ejercicio-05-arrays-y-slices.md](nivel-01-fundamentos/ejercicio-05-arrays-y-slices.md) |
-| 06 | Maps | [ejercicio-06-maps.md](nivel-01-fundamentos/ejercicio-06-maps.md) |
+| # | Ejercicio | Carpeta |
+|---|-----------|---------|
+| 01 | Variables y tipos | [`nivel-01-fundamentos/ejercicio-01-variables-y-tipos`](./nivel-01-fundamentos/ejercicio-01-variables-y-tipos/) |
+| 02 | Operadores y condicionales | [`nivel-01-fundamentos/ejercicio-02-operadores-y-condicionales`](./nivel-01-fundamentos/ejercicio-02-operadores-y-condicionales/) |
+| 03 | Bucles | [`nivel-01-fundamentos/ejercicio-03-bucles`](./nivel-01-fundamentos/ejercicio-03-bucles/) |
+| 04 | Funciones básicas | [`nivel-01-fundamentos/ejercicio-04-funciones-basicas`](./nivel-01-fundamentos/ejercicio-04-funciones-basicas/) |
+| 05 | Arrays y slices | [`nivel-01-fundamentos/ejercicio-05-arrays-y-slices`](./nivel-01-fundamentos/ejercicio-05-arrays-y-slices/) |
+| 06 | Maps | [`nivel-01-fundamentos/ejercicio-06-maps`](./nivel-01-fundamentos/ejercicio-06-maps/) |
 
 ## Nivel 02 — Básico (2/5)
 
 Structs, métodos, punteros, funciones variádicas, strings y errores.
 
-| # | Ejercicio | Enlace |
-|---|---|---|
-| 01 | Structs | [ejercicio-01-structs.md](nivel-02-basico/ejercicio-01-structs.md) |
-| 02 | Métodos | [ejercicio-02-metodos.md](nivel-02-basico/ejercicio-02-metodos.md) |
-| 03 | Punteros | [ejercicio-03-punteros.md](nivel-02-basico/ejercicio-03-punteros.md) |
-| 04 | Funciones variádicas | [ejercicio-04-funciones-variadicas.md](nivel-02-basico/ejercicio-04-funciones-variadicas.md) |
-| 05 | Cadenas | [ejercicio-05-cadenas.md](nivel-02-basico/ejercicio-05-cadenas.md) |
-| 06 | Errores básicos | [ejercicio-06-errores-basicos.md](nivel-02-basico/ejercicio-06-errores-basicos.md) |
+| # | Ejercicio | Carpeta |
+|---|-----------|---------|
+| 01 | Structs | [`nivel-02-basico/ejercicio-01-structs`](./nivel-02-basico/ejercicio-01-structs/) |
+| 02 | Métodos | [`nivel-02-basico/ejercicio-02-metodos`](./nivel-02-basico/ejercicio-02-metodos/) |
+| 03 | Punteros | [`nivel-02-basico/ejercicio-03-punteros`](./nivel-02-basico/ejercicio-03-punteros/) |
+| 04 | Funciones variádicas | [`nivel-02-basico/ejercicio-04-funciones-variadicas`](./nivel-02-basico/ejercicio-04-funciones-variadicas/) |
+| 05 | Cadenas | [`nivel-02-basico/ejercicio-05-cadenas`](./nivel-02-basico/ejercicio-05-cadenas/) |
+| 06 | Errores básicos | [`nivel-02-basico/ejercicio-06-errores-basicos`](./nivel-02-basico/ejercicio-06-errores-basicos/) |
 
 ## Nivel 03 — Intermedio (3/5)
 
 Interfaces, switch, slices avanzados, defer/panic, paquetes y funciones anónimas.
 
-| # | Ejercicio | Enlace |
-|---|---|---|
-| 01 | Interfaces | [ejercicio-01-interfaces.md](nivel-03-intermedio/ejercicio-01-interfaces.md) |
-| 02 | Switch | [ejercicio-02-switch.md](nivel-03-intermedio/ejercicio-02-switch.md) |
-| 03 | Slices avanzados | [ejercicio-03-slices-avanzados.md](nivel-03-intermedio/ejercicio-03-slices-avanzados.md) |
-| 04 | Defer y panic | [ejercicio-04-defer-y-panic.md](nivel-03-intermedio/ejercicio-04-defer-y-panic.md) |
-| 05 | Paquetes y módulos | [ejercicio-05-paquetes-y-modulos.md](nivel-03-intermedio/ejercicio-05-paquetes-y-modulos.md) |
-| 06 | Funciones anónimas | [ejercicio-06-funciones-anonimas.md](nivel-03-intermedio/ejercicio-06-funciones-anonimas.md) |
+| # | Ejercicio | Carpeta |
+|---|-----------|---------|
+| 01 | Interfaces | [`nivel-03-intermedio/ejercicio-01-interfaces`](./nivel-03-intermedio/ejercicio-01-interfaces/) |
+| 02 | Switch | [`nivel-03-intermedio/ejercicio-02-switch`](./nivel-03-intermedio/ejercicio-02-switch/) |
+| 03 | Slices avanzados | [`nivel-03-intermedio/ejercicio-03-slices-avanzados`](./nivel-03-intermedio/ejercicio-03-slices-avanzados/) |
+| 04 | Defer y panic | [`nivel-03-intermedio/ejercicio-04-defer-y-panic`](./nivel-03-intermedio/ejercicio-04-defer-y-panic/) |
+| 05 | Paquetes y módulos | [`nivel-03-intermedio/ejercicio-05-paquetes-y-modulos`](./nivel-03-intermedio/ejercicio-05-paquetes-y-modulos/) |
+| 06 | Funciones anónimas | [`nivel-03-intermedio/ejercicio-06-funciones-anonimas`](./nivel-03-intermedio/ejercicio-06-funciones-anonimas/) |
 
 ## Nivel 04 — Avanzado (4/5)
 
 Goroutines, channels, select, channels con buffer, testing y context.
 
-| # | Ejercicio | Enlace |
-|---|---|---|
-| 01 | Goroutines | [ejercicio-01-goroutines.md](nivel-04-avanzado/ejercicio-01-goroutines.md) |
-| 02 | Channels | [ejercicio-02-channels.md](nivel-04-avanzado/ejercicio-02-channels.md) |
-| 03 | Select | [ejercicio-03-select.md](nivel-04-avanzado/ejercicio-03-select.md) |
-| 04 | Channels con buffer | [ejercicio-04-channels-con-buffer.md](nivel-04-avanzado/ejercicio-04-channels-con-buffer.md) |
-| 05 | Testing con go test | [ejercicio-05-testing-con-go-test.md](nivel-04-avanzado/ejercicio-05-testing-con-go-test.md) |
-| 06 | Context | [ejercicio-06-context.md](nivel-04-avanzado/ejercicio-06-context.md) |
+| # | Ejercicio | Carpeta |
+|---|-----------|---------|
+| 01 | Goroutines | [`nivel-04-avanzado/ejercicio-01-goroutines`](./nivel-04-avanzado/ejercicio-01-goroutines/) |
+| 02 | Channels | [`nivel-04-avanzado/ejercicio-02-channels`](./nivel-04-avanzado/ejercicio-02-channels/) |
+| 03 | Select | [`nivel-04-avanzado/ejercicio-03-select`](./nivel-04-avanzado/ejercicio-03-select/) |
+| 04 | Channels con buffer | [`nivel-04-avanzado/ejercicio-04-channels-con-buffer`](./nivel-04-avanzado/ejercicio-04-channels-con-buffer/) |
+| 05 | Testing con go test | [`nivel-04-avanzado/ejercicio-05-testing-con-go-test`](./nivel-04-avanzado/ejercicio-05-testing-con-go-test/) |
+| 06 | Context | [`nivel-04-avanzado/ejercicio-06-context`](./nivel-04-avanzado/ejercicio-06-context/) |
 
 ## Nivel 05 — Experto (5/5)
 
 CLI con persistencia, servidor HTTP, API REST, caché LRU, worker pool y mini-servicio.
 
-| # | Ejercicio | Enlace |
-|---|---|---|
-| 01 | Gestor de tareas CLI | [ejercicio-01-gestor-de-tareas-cli.md](nivel-05-experto/ejercicio-01-gestor-de-tareas-cli.md) |
-| 02 | Servidor HTTP | [ejercicio-02-servidor-http.md](nivel-05-experto/ejercicio-02-servidor-http.md) |
-| 03 | API REST | [ejercicio-03-api-rest.md](nivel-05-experto/ejercicio-03-api-rest.md) |
-| 04 | Caché LRU | [ejercicio-04-cache-lru.md](nivel-05-experto/ejercicio-04-cache-lru.md) |
-| 05 | Worker pool | [ejercicio-05-worker-pool.md](nivel-05-experto/ejercicio-05-worker-pool.md) |
-| 06 | Mini proyecto | [ejercicio-06-mini-proyecto.md](nivel-05-experto/ejercicio-06-mini-proyecto.md) |
+| # | Ejercicio | Carpeta |
+|---|-----------|---------|
+| 01 | Gestor de tareas CLI | [`nivel-05-experto/ejercicio-01-gestor-de-tareas-cli`](./nivel-05-experto/ejercicio-01-gestor-de-tareas-cli/) |
+| 02 | Servidor HTTP | [`nivel-05-experto/ejercicio-02-servidor-http`](./nivel-05-experto/ejercicio-02-servidor-http/) |
+| 03 | API REST | [`nivel-05-experto/ejercicio-03-api-rest`](./nivel-05-experto/ejercicio-03-api-rest/) |
+| 04 | Caché LRU | [`nivel-05-experto/ejercicio-04-cache-lru`](./nivel-05-experto/ejercicio-04-cache-lru/) |
+| 05 | Worker pool | [`nivel-05-experto/ejercicio-05-worker-pool`](./nivel-05-experto/ejercicio-05-worker-pool/) |
+| 06 | Mini proyecto | [`nivel-05-experto/ejercicio-06-mini-proyecto`](./nivel-05-experto/ejercicio-06-mini-proyecto/) |
 
 ## Proyectos integradores
 
 [Proyectos integradores](proyectos/README.md) — 3 proyectos por fases: CLI de inventario, API REST con archivo y app de tareas completa.
 
+## Proyecto final
+
+[**Sistema de Gestión de Biblioteca**](proyectos/proyecto-final/) — aplicación completa con `Repositorio[T]` genérico, servicios con validaciones y reglas de negocio, reportes y 15 tests de referencia con `go test`.
+
 ## Cómo ejecutar
 
-- **Programas de archivo único:** `go run archivo.go` (requiere `package main` y `func main`).
-- **Tests:** crea el módulo con `go mod init nombre` y ejecuta `go test`.
-- **Servidores HTTP:** `go run servidor.go` en una terminal y prueba con `curl` desde otra.
+- **Programas de un solo archivo:** `go run main.go` dentro de la carpeta del ejercicio (requiere `package main` y `func main`).
+- **Tests:** ejecuta `go test -v ./...` dentro de la carpeta del ejercicio o del proyecto final.
+- **Servidores HTTP:** `go run .` en una terminal y prueba con `curl` desde otra.
+- **Crear ejercicios nuevos:** usa `scripts/new-exercise-go.sh`.

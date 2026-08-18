@@ -21,6 +21,7 @@ Go es un lenguaje de programación creado por Google, diseñado para ser simple,
 ## Proyectos
 
 - [Proyectos](./ejercicios/proyectos/) - Proyectos prácticos que integran todos los conceptos
+- [**Proyecto final: Sistema de Gestión de Biblioteca**](./ejercicios/proyectos/proyecto-final/) - Repositorio genérico `Repositorio[T]`, servicios, reglas de negocio y 15 tests de referencia con `go test`.
 
 ## Cómo usar este repositorio
 

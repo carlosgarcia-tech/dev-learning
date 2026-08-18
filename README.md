@@ -58,7 +58,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | Lenguaje | Guías | Ejercicios | Proyecto final | Notas |
 |---|---|---|---|---|
 | [C#](01-programming/csharp/) | 6 | 30 (carpetas) | ✅ | POO, LINQ, async/await, ASP.NET Core (Minimal APIs) |
-| [Go](01-programming/go/) | 5 | 30 (carpetas) | ✅ | Structs, interfaces, concurrencia, testing |
+| [Go](01-programming/go/) | 5 | 30 (carpetas) | ✅ | Structs, interfaces, concurrencia, genéricos, testing, proyecto final |
 | [Java](01-programming/java/) | 6 | 30 (carpetas) | ✅ | POO, streams, concurrencia, Spring Boot |
 | [TypeScript](01-programming/typescript/) | 6 | 30 (carpetas) | ✅ | Tipos, generics, async, Express |
 | [JavaScript](01-programming/javascript/) | 5 | 30 | ✅ | Formato plano (`.js` + `.md` + `.test.js`) |
