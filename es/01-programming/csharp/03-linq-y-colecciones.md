@@ -3,6 +3,7 @@
 ## Objetivos
 
 - [ ] Usar `List<T>`, `Dictionary<K, V>` y `HashSet<T>`.
+- [ ] Elegir la colección adecuada para cada caso (`List`, `Dictionary`, `HashSet`, `Queue`, `Stack`).
 - [ ] Escribir consultas LINQ con sintaxis de método y de consulta.
 - [ ] Filtrar, proyectar, ordenar, agrupar y reducir colecciones (`Where`, `Select`, `OrderBy`, `GroupBy`, `Sum`…).
 - [ ] Aplanar y combinar colecciones (`SelectMany`, `Join`, `Zip`).
@@ -35,6 +36,34 @@ if (edades.TryGetValue("Ana", out int e))  // evita KeyNotFoundException
 
 HashSet<int> set = new HashSet<int> { 1, 2, 3 };
 set.Add(3);           // ya existe, no se añade
+```
+
+| Colección | Para qué sirve | Acceso | Orden |
+|---|---|---|---|
+| `List<T>` | colección ordenada dinámica | por índice / iteración | inserción |
+| `Dictionary<K,V>` | pares clave→valor | por clave (`O(1)`) | sin orden |
+| `HashSet<T>` | elementos únicos, operaciones de conjuntos | por elemento | sin orden |
+| `Queue<T>` | FIFO (primero en entrar, primero en salir) | `Enqueue`/`Dequeue` | inserción |
+| `Stack<T>` | LIFO (último en entrar, primero en salir) | `Push`/`Pop` | inserción inversa |
+
+```csharp
+Queue<string> cola = new Queue<string>();
+cola.Enqueue("A"); cola.Enqueue("B");
+string primero = cola.Dequeue();   // "A"
+
+Stack<int> pila = new Stack<int>();
+pila.Push(1); pila.Push(2);
+int ultimo = pila.Pop();           // 2
+```
+
+Operaciones de conjuntos con `HashSet`:
+
+```csharp
+HashSet<int> a = new HashSet<int> { 1, 2, 3 };
+HashSet<int> b = new HashSet<int> { 3, 4, 5 };
+a.UnionWith(b);     // {1, 2, 3, 4, 5}
+a.IntersectWith(b); // intersección
+a.ExceptWith(b);    // diferencia
 ```
 
 ### ¿Qué es LINQ?
@@ -88,6 +117,25 @@ List<int> lista = numeros.Where(n => n > 2).ToList();
 Dictionary<string, int> dicc = personas.ToDictionary(p => p.Nombre, p => p.Edad);
 ```
 
+Variantes "OrDefault" y orden descendente:
+
+```csharp
+numeros.OrderByDescending(n => n);
+numeros.SingleOrDefault();          // lanza si hay más de un elemento
+numeros.LastOrDefault();
+numeros.ElementAtOrDefault(10);     // default si el índice no existe
+```
+
+Agrupaciones reales: `GroupBy` devuelve `IGrouping<Clave, Elemento>`, con `Key` y la colección de elementos:
+
+```csharp
+var porInicial = nombres.GroupBy(n => n[0]);
+foreach (var grupo in porInicial)
+{
+    Console.WriteLine($"Letra {grupo.Key}: {grupo.Count()} nombres");
+}
+```
+
 ### LINQ avanzado
 
 ```csharp
@@ -122,6 +170,24 @@ public static IEnumerable<int> GenerarPares(int maximo)
 }
 ```
 
+`yield return` implementa un iterador diferido: el método "pausa" entre valores y no materializa todo en memoria:
+
+```csharp
+public static IEnumerable<int> SecuenciaFinita()
+{
+    yield return 1;
+    yield return 2;
+    yield return 3;   // no hay return final: termina aquí
+}
+```
+
+Comparaciones con `Equals` y cultura: al agrupar/ordenar strings, LINQ usa la comparación ordinal por defecto. Para ignorar mayúsculas:
+
+```csharp
+var grupos = nombres.GroupBy(n => n.ToLower());
+var ordenados = nombres.OrderBy(n => n, StringComparer.OrdinalIgnoreCase);
+```
+
 ### Delegados y lambdas
 
 Un **delegado** es un tipo que referencia a un método (puntero a función con tipo):
@@ -136,6 +202,33 @@ Predicate<int> esPar = n => n % 2 == 0;        // devuelve bool
 
 public static int Aplicar(Func<int, int, int> op, int a, int b) => op(a, b);
 int r = Aplicar((x, y) => x * y, 6, 7); // 42
+```
+
+| Tipo | Firma | Uso |
+|---|---|---|
+| `Func<T, TResult>` | recibe valores, devuelve uno | proyecciones, cálculos |
+| `Action<T>` | recibe valores, devuelve `void` | efectos secundarios, callbacks |
+| `Predicate<T>` | recibe valor, devuelve `bool` | filtros |
+| `Func<Task<T>>` | devuelve una tarea | asincronía (guía 04) |
+
+Lambdas con cuerpo y sin cuerpo:
+
+```csharp
+Func<int, int> cuadrado = x => x * x;              // expresión
+Action<int> imprimirDetalle = x =>
+{
+    Console.Write("Número: ");
+    Console.WriteLine(x);
+};                                                   // bloque
+```
+
+Usar un delegado como parámetro (estrategia):
+
+```csharp
+public static List<int> Filtrar(List<int> numeros, Predicate<int> condicion)
+    => numeros.Where(n => condicion(n)).ToList();
+
+var positivos = Filtrar(numeros, n => n > 0);
 ```
 
 ### Eventos
@@ -163,6 +256,10 @@ termometro.TemperaturaCambio += (sender, valor) =>
 termometro.SetTemperatura(22); // imprime
 termometro.SetTemperatura(22); // no imprime (no cambió)
 ```
+
+- `+=` suscribe un manejador; `-=` lo desuscribe.
+- `?.Invoke` comprueba si hay suscriptores antes de notificar.
+- `sender` es quien publica el evento; `eventArgs` lleva los datos.
 
 ### Extension methods
 
@@ -240,6 +337,7 @@ public static class Programa
 
 - [nivel-03-intermedio](../ejercicios/nivel-03-intermedio/) — LINQ básico, delegados y eventos, genéricos.
 - [nivel-04-avanzado](../ejercicios/nivel-04-avanzado/) — LINQ avanzado, extension methods, tuplas.
+- En el [PROYECTO FINAL](../ejercicios/proyectos/proyecto-final/README.md) se usa LINQ para búsquedas y reportes (`LibrosMasPrestadosAsync`, búsquedas sin distinguir mayúsculas).
 
 ## Errores comunes
 
@@ -250,6 +348,8 @@ public static class Programa
 - **Modificar una colección mientras se recorre con `foreach`** → lanza `InvalidOperationException`. Recoge las eliminaciones y hazlas después.
 - **Comparar `string` ignorando mayúsculas en LINQ** → usa `Equals(x, StringComparison.OrdinalIgnoreCase)`, no `==`.
 - **`GroupBy` devuelve `IGrouping<,>`** → para acceder a los elementos usa `grupo.Key` y `grupo` como colección.
+- **Confundir `Select` con `SelectMany`** → `Select` proyecta 1 a 1; `SelectMany` aplane colecciones anidadas.
+- **`Single()` sobre una colección con varios elementos** → lanza `InvalidOperationException`; usa `SingleOrDefault` solo si el caso lo garantiza.
 
 ## Recursos
 

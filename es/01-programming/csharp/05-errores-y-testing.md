@@ -5,9 +5,10 @@
 - [ ] Lanzar y capturar excepciones con `try/catch/finally` y `throw`.
 - [ ] Conocer las excepciones comunes del framework y cuándo ocurren.
 - [ ] Crear excepciones propias heredando de `Exception`.
-- [ ] Entender el mini framework de tests de esta ruta (`*_test.cs`).
+- [ ] Entender el mini framework de tests de esta ruta (`ProgramTest.cs`).
 - [ ] Aplicar el ciclo Red-Green-Refactor de TDD.
 - [ ] Usar reflection para inspeccionar tipos en tiempo de ejecución.
+- [ ] Escribir tests robustos (casos normales, límites y errores).
 
 ## Apuntes
 
@@ -60,6 +61,19 @@ public static double Dividir(double a, double b)
 }
 ```
 
+`finally` se ejecuta siempre, incluso si hay `return` en el `try`. El patrón `using` es la alternativa idiomática para liberar recursos:
+
+```csharp
+using (var lector = new StreamReader("datos.txt"))   // se cierra al salir
+{
+    Console.WriteLine(lector.ReadToEnd());
+}
+
+// Equivalente (desde C# 8):
+using var lector2 = new StreamReader("datos.txt");
+Console.WriteLine(lector2.ReadToEnd());
+```
+
 ### Excepciones comunes del framework
 
 | Excepción | Cuándo ocurre |
@@ -74,6 +88,7 @@ public static double Dividir(double a, double b)
 | `InvalidOperationException` | operación inválida para el estado actual |
 | `IOException` | error de E/S (archivos, red) |
 | `TimeoutException` | una operación supera su tiempo límite |
+| `JsonException` | el JSON no se puede deserializar |
 
 Excepciones propias:
 
@@ -88,9 +103,15 @@ if (cantidad > stock)
         $"Stock insuficiente de {nombre}: quedan {stock} unidades.");
 ```
 
+Buenas prácticas con excepciones propias:
+- Nombra con sufijo `Exception` y deriva de `Exception` (o `ApplicationException`).
+- Envía un mensaje claro y accionable (`$"..."` con el contexto).
+- Lanza excepciones para **casos excepcionales**, no para control de flujo.
+- En el proyecto final, las excepciones propias de la biblioteca viven en `ExcepcionesBiblioteca.cs` (p. ej. `EmailDuplicadoException`, `LibroNoDisponibleException`).
+
 ### Mini framework de tests de esta ruta
 
-Cada ejercicio tiene un runner (`*_test.cs`) que ejecuta "checks" nombrados, imprime `[OK]` o `[FALL]` y devuelve **0** si todos pasan y **1** si alguno falla:
+Cada ejercicio vive en un directorio con `Program.cs` (el stub/solución) y `ProgramTest.cs` (el runner de tests). El runner ejecuta "checks" nombrados, imprime `[OK]` o `[FALL]` y devuelve **0** si todos pasan y **1** si alguno falla:
 
 ```csharp
 using System;
@@ -137,19 +158,32 @@ public static class Programa
 
 > El runner usa `Func<bool>` y captura excepciones, así el stub (que lanza `NotImplementedException`) se reporta como `[FALL]` en lugar de romper el programa.
 
-Cómo ejecutar los tests (el **.NET SDK no está instalado** en esta máquina):
+Cómo ejecutar los tests de un ejercicio (desde su directorio):
 
 ```bash
-# Con el .NET SDK, desde la carpeta del ejercicio
-dotnet new console -o . --force
-rm Program.cs        # evita el conflicto con el entry point de *_test.cs
+# Con el .NET SDK
 dotnet run
+
+# Con Mono/csc
+csc Program.cs ProgramTest.cs -out:ProgramTest.exe
+mono ProgramTest.exe
 ```
 
-```bash
-# Con Mono/csc
-csc ejercicio-01-hola-mundo.cs ejercicio-01-hola-mundo_test.cs
-mono ejercicio-01-hola-mundo_test.exe
+> El **.NET SDK no está instalado** en esta máquina; usa la vía Mono (`csc` + `mono`) para verificar localmente.
+
+Cómo escribir un test: un `Check` por comportamiento, con nombre descriptivo que diga **qué** se verifica y **qué** entrada:
+
+```csharp
+Check("LanzarStockInsuficiente si cantidad > stock",
+    () =>
+    {
+        try
+        {
+            Almacen.Retirar("leche", 999);
+            return false; // no lanzó: fallo
+        }
+        catch (StockInsuficienteException) { return true; }
+    });
 ```
 
 ### TDD básico
@@ -170,7 +204,7 @@ public static int Sumar(int a, int b) => a + b;
 // 3. Refactor (sin cambiar comportamiento): documentación, nombres claros, etc.
 ```
 
-Buenas prácticas: un test por comportamiento con nombre descriptivo; prueba casos normales, límites y errores; no modifiques los tests para que "pasen" con implementaciones incorrectas.
+Buenas prácticas: un test por comportamiento con nombre descriptivo; prueba casos **normales**, **límites** (0, negativos, vacío, máximo) y **errores**; no modifiques los tests para que "pasen" con implementaciones incorrectas.
 
 ### Reflection
 
@@ -243,7 +277,7 @@ public static class Programa
 - [nivel-02-basico/ejercicio-05-excepciones](../ejercicios/nivel-02-basico/ejercicio-05-excepciones.md)
 - [nivel-04-avanzado/ejercicio-05-testing](../ejercicios/nivel-04-avanzado/ejercicio-05-testing.md)
 - [nivel-04-avanzado/ejercicio-06-reflection](../ejercicios/nivel-04-avanzado/ejercicio-06-reflection.md)
-- Suite de tests del [PROYECTO FINAL](../ejercicios/proyectos/proyecto-final/README.md).
+- Suite de tests del [PROYECTO FINAL](../ejercicios/proyectos/proyecto-final/README.md) (en `tests/src/TestsBiblioteca.cs`).
 
 ## Errores comunes
 
@@ -254,6 +288,7 @@ public static class Programa
 - **Modificar los tests para que pasen** → eso invalida la verificación. Cambia la implementación, no el test.
 - **Olvidar `finally` o `using` para liberar recursos** → archivos/conexiones quedan abiertos.
 - **Usar reflection donde basta el código directo** → es más lenta y menos segura.
+- **Testear solo el caso feliz** → los bugs viven en los límites (vacío, cero, duplicados) y en los errores.
 
 ## Recursos
 
