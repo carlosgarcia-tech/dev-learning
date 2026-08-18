@@ -41,7 +41,7 @@ tema/
     └── proyectos/         # retos integradores
 ```
 
-Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`).
+Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript, Python) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`/`main.py`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`, `test_main.py`).
 
 ## Niveles de dificultad / Difficulty levels
 
@@ -63,7 +63,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | [TypeScript](01-programming/typescript/) | 6 | 30 (carpetas) | ✅ | Tipos, generics, async, Express |
 | [JavaScript](01-programming/javascript/) | 5 | 30 | ✅ | Formato plano (`.js` + `.md` + `.test.js`) |
 | [PHP](01-programming/php/) | 5 | 30 | ✅ | Formato plano (`.php` + `.md` + tests) |
-| [Python](01-programming/python/) | 5 | 30 | — | Formato plano |
+| [Python](01-programming/python/) | 6 | 30 (carpetas) | ✅ | Funciones, estructuras, asyncio, FastAPI/Django/Flask, proyecto final con FastAPI |
 | [Rust](01-programming/rust/) | 5 | 30 | — | Formato plano |
 | C++ · Kotlin · Ruby · Swift | — | — | — | Solo esqueleto de niveles |
 
@@ -71,8 +71,8 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 
 - [x] Estructura completa aplanada en la raíz
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
-- [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript
-- [x] Lenguajes con 30 ejercicios en formato plano: JS, PHP, Python, Rust
+- [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python
+- [x] Lenguajes con 30 ejercicios en formato plano: JS, PHP, Rust
 - [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB, Redis) — solo esqueleto
 - [ ] Backend (HTTP, REST, GraphQL, Auth, Arquitectura)
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)
@@ -90,6 +90,7 @@ scripts/new-exercise.sh 01-programming/javascript 1 variables-y-tipos   # nuevo 
 scripts/new-exercise-java.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Java)
 scripts/new-exercise-typescript.sh nivel-01-fundamentos 07 hola-mundo  # ejercicio en carpeta (TS)
 scripts/new-exercise-csharp.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (C#)
+scripts/new-exercise-python.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (Python)
 ```
 
 ## Empezar / Start here
