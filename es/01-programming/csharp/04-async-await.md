@@ -269,7 +269,7 @@ public static class Programa
 
 ## Ejercicios relacionados
 
-- [nivel-04-avanzado/ejercicio-01-async-await](../ejercicios/nivel-04-avanzado/ejercicio-01-async-await.md)
+- [nivel-04-avanzado/ejercicio-01-async-await](../ejercicios/nivel-04-avanzado/ejercicio-01-async-await/)
 - Aplica async en el [PROYECTO FINAL](../ejercicios/proyectos/proyecto-final/README.md) (persistencia asíncrona con JSON).
 - Las llamadas HTTP de la [guía 06 (ASP.NET Core)](06-aspnet-core.md) siguen los mismos patrones `async`/`await`.
 

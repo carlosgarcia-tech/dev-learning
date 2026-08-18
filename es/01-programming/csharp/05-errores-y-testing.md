@@ -274,9 +274,9 @@ public static class Programa
 
 ## Ejercicios relacionados
 
-- [nivel-02-basico/ejercicio-05-excepciones](../ejercicios/nivel-02-basico/ejercicio-05-excepciones.md)
-- [nivel-04-avanzado/ejercicio-05-testing](../ejercicios/nivel-04-avanzado/ejercicio-05-testing.md)
-- [nivel-04-avanzado/ejercicio-06-reflection](../ejercicios/nivel-04-avanzado/ejercicio-06-reflection.md)
+- [nivel-02-basico/ejercicio-05-excepciones](../ejercicios/nivel-02-basico/ejercicio-05-excepciones/)
+- [nivel-04-avanzado/ejercicio-05-testing](../ejercicios/nivel-04-avanzado/ejercicio-05-testing/)
+- [nivel-04-avanzado/ejercicio-06-reflection](../ejercicios/nivel-04-avanzado/ejercicio-06-reflection/)
 - Suite de tests del [PROYECTO FINAL](../ejercicios/proyectos/proyecto-final/README.md) (en `tests/src/TestsBiblioteca.cs`).
 
 ## Errores comunes
