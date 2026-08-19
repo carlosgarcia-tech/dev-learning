@@ -1,6 +1,0 @@
-indicador|valor
-pedidos_coherentes|12
-pedidos_sin_lineas|0
-emails_duplicados|0
-pagos_en_pendientes_o_cancelados|0
-stock_desajustado|0

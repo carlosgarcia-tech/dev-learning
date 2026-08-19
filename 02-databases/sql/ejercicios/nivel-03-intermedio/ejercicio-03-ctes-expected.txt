@@ -1,5 +1,0 @@
-cliente_id|total
-2|410.0
-cliente_id|total
-2|410.0
-1|290.0

@@ -1,4 +1,0 @@
-pedido_14
-0
-nombre|stock
-Teclado Mecánico|23

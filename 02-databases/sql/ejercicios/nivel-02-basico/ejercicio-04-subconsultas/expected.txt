@@ -1,0 +1,13 @@
+id  nombre    precio  stock  categoria_id  descripcion
+--  --------  ------  -----  ------------  -----------
+1   Laptop    999.99  10     2                        
+2   Teléfono  599.99  25     1                        
+id  cliente_id  fecha       total   estado   
+--  ----------  ----------  ------  ---------
+1   1           2024-01-05  999.99  pagado   
+4   3           2024-03-01  599.99  pendiente
+nombre       precio  categoria_id
+-----------  ------  ------------
+Laptop       999.99  2           
+Teléfono     599.99  1           
+Auriculares  79.99   3           

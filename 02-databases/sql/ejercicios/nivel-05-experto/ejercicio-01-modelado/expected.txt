@@ -1,0 +1,26 @@
+nombre            sku          precio   stock  categoria    proveedor 
+----------------  -----------  -------  -----  -----------  ----------
+Portátil Pro      SKU-PRO-001  1299.99  15     Informática  TechSource
+Monitor 27"       SKU-MON-001  299.99   25     Informática  TechSource
+Teclado Mecánico  SKU-TEC-001  89.99    50     Informática  TechSource
+Robot Aspirador   SKU-ROB-001  499.99   8      Hogar        HomeCenter
+Cafetera          SKU-CAF-001  129.99   20     Hogar        HomeCenter
+id  cliente      ciudad     metodo_pago  fecha       total    estado   
+--  -----------  ---------  -----------  ----------  -------  ---------
+1   Ana Pérez    Madrid     tarjeta      2024-03-05  1479.97  pagado   
+2   Ana Pérez    Madrid     paypal       2024-04-01  499.99   enviado  
+3   Juan García  Barcelona  tarjeta      2024-04-10  299.99   entregado
+4   Juan García  Barcelona  tarjeta      2024-05-02  219.98   pendiente
+pedido_id  producto          cantidad  precio_unitario  subtotal
+---------  ----------------  --------  ---------------  --------
+1          Portátil Pro      1         1299.99          1299.99 
+1          Teclado Mecánico  2         89.99            179.98  
+cliente      producto          cantidad  fecha_agregado
+-----------  ----------------  --------  --------------
+Ana Pérez    Teclado Mecánico  2         2024-03-01    
+Juan García  Monitor 27"       1         2024-03-02    
+pedido_id  estado     fecha       notas                    
+---------  ---------  ----------  -------------------------
+1          pagado     2024-03-05  Pago recibido            
+1          enviado    2024-03-06  Enviado con GLS          
+3          entregado  2024-04-12  Entregado al destinatario

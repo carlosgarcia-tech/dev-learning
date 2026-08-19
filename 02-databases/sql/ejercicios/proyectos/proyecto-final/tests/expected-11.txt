@@ -1,2 +1,0 @@
-num_clientes|num_pedidos|ingresos_totales|ticket_medio|unidades_vendidas
-6|11|2137.55|194.32|33

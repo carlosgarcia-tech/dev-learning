@@ -1,0 +1,4 @@
+QUERY PLAN
+`--SEARCH clientes USING INDEX sqlite_autoindex_clientes_1 (email=?)
+QUERY PLAN
+`--SEARCH pedidos USING INDEX idx_pedidos_cliente_fecha (cliente_id=? AND fecha>?)

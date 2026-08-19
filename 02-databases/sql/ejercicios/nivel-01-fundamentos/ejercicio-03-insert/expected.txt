@@ -1,0 +1,5 @@
+id  nombre             precio  stock  categoria_id  descripcion
+--  -----------------  ------  -----  ------------  -----------
+9   Ratón inalámbrico  34.99   45                              
+8   Teclado mecánico   59.99   30                              
+7   Monitor 27"        349.99  15                              

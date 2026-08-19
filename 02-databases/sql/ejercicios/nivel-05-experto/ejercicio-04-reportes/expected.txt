@@ -1,0 +1,20 @@
+mes      ingresos  pedidos  ticket_promedio
+-------  --------  -------  ---------------
+2024-01  550.0     3        183.33         
+2024-02  680.0     3        226.67         
+2024-03  800.0     4        200.0          
+2024-04  435.0     3        145.0          
+nombre       unidades_vendidas  ingresos  precio
+-----------  -----------------  --------  ------
+Portátil     1                  999.99    999.99
+Teclado      7                  629.93    89.99 
+Monitor      2                  599.98    299.99
+Auriculares  4                  319.96    79.99 
+Ratón        6                  299.94    49.99 
+nombre       total_pedidos  total_gastado  ultima_compra  categoria_cliente
+-----------  -------------  -------------  -------------  -----------------
+Ana Pérez    7              1460.0         2024-04-05     VIP              
+Juan García  3              750.0          2024-03-10     Premium          
+María López  1              120.0          2024-03-25     Regular          
+Carlos Ruiz  0              0.0                           Nuevo            
+Laura Gómez  0              0.0                           Nuevo            

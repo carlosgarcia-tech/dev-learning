@@ -1,0 +1,15 @@
+total_productos
+---------------
+6              
+precio_promedio
+---------------
+343.32         
+maximo  minimo
+------  ------
+999.99  29.99 
+suma_total
+----------
+2059.94   
+con_stock
+---------
+5        

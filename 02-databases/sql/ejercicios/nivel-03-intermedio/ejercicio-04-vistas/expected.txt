@@ -1,0 +1,19 @@
+id  nombre          email             ciudad     activo  fecha_registro
+--  --------------  ----------------  ---------  ------  --------------
+1   Ana Pérez       ana@email.com     Madrid     1       2026-08-19    
+2   Juan García     juan@email.com    Barcelona  1       2026-08-19    
+3   María López     maria@email.com   Madrid     1       2026-08-19    
+4   Carlos Ruiz     carlos@email.com  Valencia   1       2026-08-19    
+5   Laura Martínez  laura@email.com   Barcelona  1       2026-08-19    
+id  nombre    precio  stock  categoria_id  descripcion
+--  --------  ------  -----  ------------  -----------
+1   Laptop    999.99  10     2                        
+2   Teléfono  599.99  25     1                        
+3   Monitor   299.99  15     2                        
+4   Teclado   49.99   30     3                        
+5   Ratón     29.99   45     3                        
+mes      total_pedidos  total_ventas
+-------  -------------  ------------
+2024-01  2              1329.97     
+2024-02  1              79.99       
+2024-03  1              599.99      

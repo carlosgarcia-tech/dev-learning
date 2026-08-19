@@ -1,7 +1,0 @@
-cliente|gasto_total|rango
-Luis Pérez|567.89|1
-Carlos Díaz|509.4|2
-Marta Ruiz|369.79|3
-Ana Gómez|299.99|4
-Lucía Torres|286.98|5
-Pedro Sánchez|103.5|6

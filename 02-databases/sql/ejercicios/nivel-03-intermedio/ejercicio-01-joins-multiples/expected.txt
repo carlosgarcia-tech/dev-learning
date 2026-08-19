@@ -1,0 +1,19 @@
+pedido_id  fecha       cliente      producto     cantidad  precio  subtotal
+---------  ----------  -----------  -----------  --------  ------  --------
+1          2024-01-05  Ana Pérez    Laptop       1         999.99  999.99  
+2          2024-02-10  Ana Pérez    Auriculares  1         79.99   79.99   
+3          2024-01-20  Juan García  Monitor      1         299.99  299.99  
+3          2024-01-20  Juan García  Ratón        1         29.99   29.99   
+4          2024-03-01  María López  Teléfono     1         599.99  599.99  
+nombre       total_pedidos  total_gastado  promedio_por_producto
+-----------  -------------  -------------  ---------------------
+Ana Pérez    2              1079.98        539.99               
+María López  1              599.99         599.99               
+Juan García  1              329.98         164.99               
+nombre       total_vendido  total_ingresos
+-----------  -------------  --------------
+Laptop       1              999.99        
+Teléfono     1              599.99        
+Monitor      1              299.99        
+Ratón        1              29.99         
+Auriculares  1              79.99         

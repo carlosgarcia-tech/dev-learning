@@ -1,0 +1,18 @@
+id  nombre          email             ciudad     fecha_registro
+--  --------------  ----------------  ---------  --------------
+1   Ana Pérez       ana@email.com     Madrid     2026-08-19    
+2   Juan García     juan@email.com    Barcelona  2026-08-19    
+3   María López     maria@email.com   Madrid     2026-08-19    
+4   Carlos Ruiz     carlos@email.com  Valencia   2026-08-19    
+5   Laura Martínez  laura@email.com   Barcelona  2026-08-19    
+nombre          email           
+--------------  ----------------
+Ana Pérez       ana@email.com   
+Juan García     juan@email.com  
+María López     maria@email.com 
+Carlos Ruiz     carlos@email.com
+Laura Martínez  laura@email.com 
+id  nombre       email            ciudad  fecha_registro
+--  -----------  ---------------  ------  --------------
+1   Ana Pérez    ana@email.com    Madrid  2026-08-19    
+3   María López  maria@email.com  Madrid  2026-08-19    

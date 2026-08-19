@@ -1,0 +1,25 @@
+QUERY PLAN
+`--SCAN pedidos
+QUERY PLAN
+`--SEARCH pedidos USING INDEX idx_pedidos_cliente_fecha (cliente_id=? AND fecha>?)
+nombre       id  fecha       total 
+-----------  --  ----------  ------
+Ana Pérez    2   2024-01-05  999.99
+Ana Pérez    3   2024-01-20  79.99 
+Juan García  5   2024-02-15  599.99
+María López  6   2024-01-25  299.99
+Carlos Ruiz  7   2024-03-01  49.99 
+id  nombre          email           
+--  --------------  ----------------
+1   Ana Pérez       ana@email.com   
+2   Juan García     juan@email.com  
+3   María López     maria@email.com 
+4   Carlos Ruiz     carlos@email.com
+5   Laura Martínez  laura@email.com 
+id  nombre          email           
+--  --------------  ----------------
+1   Ana Pérez       ana@email.com   
+2   Juan García     juan@email.com  
+3   María López     maria@email.com 
+4   Carlos Ruiz     carlos@email.com
+5   Laura Martínez  laura@email.com 

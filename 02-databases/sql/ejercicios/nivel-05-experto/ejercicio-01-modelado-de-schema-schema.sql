@@ -1,2 +1,0 @@
--- No hay tabla inicial: parte del ejercicio es diseñar el schema completo
--- desde cero en la solución (crea las tablas y los datos de ejemplo).

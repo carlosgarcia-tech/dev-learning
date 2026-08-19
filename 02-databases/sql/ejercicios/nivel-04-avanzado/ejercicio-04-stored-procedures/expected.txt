@@ -1,0 +1,14 @@
+validacion_stock
+----------------
+ok              
+id  cliente_id  fecha       total    estado     lineas
+--  ----------  ----------  -------  ---------  ------
+5   2           2024-01-15  1999.98  pendiente  1     
+id  nombre  stock
+--  ------  -----
+1   Laptop  8    
+cliente      total_pedidos  total_gastado
+-----------  -------------  -------------
+Juan García  2              2329.96      
+Ana Pérez    1              999.99       
+María López  1              599.99       

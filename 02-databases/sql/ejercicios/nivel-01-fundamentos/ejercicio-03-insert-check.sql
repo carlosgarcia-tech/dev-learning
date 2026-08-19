@@ -1,1 +1,0 @@
-SELECT id, nombre, edad, curso FROM estudiantes ORDER BY id;

@@ -1,0 +1,12 @@
+id  cliente_id  fecha       total    estado   
+--  ----------  ----------  -------  ---------
+1   1           2024-01-05  1999.98  pendiente
+id  cliente_id  fecha       total    estado   
+--  ----------  ----------  -------  ---------
+1   1           2024-01-05  1599.98  pendiente
+id  cliente_id  fecha       total   estado   
+--  ----------  ----------  ------  ---------
+1   1           2024-01-05  999.99  pendiente
+tabla    accion  datos                          fecha     
+-------  ------  -----------------------------  ----------
+pedidos  INSERT  id=3, cliente_id=2, total=0.0  2024-02-01

@@ -1,0 +1,39 @@
+paso                     
+-------------------------
+estado_tras_migracion_002
+cid  name    type     notnull  dflt_value  pk
+---  ------  -------  -------  ----------  --
+0    id      INTEGER  0                    1 
+1    nombre  TEXT     1                    0 
+2    email   TEXT     0                    0 
+paso                     
+-------------------------
+estado_tras_migracion_003
+id  nombre     email        
+--  ---------  -------------
+1   Ana Pérez  ana@email.com
+paso                     
+-------------------------
+estado_tras_migracion_004
+seq  name                         unique  origin  partial
+---  ---------------------------  ------  ------  -------
+0    sqlite_autoindex_usuarios_1  1       u       0      
+paso                     
+-------------------------
+estado_tras_migracion_006
+cid  name    type     notnull  dflt_value  pk
+---  ------  -------  -------  ----------  --
+0    id      INTEGER  0                    1 
+1    nombre  TEXT     1                    0 
+tabla   
+--------
+perfiles
+usuarios
+version
+-------
+001    
+002    
+003    
+004    
+005    
+006    

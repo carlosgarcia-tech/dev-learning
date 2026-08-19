@@ -1,1 +1,0 @@
-SELECT producto_id, accion FROM stock_log ORDER BY id;

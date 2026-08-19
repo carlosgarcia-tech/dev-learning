@@ -1,0 +1,7 @@
+name           
+---------------
+clientes       
+sqlite_sequence
+pedidos        
+productos      
+detalle_pedido 

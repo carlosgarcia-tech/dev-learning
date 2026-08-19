@@ -1,4 +1,0 @@
-nombre|unidades
-Taza Oficina|7
-Mouse Inalámbrico|5
-Libro de Python|4

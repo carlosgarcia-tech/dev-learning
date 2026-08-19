@@ -1,0 +1,18 @@
+nombre          email             pedido_id  total 
+--------------  ----------------  ---------  ------
+Ana Pérez       ana@email.com     2          79.99 
+Ana Pérez       ana@email.com     1          999.99
+Juan García     juan@email.com    3          329.98
+María López     maria@email.com   4          599.99
+Carlos Ruiz     carlos@email.com                   
+Laura Martínez  laura@email.com                    
+nombre          email           
+--------------  ----------------
+Carlos Ruiz     carlos@email.com
+Laura Martínez  laura@email.com 
+pedido_id  cliente      total 
+---------  -----------  ------
+1          Ana Pérez    999.99
+2          Ana Pérez    79.99 
+3          Juan García  329.98
+4          María López  599.99

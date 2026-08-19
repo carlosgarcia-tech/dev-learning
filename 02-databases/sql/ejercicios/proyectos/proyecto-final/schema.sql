@@ -1,69 +1,84 @@
 -- ============================================================
--- PROYECTO FINAL — Sistema de e-commerce (SQLite)
--- schema.sql: estructura del sistema (tablas, constraints, claves)
+-- Sistema de Gestión de Biblioteca — Esquema (SQLite)
 -- ============================================================
 
+-- SQLite solo aplica claves foráneas si la pragma está activa en
+-- la conexión que ejecuta los scripts.
 PRAGMA foreign_keys = ON;
 
--- Clientes registrados en la tienda
-CREATE TABLE clientes (
+DROP VIEW IF EXISTS vista_disponibilidad_genero;
+DROP TABLE IF EXISTS auditoria_prestamos;
+DROP TABLE IF EXISTS prestamos;
+DROP TABLE IF EXISTS libros;
+DROP TABLE IF EXISTS autores;
+DROP TABLE IF EXISTS usuarios;
+
+-- Autores
+CREATE TABLE autores (
     id INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
+    biografia TEXT,
+    nacionalidad TEXT,
+    fecha_nacimiento TEXT
+);
+
+-- Usuarios de la biblioteca
+CREATE TABLE usuarios (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
     telefono TEXT,
-    ciudad TEXT NOT NULL,
-    fecha_registro DATE NOT NULL DEFAULT CURRENT_DATE
+    fecha_registro TEXT DEFAULT '2024-07-10 10:00:00'
 );
 
--- Catálogo de productos con su stock actual
-CREATE TABLE productos (
+-- Libros
+CREATE TABLE libros (
     id INTEGER PRIMARY KEY,
-    nombre TEXT NOT NULL,
-    categoria TEXT NOT NULL,
-    precio REAL NOT NULL CHECK (precio > 0),
-    stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
-    activo INTEGER NOT NULL DEFAULT 1 CHECK (activo IN (0, 1))
+    titulo TEXT NOT NULL,
+    isbn TEXT UNIQUE NOT NULL,
+    anio INT CHECK (anio > 0),
+    autor_id INT REFERENCES autores(id),
+    genero TEXT,
+    cantidad_total INT NOT NULL DEFAULT 1 CHECK (cantidad_total >= 0),
+    cantidad_disponible INT NOT NULL DEFAULT 1 CHECK (cantidad_disponible >= 0)
 );
 
--- Pedidos: cada pedido pertenece a un cliente y está en un estado
-CREATE TABLE pedidos (
+-- Préstamos
+CREATE TABLE prestamos (
     id INTEGER PRIMARY KEY,
-    cliente_id INTEGER NOT NULL,
-    fecha DATE NOT NULL DEFAULT CURRENT_DATE,
-    estado TEXT NOT NULL DEFAULT 'pendiente'
-        CHECK (estado IN ('pendiente', 'pagado', 'enviado', 'entregado', 'cancelado')),
-    total REAL NOT NULL DEFAULT 0 CHECK (total >= 0),
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+    libro_id INT NOT NULL REFERENCES libros(id),
+    usuario_id INT NOT NULL REFERENCES usuarios(id),
+    fecha_prestamo TEXT NOT NULL DEFAULT '2024-07-01',
+    fecha_limite TEXT NOT NULL,
+    fecha_devolucion TEXT,
+    multa REAL DEFAULT 0 CHECK (multa >= 0),
+    estado TEXT DEFAULT 'activo' CHECK (estado IN ('activo', 'devuelto', 'retrasado'))
 );
 
--- Líneas de pedido (relación N:M entre pedidos y productos)
-CREATE TABLE detalle_pedidos (
-    pedido_id INTEGER NOT NULL,
-    producto_id INTEGER NOT NULL,
-    cantidad INTEGER NOT NULL CHECK (cantidad > 0),
-    precio_unitario REAL NOT NULL CHECK (precio_unitario >= 0),
-    PRIMARY KEY (pedido_id, producto_id),
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
-);
-
--- Pagos asociados a los pedidos
-CREATE TABLE pagos (
+-- Auditoría de préstamos
+CREATE TABLE auditoria_prestamos (
     id INTEGER PRIMARY KEY,
-    pedido_id INTEGER NOT NULL,
-    metodo TEXT NOT NULL CHECK (metodo IN ('tarjeta', 'transferencia', 'efectivo', 'paypal')),
-    monto REAL NOT NULL CHECK (monto > 0),
-    fecha DATE NOT NULL DEFAULT CURRENT_DATE,
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id)
+    prestamo_id INT,
+    accion TEXT,
+    datos TEXT,
+    fecha TEXT DEFAULT '2024-07-10 10:00:00'
 );
 
--- Trazabilidad del inventario (entradas, salidas y ajustes)
-CREATE TABLE inventario_movimientos (
-    id INTEGER PRIMARY KEY,
-    producto_id INTEGER NOT NULL,
-    tipo TEXT NOT NULL CHECK (tipo IN ('entrada', 'salida', 'ajuste')),
-    cantidad INTEGER NOT NULL,
-    fecha TEXT NOT NULL DEFAULT (datetime('now')),
-    motivo TEXT,
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
-);
+-- Índices
+CREATE INDEX idx_libros_titulo ON libros(titulo);
+CREATE INDEX idx_libros_autor ON libros(autor_id);
+CREATE INDEX idx_libros_genero ON libros(genero);
+CREATE INDEX idx_prestamos_usuario ON prestamos(usuario_id);
+CREATE INDEX idx_prestamos_estado ON prestamos(estado);
+CREATE UNIQUE INDEX idx_usuarios_email ON usuarios(email);
+
+-- Vista de disponibilidad por género
+DROP VIEW IF EXISTS vista_disponibilidad_genero;
+CREATE VIEW vista_disponibilidad_genero AS
+SELECT
+    genero,
+    COUNT(*) AS total_titulos,
+    SUM(cantidad_total) AS ejemplares_totales,
+    SUM(cantidad_disponible) AS ejemplares_disponibles
+FROM libros
+GROUP BY genero;

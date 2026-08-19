@@ -1,3 +1,0 @@
-producto|stock|unidades_vendidas
-Silla Ergonómica|5|2
-Escritorio|8|1

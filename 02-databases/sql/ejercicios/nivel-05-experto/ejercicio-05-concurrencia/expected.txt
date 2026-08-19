@@ -1,0 +1,19 @@
+timeout
+-------
+5000   
+filas_afectadas
+---------------
+1              
+id  nombre    stock
+--  --------  -----
+1   Portátil  9    
+filas_afectadas  stock  version
+---------------  -----  -------
+1                9      2      
+filas_afectadas  stock  version
+---------------  -----  -------
+0                9      2      
+id  nombre    stock
+--  --------  -----
+1   Portátil  9    
+2   Monitor   4    

@@ -1,3 +1,0 @@
-producto_id|accion
-3|INSERT
-1|UPDATE

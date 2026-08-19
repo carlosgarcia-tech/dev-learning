@@ -1,8 +1,0 @@
-region|vendedor|num_ventas|total|media
-Norte|Laura|2|450.0|225.0
-Norte|Ana|2|350.0|175.0
-Sur|Carlos|2|330.0|165.0
-Sur|Marta|2|210.0|105.0
-region|vendedor|total
-Norte|Laura|450.0
-Sur|Carlos|330.0

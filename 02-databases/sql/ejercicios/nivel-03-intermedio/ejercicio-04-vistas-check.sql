@@ -1,1 +1,0 @@
-SELECT * FROM v_resumen_clientes ORDER BY total_gastado DESC;

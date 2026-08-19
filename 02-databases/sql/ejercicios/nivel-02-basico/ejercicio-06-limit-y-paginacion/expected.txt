@@ -1,0 +1,12 @@
+id  nombre    precio  stock  categoria_id  descripcion
+--  --------  ------  -----  ------------  -----------
+1   Laptop    999.99  10     2                        
+2   Teléfono  599.99  25     1                        
+3   Monitor   299.99  15     2                        
+id  nombre   precio  stock  categoria_id  descripcion
+--  -------  ------  -----  ------------  -----------
+3   Monitor  299.99  15     2                        
+4   Teclado  49.99   30     3                        
+nombre     total_pedidos
+---------  -------------
+Ana Pérez  2            

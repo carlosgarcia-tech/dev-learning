@@ -1,3 +1,0 @@
-titulo|socio|fecha_prestamo
-SQL para todos|Marta|2024-02-20
-Don Quijote|Carlos|2024-02-21

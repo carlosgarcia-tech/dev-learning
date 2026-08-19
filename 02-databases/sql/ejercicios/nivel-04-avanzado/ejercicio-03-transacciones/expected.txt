@@ -1,0 +1,15 @@
+id  cliente_id  fecha       total   estado   
+--  ----------  ----------  ------  ---------
+1   1           2024-01-10  599.98  pendiente
+id  pedido_id  producto_id  cantidad  precio_unitario
+--  ---------  -----------  --------  ---------------
+1   1          1            2         299.99         
+id  nombre   stock
+--  -------  -----
+1   Monitor  13   
+id  cliente_id  fecha       total  estado   
+--  ----------  ----------  -----  ---------
+2   2           2024-01-12  0.0    pendiente
+lineas_pedido_2
+---------------
+0              

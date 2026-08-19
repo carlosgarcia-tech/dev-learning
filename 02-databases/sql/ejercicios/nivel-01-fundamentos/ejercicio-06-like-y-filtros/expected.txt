@@ -1,0 +1,14 @@
+id  nombre    precio  stock  categoria_id  descripcion
+--  --------  ------  -----  ------------  -----------
+2   Teléfono  599.99  25     1                        
+4   Teclado   49.99   30     3                        
+id  nombre  precio  stock  categoria_id  descripcion
+--  ------  ------  -----  ------------  -----------
+5   Ratón   29.99   45     3                        
+id  nombre    precio  stock  categoria_id  descripcion
+--  --------  ------  -----  ------------  -----------
+2   Teléfono  599.99  25     1                        
+4   Teclado   49.99   30     3                        
+id  nombre  precio  stock  categoria_id  descripcion
+--  ------  ------  -----  ------------  -----------
+1   Laptop  999.99  10     2                        

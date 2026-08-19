@@ -1,0 +1,15 @@
+mes      total_ventas  total_pedidos
+-------  ------------  -------------
+2024-01  1329.97       2            
+2024-02  79.99         1            
+2024-03  599.99        1            
+mes      total_ventas  mes_anterior  crecimiento_porcentual
+-------  ------------  ------------  ----------------------
+2024-01  1329.97                                           
+2024-02  79.99         1329.97       -93.99                
+2024-03  599.99        79.99         650.08                
+id  nombre        parent_id  nivel
+--  ------------  ---------  -----
+1   Electrónica              0    
+3   Accesorios    1          1    
+2   Computadoras  1          1    

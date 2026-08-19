@@ -1,7 +1,0 @@
-tabla|filas
-clientes|2
-pedidos|2
-pedidos_productos|3
-productos|3
-fk_pedidos_productos
-2

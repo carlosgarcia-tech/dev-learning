@@ -1,3 +1,0 @@
-cliente|total_pedidos|total_pagado|saldo_pendiente
-Carlos Díaz|509.4|163.4|346.0
-Pedro Sánchez|103.5|0.0|103.5

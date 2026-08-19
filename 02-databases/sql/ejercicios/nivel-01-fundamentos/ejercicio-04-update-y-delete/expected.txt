@@ -1,0 +1,14 @@
+id  nombre       precio   stock  categoria_id  descripcion
+--  -----------  -------  -----  ------------  -----------
+1   Laptop       1099.99  10     2                        
+2   Teléfono     659.99   25     1                        
+3   Monitor      352.0    15     2                        
+4   Teclado      54.99    30     3                        
+5   Ratón        32.99    45     3                        
+6   Auriculares  79.99    0      3                        
+id  nombre    precio   stock  categoria_id  descripcion
+--  --------  -------  -----  ------------  -----------
+1   Laptop    1099.99  10     2                        
+2   Teléfono  659.99   25     1                        
+3   Monitor   352.0    15     2                        
+4   Teclado   54.99    30     3                        

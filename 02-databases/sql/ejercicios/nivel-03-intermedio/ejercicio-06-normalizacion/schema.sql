@@ -1,0 +1,4 @@
+-- Antes: tabla no normalizada (un solo registro por pedido, con
+-- toda la información del cliente y los productos repetida)
+--
+-- pedidos_sin_normalizar (id, cliente_nombre, cliente_email, productos, total)

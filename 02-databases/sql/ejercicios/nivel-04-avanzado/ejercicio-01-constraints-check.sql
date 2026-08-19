@@ -1,1 +1,0 @@
-SELECT id, email, salario, edad, dept_id FROM empleados ORDER BY id;

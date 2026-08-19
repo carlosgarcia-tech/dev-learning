@@ -1,3 +1,0 @@
-cliente|email
-Ana Gómez|ana@example.com
-Luis Pérez|luis@example.com

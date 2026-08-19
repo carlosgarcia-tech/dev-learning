@@ -1,6 +1,0 @@
-cliente|ticket_medio|media_global
-Luis Pérez|283.94|187.56
-Marta Ruiz|184.89|187.56
-Carlos Díaz|163.4|187.56
-Ana Gómez|150.0|187.56
-Lucía Torres|143.49|187.56

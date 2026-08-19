@@ -1,0 +1,13 @@
+pedido_id  cliente      fecha       total 
+---------  -----------  ----------  ------
+1          Ana Pérez    2024-01-05  999.99
+2          Ana Pérez    2024-02-10  79.99 
+3          Juan García  2024-01-20  329.98
+4          María López  2024-03-01  599.99
+cliente      producto     cantidad  precio  subtotal
+-----------  -----------  --------  ------  --------
+Ana Pérez    Laptop       1         999.99  999.99  
+Ana Pérez    Auriculares  1         79.99   79.99   
+Juan García  Monitor      1         299.99  299.99  
+Juan García  Ratón        1         29.99   29.99   
+María López  Teléfono     1         599.99  599.99  

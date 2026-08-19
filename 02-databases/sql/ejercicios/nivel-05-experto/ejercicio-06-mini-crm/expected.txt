@@ -1,0 +1,10 @@
+total_contactos  total_empresas  ventas_cerradas  total_ventas  interacciones_30d
+---------------  --------------  ---------------  ------------  -----------------
+6                5               1                12000.0       3                
+nombre           empresa    oportunidad          etapa          monto    total_interacciones  ultima_interaccion
+---------------  ---------  -------------------  -------------  -------  -------------------  ------------------
+Sara Díaz        Kappa SL   Consultoría          propuesta      4000.0   0                                      
+Pedro Sánchez    Beta SL    Soporte Premium      propuesta      8000.0   1                    2024-02-01        
+Jorge Vidal      Gamma SA   Proyecto piloto      prospeccion    15000.0  1                    2024-03-05        
+María Fernández  Acme Corp  Licencia Enterprise  negociacion    25000.0  3                    2024-03-25        
+María Fernández  Acme Corp  Formación equipo     cualificacion  3000.0   3                    2024-03-25        

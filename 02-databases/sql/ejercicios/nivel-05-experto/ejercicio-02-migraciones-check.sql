@@ -1,1 +1,0 @@
-SELECT id, nombre, email, telefono, activo FROM clientes ORDER BY id;

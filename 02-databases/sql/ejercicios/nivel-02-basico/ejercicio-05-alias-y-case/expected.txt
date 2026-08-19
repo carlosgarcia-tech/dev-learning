@@ -1,0 +1,24 @@
+producto     precio_unitario  cantidad_disponible
+-----------  ---------------  -------------------
+Laptop       999.99           10                 
+Teléfono     599.99           25                 
+Monitor      299.99           15                 
+Teclado      49.99            30                 
+Ratón        29.99            45                 
+Auriculares  79.99            0                  
+nombre       precio  categoria_precio
+-----------  ------  ----------------
+Laptop       999.99  Premium         
+Teléfono     599.99  Premium         
+Monitor      299.99  Medio           
+Teclado      49.99   Económico       
+Ratón        29.99   Económico       
+Auriculares  79.99   Económico       
+nombre       stock  nivel_stock
+-----------  -----  -----------
+Laptop       10     Medio      
+Teléfono     25     Alto       
+Monitor      15     Medio      
+Teclado      30     Alto       
+Ratón        45     Alto       
+Auriculares  0      Sin stock  
