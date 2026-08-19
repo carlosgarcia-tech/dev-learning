@@ -1,0 +1,6 @@
+[package]
+name = "ejercicio-05-closures"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

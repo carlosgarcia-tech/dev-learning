@@ -11,6 +11,11 @@
 !go.sum
 go.work
 
+# Rust
+/target/
+**/target/
+Cargo.lock
+
 # Node
 node_modules/
 dist/

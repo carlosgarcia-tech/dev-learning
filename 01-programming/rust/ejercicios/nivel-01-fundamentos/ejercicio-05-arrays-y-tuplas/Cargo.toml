@@ -1,0 +1,6 @@
+[package]
+name = "ejercicio-05-arrays-y-tuplas"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

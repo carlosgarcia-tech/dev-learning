@@ -1,0 +1,15 @@
+[package]
+name = "proyectofinal-tests"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "proyectofinal_tests"
+path = "src/lib.rs"
+
+[[test]]
+name = "biblioteca_test"
+path = "biblioteca_test.rs"
+
+[dependencies]
+proyectofinal = { path = "../starter" }

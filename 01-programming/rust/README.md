@@ -17,6 +17,7 @@ Para ejecutar los ejemplos necesitas el compilador `rustc` y el gestor de paquet
 | [03 — Structs y enums](03-structs-y-enums.md) | `struct`, `impl`, `enum` y `match` |
 | [04 — Traits y generics](04-traits-y-generics.md) | Traits, generics, closures e iterators |
 | [05 — Errores y concurrencia](05-errores-y-concurrencia.md) | `Option`, `Result`, `threads` y `channels` |
+| [06 — Axum y Actix-web](06-axum-o-actix.md) | Desarrollo web, servidores HTTP, rutas, JSON y estado compartido |
 
 ## Ejercicios por nivel
 

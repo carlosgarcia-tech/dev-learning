@@ -1,0 +1,12 @@
+[package]
+name = "proyectofinal"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "proyectofinal"
+path = "src/lib.rs"
+
+[[bin]]
+name = "proyectofinal"
+path = "src/main.rs"

@@ -4,6 +4,8 @@ Proyectos completos para poner en práctica todo lo aprendido en los 5 niveles. 
 
 Todos usan **Rust 2021 edition** y solo la biblioteca estándar. Crea cada proyecto con `cargo new <nombre> --bin` y ejecuta con `cargo run`.
 
+> Al terminar los 3 proyectos, integra todo en el [**proyecto final: Sistema de Gestión de Biblioteca**](proyecto-final/README.md) — repositorio genérico, servicios con `Result`, reportes y tests de integración.
+
 ---
 
 ## Proyecto 1 — Agenda de contactos CLI
