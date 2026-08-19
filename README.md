@@ -11,7 +11,7 @@ Personal repo to learn programming **from 0 to expert**: guides, notes, leveled 
 | Sección | Descripción |
 |---|---|
 | [00-roadmap](00-roadmap/roadmap.md) | Hoja de ruta completa de 0 a experto |
-| [01-programming](01-programming/) | Lenguajes: JS, TS, Python, Java, Rust, Go, C++, C#, PHP, Ruby, Kotlin, Swift |
+| [01-programming](01-programming/) | Lenguajes: JS, TS, Python, Java, Rust, Go, C#, PHP, Ruby, Kotlin |
 | [02-databases](02-databases/) | SQL, PostgreSQL, MySQL, MongoDB, Redis |
 | [03-backend](03-backend/) | HTTP, REST, GraphQL, Auth, Arquitectura |
 | [04-frontend](04-frontend/) | HTML, CSS, JS, React, Next.js |
@@ -63,15 +63,16 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | [TypeScript](01-programming/typescript/) | 6 | 30 (carpetas) | ✅ | Tipos, generics, async, Express |
 | [JavaScript](01-programming/javascript/) | 6 | 30 (carpetas) | ✅ | Fundamentos, async/await, Node.js + Express, proyecto final MiTienda |
 | [PHP](01-programming/php/) | 6 | 30 (carpetas) | ✅ | Fundamentos, OOP, PDO, Composer, Laravel, proyecto final de blog |
+| [Ruby](01-programming/ruby/) | 6 | 30 (carpetas) | ✅ | Fundamentos, POO, metaprogramación, Rails, proyecto final de blog |
 | [Python](01-programming/python/) | 6 | 30 (carpetas) | ✅ | Funciones, estructuras, asyncio, FastAPI/Django/Flask, proyecto final con FastAPI |
 | [Rust](01-programming/rust/) | 6 | 30 (carpetas) | ✅ | Ownership, traits, concurrencia, Axum/Actix, testing, proyecto final |
-| C++ · Kotlin · Ruby · Swift | — | — | — | Solo esqueleto de niveles |
+| Kotlin | — | — | — | Solo esqueleto de niveles |
 
 ## Estado actual / Current status
 
 - [x] Estructura completa aplanada en la raíz
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
-- [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python
+- [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python, PHP, Rust, Ruby
 - [x] Lenguajes con 30 ejercicios en formato plano: ninguno (todos en carpetas)
 - [x] Bases de datos: SQL (guías + 30 ejercicios + proyecto final) y Redis (5 guías + 30 ejercicios + proyecto final)
 - [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB) — solo esqueleto
@@ -79,7 +80,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)
 - [ ] DevOps (Linux, Git, Docker, K8s, Nginx, CI/CD)
 - [ ] Herramientas, conceptos, cheatsheets, errores, recursos
-- [ ] C++ · Kotlin · Ruby · Swift: rellenar guías y ejercicios
+- [ ] Kotlin: rellenar guías y ejercicios
 
 ## Scripts
 
@@ -94,6 +95,8 @@ scripts/new-exercise-csharp.sh nivel-01-fundamentos 07 hola-mundo      # ejercic
 scripts/new-exercise-python.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (Python)
 scripts/new-exercise-rust.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Rust)
 scripts/new-exercise-php.sh nivel-01-fundamentos 07 hola-mundo         # ejercicio en carpeta (PHP)
+scripts/new-exercise-ruby.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Ruby)
+scripts/new-exercise-sql.sh nivel-01-fundamentos 07 select-basico      # ejercicio en carpeta (SQL)
 ```
 
 ## Empezar / Start here
