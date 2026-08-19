@@ -1,0 +1,4 @@
+KEYS usuario:*
+KEYS producto:*
+DBSIZE
+EXISTS color:1

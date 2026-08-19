@@ -1,0 +1,6 @@
+DECR limiter:user:7
+DECR limiter:user:7
+DECR limiter:user:7
+DECR limiter:user:7
+DECR limiter:user:7
+GET limiter:user:7

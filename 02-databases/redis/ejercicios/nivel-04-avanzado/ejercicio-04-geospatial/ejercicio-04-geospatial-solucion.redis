@@ -1,0 +1,3 @@
+GEOPOS ciudades paris
+GEODIST ciudades madrid roma km
+GEOSEARCH ciudades FROMMEMBER madrid BYRADIUS 1500 km ASC

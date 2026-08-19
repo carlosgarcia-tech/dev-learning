@@ -1,0 +1,2 @@
+SET cache:producto:1 '{id:1,nombre:mesa}' EX 300
+SET cache:producto:2 '{id:2,nombre:silla}'

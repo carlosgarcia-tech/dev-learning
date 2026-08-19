@@ -1,0 +1,2 @@
+HGETALL sesion:abc123
+TTL sesion:abc123

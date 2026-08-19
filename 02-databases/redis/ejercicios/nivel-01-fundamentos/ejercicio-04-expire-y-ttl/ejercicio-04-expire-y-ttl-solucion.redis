@@ -1,0 +1,7 @@
+TTL sesion
+TTL noexiste
+EXISTS cupon
+GET cupon
+PERSIST token
+TTL token
+EXPIRE sesion 3600

@@ -1,0 +1,2 @@
+HSET producto:1 nombre mesa precio 120 stock 5
+HSET producto:2 nombre silla precio 40 stock 12

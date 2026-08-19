@@ -1,0 +1,6 @@
+LREM log 1 err1
+LRANGE log 0 -1
+LINSERT log AFTER warn1 errX
+LRANGE log 0 -1
+LTRIM cola 1 3
+LRANGE cola 0 -1

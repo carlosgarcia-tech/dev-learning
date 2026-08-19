@@ -41,7 +41,7 @@ tema/
     └── proyectos/         # retos integradores
 ```
 
-Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript, Python) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`/`main.py`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`, `test_main.py`).
+Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript, Python) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`/`main.py`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`, `test_main.py`). En bases de datos, SQL y Redis usan carpetas con enunciado + schema/setup + solución + `test.sh` que verifica la salida (SQLite/redis-cli con podman).
 
 ## Niveles de dificultad / Difficulty levels
 
@@ -73,7 +73,8 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
 - [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python
 - [x] Lenguajes con 30 ejercicios en formato plano: ninguno (todos en carpetas)
-- [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB, Redis) — solo esqueleto
+- [x] Bases de datos: SQL (guías + 30 ejercicios + proyecto final) y Redis (5 guías + 30 ejercicios + proyecto final)
+- [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB) — solo esqueleto
 - [ ] Backend (HTTP, REST, GraphQL, Auth, Arquitectura)
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)
 - [ ] DevOps (Linux, Git, Docker, K8s, Nginx, CI/CD)

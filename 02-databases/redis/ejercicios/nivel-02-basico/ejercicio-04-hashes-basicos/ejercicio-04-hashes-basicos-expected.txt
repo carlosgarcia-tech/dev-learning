@@ -1,0 +1,11 @@
+Ana
+Ana
+Madrid
+nombre
+Ana
+edad
+30
+ciudad
+Madrid
+3
+1

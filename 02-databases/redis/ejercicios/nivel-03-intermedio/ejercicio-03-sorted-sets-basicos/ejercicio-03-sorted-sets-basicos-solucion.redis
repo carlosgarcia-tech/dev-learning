@@ -1,0 +1,6 @@
+ZCARD ranking
+ZSCORE ranking luis
+ZRANGE ranking 0 -1
+ZRANK ranking marta
+ZREM ranking luis
+ZCARD ranking

@@ -1,0 +1,5 @@
+ZREVRANGE ventas 0 1
+ZRANGEBYSCORE ventas 150 300
+ZINCRBY ventas 50 prod_a
+ZSCORE ventas prod_a
+ZRANGE ventas 0 -1

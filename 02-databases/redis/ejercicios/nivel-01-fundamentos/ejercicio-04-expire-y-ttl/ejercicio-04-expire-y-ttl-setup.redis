@@ -1,0 +1,4 @@
+SET sesion abc123
+SET token t987
+EXPIRE token 3600
+SETEX cupon 86400 descuento

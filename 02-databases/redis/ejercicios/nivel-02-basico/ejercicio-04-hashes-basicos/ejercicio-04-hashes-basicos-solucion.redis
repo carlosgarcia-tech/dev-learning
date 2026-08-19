@@ -1,0 +1,5 @@
+HGET user:1 nombre
+HMGET user:1 nombre ciudad
+HGETALL user:1
+HLEN user:1
+HEXISTS user:1 edad

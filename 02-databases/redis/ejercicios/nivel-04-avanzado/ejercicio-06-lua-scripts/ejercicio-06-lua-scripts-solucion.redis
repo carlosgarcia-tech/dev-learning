@@ -1,0 +1,3 @@
+EVAL "return redis.call('GET', KEYS[1])" 1 balance
+EVAL "return redis.call('INCRBY', KEYS[1], ARGV[1])" 1 balance 50
+GET balance

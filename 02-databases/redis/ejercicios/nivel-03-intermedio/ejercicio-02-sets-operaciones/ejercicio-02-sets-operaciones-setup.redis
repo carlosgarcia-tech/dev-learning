@@ -1,0 +1,2 @@
+SADD frutas_a manzana pera uva
+SADD frutas_b pera platano uva

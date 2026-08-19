@@ -1,0 +1,3 @@
+SETBIT online 0 1
+SETBIT online 3 1
+SETBIT online 7 1

@@ -1,0 +1,2 @@
+RPUSH log err1 warn1 err2 warn2
+RPUSH cola 1 2 3 4 5

@@ -1,0 +1,3 @@
+SET usuario:1:nombre Ana
+SET usuario:1:ciudad Madrid
+SET usuario:2:nombre Luis

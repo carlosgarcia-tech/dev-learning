@@ -1,0 +1,9 @@
+WATCH contador
+GET contador
+UNWATCH
+MULTI
+INCR contador
+INCR contador
+EXEC
+GET contador
+EXISTS lock

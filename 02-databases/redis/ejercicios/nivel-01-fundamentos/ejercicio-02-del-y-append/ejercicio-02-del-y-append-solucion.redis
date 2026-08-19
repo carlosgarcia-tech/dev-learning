@@ -1,0 +1,6 @@
+GET msg
+STRLEN msg
+DEL temp
+EXISTS temp
+GETSET msg nuevo
+GET msg

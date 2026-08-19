@@ -1,0 +1,5 @@
+LLEN cola:trabajos
+BLPOP cola:trabajos 1
+BLPOP cola:trabajos 1
+LLEN cola:trabajos
+LRANGE cola:trabajos 0 -1

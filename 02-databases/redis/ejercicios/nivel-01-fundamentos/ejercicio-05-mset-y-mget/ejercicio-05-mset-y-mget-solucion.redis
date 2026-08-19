@@ -1,0 +1,5 @@
+MGET nombre edad ciudad
+SETNX nombre Otro
+GET nombre
+MSET email ana@mail.com pais ESP
+MGET email pais

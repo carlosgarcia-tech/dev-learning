@@ -1,0 +1,33 @@
+# ===== PRODUCTOS (hash) =====
+HSET producto:1 nombre Portatil precio 899 stock 10 categoria tecnologia
+HSET producto:2 nombre Raton precio 25 stock 50 categoria tecnologia
+HSET producto:3 nombre Teclado precio 60 stock 30 categoria tecnologia
+HSET producto:4 nombre Monitor precio 199 stock 15 categoria tecnologia
+HSET producto:5 nombre Silla precio 149 stock 8 categoria mobiliario
+
+# ===== SESIONES (hash + expiracion) =====
+HSET sesion:abc123 user_id 1 nombre Ana rol admin
+EXPIRE sesion:abc123 1800
+HSET sesion:xyz789 user_id 2 nombre Luis rol cliente
+EXPIRE sesion:xyz789 1800
+
+# ===== CARRITOS (hash: producto -> cantidad) =====
+HSET carrito:1 2 1
+HSET carrito:2 3 2
+
+# ===== CONTADORES =====
+SET contador:ventas:20260819 0
+SET contador:visitas:20260819 0
+
+# ===== CACHE-ASIDE (productos calientes, TTL) =====
+SETEX cache:producto:1 300 '{"nombre":"Portatil","precio":899}'
+SETEX cache:producto:3 300 '{"nombre":"Teclado","precio":60}'
+
+# ===== RANKING (sorted set con ventas iniciales) =====
+ZADD ranking:ventas 12 producto:3 10 producto:1 6 producto:2 4 producto:4 2 producto:5
+
+# ===== COLA DE PEDIDOS =====
+RPUSH cola:pedidos pedido:1 pedido:2
+
+# ===== INVENTARIO (transacciones) =====
+SET lock:inventario libre

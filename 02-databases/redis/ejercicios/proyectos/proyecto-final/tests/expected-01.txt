@@ -1,0 +1,8 @@
+nombre
+Portatil
+precio
+899
+stock
+10
+categoria
+tecnologia

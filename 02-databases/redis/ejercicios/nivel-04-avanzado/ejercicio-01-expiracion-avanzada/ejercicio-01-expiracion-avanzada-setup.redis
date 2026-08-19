@@ -1,0 +1,2 @@
+SET normal valor
+SETEX api:key 120 limit

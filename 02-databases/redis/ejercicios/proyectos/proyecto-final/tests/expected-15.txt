@@ -1,0 +1,10 @@
+producto:3
+12
+producto:1
+10
+producto:2
+6
+producto:4
+4
+producto:5
+2

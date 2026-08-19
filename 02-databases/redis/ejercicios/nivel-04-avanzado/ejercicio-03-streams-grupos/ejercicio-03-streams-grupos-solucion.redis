@@ -1,0 +1,4 @@
+XGROUP CREATE eventos g1 0
+XREADGROUP GROUP g1 consumidor COUNT 2 STREAMS eventos >
+XACK eventos g1 1-0 2-0
+XINFO GROUPS eventos

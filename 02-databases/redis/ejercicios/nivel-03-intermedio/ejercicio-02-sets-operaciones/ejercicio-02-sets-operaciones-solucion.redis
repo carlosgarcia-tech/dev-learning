@@ -1,0 +1,6 @@
+SINTERSTORE comunes frutas_a frutas_b
+SCARD comunes
+SUNIONSTORE todas frutas_a frutas_b
+SCARD todas
+SDIFFSTORE solo_a frutas_a frutas_b
+SCARD solo_a

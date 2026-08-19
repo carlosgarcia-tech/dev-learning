@@ -1,0 +1,4 @@
+LLEN tareas
+LRANGE tareas 0 -1
+LRANGE tareas 0 1
+LRANGE tareas -2 -1

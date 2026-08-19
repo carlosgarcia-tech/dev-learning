@@ -1,0 +1,8 @@
+TTL normal
+TTL inexistente
+EXISTS api:key
+GET api:key
+PERSIST normal
+TTL normal
+EXPIRE normal 300
+GET normal

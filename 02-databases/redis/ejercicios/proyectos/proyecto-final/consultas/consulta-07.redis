@@ -1,0 +1,2 @@
+INCR limiter:user:2
+EXPIRE limiter:user:2 60

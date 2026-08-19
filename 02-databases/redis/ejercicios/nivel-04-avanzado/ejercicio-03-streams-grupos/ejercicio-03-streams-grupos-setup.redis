@@ -1,0 +1,3 @@
+XADD eventos 1-0 tipo login
+XADD eventos 2-0 tipo click
+XADD eventos 3-0 tipo logout

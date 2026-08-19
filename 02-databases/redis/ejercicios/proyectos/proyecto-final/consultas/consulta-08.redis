@@ -1,0 +1,5 @@
+MULTI
+HINCRBY producto:2 stock -2
+INCR contador:ventas:20260819
+ZINCRBY ranking:ventas 2 producto:2
+EXEC

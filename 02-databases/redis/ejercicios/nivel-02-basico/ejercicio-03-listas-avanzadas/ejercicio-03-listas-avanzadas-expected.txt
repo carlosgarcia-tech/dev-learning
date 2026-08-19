@@ -1,0 +1,13 @@
+1
+warn1
+err2
+warn2
+4
+warn1
+errX
+err2
+warn2
+OK
+2
+3
+4

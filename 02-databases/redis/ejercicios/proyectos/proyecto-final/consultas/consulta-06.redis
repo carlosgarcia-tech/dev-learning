@@ -1,0 +1,2 @@
+GET cache:producto:1
+TTL cache:producto:1

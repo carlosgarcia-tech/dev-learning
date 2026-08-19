@@ -1,0 +1,3 @@
+GEOADD ciudades 2.2945 48.8584 paris
+GEOADD ciudades -3.7038 40.4168 madrid
+GEOADD ciudades 12.4964 41.9028 roma

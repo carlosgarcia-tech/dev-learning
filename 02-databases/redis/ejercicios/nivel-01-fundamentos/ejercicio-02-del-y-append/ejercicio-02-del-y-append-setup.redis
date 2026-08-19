@@ -1,0 +1,3 @@
+SET msg Hola
+APPEND msg ' mundo'
+SET temp borrar

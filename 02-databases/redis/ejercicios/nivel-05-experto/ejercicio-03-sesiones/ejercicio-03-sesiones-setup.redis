@@ -1,0 +1,3 @@
+HSET session:abc user_id 42
+HSET session:abc rol admin
+EXPIRE session:abc 1800

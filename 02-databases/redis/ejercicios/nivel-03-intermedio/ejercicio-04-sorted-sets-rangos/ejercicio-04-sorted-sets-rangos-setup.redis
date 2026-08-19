@@ -1,0 +1,4 @@
+ZADD ventas 100 prod_a
+ZADD ventas 250 prod_b
+ZADD ventas 180 prod_c
+ZADD ventas 320 prod_d

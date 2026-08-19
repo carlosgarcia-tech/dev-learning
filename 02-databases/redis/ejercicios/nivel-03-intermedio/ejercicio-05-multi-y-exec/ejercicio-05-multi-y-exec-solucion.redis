@@ -1,0 +1,9 @@
+MULTI
+INCR cuenta
+INCRBY cuenta 10
+EXEC
+GET cuenta
+MULTI
+DECR cuenta
+DISCARD
+GET cuenta

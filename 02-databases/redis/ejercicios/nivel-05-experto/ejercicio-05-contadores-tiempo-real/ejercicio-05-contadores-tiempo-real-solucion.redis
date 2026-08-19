@@ -1,0 +1,3 @@
+GET contador:ventas:hoy
+ZSCORE ranking:dias hoy
+ZRANGE ranking:dias 0 -1 WITHSCORES

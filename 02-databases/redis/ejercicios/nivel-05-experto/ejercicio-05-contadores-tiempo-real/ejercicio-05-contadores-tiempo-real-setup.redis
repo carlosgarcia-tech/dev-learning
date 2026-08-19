@@ -1,0 +1,4 @@
+INCRBY contador:ventas:hoy 5
+INCRBY contador:ventas:hoy 3
+ZINCRBY ranking:dias 5 hoy
+ZINCRBY ranking:dias 3 hoy

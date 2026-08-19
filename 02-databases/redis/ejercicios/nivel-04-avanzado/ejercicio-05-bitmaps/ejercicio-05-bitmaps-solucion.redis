@@ -1,0 +1,4 @@
+GETBIT online 0
+GETBIT online 1
+BITCOUNT online
+BITCOUNT online 0 1 BYTE

@@ -1,0 +1,3 @@
+ZADD ranking 10 ana
+ZADD ranking 30 luis
+ZADD ranking 20 marta

@@ -1,0 +1,5 @@
+HINCRBY estadisticas:web visitas 50
+HGET estadisticas:web visitas
+HDEL estadisticas:web usuarios
+HEXISTS estadisticas:web usuarios
+HLEN estadisticas:web

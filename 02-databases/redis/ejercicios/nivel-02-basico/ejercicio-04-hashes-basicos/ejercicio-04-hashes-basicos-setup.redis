@@ -1,0 +1,3 @@
+HSET user:1 nombre Ana
+HSET user:1 edad 30
+HSET user:1 ciudad Madrid

@@ -1,0 +1,2 @@
+SET limiter:user:7 4
+EXPIRE limiter:user:7 60

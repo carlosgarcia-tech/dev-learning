@@ -1,0 +1,6 @@
+1
+5
+producto:1
+producto:2
+usuario:1
+usuario:2

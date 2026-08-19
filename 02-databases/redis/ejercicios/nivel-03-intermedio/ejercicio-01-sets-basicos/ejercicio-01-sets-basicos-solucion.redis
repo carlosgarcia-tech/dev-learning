@@ -1,0 +1,6 @@
+SCARD deportes
+SISMEMBER deportes futbol
+SISMEMBER deportes tenis
+SREM deportes futbol
+SCARD deportes
+SISMEMBER deportes futbol

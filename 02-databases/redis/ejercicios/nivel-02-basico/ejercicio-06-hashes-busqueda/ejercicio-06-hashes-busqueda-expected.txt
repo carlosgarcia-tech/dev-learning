@@ -1,0 +1,13 @@
+nombre
+precio
+stock
+silla
+40
+12
+nombre
+mesa
+precio
+120
+stock
+5
+4

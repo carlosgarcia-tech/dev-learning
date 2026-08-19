@@ -1,0 +1,2 @@
+MSET nombre Ana edad 30 ciudad Madrid
+SETNX promocion activa

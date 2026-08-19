@@ -1,0 +1,4 @@
+HKEYS producto:1
+HVALS producto:2
+HGETALL producto:1
+HSTRLEN producto:1 nombre

@@ -1,0 +1,5 @@
+GET usuario:1:nombre
+GET usuario:2:nombre
+EXISTS usuario:1:nombre
+EXISTS usuario:9:nombre
+TYPE usuario:1:ciudad

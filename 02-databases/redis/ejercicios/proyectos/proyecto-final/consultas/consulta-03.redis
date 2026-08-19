@@ -1,0 +1,2 @@
+HSET carrito:1 4 1
+HGET carrito:1 4

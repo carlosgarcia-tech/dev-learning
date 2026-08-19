@@ -1,0 +1,3 @@
+RPUSH tareas lavar
+RPUSH tareas planchar
+LPUSH tareas urgente

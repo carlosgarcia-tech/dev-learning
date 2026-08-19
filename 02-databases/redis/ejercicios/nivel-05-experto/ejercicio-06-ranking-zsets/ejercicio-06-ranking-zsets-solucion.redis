@@ -1,0 +1,5 @@
+ZREVRANGE ranking 0 2
+ZREVRANGE ranking 0 -1 WITHSCORES
+ZREVRANK ranking ana
+ZINCRBY ranking 10 marta
+ZREVRANGE ranking 0 -1 WITHSCORES

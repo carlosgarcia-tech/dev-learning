@@ -1,0 +1,2 @@
+HSET estadisticas:web visitas 100
+HSET estadisticas:web usuarios 25

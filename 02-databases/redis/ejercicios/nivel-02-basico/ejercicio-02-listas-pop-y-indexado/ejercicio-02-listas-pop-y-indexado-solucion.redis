@@ -1,0 +1,7 @@
+LINDEX fila 0
+LINDEX fila -1
+LPOP fila
+RPOP fila
+LRANGE fila 0 -1
+LSET fila 0 X
+LRANGE fila 0 -1

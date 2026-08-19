@@ -1,0 +1,6 @@
+INCR visitas
+INCR visitas
+DECR visitas
+INCRBY visitas 5
+DECRBY puntos 2
+GET puntos

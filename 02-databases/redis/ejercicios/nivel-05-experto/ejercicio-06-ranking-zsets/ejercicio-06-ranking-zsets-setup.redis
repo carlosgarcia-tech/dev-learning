@@ -1,0 +1,4 @@
+ZADD ranking 100 ana
+ZADD ranking 90 luis
+ZADD ranking 80 marta
+ZADD ranking 95 pablo
