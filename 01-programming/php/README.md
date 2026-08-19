@@ -6,21 +6,20 @@ PHP impulsa más del 75% de los sitios web del mundo (WordPress, Laravel, Symfon
 
 Esta ruta asume que sabes lo básico de programación pero parte desde cero en PHP. Cada guía introduce la teoría con ejemplos ejecutables y enlaza a los ejercicios que la refuerzan.
 
-> **Nota de entorno:** en este espacio de aprendizaje **PHP no está instalado**, así que los ejercicios no se pueden ejecutar aquí. Cada ejercicio incluye un comando de test (`php ejercicio-0N-slug_test.php`) para que lo ejecutes en tu máquina con PHP 8 o superior.
-
 ## Guías de estudio
 
 | Guía | Contenido |
 |---|---|
-| [01 — Fundamentos](01-fundamentos.md) | Variables, tipos, operadores, condicionales y bucles |
+| [01 — Fundamentos](01-fundamentos.md) | Variables, tipos, operadores, condicionales, bucles y arrays |
 | [02 — Funciones y arrays](02-funciones-y-arrays.md) | Funciones, ámbito, closures y arrays indexados/asociativos |
-| [03 — OOP](03-oop.md) | Clases, herencia, interfaces, traits, namespaces y autoload |
+| [03 — OOP](03-oop.md) | Clases, herencia, interfaces, traits, namespaces y enums |
 | [04 — PDO y bases de datos](04-pdo-y-bases-de-datos.md) | Conexiones PDO, SQL seguro, consultas y transacciones |
-| [05 — Errores y Composer](05-errores-y-composer.md) | Excepciones, manejo de errores, Composer y autoload PSR-4 |
+| [05 — Errores y Composer](05-errores-y-composer.md) | Excepciones, manejo de errores, Composer y PHPUnit |
+| [06 — Laravel](06-laravel.md) | Framework web, rutas, controladores, Eloquent, Blade y API |
 
 ## Ejercicios por nivel
 
-Cada ejercicio incluye **enunciado, requisitos, pistas y solución** (plegable), más un archivo de implementación (*stub* con `TODO`) y un script de tests con aserciones. Ejecuta los tests con `php ejercicio-0N-slug_test.php`.
+Cada ejercicio es una carpeta con **enunciado, requisitos, pistas y solución** (`README.md`), el **esqueleto** (`index.php` con `TODO`) y un **script de tests** (`index_test.php` con aserciones: `exit(0)` si pasan). Ejecuta los tests desde la carpeta del ejercicio con `php index_test.php`.
 
 | Nivel | Dificultad | Ejercicios |
 |---|---|---|
@@ -39,3 +38,12 @@ Al terminar los niveles, integra todo lo aprendido con los [3 proyectos integrad
 1. **Gestor de tareas CLI** — aplicación de consola persistente en JSON.
 2. **Mini blog con PDO** — aplicación web con base de datos y sesiones.
 3. **[PROYECTO FINAL: Blog de gestión de artículos](ejercicios/proyectos/proyecto-final/)** — PHP puro, persistencia en archivo, autenticación por sesión, validaciones y tests.
+
+## Cómo ejecutar los tests
+
+Cada ejercicio se verifica desde su propia carpeta:
+
+```bash
+cd ejercicios/nivel-01-fundamentos/ejercicio-01-variables-y-tipos
+php index_test.php   # "OK: todas las aserciones pasaron." + exit(0)
+```

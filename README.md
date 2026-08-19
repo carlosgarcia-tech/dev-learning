@@ -62,7 +62,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | [Java](01-programming/java/) | 6 | 30 (carpetas) | ✅ | POO, streams, concurrencia, Spring Boot |
 | [TypeScript](01-programming/typescript/) | 6 | 30 (carpetas) | ✅ | Tipos, generics, async, Express |
 | [JavaScript](01-programming/javascript/) | 6 | 30 (carpetas) | ✅ | Fundamentos, async/await, Node.js + Express, proyecto final MiTienda |
-| [PHP](01-programming/php/) | 5 | 30 | ✅ | Formato plano (`.php` + `.md` + tests) |
+| [PHP](01-programming/php/) | 6 | 30 (carpetas) | ✅ | Fundamentos, OOP, PDO, Composer, Laravel, proyecto final de blog |
 | [Python](01-programming/python/) | 6 | 30 (carpetas) | ✅ | Funciones, estructuras, asyncio, FastAPI/Django/Flask, proyecto final con FastAPI |
 | [Rust](01-programming/rust/) | 6 | 30 (carpetas) | ✅ | Ownership, traits, concurrencia, Axum/Actix, testing, proyecto final |
 | C++ · Kotlin · Ruby · Swift | — | — | — | Solo esqueleto de niveles |
@@ -72,7 +72,7 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 - [x] Estructura completa aplanada en la raíz
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
 - [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python
-- [x] Lenguajes con 30 ejercicios en formato plano: PHP
+- [x] Lenguajes con 30 ejercicios en formato plano: ninguno (todos en carpetas)
 - [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB, Redis) — solo esqueleto
 - [ ] Backend (HTTP, REST, GraphQL, Auth, Arquitectura)
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)
@@ -92,6 +92,7 @@ scripts/new-exercise-typescript.sh nivel-01-fundamentos 07 hola-mundo  # ejercic
 scripts/new-exercise-csharp.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (C#)
 scripts/new-exercise-python.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (Python)
 scripts/new-exercise-rust.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Rust)
+scripts/new-exercise-php.sh nivel-01-fundamentos 07 hola-mundo         # ejercicio en carpeta (PHP)
 ```
 
 ## Empezar / Start here
