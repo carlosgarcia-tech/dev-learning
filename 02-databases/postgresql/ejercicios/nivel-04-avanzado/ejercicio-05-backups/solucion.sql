@@ -1,0 +1,23 @@
+-- Estos son comandos de shell, no SQL. Se documentan aqui como referencia:
+--
+-- Backup completo (formato texto plano)
+--   pg_dump -U postgres -h localhost -p 5432 mi_biblioteca > backup.sql
+--
+-- Backup en formato custom (permite restauracion selectiva/paralela)
+--   pg_dump -U postgres -Fc mi_biblioteca > backup.dump
+--
+-- Backup de solo esquema
+--   pg_dump -U postgres -s mi_biblioteca > esquema.sql
+--
+-- Backup de solo datos
+--   pg_dump -U postgres -a mi_biblioteca > datos.sql
+--
+-- Restaurar
+--   psql -U postgres mi_biblioteca < backup.sql
+--   pg_restore -U postgres -d mi_biblioteca backup.dump
+--
+-- Backup comprimido
+--   pg_dump -U postgres mi_biblioteca | gzip > backup.sql.gz
+--   gunzip -c backup.sql.gz | psql -U postgres mi_biblioteca
+
+SELECT 'ver comentarios de este archivo para los comandos de shell' AS nota;

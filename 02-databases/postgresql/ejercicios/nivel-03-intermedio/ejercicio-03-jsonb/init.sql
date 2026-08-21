@@ -1,0 +1,1 @@
+-- Este ejercicio es autocontenido (no depende del esquema biblioteca).

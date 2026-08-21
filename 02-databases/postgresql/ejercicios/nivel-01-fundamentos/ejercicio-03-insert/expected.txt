@@ -1,0 +1,1 @@
+Este ejercicio ya no se valida comparando un output.txt exacto: los resultados de SERIAL/CURRENT_TIMESTAMP/RANDOM() cambian en cada corrida. La validación real vive en checks.sql y en el hecho de que init.sql + solucion.sql se ejecuten sin errores (ver test.sh).

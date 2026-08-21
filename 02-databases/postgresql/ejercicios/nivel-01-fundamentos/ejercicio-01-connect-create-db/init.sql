@@ -1,0 +1,2 @@
+-- Base de datos de pruebas ya creada por test.sh.
+-- Sin objetos previos para este ejercicio.

@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM prestamos_2024_01;
