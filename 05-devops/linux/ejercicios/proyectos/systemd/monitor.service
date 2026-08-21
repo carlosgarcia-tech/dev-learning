@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor del sistema (CPU, memoria, disco)
+
+[Service]
+Type=oneshot
+ExecStart=%h/proyectos/bin/monitor.sh
+
+[Install]
+WantedBy=multi-user.target

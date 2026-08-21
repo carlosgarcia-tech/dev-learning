@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup diario del sistema
+
+[Service]
+Type=oneshot
+ExecStart=%h/proyectos/bin/backup.sh
+
+[Install]
+WantedBy=multi-user.target
