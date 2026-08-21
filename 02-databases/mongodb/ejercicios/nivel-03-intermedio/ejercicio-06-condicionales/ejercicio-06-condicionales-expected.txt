@@ -1,0 +1,102 @@
+{
+  nombre: 'ana',
+  salario: 6200,
+  categoria: 'Alto'
+}
+{
+  nombre: 'carla',
+  salario: 3500,
+  categoria: 'Medio'
+}
+{
+  nombre: 'diego',
+  salario: 4200,
+  categoria: 'Medio'
+}
+{
+  nombre: 'eva',
+  salario: 2800,
+  categoria: 'Bajo'
+}
+{
+  nombre: 'fran',
+  salario: 5400,
+  categoria: 'Alto'
+}
+{
+  nombre: 'luis',
+  salario: 4800,
+  categoria: 'Medio'
+}
+{
+  nombre: 'ana',
+  salario: 6200,
+  bono: 500,
+  total: 6700
+}
+{
+  nombre: 'carla',
+  salario: 3500,
+  bono: 0,
+  total: 3500
+}
+{
+  nombre: 'diego',
+  salario: 4200,
+  bono: 200,
+  total: 4400
+}
+{
+  nombre: 'eva',
+  salario: 2800,
+  bono: 0,
+  total: 2800
+}
+{
+  nombre: 'fran',
+  salario: 5400,
+  bono: 400,
+  total: 5800
+}
+{
+  nombre: 'luis',
+  salario: 4800,
+  bono: 300,
+  total: 5100
+}
+{
+  nombre: 'ana',
+  salario: 6200,
+  bono: 500,
+  total: 6700
+}
+{
+  nombre: 'fran',
+  salario: 5400,
+  bono: 400,
+  total: 5800
+}
+{
+  nombre: 'luis',
+  salario: 4800,
+  bono: 300,
+  total: 5100
+}
+{
+  nombre: 'diego',
+  salario: 4200,
+  bono: 200,
+  total: 4400
+}
+{
+  nombre: 'carla',
+  salario: 3500,
+  bono: 0,
+  total: 3500
+}
+{
+  nombre: 'eva',
+  salario: 2800,
+  bono: 0,
+  total: 2800
+}

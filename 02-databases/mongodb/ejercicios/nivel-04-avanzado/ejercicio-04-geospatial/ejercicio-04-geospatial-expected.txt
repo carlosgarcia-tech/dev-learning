@@ -1,0 +1,49 @@
+location_2dsphere
+{
+  nombre: 'Puerta del Sol',
+  dist: 0
+}
+{
+  nombre: 'Plaza Mayor',
+  dist: 406
+}
+{
+  nombre: 'Estación de Atocha',
+  dist: 1647
+}
+{
+  nombre: 'Parque del Retiro',
+  dist: 1753
+}
+{
+  nombre: 'Estadio Bernabéu',
+  dist: 4204
+}
+[
+  {
+    nombre: 'Estación de Atocha'
+  },
+  {
+    nombre: 'Parque del Retiro'
+  },
+  {
+    nombre: 'Plaza Mayor'
+  },
+  {
+    nombre: 'Puerta del Sol'
+  }
+]
+[
+  {
+    nombre: 'Estación de Atocha'
+  },
+  {
+    nombre: 'Parque del Retiro'
+  },
+  {
+    nombre: 'Plaza Mayor'
+  },
+  {
+    nombre: 'Puerta del Sol'
+  }
+]

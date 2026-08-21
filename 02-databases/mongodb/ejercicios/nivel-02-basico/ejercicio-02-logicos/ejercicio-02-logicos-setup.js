@@ -1,0 +1,9 @@
+db.empleados.drop();
+db.empleados.insertMany([
+  { nombre: "Ana", departamento: "ventas", salario: 2800, activo: true },
+  { nombre: "Luis", departamento: "ventas", salario: 5200, activo: true },
+  { nombre: "Carmen", departamento: "marketing", salario: 3400, activo: true },
+  { nombre: "Pablo", departamento: "rrhh", salario: 4500, activo: true },
+  { nombre: "Sara", departamento: "marketing", salario: 2200, activo: false },
+  { nombre: "Marta", departamento: "ventas", salario: 3800, activo: true }
+]);

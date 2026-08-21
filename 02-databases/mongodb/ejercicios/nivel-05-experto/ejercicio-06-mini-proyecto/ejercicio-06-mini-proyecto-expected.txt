@@ -1,0 +1,52 @@
+[
+  {
+    total: 200,
+    estado: 'cancelado'
+  },
+  {
+    total: 345,
+    estado: 'entregado'
+  },
+  {
+    total: 300,
+    estado: 'pendiente'
+  }
+]
+[
+  {
+    cantidad: 4,
+    producto: 'libro'
+  },
+  {
+    cantidad: 4,
+    producto: 'raton'
+  }
+]
+[
+  {
+    total: 510,
+    cliente: 'Ana'
+  },
+  {
+    total: 290,
+    cliente: 'Luis'
+  },
+  {
+    total: 45,
+    cliente: 'Sara'
+  }
+]
+[
+  {
+    pedidos: 2,
+    mes: '2024-01'
+  },
+  {
+    pedidos: 2,
+    mes: '2024-02'
+  },
+  {
+    pedidos: 2,
+    mes: '2024-03'
+  }
+]

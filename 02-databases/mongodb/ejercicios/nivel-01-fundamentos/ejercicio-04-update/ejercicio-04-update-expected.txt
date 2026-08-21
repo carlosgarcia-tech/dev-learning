@@ -1,0 +1,53 @@
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+{
+  nombre: 'Leche',
+  cantidad: 15,
+  categoria: 'Lácteos'
+}
+{
+  nombre: 'Manzana',
+  cantidad: 22,
+  categoria: 'Frutas'
+}
+{
+  nombre: 'Pan',
+  cantidad: 0,
+  categoria: 'Panadería',
+  activo: false
+}
+{
+  nombre: 'Queso',
+  cantidad: 18
+}
+{
+  nombre: 'Tomate',
+  cantidad: 13,
+  categoria: 'Frescos'
+}

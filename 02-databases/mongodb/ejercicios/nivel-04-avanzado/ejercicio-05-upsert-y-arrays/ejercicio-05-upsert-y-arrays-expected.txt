@@ -1,0 +1,37 @@
+[
+  {
+    usuario: 'marta',
+    items: [
+      'mochila'
+    ],
+    total: 60
+  }
+]
+[
+  {
+    usuario: 'ana',
+    items: [
+      'camisa',
+      'gorra',
+      'zapatillas'
+    ],
+    total: 40
+  }
+]
+[
+  {
+    usuario: 'luis',
+    items: [],
+    total: 120
+  }
+]
+[
+  {
+    usuario: 'carla',
+    items: [
+      'mochila',
+      'libro'
+    ],
+    total: 0
+  }
+]

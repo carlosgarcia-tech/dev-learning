@@ -1,0 +1,18 @@
+transferencia confirmada
+{
+  numero: 'A001',
+  saldo: 400
+}
+{
+  numero: 'A002',
+  saldo: 200
+}
+transaccion abortada
+{
+  numero: 'A001',
+  saldo: 400
+}
+{
+  numero: 'A002',
+  saldo: 200
+}

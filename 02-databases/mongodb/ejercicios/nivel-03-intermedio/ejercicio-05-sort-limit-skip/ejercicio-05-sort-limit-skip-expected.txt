@@ -1,0 +1,32 @@
+{
+  nombre: 'marta',
+  puntos: 680
+}
+{
+  nombre: 'sofia',
+  puntos: 590
+}
+{
+  nombre: 'luis',
+  puntos: 540
+}
+{
+  nombre: 'laura',
+  puntos: 440
+}
+{
+  nombre: 'carla',
+  puntos: 410
+}
+{
+  nombre: 'ana',
+  puntos: 320
+}
+{
+  nombre: 'carla',
+  puntos: 410
+}
+{
+  nombre: 'diego',
+  puntos: 355
+}

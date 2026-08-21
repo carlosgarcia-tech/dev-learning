@@ -1,0 +1,25 @@
+titulo_text_contenido_text
+{
+  titulo: 'Búsqueda de texto en MongoDB',
+  score: 0.5384615384615384
+}
+{
+  titulo: 'Introducción a MongoDB',
+  score: 0.5333333333333333
+}
+{
+  titulo: 'MongoDB con Node.js',
+  score: 0.525
+}
+{
+  titulo: 'Introducción a MongoDB'
+}
+{
+  titulo: 'MongoDB con Node.js'
+}
+{
+  titulo: 'Búsqueda de texto en MongoDB'
+}
+{
+  titulo: 'MongoDB con Node.js'
+}

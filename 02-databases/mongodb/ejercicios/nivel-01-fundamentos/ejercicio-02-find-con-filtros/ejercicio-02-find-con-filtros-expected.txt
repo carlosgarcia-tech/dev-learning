@@ -1,0 +1,55 @@
+{
+  nombre: 'Ana',
+  edad: 30,
+  ciudad: 'Madrid',
+  activo: true
+}
+{
+  nombre: 'Jorge',
+  edad: 28,
+  ciudad: 'Madrid',
+  activo: true
+}
+{
+  nombre: 'Marta',
+  edad: 25,
+  ciudad: 'Madrid',
+  activo: false
+}
+{
+  nombre: 'Luis',
+  edad: 45,
+  ciudad: 'Barcelona',
+  activo: true
+}
+{
+  nombre: 'Pedro',
+  edad: 50,
+  ciudad: 'Sevilla',
+  activo: true
+}
+{
+  nombre: 'Sara',
+  edad: 35,
+  ciudad: 'Barcelona',
+  activo: false
+}
+{
+  nombre: 'Ana',
+  edad: 30,
+  ciudad: 'Madrid',
+  activo: true
+}
+{
+  nombre: 'Luis',
+  edad: 45,
+  ciudad: 'Barcelona',
+  activo: true
+}
+{
+  nombre: 'Pedro',
+  edad: 50,
+  ciudad: 'Sevilla',
+  activo: true
+}
+Usuarios con edad >= 30: 4

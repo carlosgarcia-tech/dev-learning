@@ -1,0 +1,83 @@
+{
+  titulo: 'Modelado embebido en MongoDB',
+  autor: {
+    nombre: 'Ana',
+    email: 'ana@mail.com'
+  },
+  comentarios: [
+    {
+      usuario: 'Luis',
+      texto: 'Muy claro, gracias.'
+    },
+    {
+      usuario: 'Sara',
+      texto: '¿Y cuándo conviene referenciar?'
+    }
+  ]
+}
+{
+  titulo: 'Indices y rendimiento'
+}
+{
+  titulo: 'Modelado embebido en MongoDB'
+}
+{
+  titulo: 'Modelado embebido en MongoDB',
+  comentarios: [
+    {
+      usuario: 'Luis',
+      texto: 'Muy claro, gracias.'
+    },
+    {
+      usuario: 'Sara',
+      texto: '¿Y cuándo conviene referenciar?'
+    },
+    {
+      usuario: 'Marta',
+      texto: '¿Dónde hay más ejemplos?'
+    }
+  ]
+}
+{
+  titulo: 'Indices y rendimiento',
+  comentarios: [
+    {
+      usuario: 'Luis',
+      texto: 'Útil para producción.'
+    }
+  ]
+}
+{
+  titulo: 'Modelado embebido en MongoDB',
+  comentarios: [
+    {
+      usuario: 'Luis',
+      texto: 'Muy claro, gracias.'
+    },
+    {
+      usuario: 'Sara',
+      texto: '¿Y cuándo conviene referenciar?'
+    },
+    {
+      usuario: 'Marta',
+      texto: '¿Dónde hay más ejemplos?'
+    }
+  ]
+}
+{
+  titulo: 'Transacciones en MongoDB',
+  comentarios: [
+    {
+      usuario: 'Ana',
+      texto: 'Interesante.'
+    },
+    {
+      usuario: 'Sara',
+      texto: 'Buen ejemplo.'
+    },
+    {
+      usuario: 'Marta',
+      texto: 'Gracias por compartir.'
+    }
+  ]
+}

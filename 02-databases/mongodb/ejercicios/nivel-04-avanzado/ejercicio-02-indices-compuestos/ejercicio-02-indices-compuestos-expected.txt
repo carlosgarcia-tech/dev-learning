@@ -1,0 +1,29 @@
+anio_1_mes_-1
+vendedor_1_importe_-1
+[
+  {
+    name: '_id_',
+    key: {
+      _id: 1
+    }
+  },
+  {
+    name: 'anio_1_mes_-1',
+    key: {
+      anio: 1,
+      mes: -1
+    }
+  },
+  {
+    name: 'vendedor_1_importe_-1',
+    key: {
+      vendedor: 1,
+      importe: -1
+    }
+  }
+]
+{
+  nReturned: 2,
+  totalKeysExamined: 2,
+  totalDocsExamined: 2
+}

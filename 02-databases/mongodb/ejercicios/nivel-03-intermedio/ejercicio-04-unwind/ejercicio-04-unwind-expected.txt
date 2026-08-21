@@ -1,0 +1,95 @@
+{
+  totalCantidad: 3,
+  producto: 'monitor'
+}
+{
+  totalCantidad: 3,
+  producto: 'portatil'
+}
+{
+  totalCantidad: 3,
+  producto: 'raton'
+}
+{
+  totalCantidad: 2,
+  producto: 'teclado'
+}
+{
+  total: 950,
+  codigo: 1
+}
+{
+  total: 945,
+  codigo: 2
+}
+{
+  total: 470,
+  codigo: 3
+}
+{
+  total: 1100,
+  codigo: 4
+}
+{
+  codigo: 1,
+  cliente: 'ana',
+  producto: 'portatil',
+  cantidad: 1,
+  subtotal: 900
+}
+{
+  codigo: 1,
+  cliente: 'ana',
+  producto: 'raton',
+  cantidad: 2,
+  subtotal: 50
+}
+{
+  codigo: 2,
+  cliente: 'luis',
+  producto: 'portatil',
+  cantidad: 1,
+  subtotal: 900
+}
+{
+  codigo: 2,
+  cliente: 'luis',
+  producto: 'teclado',
+  cantidad: 1,
+  subtotal: 45
+}
+{
+  codigo: 3,
+  cliente: 'carla',
+  producto: 'monitor',
+  cantidad: 2,
+  subtotal: 400
+}
+{
+  codigo: 3,
+  cliente: 'carla',
+  producto: 'raton',
+  cantidad: 1,
+  subtotal: 25
+}
+{
+  codigo: 3,
+  cliente: 'carla',
+  producto: 'teclado',
+  cantidad: 1,
+  subtotal: 45
+}
+{
+  codigo: 4,
+  cliente: 'marta',
+  producto: 'monitor',
+  cantidad: 1,
+  subtotal: 200
+}
+{
+  codigo: 4,
+  cliente: 'marta',
+  producto: 'portatil',
+  cantidad: 1,
+  subtotal: 900
+}

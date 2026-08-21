@@ -1,0 +1,21 @@
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+{
+  acknowledged: true,
+  deletedCount: 3
+}
+Tareas restantes: 2
+{
+  titulo: 'Comprar leche',
+  completada: false,
+  prioridad: 1
+}
+{
+  titulo: 'Hacer ejercicio',
+  completada: false,
+  prioridad: 2
+}
+Colección temporal existe (antes del drop): true
+Colección temporal existe (después del drop): false

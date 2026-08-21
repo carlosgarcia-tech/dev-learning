@@ -1,0 +1,54 @@
+{
+  titulo: '1984',
+  precio: 10
+}
+{
+  titulo: 'Cien años de soledad',
+  precio: 12
+}
+{
+  titulo: 'El nombre del viento',
+  precio: 15
+}
+{
+  titulo: 'La sombra del viento',
+  precio: 14
+}
+{
+  titulo: 'Ready Player One',
+  precio: 18
+}
+{
+  titulo: '1984',
+  anio: 1949,
+  precio: 10
+}
+{
+  titulo: 'Cien años de soledad',
+  anio: 1967,
+  precio: 12
+}
+{
+  titulo: 'El nombre del viento',
+  anio: 2007,
+  precio: 15
+}
+{
+  titulo: 'La sombra del viento',
+  anio: 2001,
+  precio: 14
+}
+{
+  titulo: 'Ready Player One',
+  anio: 2011,
+  precio: 18
+}
+{
+  titulo: 'El nombre del viento'
+}
+{
+  titulo: 'La sombra del viento'
+}
+{
+  titulo: 'Ready Player One'
+}

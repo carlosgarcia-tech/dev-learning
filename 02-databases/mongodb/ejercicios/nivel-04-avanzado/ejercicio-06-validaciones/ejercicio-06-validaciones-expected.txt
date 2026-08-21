@@ -1,0 +1,41 @@
+coleccion creada con validacion
+[
+  {
+    nombre: 'ana',
+    edad: 30,
+    email: 'ana@mail.com'
+  }
+]
+code: 121
+message: Document failed validation
+[
+  {
+    name: 'clientes',
+    validator: {
+      '$jsonSchema': {
+        bsonType: 'object',
+        required: [
+          'nombre',
+          'edad',
+          'email'
+        ],
+        properties: {
+          nombre: {
+            bsonType: 'string',
+            description: 'nombre obligatorio'
+          },
+          edad: {
+            bsonType: 'int',
+            minimum: 18,
+            description: 'edad adulta'
+          },
+          email: {
+            bsonType: 'string',
+            pattern: '@',
+            description: 'email con @'
+          }
+        }
+      }
+    }
+  }
+]

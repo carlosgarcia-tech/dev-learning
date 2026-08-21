@@ -1,0 +1,92 @@
+{
+  nombre: 'Auriculares',
+  precio: 80,
+  precio_total: 96.8
+}
+{
+  nombre: 'Monitor',
+  precio: 200,
+  precio_total: 242
+}
+{
+  nombre: 'Ratón',
+  precio: 25,
+  precio_total: 27.500000000000004
+}
+{
+  nombre: 'Soporte',
+  precio: 30,
+  precio_total: 33
+}
+{
+  nombre: 'Teclado',
+  precio: 45,
+  precio_total: 54.449999999999996
+}
+{
+  nombre: 'Webcam',
+  precio: 60,
+  precio_total: 66
+}
+{
+  nombre: 'Auriculares',
+  precio_final: 96.8
+}
+{
+  nombre: 'Monitor',
+  precio_final: 242
+}
+{
+  nombre: 'Ratón',
+  precio_final: 27.5
+}
+{
+  nombre: 'Soporte',
+  precio_final: 33
+}
+{
+  nombre: 'Teclado',
+  precio_final: 54.45
+}
+{
+  nombre: 'Webcam',
+  precio_final: 66
+}
+{
+  nombre: 'Auriculares',
+  precio: 80,
+  margen: 16
+}
+{
+  nombre: 'Monitor',
+  precio: 200,
+  margen: 40
+}
+{
+  nombre: 'Ratón',
+  precio: 25,
+  margen: 5
+}
+{
+  nombre: 'Soporte',
+  precio: 30,
+  margen: 6
+}
+{
+  nombre: 'Teclado',
+  precio: 45,
+  margen: 9
+}
+{
+  nombre: 'Webcam',
+  precio: 60,
+  margen: 12
+}
+{
+  nombre: 'Monitor',
+  precio_total: 242
+}
+{
+  nombre: 'Auriculares',
+  precio_total: 96.8
+}

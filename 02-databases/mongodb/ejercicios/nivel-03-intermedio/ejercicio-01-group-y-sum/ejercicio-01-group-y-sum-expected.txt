@@ -1,0 +1,68 @@
+{
+  pedidos: 3,
+  promedio: 133.33333333333334,
+  vendedor: 'ana',
+  total: 400
+}
+{
+  pedidos: 2,
+  promedio: 195,
+  vendedor: 'carla',
+  total: 390
+}
+{
+  pedidos: 3,
+  promedio: 191.66666666666666,
+  vendedor: 'luis',
+  total: 575
+}
+{
+  pedidos: 2,
+  promedio: 87.5,
+  vendedor: 'marta',
+  total: 175
+}
+{
+  total: 575,
+  vendedor: 'luis'
+}
+{
+  total: 400,
+  vendedor: 'ana'
+}
+{
+  total: 390,
+  vendedor: 'carla'
+}
+{
+  total: 175,
+  vendedor: 'marta'
+}
+{
+  total: 340,
+  ciudad: 'barcelona'
+}
+{
+  total: 525,
+  ciudad: 'madrid'
+}
+{
+  total: 675,
+  ciudad: 'valencia'
+}
+{
+  total: 320,
+  vendedor: 'ana'
+}
+{
+  total: 300,
+  vendedor: 'carla'
+}
+{
+  total: 575,
+  vendedor: 'luis'
+}
+{
+  total: 110,
+  vendedor: 'marta'
+}

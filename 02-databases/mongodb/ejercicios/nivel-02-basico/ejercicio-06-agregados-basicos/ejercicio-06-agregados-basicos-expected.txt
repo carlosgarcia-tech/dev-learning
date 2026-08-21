@@ -1,0 +1,12 @@
+Ventas con importe > 100: 4
+[
+  'Barcelona',
+  'Madrid',
+  'Valencia'
+]
+[
+  'Ana',
+  'Luis',
+  'Pablo'
+]
+Total de ventas: 8

@@ -1,0 +1,30 @@
+genero_1
+titulo_text
+{
+  titulo: 'Aventura en el espacio profundo',
+  score: 0.6
+}
+{
+  titulo: 'Las aventuras de Huckleberry Finn',
+  score: 0.6
+}
+{
+  titulo: 'Aventuras en la isla del tesoro',
+  score: 0.5833333333333334
+}
+{
+  titulo: 'Aventuras en la isla del tesoro'
+}
+{
+  titulo: 'Las aventuras de Huckleberry Finn'
+}
+{
+  titulo: 'El misterio del faro',
+  genero: 'misterio',
+  anio: 2005
+}
+{
+  titulo: 'Misterio en la mansion',
+  genero: 'misterio',
+  anio: 1975
+}

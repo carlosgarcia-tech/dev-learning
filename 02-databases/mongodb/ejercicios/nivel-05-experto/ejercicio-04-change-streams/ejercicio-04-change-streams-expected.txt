@@ -1,0 +1,9 @@
+{
+  op: 'insert',
+  usuario: 'ana'
+}
+{
+  op: 'insert',
+  usuario: 'luis'
+}
+cursor cerrado
