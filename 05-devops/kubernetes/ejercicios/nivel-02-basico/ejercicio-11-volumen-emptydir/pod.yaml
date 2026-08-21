@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-volume-pod
+  labels:
+    app: shared-volume
+spec:
+  containers:
+    - name: writer
+      image: busybox:1.36
+      command: ["sh", "-c", "while true; do echo \"$(date)\" > /data/hello.txt; sleep 5; done"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+    - name: reader
+      image: busybox:1.36
+      command: ["sh", "-c", "while true; do cat /data/hello.txt 2>/dev/null || echo 'esperando...'; sleep 5; done"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+  restartPolicy: Never

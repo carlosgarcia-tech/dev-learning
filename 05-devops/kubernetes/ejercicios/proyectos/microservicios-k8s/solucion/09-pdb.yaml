@@ -1,0 +1,30 @@
+# 09-pdb.yaml — PodDisruptionBudget para backend y frontend
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: tienda
+      component: backend
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: frontend-pdb
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: tienda
+      component: frontend

@@ -1,0 +1,130 @@
+# 07-networkpolicy.yaml — NetworkPolicy: frontend → backend → db, denegando el resto
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: tienda-online
+  labels:
+    app: tienda
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  # Deniega por defecto (sin reglas ingress/egress = sin tráfico)
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: frontend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Permite tráfico entrante desde el ingress controller (namespace ingress-nginx)
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    # Permite al frontend hablar con el backend y resolver DNS
+    - to:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: backend
+      ports:
+        - protocol: TCP
+          port: 5000
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: backend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Permite tráfico entrante desde el frontend y el ingress controller
+    - from:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: frontend
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 5000
+  egress:
+    # Permite al backend hablar con postgres y resolver DNS
+    - to:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: db
+      ports:
+        - protocol: TCP
+          port: 5432
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: db
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: db
+  policyTypes:
+    - Ingress
+  ingress:
+    # Solo el backend puede hablar con postgres
+    - from:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: backend
+      ports:
+        - protocol: TCP
+          port: 5432

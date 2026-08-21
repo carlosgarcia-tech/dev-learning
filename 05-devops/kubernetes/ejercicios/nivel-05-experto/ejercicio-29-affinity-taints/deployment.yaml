@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-ha
+  labels:
+    app: api-ha
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-ha
+  template:
+    metadata:
+      labels:
+        app: api-ha
+    spec:
+      nodeSelector:
+        disktype: ssd
+      tolerations:
+        - key: dedicated
+          value: gpu
+          effect: NoSchedule
+          operator: Equal
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: api-ha
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: api
+          image: nginx:1.25
+          ports:
+            - containerPort: 80

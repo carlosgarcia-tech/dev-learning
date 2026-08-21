@@ -1,0 +1,35 @@
+# 06-ingress.yaml — Ingress: / → frontend, /api → backend
+# TODO: completa el Ingress para enrutar el tráfico.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tienda-ingress
+  namespace: tienda-online
+  labels:
+    app: tienda
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    # TODO: define el host "tienda.local"
+    - host: tienda.local
+      http:
+        paths:
+          # TODO: enruta /api(/|$)(.*) al Service "backend" (puerto http)
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  name: http
+          # TODO: enruta /(.*). al Service "frontend" (puerto http)
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                  name: http

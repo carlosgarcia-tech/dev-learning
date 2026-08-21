@@ -1,0 +1,38 @@
+# 03-db/pv-pvc.yaml — PersistentVolume y PersistentVolumeClaim para PostgreSQL
+# TODO: completa el PersistentVolume y el PersistentVolumeClaim.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  labels:
+    app: tienda
+    component: db
+spec:
+  capacity:
+    # TODO: define storage: 5Gi
+    storage: 1Gi
+  accessModes:
+    # TODO: añade el modo ReadWriteOnce
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: /mnt/data/postgres
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  volumeName: postgres-pv
+  resources:
+    requests:
+      # TODO: define storage: 5Gi (debe coincidir con el PV)
+      storage: 1Gi

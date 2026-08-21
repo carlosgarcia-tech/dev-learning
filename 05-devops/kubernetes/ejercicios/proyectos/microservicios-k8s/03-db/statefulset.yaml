@@ -1,0 +1,77 @@
+# 03-db/statefulset.yaml — StatefulSet de PostgreSQL (incompleto)
+# TODO: completa el StatefulSet de postgres con env, sondas y volumen.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: db
+    version: v1
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tienda
+      component: db
+  template:
+    metadata:
+      labels:
+        app: tienda
+        component: db
+        version: v1
+    spec:
+      serviceAccountName: tienda-sa
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            # TODO: toma POSTGRES_DB y POSTGRES_USER del ConfigMap "tienda-config"
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: tienda-config
+                  key: POSTGRES_DB
+            # TODO: toma POSTGRES_USER del ConfigMap "tienda-config"
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: tienda-config
+                  key: POSTGRES_USER
+            # TODO: toma POSTGRES_PASSWORD del Secret "tienda-secrets"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tienda-secrets
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          # TODO: añade livenessProbe y readinessProbe con pg_isready
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "tienda", "-d", "tienda"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "tienda", "-d", "tienda"]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc

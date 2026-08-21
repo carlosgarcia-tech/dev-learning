@@ -1,0 +1,62 @@
+# 08-rbac.yaml — ServiceAccount, Role y RoleBinding
+# TODO: completa el RBAC para el namespace tienda-online.
+
+# 1) ServiceAccount usado por los pods de la app
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tienda-sa
+  namespace: tienda-online
+  labels:
+    app: tienda
+---
+# 2) Role con permisos de lectura en el namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tienda-role
+  namespace: tienda-online
+  labels:
+    app: tienda
+rules:
+  # TODO: permite get/list/watch sobre pods, services, configmaps, secrets y endpoints
+  - apiGroups: [""]
+    resources:
+      - pods
+      - pods/log
+      - services
+      - configmaps
+      - secrets
+      - endpoints
+    verbs:
+      - get
+      - list
+      - watch
+  # TODO: permite get/list/watch sobre deployments, statefulsets y replicasets
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+      - statefulsets
+      - replicasets
+    verbs:
+      - get
+      - list
+      - watch
+---
+# 3) RoleBinding que vincula el ServiceAccount con el Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tienda-rolebinding
+  namespace: tienda-online
+  labels:
+    app: tienda
+subjects:
+  # TODO: referencia el ServiceAccount "tienda-sa"
+  - kind: ServiceAccount
+    name: tienda-sa
+    namespace: tienda-online
+roleRef:
+  kind: Role
+  name: tienda-role
+  apiGroup: rbac.authorization.k8s.io

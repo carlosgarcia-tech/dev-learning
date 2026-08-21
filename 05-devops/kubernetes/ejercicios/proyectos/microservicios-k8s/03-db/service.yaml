@@ -1,0 +1,21 @@
+# 03-db/service.yaml — Headless Service para el StatefulSet de postgres
+# TODO: completa el Service headless de postgres.
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: db
+spec:
+  # TODO: un headless service necesita clusterIP: None
+  clusterIP: None
+  selector:
+    # TODO: selecciona los pods con app: tienda, component: db
+    app: tienda
+    component: db
+  ports:
+    - port: 5432
+      targetPort: postgres
+      name: postgres

@@ -1,0 +1,20 @@
+# 04-backend/service.yaml — Service ClusterIP del backend
+# TODO: completa el Service del backend.
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+spec:
+  type: ClusterIP
+  selector:
+    # TODO: selecciona los pods app: tienda, component: backend
+    app: tienda
+    component: backend
+  ports:
+    - port: 5000
+      targetPort: http
+      name: http

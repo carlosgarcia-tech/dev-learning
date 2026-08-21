@@ -1,0 +1,27 @@
+# 04-backend/hpa.yaml — Horizontal Pod Autoscaler del backend
+# TODO: completa el HPA que escala el Deployment "backend".
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+spec:
+  scaleTargetRef:
+    # TODO: apunta al Deployment "backend" (apiVersion apps/v1)
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  # TODO: define minReplicas: 2 y maxReplicas: 6
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    # TODO: añade una métrica de CPU (averageUtilization: 60)
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60

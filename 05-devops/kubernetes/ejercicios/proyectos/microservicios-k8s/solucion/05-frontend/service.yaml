@@ -1,0 +1,18 @@
+# 05-frontend/service.yaml — Service ClusterIP del frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: tienda
+    component: frontend
+  ports:
+    - port: 80
+      targetPort: http
+      name: http

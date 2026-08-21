@@ -1,0 +1,20 @@
+# 05-frontend/service.yaml — Service ClusterIP del frontend
+# TODO: completa el Service del frontend.
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    # TODO: selecciona los pods app: tienda, component: frontend
+    app: tienda
+    component: frontend
+  ports:
+    - port: 80
+      targetPort: http
+      name: http

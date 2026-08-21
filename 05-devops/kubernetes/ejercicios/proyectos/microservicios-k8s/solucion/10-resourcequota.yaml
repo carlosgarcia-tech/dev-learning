@@ -1,0 +1,25 @@
+# 10-resourcequota.yaml — ResourceQuota del namespace tienda-online
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: tienda-quota
+  namespace: tienda-online
+  labels:
+    app: tienda
+spec:
+  hard:
+    # Límites de cómputo
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "4"
+    limits.memory: 4Gi
+    # Número de objetos
+    count/pods: "20"
+    count/services: "10"
+    count/configmaps: "10"
+    count/secrets: "10"
+    count/deployments.apps: "5"
+    count/statefulsets.apps: "2"
+    # Almacenamiento
+    persistentvolumeclaims: "5"
+    requests.storage: 10Gi

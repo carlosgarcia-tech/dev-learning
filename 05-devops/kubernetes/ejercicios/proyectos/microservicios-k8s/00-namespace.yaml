@@ -1,0 +1,9 @@
+# 00-namespace.yaml — Namespace del proyecto
+# TODO: define un Namespace llamado "tienda-online" con labels descriptivos.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tienda-online
+  labels:
+    # TODO: añade los labels "app: tienda" y "entorno: aprendizaje"
+    app: tienda

@@ -1,0 +1,137 @@
+# 07-networkpolicy.yaml — NetworkPolicy: frontend → backend → db, denegando el resto
+# TODO: define las NetworkPolicies para aislar el tráfico entre microservicios.
+#
+# Recuerda el flujo:  Ingress → frontend → backend → db
+# Y denegar todo lo demás (default-deny).
+
+# 1) default-deny: deniega todo el tráfico por defecto en el namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: tienda-online
+  labels:
+    app: tienda
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  # Sin reglas ingress/egress = sin tráfico (deniega todo)
+---
+# 2) frontend-policy: permite tráfico desde ingress-nginx y egress hacia backend + DNS
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: frontend
+  policyTypes:
+    - Ingress
+    - Egress
+  # TODO: añade las reglas ingress (desde ingress-nginx:80) y egress (hacia backend:5000 + DNS:53)
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: backend
+      ports:
+        - protocol: TCP
+          port: 5000
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+---
+# 3) backend-policy: permite ingress desde frontend/ingress y egress hacia db + DNS
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: backend
+  policyTypes:
+    - Ingress
+    - Egress
+  # TODO: añade las reglas ingress (desde frontend + ingress-nginx:5000) y egress (hacia db:5432 + DNS:53)
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: frontend
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 5000
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: db
+      ports:
+        - protocol: TCP
+          port: 5432
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+---
+# 4) db-policy: solo el backend puede hablar con postgres
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: db
+spec:
+  podSelector:
+    matchLabels:
+      app: tienda
+      component: db
+  policyTypes:
+    - Ingress
+  # TODO: añade la regla ingress (desde backend, puerto 5432)
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: tienda
+              component: backend
+      ports:
+        - protocol: TCP
+          port: 5432

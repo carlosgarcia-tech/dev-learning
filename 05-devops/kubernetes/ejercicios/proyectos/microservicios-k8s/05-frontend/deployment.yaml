@@ -1,0 +1,58 @@
+# 05-frontend/deployment.yaml — Deployment del frontend (nginx) — INCOMPLETO
+# TODO: completa el Deployment del frontend con sondas y resources.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: frontend
+    version: v1
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: tienda
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: tienda
+        component: frontend
+        version: v1
+    spec:
+      serviceAccountName: tienda-sa
+      containers:
+        - name: frontend
+          image: tienda/frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          # TODO: define resources.requests y limits
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          # TODO: añade livenessProbe y readinessProbe (httpGet / en el puerto http)
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5

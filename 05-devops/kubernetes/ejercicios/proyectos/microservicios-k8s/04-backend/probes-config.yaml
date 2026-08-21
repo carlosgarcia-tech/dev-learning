@@ -1,0 +1,20 @@
+# 04-backend/probes-config.yaml — ConfigMap con la configuración de las sondas
+# TODO: define el ConfigMap "backend-probes" con los paths y timeouts de las sondas.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-probes
+  namespace: tienda-online
+  labels:
+    app: tienda
+    component: backend
+data:
+  # TODO: añade estas claves:
+  #   LIVENESS_PATH: "/health"
+  #   READINESS_PATH: "/ready"
+  #   LIVENESS_INITIAL_DELAY: "20"
+  #   READINESS_INITIAL_DELAY: "5"
+  #   PROBE_PERIOD: "10"
+  #   PROBE_TIMEOUT: "5"
+  LIVENESS_PATH: "/health"
+  READINESS_PATH: "/ready"
