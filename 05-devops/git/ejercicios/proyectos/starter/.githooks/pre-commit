@@ -1,0 +1,27 @@
+#!/bin/bash
+# Hook pre-commit: bloquea archivos sensibles (*.env, secrets.*) y ejecuta un lint simple.
+set -euo pipefail
+
+STAGED=$(git diff --cached --name-only)
+
+# 1. Bloquear archivos sensibles
+for f in $STAGED; do
+    case "$f" in
+        *.env|secrets.*|.env)
+            echo "detectado archivo sensible: $f"
+            exit 1
+            ;;
+    esac
+done
+
+# 2. Lint simple: bloquear archivos .js con la marca "TODO"
+for f in $STAGED; do
+    if [[ "$f" == *.js ]]; then
+        if git diff --cached -- "$f" | grep -q "+.*TODO"; then
+            echo "lint: se detectó TODO en $f"
+            exit 1
+        fi
+    fi
+done
+
+exit 0
