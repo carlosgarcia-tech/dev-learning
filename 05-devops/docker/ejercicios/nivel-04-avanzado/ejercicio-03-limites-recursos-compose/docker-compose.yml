@@ -1,0 +1,10 @@
+# TODO: crea tu docker-compose.yml
+# services:
+#   app:
+#     build: ./app
+#     ports: ["8097:3000"]
+#     mem_limit: 256m
+#     mem_reservation: 128m
+#     cpus: "0.5"
+#     pids_limit: 100
+#     restart: "on-failure:3"

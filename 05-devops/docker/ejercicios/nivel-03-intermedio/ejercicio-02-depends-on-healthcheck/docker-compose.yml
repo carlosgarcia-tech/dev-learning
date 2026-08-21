@@ -1,0 +1,5 @@
+# TODO: crea tu docker-compose.yml
+# services:
+#   app: build ./app, ports 8092:3000, healthcheck wget, networks [appnet]
+#   reporter: alpine:3.20, depends_on app (service_healthy), command wget http://app:3000/health, networks [appnet]
+# networks: appnet

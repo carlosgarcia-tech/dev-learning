@@ -1,0 +1,6 @@
+# TODO: crea tu docker-compose.yml de producción
+# 4 servicios: proxy, frontend, backend, db
+# Redes: frontend_net (proxy, frontend, backend) y backend_net (backend, db)
+# Volúmenes: db_data
+# Healthchecks con depends_on service_healthy
+# Variables desde .env

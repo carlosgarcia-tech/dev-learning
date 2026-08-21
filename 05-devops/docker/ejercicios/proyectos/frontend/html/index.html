@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks — Proyecto Docker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 2rem auto; padding: 1rem; }
+    h1 { color: #2496ed; }
+    #tasks { list-style: none; padding: 0; }
+    #tasks li { padding: 0.5rem; border-bottom: 1px solid #eee; }
+    input, button { padding: 0.5rem; margin: 0.25rem; }
+    button { background: #2496ed; color: white; border: none; cursor: pointer; border-radius: 4px; }
+    #status { color: #666; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>📋 Tareas</h1>
+  <p id="status">Cargando...</p>
+  <form id="form">
+    <input id="title" placeholder="Nueva tarea..." required />
+    <button type="submit">Añadir</button>
+  </form>
+  <ul id="tasks"></ul>
+
+  <script>
+    const API = "/api";
+    const statusEl = document.getElementById("status");
+    const listEl = document.getElementById("tasks");
+
+    async function loadTasks() {
+      try {
+        const res = await fetch(`${API}/tasks`);
+        const tasks = await res.json();
+        listEl.innerHTML = tasks.map(t => `<li>${t.id}: ${t.title}</li>`).join("");
+        statusEl.textContent = `${tasks.length} tareas`;
+      } catch (e) {
+        statusEl.textContent = "Error: " + e.message;
+      }
+    }
+
+    document.getElementById("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      await fetch(`${API}/tasks`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title })
+      });
+      document.getElementById("title").value = "";
+      loadTasks();
+    });
+
+    loadTasks();
+  </script>
+</body>
+</html>

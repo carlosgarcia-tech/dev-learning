@@ -1,0 +1,5 @@
+# TODO: crea tu docker-compose.yml de producción
+# 4 servicios: proxy, app, db, cache
+# Redes: appnet (proxy, app, db) y cachenet (app, cache)
+# Volúmenes: db_data, cache_data
+# Healthchecks en app y db; restart: always en todos; mem_limit en app

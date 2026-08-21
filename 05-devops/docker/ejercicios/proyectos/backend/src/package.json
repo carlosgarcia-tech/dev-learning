@@ -1,0 +1,11 @@
+{
+  "name": "tasks-backend",
+  "version": "1.0.0",
+  "description": "API REST de tareas para el proyecto final de Docker",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

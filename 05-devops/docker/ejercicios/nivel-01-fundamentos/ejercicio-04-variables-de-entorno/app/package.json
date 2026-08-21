@@ -1,0 +1,9 @@
+{
+  "name": "ejercicio-04-env",
+  "version": "1.0.0",
+  "description": "App Node que lee variables de entorno",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {},
+  "license": "MIT"
+}

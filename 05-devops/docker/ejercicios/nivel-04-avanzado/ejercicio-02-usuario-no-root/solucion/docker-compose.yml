@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8096:3000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    user: "10001:10001"

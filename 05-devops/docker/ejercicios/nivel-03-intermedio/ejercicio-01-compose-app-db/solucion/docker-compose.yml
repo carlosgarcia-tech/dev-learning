@@ -1,0 +1,36 @@
+services:
+  app:
+    build: ./app
+    environment:
+      DB_HOST: db
+      DB_USER: app
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: miapp
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8091:3000"
+    networks: [appnet]
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: miapp
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d miapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks: [appnet]
+
+volumes:
+  db_data:
+
+networks:
+  appnet:

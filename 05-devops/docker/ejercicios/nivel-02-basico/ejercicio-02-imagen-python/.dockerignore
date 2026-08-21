@@ -1,0 +1,9 @@
+__pycache__
+*.pyc
+.venv
+Dockerfile*
+.dockerignore
+.git
+.gitignore
+*.md
+solucion/

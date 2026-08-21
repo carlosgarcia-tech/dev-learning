@@ -1,0 +1,10 @@
+# TODO: crea tu docker-compose.yml
+# services:
+#   app:
+#     build: ./app
+#     ports: ["8098:3000"]
+#     logging:
+#       driver: json-file
+#       options:
+#         max-size: "10m"
+#         max-file: "3"

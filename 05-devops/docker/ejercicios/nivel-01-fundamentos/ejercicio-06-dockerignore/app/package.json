@@ -1,0 +1,9 @@
+{
+  "name": "ejercicio-06-dockerignore",
+  "version": "1.0.0",
+  "description": "App para practicar .dockerignore",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {},
+  "license": "MIT"
+}

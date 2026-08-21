@@ -1,0 +1,7 @@
+# TODO: crea tu docker-compose.yml
+# services:
+#   web: nginx:1.27-alpine, ports 8094:80, networks appnet aliases [frontend]
+#   api: build ./app, ports 8095:3000, networks appnet aliases [backend]
+# networks:
+#   appnet: driver bridge, ipam subnet 172.28.0.0/16
+#   dbnet: internal true

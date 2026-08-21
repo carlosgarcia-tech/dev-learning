@@ -1,0 +1,11 @@
+services:
+  app:
+    build: ./app
+    ports:
+      - "8093:3000"
+    volumes:
+      - ./app/src:/app/src
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    command: ["node", "--watch", "src/server.js"]

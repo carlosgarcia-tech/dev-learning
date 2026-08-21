@@ -1,0 +1,6 @@
+# TODO: crea tu docker-compose.yml
+# services:
+#   app: build ./app, depends_on db (service_healthy), ports 8091:3000, networks [appnet], env DB_*
+#   db: postgres:16-alpine, healthcheck pg_isready, volume db_data, networks [appnet]
+# volumes: db_data
+# networks: appnet

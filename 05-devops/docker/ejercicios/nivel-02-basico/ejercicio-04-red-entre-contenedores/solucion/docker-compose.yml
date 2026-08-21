@@ -1,0 +1,15 @@
+services:
+  api:
+    build: ./app-api
+    ports:
+      - "8090:3000"
+    depends_on: [backend]
+    networks: [appnet]
+
+  backend:
+    build: ./app-backend
+    networks: [appnet]
+
+networks:
+  appnet:
+    driver: bridge

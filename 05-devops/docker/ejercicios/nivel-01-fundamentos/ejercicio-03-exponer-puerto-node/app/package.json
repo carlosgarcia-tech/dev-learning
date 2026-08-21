@@ -1,0 +1,11 @@
+{
+  "name": "ejercicio-03-node",
+  "version": "1.0.0",
+  "description": "App Node de ejemplo para el ejercicio 03 de Docker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

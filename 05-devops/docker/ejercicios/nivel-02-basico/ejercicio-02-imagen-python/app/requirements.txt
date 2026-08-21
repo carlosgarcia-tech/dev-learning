@@ -1,0 +1,2 @@
+# App Python de ejemplo para el ejercicio 02 de Docker
+flask==3.0.3

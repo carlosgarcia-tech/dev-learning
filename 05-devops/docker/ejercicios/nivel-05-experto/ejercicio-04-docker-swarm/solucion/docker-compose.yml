@@ -1,0 +1,17 @@
+services:
+  web:
+    image: miapp:swarm
+    build: ./app
+    ports:
+      - "8102:3000"
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
