@@ -1,0 +1,34 @@
+name: Artifacts Entre Jobs
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p dist && echo "v1.0.0" > dist/app.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binario
+          path: dist/
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: binario
+          path: dist/
+      - run: cat dist/app.txt
+  package:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: binario
+          path: dist/
+      - run: tar czf release.tar.gz dist/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: release.tar.gz

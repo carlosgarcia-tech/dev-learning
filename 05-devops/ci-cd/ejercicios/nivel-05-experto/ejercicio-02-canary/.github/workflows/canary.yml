@@ -1,0 +1,13 @@
+name: Canary
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aplicar manifests
+        run: kubectl apply -f k8s/
+      - name: Estado del rollout
+        run: kubectl argo rollouts get rollout mi-app --watch --timeout 5m

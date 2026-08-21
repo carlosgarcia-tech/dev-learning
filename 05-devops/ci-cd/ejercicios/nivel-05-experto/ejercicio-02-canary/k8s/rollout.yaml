@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: mi-app
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: mi-app
+  template:
+    metadata:
+      labels:
+        app: mi-app
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.25-alpine
+          ports:
+            - containerPort: 80
+  strategy:
+    canary:
+      canaryService: mi-app-canary
+      stableService: mi-app-stable
+      steps:
+        - setWeight: 10
+        - pause: { duration: 2m }
+        - setWeight: 30
+        - pause: { duration: 2m }
+        - setWeight: 100

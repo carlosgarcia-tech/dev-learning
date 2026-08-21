@@ -1,0 +1,38 @@
+image: node:20-alpine
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  NODE_ENV: production
+
+build:
+  stage: build
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+test:
+  stage: test
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+  script:
+    - npm ci
+    - npm test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Desplegando"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual

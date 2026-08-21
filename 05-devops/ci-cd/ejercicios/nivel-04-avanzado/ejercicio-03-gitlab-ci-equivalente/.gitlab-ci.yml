@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - deploy
+
+construir:
+  stage: build
+  image: alpine:latest
+  script:
+    - mkdir -p build
+    - echo "artefacto compilado el $(date -u +%FT%TZ)" > build/output.txt
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 day
+
+testear:
+  stage: test
+  image: alpine:latest
+  needs: [construir]
+  script:
+    - test -f build/output.txt
+    - echo "Tests OK sobre el artefacto"
+
+desplegar:
+  stage: deploy
+  image: alpine:latest
+  needs: [testear]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - echo "Desplegando a producción desde main"

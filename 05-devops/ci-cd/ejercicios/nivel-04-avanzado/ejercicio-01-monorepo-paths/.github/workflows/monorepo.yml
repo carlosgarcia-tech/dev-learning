@@ -1,0 +1,40 @@
+name: Monorepo por paquetes
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/**"
+      - ".github/workflows/**"
+
+jobs:
+  detector:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filtro.outputs.frontend }}
+      backend: ${{ steps.filtro.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filtro
+        with:
+          filters: |
+            frontend:
+              - 'packages/frontend/**'
+            backend:
+              - 'packages/backend/**'
+
+  test-frontend:
+    needs: detector
+    if: needs.detector.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Test frontend (carpeta packages/frontend)"
+
+  test-backend:
+    needs: detector
+    if: needs.detector.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Test backend (carpeta packages/backend)"

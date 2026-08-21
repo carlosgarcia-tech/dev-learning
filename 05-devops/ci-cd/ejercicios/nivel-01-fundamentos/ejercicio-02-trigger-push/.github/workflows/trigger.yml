@@ -1,0 +1,9 @@
+name: Trigger Push
+on:
+  push:
+    branches: [main, develop]
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Rama: ${{ github.ref }}"

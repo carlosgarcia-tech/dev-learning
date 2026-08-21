@@ -1,0 +1,21 @@
+name: GitOps
+on:
+  push:
+    branches: [main]
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: org/k8s-manifests
+          token: ${{ secrets.DEPLOY_TOKEN }}
+      - name: Actualizar imagen
+        run: |
+          sed -i "s|image: .*|image: ghcr.io/org/app:${{ github.sha }}|" deployment.yaml
+      - name: Commit y push
+        run: |
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@example.com"
+          git commit -am "Update image to ${{ github.sha }}"
+          git push

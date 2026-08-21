@@ -1,0 +1,75 @@
+image: node:20-alpine
+
+stages:
+  - test
+  - build
+  - scan
+  - deploy
+
+variables:
+  IMAGE: $CI_REGISTRY_IMAGE:latest
+
+lint:
+  stage: test
+  cache:
+    key:
+      files: [app/package.json]
+    paths: [app/node_modules/]
+  script:
+    - cd app && npm ci && npm run lint
+
+test:
+  stage: test
+  cache:
+    key:
+      files: [app/package.json]
+    paths: [app/node_modules/]
+  script:
+    - cd app && npm ci && npm test
+  artifacts:
+    paths: [app/coverage/]
+    expire_in: 1 week
+
+docker_build:
+  stage: build
+  image: docker:24
+  services: [docker:24-dind]
+  script:
+    - docker build -t app:$CI_COMMIT_SHA .
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+security_scan:
+  stage: scan
+  needs: [docker_build]
+  image: docker:24
+  services: [docker:24-dind]
+  script:
+    - docker run --rm aquasec/trivy image --severity CRITICAL,HIGH --exit-code 1 app:$CI_COMMIT_SHA
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy_staging:
+  stage: deploy
+  needs: [security_scan]
+  environment: staging
+  script:
+    - sed -i "s|image: .*|image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA|" k8s/deployment.yaml
+    - kubectl apply -f k8s/
+    - kubectl rollout status deployment/ci-cd-app --timeout=2m
+    - bash scripts/health-check.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy_prod:
+  stage: deploy
+  needs: [deploy_staging]
+  environment: production
+  script:
+    - sed -i "s|image: .*|image: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA|" k8s/deployment.yaml
+    - kubectl apply -f k8s/
+    - kubectl rollout status deployment/ci-cd-app --timeout=2m
+    - bash scripts/health-check.sh
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  when: manual

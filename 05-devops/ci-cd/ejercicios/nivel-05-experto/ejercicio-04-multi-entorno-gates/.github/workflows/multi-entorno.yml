@@ -1,0 +1,25 @@
+name: Multi-Entorno
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy_dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/deploy.sh dev
+  deploy_staging:
+    needs: deploy_dev
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/deploy.sh staging
+  deploy_prod:
+    needs: deploy_staging
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/deploy.sh prod

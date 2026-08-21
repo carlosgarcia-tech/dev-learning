@@ -1,0 +1,51 @@
+name: CD
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}/app
+
+jobs:
+  deploy_staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Desplegar a staging
+        run: |
+          sed -i "s|image: .*|image: ghcr.io/${{ github.repository }}/app:latest|" k8s/deployment.yaml
+          kubectl apply -f k8s/
+          kubectl rollout status deployment/ci-cd-app --timeout=2m
+      - name: Health check staging
+        run: bash scripts/health-check.sh
+
+  deploy_prod:
+    needs: deploy_staging
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Desplegar a producción
+        run: |
+          sed -i "s|image: .*|image: ghcr.io/${{ github.repository }}/app:latest|" k8s/deployment.yaml
+          kubectl apply -f k8s/
+          kubectl rollout status deployment/ci-cd-app --timeout=2m
+      - name: Health check prod
+        run: bash scripts/health-check.sh
+
+  rollback:
+    needs: deploy_prod
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rollback automático
+        run: bash scripts/rollback.sh

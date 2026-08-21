@@ -1,0 +1,27 @@
+name: Deploy con approval
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Compilando artefacto"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Ejecutando tests"
+
+  deploy-production:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://app.example.com
+    steps:
+      - uses: actions/checkout@v4
+      - run: chmod +x scripts/deploy.sh && ./scripts/deploy.sh production

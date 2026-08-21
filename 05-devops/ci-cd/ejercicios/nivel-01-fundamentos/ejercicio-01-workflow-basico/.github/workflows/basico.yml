@@ -1,0 +1,7 @@
+name: Basico
+on: push
+jobs:
+  hola:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hola CI/CD"

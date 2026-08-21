@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ci-cd-app
+  labels:
+    app: ci-cd-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ci-cd-app
+  template:
+    metadata:
+      labels:
+        app: ci-cd-app
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/org/app:latest
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10

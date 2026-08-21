@@ -1,0 +1,24 @@
+name: Pipeline dinámico
+on: push
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    outputs:
+      matriz: ${{ steps.gen.outputs.matriz }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: gen
+        run: |
+          MATRIZ=$(jq -c '[.modulos[] | {nombre, version}]' config.json)
+          echo "matriz=$MATRIZ" >> "$GITHUB_OUTPUT"
+
+  ejecutar:
+    needs: generar
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        modulo: ${{ fromJSON(needs.generar.outputs.matriz) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Construyendo ${{ matrix.modulo.nombre }} @ ${{ matrix.modulo.version }}"

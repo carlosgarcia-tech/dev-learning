@@ -1,0 +1,15 @@
+name: Paralelo
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ejecutando lint..."
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ejecutando unit..."
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ejecutando e2e..."

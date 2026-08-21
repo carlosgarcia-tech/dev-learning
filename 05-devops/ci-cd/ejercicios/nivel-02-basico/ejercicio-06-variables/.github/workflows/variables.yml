@@ -1,0 +1,11 @@
+name: Variables
+on: push
+env:
+  ENTORNO: dev
+  REGISTRY: ghcr.io
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Entorno: $ENTORNO"
+      - run: echo "Registry: ${{ env.REGISTRY }}"

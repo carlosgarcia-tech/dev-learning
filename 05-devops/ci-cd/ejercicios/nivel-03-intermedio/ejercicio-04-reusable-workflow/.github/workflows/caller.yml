@@ -1,0 +1,7 @@
+name: Caller
+on: push
+jobs:
+  build:
+    uses: ./.github/workflows/build-reusable.yml
+    with:
+      node-version: "20"

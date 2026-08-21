@@ -1,0 +1,25 @@
+name: Blue-Green
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aplicar manifests
+        run: kubectl apply -f k8s/
+      - name: Esperar rollout de green
+        run: kubectl rollout status deployment/mi-app-green --timeout=2m
+      - name: Conmutar a green
+        run: |
+          kubectl patch svc mi-app-svc -p '{"spec":{"selector":{"version":"green"}}}'
+      - name: Health check
+        run: |
+          for i in $(seq 1 5); do
+            if curl -fsS http://mi-app-svc/; then exit 0; fi
+            sleep 3
+          done
+          echo "Health check falló, revirtiendo a blue"
+          kubectl patch svc mi-app-svc -p '{"spec":{"selector":{"version":"blue"}}}'
+          exit 1

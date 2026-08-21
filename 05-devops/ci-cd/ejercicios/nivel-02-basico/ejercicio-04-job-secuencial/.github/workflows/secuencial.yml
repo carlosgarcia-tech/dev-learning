@@ -1,0 +1,17 @@
+name: Secuencial
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Compilando..."
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Testeando..."
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Desplegando..."

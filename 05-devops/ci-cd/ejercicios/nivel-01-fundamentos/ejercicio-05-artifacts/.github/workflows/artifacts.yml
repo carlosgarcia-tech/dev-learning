@@ -1,0 +1,20 @@
+name: Artifacts
+on: push
+jobs:
+  crear:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "hola" > saludo.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: saludo
+          path: saludo.txt
+  leer:
+    needs: crear
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: saludo
+      - run: cat saludo.txt

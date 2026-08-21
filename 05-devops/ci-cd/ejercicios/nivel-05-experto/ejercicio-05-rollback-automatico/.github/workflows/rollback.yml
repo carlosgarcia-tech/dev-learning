@@ -1,0 +1,23 @@
+name: Deploy con Rollback
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aplicar manifest
+        run: kubectl apply -f k8s/
+      - name: Esperar rollout
+        run: kubectl rollout status deployment/mi-app --timeout=2m
+      - name: Health check
+        run: bash scripts/health-check.sh
+  rollback:
+    needs: deploy
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rollback automático
+        run: bash scripts/rollback.sh

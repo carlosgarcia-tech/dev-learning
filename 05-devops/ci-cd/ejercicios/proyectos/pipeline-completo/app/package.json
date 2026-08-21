@@ -1,0 +1,16 @@
+{
+  "name": "ci-cd-demo-app",
+  "version": "1.0.0",
+  "description": "App Node.js de ejemplo para el pipeline completo de CI/CD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/",
+    "lint": "echo 'Lint OK (placeholder)'"
+  },
+  "keywords": ["ci-cd", "demo", "devops"],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
