@@ -1,0 +1,3 @@
+3|Monitor|electronica|300
+2|Teclado|electronica|45
+1|Mouse|electronica|25

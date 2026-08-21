@@ -1,0 +1,6 @@
+ANA GARCIA|12
+JUAN PEREZ|13
+Ana|ana@mail.com
+Jua|juan@mail.com
+An@ G@rci@|Ana Garcia
+Ju@n Perez|Juan Perez

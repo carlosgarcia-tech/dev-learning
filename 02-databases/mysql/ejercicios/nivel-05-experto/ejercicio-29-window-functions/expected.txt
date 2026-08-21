@@ -1,0 +1,6 @@
+Maria Lopez|IT|4000|1
+Pedro Rios|IT|4000|1
+Carlos Mena|IT|3500|3
+Juan Ruiz|Ventas|3200|1
+Marcos Diaz|Ventas|3200|1
+Ana Torres|Ventas|2500|3

@@ -1,0 +1,9 @@
+Ana Perez|1|150
+Ana Perez|2|75.5
+Juan Lopez|3|300
+Maria Ruiz|NULL|NULL
+Carlos Soto|NULL|NULL
+Ana Perez|1|150
+Ana Perez|2|75.5
+Juan Lopez|3|300
+NULL|4|999

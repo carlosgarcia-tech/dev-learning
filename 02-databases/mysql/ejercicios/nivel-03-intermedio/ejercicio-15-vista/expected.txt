@@ -1,0 +1,2 @@
+3|Monitor|300
+4|Tablet|150

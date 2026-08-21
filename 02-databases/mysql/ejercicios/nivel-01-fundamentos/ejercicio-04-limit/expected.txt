@@ -1,0 +1,6 @@
+Monitor|300
+Audifonos|80
+Webcam|60
+Webcam|5
+Audifonos|15
+1|Mouse

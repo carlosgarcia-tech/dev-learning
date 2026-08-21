@@ -1,0 +1,4 @@
+1|Mouse|27.5|100
+2|Teclado|49.5|50
+4|Pantalon|30|20
+5|Monitor|330|10

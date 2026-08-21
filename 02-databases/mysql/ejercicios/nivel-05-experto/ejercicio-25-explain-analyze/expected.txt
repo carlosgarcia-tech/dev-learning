@@ -1,0 +1,3 @@
+3|Monitor|300
+2|Teclado|45
+1|Mouse|25

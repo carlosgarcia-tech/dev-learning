@@ -1,0 +1,2 @@
+-- Esquema vacío: en este ejercicio TÚ creas la tabla en solucion.sql.
+-- El test crea la base de datos temporal por ti.

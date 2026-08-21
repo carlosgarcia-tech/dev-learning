@@ -1,0 +1,2 @@
+1|P00001|Ana|150.75|pagado
+2|P00002|Juan|89.9|pendiente

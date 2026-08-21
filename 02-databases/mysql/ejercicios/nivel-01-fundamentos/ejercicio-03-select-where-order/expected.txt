@@ -1,0 +1,17 @@
+2|Juan Ruiz|Ventas|3200
+6|Marcos Diaz|Ventas|2900
+1|Ana Torres|Ventas|2500
+3|Maria Lopez|IT|4000
+7|Marta Soto|RRHH|3100
+4|Carlos Mena|IT|3500
+8|Pedro Rios|IT|4200
+6|Marcos Diaz|Ventas|2900
+3|Maria Lopez|IT|4000
+7|Marta Soto|RRHH|3100
+1|Ana Torres|Ventas|2500
+6|Marcos Diaz|Ventas|2900
+3|Maria Lopez|IT|4000
+5|Lucia Perez|RRHH|2800
+7|Marta Soto|RRHH|3100
+2|Juan Ruiz|Ventas|3200
+6|Marcos Diaz|Ventas|2900

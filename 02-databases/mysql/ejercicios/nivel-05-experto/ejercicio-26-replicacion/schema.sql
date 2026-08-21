@@ -1,0 +1,2 @@
+-- Esquema vacío: este ejercicio es teórico-práctico de replicación.
+-- No se necesitan tablas; la consulta final es autónoma.

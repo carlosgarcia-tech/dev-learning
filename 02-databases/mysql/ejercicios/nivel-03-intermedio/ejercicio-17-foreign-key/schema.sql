@@ -1,0 +1,16 @@
+CREATE TABLE clientes (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE pedidos (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  cliente_id INT UNSIGNED NOT NULL,
+  total DECIMAL(10,2) NOT NULL,
+  CONSTRAINT fk_pedido_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+) ENGINE=InnoDB;
+
+INSERT INTO clientes (nombre) VALUES
+  ('Ana'),
+  ('Juan'),
+  ('Maria');

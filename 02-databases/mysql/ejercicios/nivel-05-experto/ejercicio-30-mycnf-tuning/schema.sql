@@ -1,0 +1,2 @@
+-- Esquema vacío: este ejercicio trata de configuración del servidor MySQL.
+-- No necesita tablas en la base de datos de prueba.

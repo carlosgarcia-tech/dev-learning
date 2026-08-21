@@ -1,0 +1,1 @@
+-- Esquema vacío: la tabla particionada se crea en solucion.sql.

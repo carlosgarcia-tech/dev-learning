@@ -1,0 +1,4 @@
+Ana Perez|1|150
+Juan Lopez|2|300
+Ana Perez|3|75.5
+Maria Ruiz|4|200

@@ -1,0 +1,11 @@
+electronica|480
+hogar|100
+ropa|240
+electronica|2
+hogar|1
+ropa|2
+electronica|35.25
+hogar|50
+ropa|22.5
+electronica|2
+ropa|2

@@ -1,0 +1,3 @@
+Mouse|25|30.25
+Teclado|45|54.45
+Monitor|300|363

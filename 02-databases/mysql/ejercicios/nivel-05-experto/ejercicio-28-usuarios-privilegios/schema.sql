@@ -1,0 +1,2 @@
+-- Esquema vacío: este ejercicio trata de usuarios y privilegios del servidor.
+-- No necesita tablas en la base de datos de prueba.
