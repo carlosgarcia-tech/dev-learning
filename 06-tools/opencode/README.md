@@ -1,10 +1,14 @@
 # opencode
 
-> Guía de estudio + ejercicios por niveles.
+> Guía de estudio + ejercicios por niveles para dominar opencode, un agente de código para la terminal.
 
-## Guías
+## Índice
 
-_Pendientes por escribir._
+1. [Fundamentos](01-fundamentos.md) — qué es opencode, instalación, configuración y CLI
+2. [Flujo de trabajo](02-flujo-de-trabajo.md) — prompts, contexto, archivos y sesiones
+3. [Configuración y personalización](03-configuracion-y-personalizacion.md) — configuración, MCP servers, permisos y modos
+4. [Automatización e integración](04-automatizacion-y-integracion.md) — hooks, scripts, CI/CD con opencode
+5. [Producción y buenas prácticas](05-produccion-y-buenas-practicas.md) — mejores prácticas, patrones, seguridad y troubleshooting
 
 ## Ejercicios
 
