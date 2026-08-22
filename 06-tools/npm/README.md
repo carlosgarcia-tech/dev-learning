@@ -1,10 +1,14 @@
 # npm
 
-> Guía de estudio + ejercicios por niveles.
+> Guía de estudio + ejercicios por niveles para dominar npm, el gestor de paquetes de Node.js.
 
-## Guías
+## Índice
 
-_Pendientes por escribir._
+1. [Fundamentos](01-fundamentos.md) — qué es npm, `package.json`, dependencies vs devDependencies, install, versiones semver, scripts
+2. [Dependencias y scripts](02-dependencias-y-scripts.md) — `npm install/save`, `npm ci`, scripts personalizados, pre/post hooks, `npx`
+3. [Publicación y scoping](03-publicacion-y-scoping.md) — `npm publish`, scoped packages, `.npmrc`, access public/private, versioning
+4. [Auditoría y seguridad](04-auditoria-y-seguridad.md) — `npm audit`, `npm fund`, vulnerabilidades, overrides, SBOM, supply chain
+5. [Monorepos y workspaces](05-monorepos-y-workspaces.md) — npm workspaces, monorepo, hoisting, publish en monorepo, cambios
 
 ## Ejercicios
 
