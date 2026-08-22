@@ -1,10 +1,14 @@
 # pnpm
 
-> Guía de estudio + ejercicios por niveles.
+> Guía de estudio + ejercicios por niveles para dominar pnpm, el gestor de paquetes rápido y eficiente para Node.js.
 
-## Guías
+## Índice
 
-_Pendientes por escribir._
+1. [Fundamentos](01-fundamentos.md) — qué es pnpm, por qué es más rápido, instalación, `pnpm add`, `pnpm install`
+2. [Estructura y content-addressable](02-estructura-y-content-addressable.md) — store global, hardlinks, symlinks, estructura de `node_modules`
+3. [Workspaces y monorepo](03-workspaces-y-monorepo.md) — pnpm workspaces, protocolo `workspace:*`, filtros, `--filter`
+4. [Scripts y configuración](04-scripts-y-configuracion.md) — `pnpm run`, `pnpm exec`, `.npmrc`, `pnpm config`, hooks
+5. [Producción y CI/CD](05-produccion-y-ci-cd.md) — pnpm en CI, cache, deploy, Docker con pnpm, comparativa npm vs yarn vs pnpm
 
 ## Ejercicios
 
