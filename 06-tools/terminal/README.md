@@ -1,10 +1,14 @@
-# terminal
+# Terminal
 
-> Guía de estudio + ejercicios por niveles.
+> Guía de estudio + ejercicios por niveles para dominar la terminal de Linux/Unix.
 
-## Guías
+## Índice
 
-_Pendientes por escribir._
+1. [Fundamentos](01-fundamentos.md) — shell, prompt, comandos básicos, navegación, archivos
+2. [Pipes, redirección y filtros](02-pipes-redireccion-y-filtros.md) — stdin/stdout/stderr, pipe, redirect, grep, sed, awk, head, tail
+3. [Procesos y background](03-procesos-y-background.md) — jobs, fg, bg, nohup, `&`, kill, top, ps
+4. [Shell scripting](04-shell-scripting.md) — variables, if, for, while, funciones, arrays, exit codes
+5. [tmux y productividad](05-tmux-y-productividad.md) — tmux, paneles, sesiones, ventanas, ssh, ssh-agent, ssh config
 
 ## Ejercicios
 
