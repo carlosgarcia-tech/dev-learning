@@ -1,0 +1,7 @@
+{
+  "name": "Mi PWA",
+  "short_name": "MiPWA",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": []
+}
