@@ -1,0 +1,1 @@
+// Tu service worker aquí

@@ -1,0 +1,1 @@
+// Tu string.js aquí
