@@ -1,0 +1,10 @@
+{
+  "authorize_status": 302,
+  "token": {
+    "token_type": "Bearer",
+    "expires_in": 3600
+  },
+  "perfil": {
+    "usuario": "ana"
+  }
+}

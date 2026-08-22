@@ -1,0 +1,42 @@
+POST /api/products HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json; charset=utf-8
+Content-Length: 40
+
+{"name":"Monitor","price":199}
+
+---
+
+GET /index.html HTTP/1.1
+Host: www.tienda.com
+Accept: text/html
+
+(Respuesta)
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 122
+
+<!DOCTYPE html><html><body>Hola</body></html>
+
+---
+
+POST /login HTTP/1.1
+Host: www.tienda.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+
+usuario=ana&password=123
+
+---
+
+POST /upload HTTP/1.1
+Host: www.tienda.com
+Content-Type: multipart/form-data; boundary=----X
+Content-Length: 200
+
+------X
+Content-Disposition: form-data; name="file"; filename="foto.png"
+Content-Type: image/png
+
+<bytes binarios>
+------X--

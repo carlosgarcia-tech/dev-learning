@@ -1,0 +1,7 @@
+{
+  "conexiones_tcp": "1",
+  "unidades_datos": "frames binarios",
+  "compresion_headers": "HPACK",
+  "transporte_practica": "TLS",
+  "resuelve_hol_blocking": false
+}

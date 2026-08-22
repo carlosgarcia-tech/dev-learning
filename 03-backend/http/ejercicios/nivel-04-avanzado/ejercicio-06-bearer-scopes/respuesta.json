@@ -1,0 +1,8 @@
+{
+  "escenarios": {
+    "admin_en_admin": 200,
+    "user_en_admin": 403,
+    "user_en_perfil": 200,
+    "sin_token_en_perfil": 401
+  }
+}

@@ -1,0 +1,51 @@
+POST /recursos HTTP/1.1
+Host: localhost:8088
+Content-Type: application/json
+Content-Length: 20
+
+{"nombre":"Nuevo"}
+
+(Respuesta 1) -> 201 Created + body
+
+---
+
+DELETE /recursos/1 HTTP/1.1
+Host: localhost:8088
+
+(Respuesta 2) -> 204 No Content
+
+---
+
+POST /recursos-sin-body HTTP/1.1
+Host: localhost:8088
+Content-Type: application/json
+Content-Length: 20
+
+{"nombre":"Otro"}
+
+(Respuesta 3) -> 204 No Content
+
+---
+
+GET /recursos/1 HTTP/1.1
+Host: localhost:8088
+
+(Respuesta 4) -> 200 OK + body
+
+---
+
+PUT /recursos/1 HTTP/1.1
+Host: localhost:8088
+Content-Type: application/json
+Content-Length: 30
+
+{"nombre":"Actualizado"}
+
+(Respuesta 5) -> 200 OK + body
+
+---
+
+DELETE /recursos/999 HTTP/1.1
+Host: localhost:8088
+
+(Respuesta 6) -> 404 Not Found

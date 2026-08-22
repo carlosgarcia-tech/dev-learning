@@ -1,0 +1,15 @@
+OPTIONS /datos HTTP/1.1
+Host: localhost:8090
+Origin: https://app.tienda.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Content-Type
+
+---
+
+POST /datos HTTP/1.1
+Host: localhost:8090
+Origin: https://app.tienda.com
+Content-Type: application/json
+Content-Length: 18
+
+{"valor": "hola"}

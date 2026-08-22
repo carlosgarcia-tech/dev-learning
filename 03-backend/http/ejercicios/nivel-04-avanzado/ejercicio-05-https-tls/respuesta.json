@@ -1,0 +1,7 @@
+{
+  "transporte": "TLS",
+  "handshake": "TLS handshake con intercambio de certificados y claves",
+  "quien_emite": "CA (Certificate Authority)",
+  "header_https": "Strict-Transport-Security",
+  "cookie_secure_http": false
+}

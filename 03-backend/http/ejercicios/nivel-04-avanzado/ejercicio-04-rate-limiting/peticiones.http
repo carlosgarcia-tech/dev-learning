@@ -1,0 +1,8 @@
+GET /api HTTP/1.1
+Host: localhost:8098
+
+# Comportamiento esperado:
+# 1ª petición -> 200, X-RateLimit-Remaining: 2
+# 2ª petición -> 200, X-RateLimit-Remaining: 1
+# 3ª petición -> 200, X-RateLimit-Remaining: 0
+# 4ª petición -> 429, Retry-After: 60

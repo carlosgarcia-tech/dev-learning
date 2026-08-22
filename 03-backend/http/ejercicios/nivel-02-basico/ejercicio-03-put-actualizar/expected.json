@@ -1,0 +1,4 @@
+{
+  "status": 200,
+  "body": {"id": 1, "nombre": "Teclado mecánico", "precio": 79.99, "stock": 5}
+}

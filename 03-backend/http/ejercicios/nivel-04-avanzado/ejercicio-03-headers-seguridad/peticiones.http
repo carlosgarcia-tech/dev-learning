@@ -1,0 +1,10 @@
+GET / HTTP/1.1
+Host: localhost:8097
+
+(Respuesta esperada)
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Content-Security-Policy: default-src 'self'

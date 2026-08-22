@@ -1,0 +1,51 @@
+GET /v1/products HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+GET /v1/products/42 HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+POST /v1/products HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 40
+
+{"name":"Monitor","price":199}
+
+---
+
+PUT /v1/products/42 HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 54
+
+{"name":"Monitor 4K","price":249,"stock":30}
+
+---
+
+PATCH /v1/products/42 HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 16
+
+{"price":229}
+
+---
+
+DELETE /v1/products/42 HTTP/1.1
+Host: api.tienda.com
+
+---
+
+OPTIONS /v1/products HTTP/1.1
+Host: api.tienda.com
+
+---
+
+HEAD /v1/products/42 HTTP/1.1
+Host: api.tienda.com

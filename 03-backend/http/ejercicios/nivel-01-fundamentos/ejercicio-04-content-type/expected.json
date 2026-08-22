@@ -1,0 +1,12 @@
+{
+  "tipos": {
+    "json_api": "application/json; charset=utf-8",
+    "pagina_html": "text/html; charset=utf-8",
+    "imagen_png": "image/png",
+    "formulario_clasico": "application/x-www-form-urlencoded",
+    "subida_archivo": "multipart/form-data",
+    "texto_plano": "text/plain; charset=utf-8",
+    "binario_generico": "application/octet-stream",
+    "documento_xml": "application/xml; charset=utf-8"
+  }
+}

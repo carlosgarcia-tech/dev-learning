@@ -1,0 +1,85 @@
+# API REST completa - tienda online
+
+GET /products HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+GET /products/42 HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+POST /products HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 40
+
+{"name":"Monitor","price":199}
+
+---
+
+PATCH /products/42 HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 16
+
+{"price":229}
+
+---
+
+DELETE /products/42 HTTP/1.1
+Host: api.tienda.com
+
+---
+
+GET /users HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+POST /users HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 32
+
+{"nombre":"Ana","email":"a@x.com"}
+
+---
+
+GET /users/7/orders HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+POST /users/7/orders HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 45
+
+{"items":[{"productId":42,"qty":2}]}
+
+---
+
+GET /users/7/orders/15 HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+---
+
+PATCH /users/7/orders/15 HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 24
+
+{"status":"cancelled"}
+
+---
+
+GET /orders/15/items HTTP/1.1
+Host: api.tienda.com
+Accept: application/json

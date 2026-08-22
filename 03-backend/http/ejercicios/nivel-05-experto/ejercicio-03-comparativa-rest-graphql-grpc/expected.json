@@ -1,0 +1,8 @@
+{
+  "rest": {"formato": "JSON", "endpoints": "multiple"},
+  "graphql": {"formato": "JSON", "endpoints": "uno"},
+  "grpc": {"formato": "Protobuf", "endpoints": "metodos"},
+  "mejor_para_api_publica": "REST",
+  "mejor_para_microservicios": "gRPC",
+  "evita_over_fetching": "GraphQL"
+}

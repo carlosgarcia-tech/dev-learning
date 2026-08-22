@@ -1,0 +1,16 @@
+{
+  "rutas": {
+    "listar_productos": "GET /products",
+    "obtener_producto": "GET /products/{id}",
+    "crear_producto": "POST /products",
+    "actualizar_producto": "PATCH /products/{id}",
+    "borrar_producto": "DELETE /products/{id}",
+    "listar_usuarios": "GET /users",
+    "crear_usuario": "POST /users",
+    "listar_pedidos_de_usuario": "GET /users/{id}/orders",
+    "crear_pedido_de_usuario": "POST /users/{id}/orders",
+    "obtener_pedido_de_usuario": "GET /users/{id}/orders/{orderId}",
+    "cancelar_pedido": "PATCH /users/{id}/orders/{orderId}",
+    "listar_items_de_pedido": "GET /orders/{id}/items"
+  }
+}

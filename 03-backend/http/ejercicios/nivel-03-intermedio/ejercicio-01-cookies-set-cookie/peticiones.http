@@ -1,0 +1,12 @@
+POST /login HTTP/1.1
+Host: localhost:8089
+Content-Type: application/json
+Content-Length: 32
+
+{"usuario":"ana","pass":"123"}
+
+---
+
+GET /perfil HTTP/1.1
+Host: localhost:8089
+Cookie: sesion=abc123

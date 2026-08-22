@@ -1,0 +1,4 @@
+{
+  "status": 201,
+  "body": {"id": 1, "nombre": "Ana", "email": "ana@ejemplo.com", "activo": true}
+}

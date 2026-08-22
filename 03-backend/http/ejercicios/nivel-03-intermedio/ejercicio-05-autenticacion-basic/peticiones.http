@@ -1,0 +1,3 @@
+GET /privado HTTP/1.1
+Host: localhost:8093
+Authorization: Basic YWRtaW46c2VjcmV0bw==

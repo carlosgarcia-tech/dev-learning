@@ -1,0 +1,34 @@
+# Peticiones de ejemplo comparativas
+
+# === REST ===
+# Múltiples endpoints, JSON
+
+GET /products HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+GET /products/42 HTTP/1.1
+Host: api.tienda.com
+Accept: application/json
+
+POST /products HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 40
+
+{"name":"Monitor","price":199}
+
+# === GraphQL ===
+# Un solo endpoint, el cliente pide lo que necesita
+
+POST /graphql HTTP/1.1
+Host: api.tienda.com
+Content-Type: application/json
+Content-Length: 73
+
+{"query":"{ product(id:42){ id name price } }"}
+
+# === gRPC ===
+# Métodos del servicio, Protobuf binario sobre HTTP/2
+# (no es texto plano; se define en un .proto)
+# service ProductService { rpc GetProduct(ProductRequest) returns (Product); }

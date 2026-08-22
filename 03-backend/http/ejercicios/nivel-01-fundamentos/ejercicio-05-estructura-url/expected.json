@@ -1,0 +1,13 @@
+{
+  "url": {
+    "esquema": "https",
+    "host": "api.tienda.com",
+    "puerto": "8443",
+    "path": "/v1/products",
+    "query": {
+      "limit": "10",
+      "sort": "desc"
+    },
+    "fragment": "resultados"
+  }
+}

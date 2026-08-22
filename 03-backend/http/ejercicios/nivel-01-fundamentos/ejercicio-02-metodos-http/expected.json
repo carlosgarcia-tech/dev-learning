@@ -1,0 +1,12 @@
+{
+  "operaciones": {
+    "listar_productos": "GET",
+    "obtener_producto_por_id": "GET",
+    "crear_producto": "POST",
+    "reemplazar_producto": "PUT",
+    "modificar_precio_producto": "PATCH",
+    "borrar_producto": "DELETE",
+    "saber_metodos_soportados": "OPTIONS",
+    "obtener_solo_headers": "HEAD"
+  }
+}

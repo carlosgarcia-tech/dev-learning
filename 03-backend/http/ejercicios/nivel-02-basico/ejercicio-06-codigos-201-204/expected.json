@@ -1,0 +1,10 @@
+{
+  "escenarios": {
+    "post_crea_con_body": 201,
+    "delete_sin_body": 204,
+    "post_crea_sin_body": 204,
+    "get_existente": 200,
+    "put_reemplaza_con_body": 200,
+    "delete_inexistente": 404
+  }
+}

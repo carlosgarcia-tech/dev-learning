@@ -1,0 +1,15 @@
+GET /events HTTP/1.1
+Host: localhost:8102
+Accept: text/event-stream
+
+(Respuesta)
+HTTP/1.1 200 OK
+Content-Type: text/event-stream
+Cache-Control: no-cache
+Connection: keep-alive
+
+data: {"n": 1, "time": 1724304000}
+
+data: {"n": 2, "time": 1724304001}
+
+data: {"n": 3, "time": 1724304002}

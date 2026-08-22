@@ -1,0 +1,4 @@
+{
+  "handshake_status": 101,
+  "respuesta_headers": ["Upgrade", "Connection", "Sec-WebSocket-Accept"]
+}

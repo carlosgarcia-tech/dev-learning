@@ -1,0 +1,5 @@
+{
+  "dentro_limite": 200,
+  "fuera_limite": 429,
+  "header_reintento": "Retry-After"
+}

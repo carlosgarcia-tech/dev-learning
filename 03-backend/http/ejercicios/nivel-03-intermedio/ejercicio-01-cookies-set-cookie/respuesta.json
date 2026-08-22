@@ -1,0 +1,7 @@
+{
+  "atributos": {
+    "HttpOnly": true,
+    "Secure": true,
+    "SameSite": "Lax"
+  }
+}

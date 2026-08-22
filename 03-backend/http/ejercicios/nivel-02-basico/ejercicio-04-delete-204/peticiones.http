@@ -1,0 +1,2 @@
+DELETE /tareas/7 HTTP/1.1
+Host: localhost:8086

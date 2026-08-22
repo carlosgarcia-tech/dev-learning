@@ -1,0 +1,15 @@
+GET /productos?categoria=electronica&orden=desc&limite=5 HTTP/1.1
+Host: localhost:8083
+Accept: application/json
+
+(Respuesta)
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "total": 2,
+  "productos": [
+    {"id": 3, "nombre": "Monitor", "categoria": "electronica", "precio": 249.99},
+    {"id": 1, "nombre": "Teclado", "categoria": "electronica", "precio": 49.99}
+  ]
+}

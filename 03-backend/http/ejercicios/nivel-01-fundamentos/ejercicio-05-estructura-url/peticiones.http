@@ -1,0 +1,11 @@
+GET https://api.tienda.com:8443/v1/products?limit=10&sort=desc#resultados HTTP/1.1
+Accept: application/json
+User-Agent: curl/8.0
+
+# Descomposición:
+# esquema:  https
+# host:     api.tienda.com
+# puerto:   8443
+# path:     /v1/products
+# query:    limit=10&sort=desc
+# fragment: resultados   (no se envía al servidor)

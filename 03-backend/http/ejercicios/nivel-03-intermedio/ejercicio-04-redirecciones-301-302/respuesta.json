@@ -1,0 +1,6 @@
+{
+  "rutas": {
+    "viejo": {"status": 301, "location": "/nuevo"},
+    "temp": {"status": 302, "location": "/nuevo"}
+  }
+}

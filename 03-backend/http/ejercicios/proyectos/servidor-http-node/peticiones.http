@@ -1,0 +1,46 @@
+# Peticiones de ejemplo para el proyecto "Servidor HTTP desde cero"
+
+### Health check
+GET http://localhost:3000/health
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{"username":"admin","password":"1234"}
+
+### Listar tareas (pegar el token del login)
+GET http://localhost:3000/tasks
+Authorization: Bearer <pegar-token-aqui>
+
+### Crear tarea
+POST http://localhost:3000/tasks
+Authorization: Bearer <pegar-token-aqui>
+Content-Type: application/json
+
+{"titulo":"Aprender WebSockets"}
+
+### Obtener una tarea
+GET http://localhost:3000/tasks/1
+Authorization: Bearer <pegar-token-aqui>
+
+### Actualizar parcialmente
+PATCH http://localhost:3000/tasks/1
+Authorization: Bearer <pegar-token-aqui>
+Content-Type: application/json
+
+{"hecho": true}
+
+### Borrar
+DELETE http://localhost:3000/tasks/1
+Authorization: Bearer <pegar-token-aqui>
+
+### Revalidar con ETag
+GET http://localhost:3000/tasks
+Authorization: Bearer <pegar-token-aqui>
+If-None-Match: "<pegar-etag-aqui>"
+
+### CORS preflight
+OPTIONS http://localhost:3000/tasks
+Origin: https://app.ejemplo.com
+Access-Control-Request-Method: POST

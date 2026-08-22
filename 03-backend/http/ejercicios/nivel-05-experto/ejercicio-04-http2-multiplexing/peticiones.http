@@ -1,0 +1,15 @@
+# HTTP/2 en texto conceptual (realmente es binario, esto es ilustrativo)
+
+# Una sola conexión TCP, múltiples streams paralelos
+# Stream 1:  GET /index.html
+# Stream 3:  GET /style.css
+# Stream 5:  GET /script.js
+# (todos en la misma conexión, sin bloquearse entre sí)
+
+# Headers comprimidos con HPACK (diccionario compartido)
+# Server push (obsoleto): el servidor podía enviar recursos sin pedirlos
+
+# HTTP/2 requiere TLS en la práctica (negociación ALPN h2)
+GET / HTTP/1.1
+Host: ejemplo.com
+# (en HTTP/2 esto sería un frame de HEADERS binario, no texto)

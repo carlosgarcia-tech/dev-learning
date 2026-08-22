@@ -1,0 +1,9 @@
+GET /dato HTTP/1.1
+Host: localhost:8087
+Accept: application/json
+
+---
+
+GET /dato HTTP/1.1
+Host: localhost:8087
+Accept: application/xml

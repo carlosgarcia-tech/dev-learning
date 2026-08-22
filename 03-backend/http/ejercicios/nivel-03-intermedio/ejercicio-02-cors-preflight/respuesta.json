@@ -1,0 +1,7 @@
+{
+  "headers_preflight": {
+    "Access-Control-Allow-Origin": "https://app.tienda.com",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+  }
+}
