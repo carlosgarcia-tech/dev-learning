@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # Script para crear un nuevo ejercicio de Rust
@@ -25,9 +25,9 @@ TITULO=$(echo "$SLUG" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr(
 # Package name de Cargo: slug con guiones (válido para Cargo) y sin guión bajo
 CRATE_NAME=$(echo "$SLUG" | tr '_' '-')
 
-# Directorio base del ejercicio (relativo a la raíz del repo)
-BASE_DIR="01-programming/rust/ejercicios/$LEVEL"
-DIR="$BASE_DIR/ejercicio-$NUM_PADDED-$SLUG"
+# Directorio base del ejercicio (resuelto desde la ubicación del script)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DIR="$SCRIPT_DIR/../01-programming/rust/ejercicios/$LEVEL/ejercicio-$NUM_PADDED-$SLUG"
 
 mkdir -p "$DIR/src"
 

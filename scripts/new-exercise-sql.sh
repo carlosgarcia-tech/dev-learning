@@ -1,8 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-LEVEL=$1
-NUM=$2
-SLUG=$3
+# new-exercise-sql.sh — Crea un nuevo ejercicio de SQL (SQLite).
+#
+# Genera ejercicio-NN-slug/ con:
+#   README.md      (enunciado, requisitos, pistas y solución)
+#   schema.sql     (creación de tablas + datos)
+#   solucion.sql   (consultas a verificar)
+#   expected.txt   (salida esperada)
+#   test.sh        (ejecuta schema + solución y compara con expected)
+#
+# Uso:
+#   scripts/new-exercise-sql.sh <nivel> <numero> <slug>
+#   scripts/new-exercise-sql.sh nivel-01-fundamentos 01 select-basico
+
+LEVEL=${1:-}
+NUM=${2:-}
+SLUG=${3:-}
 
 if [ -z "$LEVEL" ] || [ -z "$NUM" ] || [ -z "$SLUG" ]; then
     echo "Uso: ./new-exercise-sql.sh <nivel> <numero> <slug>"
@@ -27,19 +41,30 @@ cat > "$DIR/README.md" << EOR
 
 ## Enunciado
 
+Describe aquí las consultas que debe implementar \`solucion.sql\`.
+
 ## Requisitos
 
 - [ ] Las consultas devuelven los resultados esperados
 - [ ] Los tests pasan: \`bash test.sh\`
+
+## Pistas
+
+<details>
+<summary>Mostrar pistas</summary>
+
+-
+
+</details>
 
 ## Solución
 
 <details>
 <summary>Mostrar solución</summary>
 
-\`\`\`\`sql
+\`\`\`sql
 -- Código de la solución
-\`\`\`\`
+\`\`\`
 
 </details>
 EOR
@@ -58,15 +83,22 @@ EOR
 
 cat > "$DIR/test.sh" << EOR
 #!/bin/bash
+# Ejecuta schema.sql + solucion.sql sobre una base SQLite temporal
+# y compara la salida con expected.txt
 
+set -e
+rm -f test.db
 sqlite3 test.db < schema.sql
 sqlite3 -header -column test.db < solucion.sql > output.txt
 
-if diff output.txt expected.txt; then
+if diff -q output.txt expected.txt > /dev/null; then
+    rm -f test.db output.txt
     echo "✅ Tests pasaron"
     exit 0
 else
     echo "❌ Tests fallaron"
+    diff output.txt expected.txt || true
+    rm -f test.db output.txt
     exit 1
 fi
 EOR

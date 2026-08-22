@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # Script para crear un nuevo ejercicio de JavaScript
@@ -22,9 +22,9 @@ NUM_PADDED=$(printf "%02d" "$NUM")
 # Título legible a partir del slug (reemplaza guiones por espacios y capitaliza)
 TITULO=$(echo "$SLUG" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
 
-# Directorio base del ejercicio (relativo a la raíz del repo)
-BASE_DIR="01-programming/javascript/ejercicios/$LEVEL"
-DIR="$BASE_DIR/ejercicio-$NUM_PADDED-$SLUG"
+# Directorio base del ejercicio (resuelto desde la ubicación del script)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DIR="$SCRIPT_DIR/../01-programming/javascript/ejercicios/$LEVEL/ejercicio-$NUM_PADDED-$SLUG"
 
 mkdir -p "$DIR"
 
