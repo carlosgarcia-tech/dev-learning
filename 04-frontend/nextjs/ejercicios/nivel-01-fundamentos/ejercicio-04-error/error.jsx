@@ -1,0 +1,1 @@
+// Tu error.jsx aquí

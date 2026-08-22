@@ -1,0 +1,1 @@
+// Tu page.jsx aquí

@@ -1,0 +1,1 @@
+// Tu Hero.jsx aquí

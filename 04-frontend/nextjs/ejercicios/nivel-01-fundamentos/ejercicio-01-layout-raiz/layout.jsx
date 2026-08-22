@@ -1,0 +1,1 @@
+// Tu layout.jsx aquí
