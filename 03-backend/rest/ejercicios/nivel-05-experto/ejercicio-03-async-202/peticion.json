@@ -1,0 +1,7 @@
+{
+  "method": "POST",
+  "url": "/reports",
+  "headers": { "Content-Type": "application/json", "Accept": "application/json" },
+  "body": { "type": "monthly_sales", "month": "2024-01" },
+  "nota": "Generar el reporte tarda ~30s. Devuelve 202 y el cliente hace polling del job."
+}

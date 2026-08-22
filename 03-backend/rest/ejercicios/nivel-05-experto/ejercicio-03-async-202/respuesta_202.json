@@ -1,0 +1,5 @@
+{
+  "status": 202,
+  "headers": { "Content-Type": "application/json", "Location": "/jobs/job_abc123" },
+  "body": { "jobId": "job_abc123", "status": "pending", "statusUrl": "/jobs/job_abc123" }
+}

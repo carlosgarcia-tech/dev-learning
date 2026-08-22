@@ -1,0 +1,10 @@
+{
+  "status": 403,
+  "headers": { "Content-Type": "application/problem+json" },
+  "body": {
+    "type": "https://docs.api.example/errors/forbidden",
+    "title": "Forbidden",
+    "status": 403,
+    "detail": "No tienes permiso para acceder a este recurso"
+  }
+}

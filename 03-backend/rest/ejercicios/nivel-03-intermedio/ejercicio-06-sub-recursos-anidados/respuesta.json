@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "data": [
+      { "id": "ord_456", "status": "paid", "total": 99.90 },
+      { "id": "ord_457", "status": "pending", "total": 45.50 }
+    ],
+    "pagination": { "limit": 20, "offset": 0, "total": 2 }
+  }
+}

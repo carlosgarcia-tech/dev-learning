@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "data": [
+      { "id": "prod_001", "name": "Teclado mecánico", "price": 89.90, "category": "perifericos", "stock": 15 },
+      { "id": "prod_002", "name": "Ratón", "price": 19.90, "category": "perifericos", "stock": 30 }
+    ],
+    "pagination": { "limit": 20, "offset": 0, "total": 2 }
+  }
+}

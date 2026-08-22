@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "url": "/orders/ord_456",
+  "headers": { "Accept": "application/json" },
+  "body": null
+}

@@ -1,0 +1,12 @@
+{
+  "operaciones": {
+    "listar_productos": "GET /products",
+    "obtener_producto_por_id": "GET /products/prod_001",
+    "crear_producto": "POST /products",
+    "reemplazar_producto": "PUT /products/prod_001",
+    "modificar_precio_producto": "PATCH /products/prod_001",
+    "borrar_producto": "DELETE /products/prod_001",
+    "listar_pedidos_de_usuario": "GET /users/usr_123/orders",
+    "obtener_pedido_de_usuario": "GET /users/usr_123/orders/ord_456"
+  }
+}

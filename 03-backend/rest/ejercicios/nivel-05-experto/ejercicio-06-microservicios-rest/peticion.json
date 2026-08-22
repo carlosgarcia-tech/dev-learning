@@ -1,0 +1,6 @@
+{
+  "descripcion": "Diseña la interacción REST entre orders-service y products-service para verificar stock al crear un pedido.",
+  "servicio_consumidor": "orders-service",
+  "servicio_proveedor": "products-service",
+  "operacion": "verificar stock del producto al crear un pedido"
+}

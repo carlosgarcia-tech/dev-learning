@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "id": "prod_001",
+    "name": "Teclado mecánico",
+    "price": 89.90,
+    "stock": 15,
+    "createdAt": "2024-01-15T10:30:00Z"
+  }
+}

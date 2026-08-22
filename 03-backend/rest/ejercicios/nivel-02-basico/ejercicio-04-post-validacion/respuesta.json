@@ -1,0 +1,15 @@
+{
+  "status": 422,
+  "headers": { "Content-Type": "application/problem+json" },
+  "body": {
+    "type": "https://docs.api.example/errors/validation",
+    "title": "Validation Failed",
+    "status": 422,
+    "detail": "Uno o más campos son inválidos",
+    "errors": [
+      { "field": "name", "code": "min_length", "message": "name debe tener al menos 2 caracteres" },
+      { "field": "price", "code": "min_value", "message": "price debe ser >= 0" },
+      { "field": "stock", "code": "invalid_type", "message": "stock debe ser un entero" }
+    ]
+  }
+}

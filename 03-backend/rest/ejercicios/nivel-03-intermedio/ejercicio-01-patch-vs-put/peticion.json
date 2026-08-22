@@ -1,0 +1,12 @@
+{
+  "estado_previo": {
+    "id": "prod_001",
+    "name": "Teclado mecánico",
+    "price": 89.90,
+    "stock": 15,
+    "active": true
+  },
+  "peticion_parcial": { "price": 99.90 },
+  "caso_patch": { "method": "PATCH", "url": "/products/prod_001" },
+  "caso_put": { "method": "PUT", "url": "/products/prod_001" }
+}

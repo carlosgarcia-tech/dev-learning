@@ -1,0 +1,4 @@
+{
+  "caso_401": { "method": "GET", "url": "/admin/users", "headers": {}, "descripcion": "sin token" },
+  "caso_403": { "method": "GET", "url": "/admin/users", "headers": { "Authorization": "Bearer <token_usuario_viewer>" }, "descripcion": "rol insuficiente" }
+}

@@ -1,0 +1,16 @@
+{
+  "status": 201,
+  "headers": {
+    "Content-Type": "application/json",
+    "Location": "/products/prod_010"
+  },
+  "body": {
+    "id": "prod_010",
+    "name": "Webcam HD",
+    "price": 45.50,
+    "stock": 10,
+    "category": "perifericos",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z"
+  }
+}

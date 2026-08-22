@@ -1,0 +1,12 @@
+{
+  "method": "POST",
+  "url": "/products/bulk",
+  "headers": { "Content-Type": "application/json", "Accept": "application/json" },
+  "body": {
+    "products": [
+      { "name": "Teclado", "price": 89.90 },
+      { "name": "", "price": -5 },
+      { "name": "Monitor", "price": 199.90 }
+    ]
+  }
+}

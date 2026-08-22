@@ -1,0 +1,18 @@
+{
+  "status": 429,
+  "headers": {
+    "Content-Type": "application/problem+json",
+    "Retry-After": 60,
+    "X-RateLimit-Limit": 100,
+    "X-RateLimit-Remaining": 0,
+    "X-RateLimit-Reset": 1700000060
+  },
+  "body": {
+    "type": "https://docs.api.example/errors/rate-limit",
+    "title": "Too Many Requests",
+    "status": 429,
+    "code": "rate_limit_exceeded",
+    "detail": "Has superado el límite de 100 peticiones por minuto",
+    "message": "Demasiadas peticiones, reintenta en 60s"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "caso_v1": { "method": "GET", "url": "/v1/products/prod_001" },
+  "caso_v2": { "method": "GET", "url": "/v2/products/prod_001" }
+}

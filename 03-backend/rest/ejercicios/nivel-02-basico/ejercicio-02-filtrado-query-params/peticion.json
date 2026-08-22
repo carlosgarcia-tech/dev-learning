@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "url": "/products?category=perifericos&in_stock=true",
+  "headers": { "Accept": "application/json" },
+  "body": null
+}

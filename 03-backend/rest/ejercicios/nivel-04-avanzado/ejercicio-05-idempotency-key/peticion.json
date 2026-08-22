@@ -1,0 +1,22 @@
+{
+  "primera_peticion": {
+    "method": "POST",
+    "url": "/payments",
+    "headers": { "Idempotency-Key": "7c8f3a2e-1234-4abc-9876-abc123def456", "Content-Type": "application/json" },
+    "body": { "orderId": "ord_456", "amount": 99.90 }
+  },
+  "reintento": {
+    "method": "POST",
+    "url": "/payments",
+    "headers": { "Idempotency-Key": "7c8f3a2e-1234-4abc-9876-abc123def456", "Content-Type": "application/json" },
+    "body": { "orderId": "ord_456", "amount": 99.90 },
+    "nota": "mismo key, mismo body -> resultado cacheado"
+  },
+  "conflicto": {
+    "method": "POST",
+    "url": "/payments",
+    "headers": { "Idempotency-Key": "7c8f3a2e-1234-4abc-9876-abc123def456", "Content-Type": "application/json" },
+    "body": { "orderId": "ord_999", "amount": 50.00 },
+    "nota": "mismo key, body distinto -> 409"
+  }
+}

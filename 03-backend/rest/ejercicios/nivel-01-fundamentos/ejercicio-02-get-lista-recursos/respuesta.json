@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "data": [
+      { "id": "prod_001", "name": "Teclado mecánico", "price": 89.90 },
+      { "id": "prod_002", "name": "Ratón", "price": 19.90 },
+      { "id": "prod_003", "name": "Monitor", "price": 199.90 }
+    ],
+    "pagination": { "limit": 20, "offset": 0, "total": 3 }
+  }
+}

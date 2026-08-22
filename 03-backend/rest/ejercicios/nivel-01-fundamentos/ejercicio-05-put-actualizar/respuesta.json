@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "id": "prod_001",
+    "name": "Teclado mecánico RGB",
+    "price": 109.90,
+    "stock": 20,
+    "category": "perifericos",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-16T08:00:00Z"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "v1": {
+    "id": "prod_001",
+    "name": "Teclado mecánico",
+    "price": 89.90,
+    "stock": 15,
+    "categoryId": "cat_perifericos",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z",
+    "deletedAt": null
+  },
+  "v2": {
+    "id": "prod_001",
+    "name": "Teclado mecánico",
+    "unitPrice": 89.90,
+    "currency": "EUR",
+    "stock": 15,
+    "categoryId": "cat_perifericos",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-15T10:30:00Z",
+    "deletedAt": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": 201,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "id": "wh_001",
+    "url": "https://client.example.com/hooks",
+    "events": ["order.paid", "order.shipped"],
+    "secret": "whsec_abc123def456"
+  }
+}

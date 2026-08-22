@@ -1,0 +1,589 @@
+openapi: 3.0.3
+info:
+  title: API REST de E-commerce
+  version: 1.0.0
+  description: |
+    API REST completa para un e-commerce: productos, categorías, usuarios,
+    carrito, pedidos, pagos, webhooks y reportes asíncronos.
+
+    Incluye autenticación JWT, autorización por roles, rate limiting,
+    paginación por cursor, webhooks firmados, idempotencia en pagos y versionado.
+  contact:
+    name: Soporte API
+    email: api@example.com
+servers:
+  - url: https://api.example.com/v1
+    description: Producción
+  - url: https://api.staging.example.com/v1
+    description: Staging
+tags:
+  - name: auth
+    description: Autenticación
+  - name: products
+    description: Productos del catálogo
+  - name: categories
+    description: Categorías
+  - name: users
+    description: Usuarios
+  - name: carts
+    description: Carrito de compra
+  - name: orders
+    description: Pedidos
+  - name: payments
+    description: Pagos
+  - name: webhooks
+    description: Webhooks
+  - name: reports
+    description: Reportes asíncronos
+security:
+  - BearerAuth: []
+paths:
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: Iniciar sesión
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+              required: [email, password]
+      responses:
+        '200':
+          description: Tokens de acceso y refresco
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken: { type: string }
+                  refreshToken: { type: string }
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth/refresh:
+    post:
+      tags: [auth]
+      summary: Renovar token de acceso
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken: { type: string }
+              required: [refreshToken]
+      responses:
+        '200':
+          description: Nuevo access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken: { type: string }
+  /products:
+    get:
+      tags: [products]
+      summary: Listar productos (paginación por cursor)
+      security: []
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20, minimum: 1, maximum: 100 }
+        - name: cursor
+          in: query
+          description: Cursor de paginación (base64) devuelto en la página anterior
+          schema: { type: string }
+        - name: category
+          in: query
+          schema: { type: string }
+        - name: sort
+          in: query
+          schema: { type: string, example: '-price' }
+      responses:
+        '200':
+          description: Lista paginada de productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      tags: [products]
+      summary: Crear producto (admin)
+      description: |
+        [DEPRECATED en /v1] Este endpoint se mueve a /v2/products donde el campo
+        `price` se renombra a `unitPrice` y se añade `currency`.
+        En /v1 sigue funcionando con `price` hasta el sunset.
+      deprecated: true
+      security:
+        - BearerAuth: [admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductCreate' }
+      responses:
+        '201':
+          description: Producto creado
+          headers:
+            Location: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+  /products/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [products]
+      summary: Obtener producto por id
+      security: []
+      responses:
+        '200':
+          description: Producto
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [products]
+      summary: Borrar producto (soft delete, admin)
+      security:
+        - BearerAuth: [admin]
+      responses:
+        '204': { description: Borrado (soft delete) }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /categories:
+    get:
+      tags: [categories]
+      summary: Listar categorías
+      security: []
+      responses:
+        '200':
+          description: Lista de categorías
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Category' }
+    post:
+      tags: [categories]
+      summary: Crear categoría (admin)
+      security:
+        - BearerAuth: [admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CategoryCreate' }
+      responses:
+        '201':
+          description: Categoría creada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Category' }
+  /users:
+    post:
+      tags: [users]
+      summary: Registrar usuario
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+                name: { type: string }
+              required: [email, password]
+      responses:
+        '201':
+          description: Usuario creado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /users/me:
+    get:
+      tags: [users]
+      summary: Perfil del usuario autenticado
+      security:
+        - BearerAuth: [customer, admin]
+      responses:
+        '200':
+          description: Usuario actual
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /carts/me:
+    get:
+      tags: [carts]
+      summary: Obtener carrito del usuario actual
+      security:
+        - BearerAuth: [customer, admin]
+      responses:
+        '200':
+          description: Carrito
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cart' }
+  /carts/items:
+    post:
+      tags: [carts]
+      summary: Añadir item al carrito
+      security:
+        - BearerAuth: [customer, admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId: { type: string }
+                quantity: { type: integer, minimum: 1 }
+              required: [productId, quantity]
+      responses:
+        '201':
+          description: Item añadido
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CartItem' }
+  /orders:
+    post:
+      tags: [orders]
+      summary: Crear pedido (checkout desde el carrito)
+      security:
+        - BearerAuth: [customer, admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartId: { type: string }
+              required: [cartId]
+      responses:
+        '201':
+          description: Pedido creado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    get:
+      tags: [orders]
+      summary: Listar pedidos (paginación por cursor)
+      security:
+        - BearerAuth: [customer, admin]
+      parameters:
+        - name: cursor
+          in: query
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Order' } }
+                  pagination: { $ref: '#/components/schemas/CursorPagination' }
+  /orders/{id}/cancel:
+    post:
+      tags: [orders]
+      summary: Cancelar pedido
+      security:
+        - BearerAuth: [customer, admin]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Pedido cancelado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /payments:
+    post:
+      tags: [payments]
+      summary: Procesar pago (con Idempotency-Key)
+      description: |
+        Usa la cabecera `Idempotency-Key` para evitar cobros duplicados por reintentos.
+        Misma key + mismo body → devuelve el resultado cacheado.
+        Misma key + body distinto → 409 Conflict.
+      security:
+        - BearerAuth: [customer, admin]
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId: { type: string }
+                amount: { type: number, minimum: 0 }
+                currency: { type: string, example: EUR }
+              required: [orderId, amount]
+      responses:
+        '201':
+          description: Pago procesado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Payment' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /webhooks:
+    post:
+      tags: [webhooks]
+      summary: Registrar webhook
+      description: |
+        Registra una URL a la que el servidor enviará eventos firmados con HMAC-SHA256.
+        Eventos disponibles: `order.paid`, `order.shipped`.
+      security:
+        - BearerAuth: [customer, admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url: { type: string, format: uri }
+                events: { type: array, items: { type: string } }
+              required: [url, events]
+      responses:
+        '201':
+          description: Webhook registrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  url: { type: string }
+                  events: { type: array, items: { type: string } }
+                  secret: { type: string, description: Secreto para verificar la firma HMAC }
+  /reports:
+    post:
+      tags: [reports]
+      summary: Solicitar reporte (operación asíncrona)
+      description: |
+        Devuelve 202 Accepted con la URI de un job. El cliente consulta el estado
+        con GET /jobs/{id} hasta que status sea `completed` o `failed`.
+      security:
+        - BearerAuth: [admin]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: monthly_sales }
+                month: { type: string, example: '2024-01' }
+              required: [type, month]
+      responses:
+        '202':
+          description: Reporte aceptado, procesando asíncronamente
+          headers:
+            Location: { schema: { type: string, example: /v1/jobs/job_abc123 } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Job' }
+  /jobs/{id}:
+    get:
+      tags: [reports]
+      summary: Consultar estado de un job asíncrono
+      security:
+        - BearerAuth: [admin]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Estado del job
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Job' }
+        '404': { $ref: '#/components/responses/NotFound' }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT obtenido en /auth/login. Enviar como `Authorization: Bearer <token>`.
+  schemas:
+    Product:
+      type: object
+      properties:
+        id: { type: string, example: prod_001 }
+        name: { type: string }
+        price: { type: number, minimum: 0, description: 'En v2: unitPrice + currency' }
+        stock: { type: integer, minimum: 0 }
+        categoryId: { type: string }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        deletedAt: { type: string, format: date-time, nullable: true }
+      required: [id, name, price]
+    ProductCreate:
+      type: object
+      properties:
+        name: { type: string, minLength: 2, maxLength: 100 }
+        price: { type: number, minimum: 0 }
+        stock: { type: integer, minimum: 0, default: 0 }
+        categoryId: { type: string }
+      required: [name, price]
+    ProductList:
+      type: object
+      properties:
+        data: { type: array, items: { $ref: '#/components/schemas/Product' } }
+        pagination: { $ref: '#/components/schemas/CursorPagination' }
+    Category:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        slug: { type: string }
+    CategoryCreate:
+      type: object
+      properties:
+        name: { type: string }
+        slug: { type: string }
+      required: [name]
+    User:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        name: { type: string }
+        role: { type: string, enum: [admin, customer] }
+        createdAt: { type: string, format: date-time }
+    Cart:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        items: { type: array, items: { $ref: '#/components/schemas/CartItem' } }
+    CartItem:
+      type: object
+      properties:
+        id: { type: string }
+        productId: { type: string }
+        quantity: { type: integer, minimum: 1 }
+        price: { type: number, description: Snapshot del precio en el momento de añadir }
+    Order:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        status: { type: string, enum: [pending, paid, shipped, delivered, cancelled] }
+        total: { type: number }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        paymentId: { type: string, nullable: true }
+    Payment:
+      type: object
+      properties:
+        id: { type: string }
+        orderId: { type: string }
+        amount: { type: number }
+        currency: { type: string }
+        status: { type: string, enum: [completed, failed] }
+    Job:
+      type: object
+      properties:
+        jobId: { type: string }
+        status: { type: string, enum: [pending, running, completed, failed] }
+        progress: { type: integer, minimum: 0, maximum: 100 }
+        statusUrl: { type: string }
+        result: { type: object, nullable: true }
+    CursorPagination:
+      type: object
+      properties:
+        limit: { type: integer }
+        nextCursor: { type: string, nullable: true }
+        hasMore: { type: boolean }
+    Error:
+      type: object
+      description: Error RESTful (RFC 7807)
+      properties:
+        type: { type: string, format: uri }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field: { type: string }
+              code: { type: string }
+              message: { type: string }
+  responses:
+    Unauthorized:
+      description: No autenticado
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: Sin permiso
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Conflict:
+      description: Conflicto (duplicado, idempotency, estado inválido)
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ValidationError:
+      description: Error de validación
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }
+    RateLimited:
+      description: Rate limit superado
+      headers:
+        Retry-After: { schema: { type: integer } }
+        X-RateLimit-Limit: { schema: { type: integer } }
+        X-RateLimit-Remaining: { schema: { type: integer } }
+        X-RateLimit-Reset: { schema: { type: integer } }
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Error' }

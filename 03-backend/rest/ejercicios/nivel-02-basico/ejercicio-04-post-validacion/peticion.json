@@ -1,0 +1,6 @@
+{
+  "method": "POST",
+  "url": "/products",
+  "headers": { "Content-Type": "application/json" },
+  "body": { "name": "", "price": -5, "stock": "mucho" }
+}

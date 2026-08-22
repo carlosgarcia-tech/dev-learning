@@ -1,0 +1,14 @@
+{
+  "method": "GET",
+  "url": "/products/prod_001?fields=name,price",
+  "headers": { "Accept": "application/json" },
+  "body": null,
+  "recurso_completo": {
+    "id": "prod_001",
+    "name": "Teclado mecánico",
+    "price": 89.90,
+    "stock": 15,
+    "category": "perifericos",
+    "createdAt": "2024-01-15T10:30:00Z"
+  }
+}

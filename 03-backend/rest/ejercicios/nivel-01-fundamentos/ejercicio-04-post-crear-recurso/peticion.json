@@ -1,0 +1,11 @@
+{
+  "method": "POST",
+  "url": "/products",
+  "headers": { "Content-Type": "application/json", "Accept": "application/json" },
+  "body": {
+    "name": "Webcam HD",
+    "price": 45.50,
+    "stock": 10,
+    "category": "perifericos"
+  }
+}

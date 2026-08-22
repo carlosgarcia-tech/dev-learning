@@ -1,0 +1,16 @@
+{
+  "method": "POST",
+  "url": "https://client.example.com/hooks",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-Webhook-Event": "order.paid",
+    "X-Webhook-Signature": "sha256=5f2b1c9a3e7d8f0b2a4c6e8d1f3a5b7c9e1d3f5a7b9c1e3d5f7a9b1c3e5d7f9a",
+    "X-Webhook-Id": "evt_001"
+  },
+  "body": {
+    "id": "evt_001",
+    "type": "order.paid",
+    "createdAt": "2024-01-15T12:00:00Z",
+    "data": { "orderId": "ord_456", "amount": 99.90, "currency": "EUR" }
+  }
+}

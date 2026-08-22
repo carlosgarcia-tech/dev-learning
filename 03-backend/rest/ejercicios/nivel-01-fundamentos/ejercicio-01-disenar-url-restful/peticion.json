@@ -1,0 +1,14 @@
+{
+  "descripcion": "Diseña las URLs RESTful para las operaciones de la tienda online.",
+  "recursos": ["productos", "usuarios", "pedidos"],
+  "operaciones_a_disenar": [
+    "listar_productos",
+    "obtener_producto_por_id",
+    "crear_producto",
+    "reemplazar_producto",
+    "modificar_precio_producto",
+    "borrar_producto",
+    "listar_pedidos_de_usuario",
+    "obtener_pedido_de_usuario"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "status": 401,
+  "headers": { "Content-Type": "application/problem+json", "WWW-Authenticate": "Bearer" },
+  "body": {
+    "type": "https://docs.api.example/errors/unauthorized",
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Se requiere un token Bearer válido"
+  }
+}

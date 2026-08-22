@@ -1,0 +1,4 @@
+{
+  "caso_1": { "method": "GET", "url": "/products/prod_999", "descripcion": "producto inexistente" },
+  "caso_2": { "method": "POST", "url": "/products", "body_raw": "{ name: Teclado, }", "descripcion": "JSON mal formado" }
+}

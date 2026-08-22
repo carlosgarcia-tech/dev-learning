@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "url": "/products",
+  "headers": { "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3JfMTIzIn0.sig" },
+  "body": null,
+  "nota": "El cliente ya hizo 100 peticiones en el último minuto (límite superado)."
+}

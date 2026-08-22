@@ -1,0 +1,6 @@
+{
+  "method": "PATCH",
+  "url": "/products/prod_001",
+  "headers": { "Content-Type": "application/json" },
+  "body": { "price": -10, "stock": -3, "category": "no-existe" }
+}

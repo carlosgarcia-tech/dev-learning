@@ -1,0 +1,5 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": { "id": "prod_001", "name": "Teclado mecánico", "unitPrice": 89.90, "currency": "EUR" }
+}

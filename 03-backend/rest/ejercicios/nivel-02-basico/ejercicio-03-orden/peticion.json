@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "url": "/products?sort=-price",
+  "headers": { "Accept": "application/json" },
+  "body": null
+}

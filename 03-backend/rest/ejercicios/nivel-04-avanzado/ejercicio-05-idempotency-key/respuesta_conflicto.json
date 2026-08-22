@@ -1,0 +1,10 @@
+{
+  "status": 409,
+  "headers": { "Content-Type": "application/problem+json" },
+  "body": {
+    "type": "https://docs.api.example/errors/idempotency-conflict",
+    "title": "Conflict",
+    "status": 409,
+    "detail": "Idempotency-Key ya usada con un body distinto"
+  }
+}

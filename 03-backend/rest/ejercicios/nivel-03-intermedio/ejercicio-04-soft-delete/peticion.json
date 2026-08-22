@@ -1,0 +1,5 @@
+{
+  "caso_delete": { "method": "DELETE", "url": "/products/prod_001" },
+  "caso_get_despues": { "method": "GET", "url": "/products/prod_001" },
+  "caso_get_include": { "method": "GET", "url": "/products/prod_001?include=deleted" }
+}

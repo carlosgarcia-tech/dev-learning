@@ -1,0 +1,5 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": { "id": "ord_456", "userId": "usr_123", "status": "paid", "total": 99.90 }
+}

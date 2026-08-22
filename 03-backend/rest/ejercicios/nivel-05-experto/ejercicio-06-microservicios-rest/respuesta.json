@@ -1,0 +1,14 @@
+{
+  "flujo": [
+    { "actor": "cliente", "accion": "crear pedido", "endpoint": "POST /orders" },
+    { "actor": "orders-service", "accion": "verificar stock del producto", "endpoint": "GET /products/{id}" },
+    { "actor": "products-service", "accion": "responder con producto y stock", "endpoint": "GET /products/{id}" },
+    { "actor": "orders-service", "accion": "crear el pedido si hay stock", "endpoint": "POST /orders" }
+  ],
+  "resiliencia": ["circuit-breaker", "timeout", "retry", "fallback", "bulkhead"],
+  "contrato": {
+    "endpoint": "/products/{id}",
+    "method": "GET",
+    "response": { "id": "string", "name": "string", "stock": "integer", "price": "number" }
+  }
+}

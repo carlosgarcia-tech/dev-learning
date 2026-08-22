@@ -1,0 +1,15 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "data": [
+      { "id": "prod_003", "name": "Monitor", "price": 199.90 },
+      { "id": "prod_004", "name": "Webcam", "price": 45.50 }
+    ],
+    "pagination": {
+      "limit": 2,
+      "nextCursor": "eyJpZCI6InByb2RfMDQifQ==",
+      "hasMore": true
+    }
+  }
+}

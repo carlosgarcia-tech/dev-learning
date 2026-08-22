@@ -1,0 +1,5 @@
+{
+  "descripcion": "Diseña la configuración del API gateway para products-service y orders-service.",
+  "microservicios": ["products-service", "orders-service"],
+  "responsabilidades_transversales": ["auth", "rateLimiting", "cors", "logging", "caching", "compression"]
+}

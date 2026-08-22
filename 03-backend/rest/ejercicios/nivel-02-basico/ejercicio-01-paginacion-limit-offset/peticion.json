@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "url": "/products?limit=2&offset=2",
+  "headers": { "Accept": "application/json" },
+  "body": null,
+  "estado_total": 5
+}

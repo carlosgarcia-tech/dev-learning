@@ -1,0 +1,4 @@
+{
+  "caso_lista": { "method": "GET", "url": "/users/usr_123/orders" },
+  "caso_item": { "method": "GET", "url": "/users/usr_123/orders/ord_456" }
+}

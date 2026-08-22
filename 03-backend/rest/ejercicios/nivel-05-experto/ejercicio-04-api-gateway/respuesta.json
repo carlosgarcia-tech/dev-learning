@@ -1,0 +1,11 @@
+{
+  "routes": [
+    { "path": "/products", "service": "products-service", "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+    { "path": "/orders", "service": "orders-service", "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"] }
+  ],
+  "crossCutting": ["auth", "rateLimiting", "cors", "logging", "caching", "compression"],
+  "defaults": {
+    "rateLimitPerMinute": 1000,
+    "timeoutSeconds": 30
+  }
+}

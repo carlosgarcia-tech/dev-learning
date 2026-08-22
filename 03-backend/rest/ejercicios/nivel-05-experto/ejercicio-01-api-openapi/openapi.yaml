@@ -1,0 +1,237 @@
+openapi: 3.0.3
+info:
+  title: API de Productos (E-commerce)
+  version: 1.0.0
+  description: |
+    API REST para gestionar productos de una tienda online.
+    Cubre CRUD completo, paginación y errores RESTful.
+  contact:
+    name: Soporte API
+    email: api@example.com
+  license:
+    name: MIT
+servers:
+  - url: https://api.example.com/v1
+    description: Producción
+  - url: https://api.staging.example.com/v1
+    description: Staging
+tags:
+  - name: products
+    description: Gestión de productos
+paths:
+  /products:
+    get:
+      tags: [products]
+      summary: Listar productos
+      description: Devuelve una lista paginada de productos.
+      parameters:
+        - name: limit
+          in: query
+          description: Número de elementos por página
+          required: false
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: offset
+          in: query
+          description: Desplazamiento para paginación
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: Lista de productos paginada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      tags: [products]
+      summary: Crear producto
+      description: Crea un nuevo producto. El id y los timestamps los asigna el servidor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+      responses:
+        '201':
+          description: Producto creado
+          headers:
+            Location:
+              description: URI del nuevo recurso
+              schema:
+                type: string
+                example: /products/prod_010
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /products/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identificador del producto
+        schema:
+          type: string
+          example: prod_001
+    get:
+      tags: [products]
+      summary: Obtener producto por id
+      responses:
+        '200':
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags: [products]
+      summary: Borrar producto
+      description: Borra un producto por id. Idempotente.
+      responses:
+        '204':
+          description: Producto borrado (sin contenido)
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Product:
+      type: object
+      description: Recurso producto completo
+      properties:
+        id:
+          type: string
+          example: prod_001
+        name:
+          type: string
+          example: Teclado mecánico
+        price:
+          type: number
+          format: float
+          minimum: 0
+          example: 89.90
+        stock:
+          type: integer
+          minimum: 0
+          example: 15
+        category:
+          type: string
+          example: perifericos
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2024-01-15T10:30:00Z'
+      required: [id, name, price]
+    ProductCreate:
+      type: object
+      description: Payload para crear un producto
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+          example: Teclado mecánico
+        price:
+          type: number
+          minimum: 0
+          example: 89.90
+        stock:
+          type: integer
+          minimum: 0
+          default: 0
+          example: 15
+        category:
+          type: string
+          example: perifericos
+      required: [name, price]
+    ProductList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+            total:
+              type: integer
+            next:
+              type: string
+              nullable: true
+      required: [data]
+    Error:
+      type: object
+      description: Error RESTful (RFC 7807)
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://docs.api.example/errors/not-found
+        title:
+          type: string
+          example: Not Found
+        status:
+          type: integer
+          example: 404
+        detail:
+          type: string
+          example: Producto prod_999 no existe
+        errors:
+          type: array
+          description: Lista de errores de validación (para 422)
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              code:
+                type: string
+              message:
+                type: string
+  responses:
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: Error de validación de entrada
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit superado
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'

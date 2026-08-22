@@ -1,0 +1,4 @@
+{
+  "caso_1": { "method": "GET", "url": "/orders/ord_456", "descripcion": "referencia por defecto" },
+  "caso_2": { "method": "GET", "url": "/orders/ord_456?expand=user", "descripcion": "usuario embebido" }
+}

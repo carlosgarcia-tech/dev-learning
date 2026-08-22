@@ -1,0 +1,4 @@
+{
+  "caso_v1": { "method": "GET", "url": "/v1/products/prod_001", "descripcion": "v1 deprecada con cabeceras Deprecation/Sunset/Link" },
+  "caso_v2": { "method": "GET", "url": "/v2/products/prod_001", "descripcion": "v2 con unitPrice y currency" }
+}

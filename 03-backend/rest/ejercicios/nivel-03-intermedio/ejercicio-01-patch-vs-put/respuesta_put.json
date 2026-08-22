@@ -1,0 +1,13 @@
+{
+  "status": 422,
+  "headers": { "Content-Type": "application/problem+json" },
+  "body": {
+    "type": "https://docs.api.example/errors/validation",
+    "title": "Validation Failed",
+    "status": 422,
+    "detail": "PUT requiere todos los campos requeridos",
+    "errors": [
+      { "field": "name", "code": "required", "message": "name es obligatorio en PUT" }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "url": "/products?limit=2&cursor=eyJpZCI6InByb2RfMDIifQ",
+  "headers": { "Accept": "application/json" },
+  "body": null,
+  "nota": "cursor=base64({'id':'prod_002'}). Devolver los productos siguientes (prod_003, prod_004)."
+}

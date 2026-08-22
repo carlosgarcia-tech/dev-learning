@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "id": "ord_456",
+    "userId": "usr_123",
+    "user": { "id": "usr_123", "name": "Ana García" },
+    "total": 99.90,
+    "status": "paid"
+  }
+}

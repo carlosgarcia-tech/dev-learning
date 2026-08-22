@@ -1,0 +1,14 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "id": "ord_456",
+    "status": "pending",
+    "total": 99.90,
+    "_links": {
+      "self": { "href": "/orders/ord_456", "method": "GET" },
+      "cancel": { "href": "/orders/ord_456/cancel", "method": "POST" },
+      "pay": { "href": "/orders/ord_456/payments", "method": "POST" }
+    }
+  }
+}

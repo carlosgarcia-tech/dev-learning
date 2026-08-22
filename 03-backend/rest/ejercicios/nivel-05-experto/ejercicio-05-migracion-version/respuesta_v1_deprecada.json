@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Deprecation": "true",
+    "Sunset": "Wed, 31 Dec 2025 23:59:59 GMT",
+    "Link": "</v2/products/prod_001>; rel=\"successor-version\""
+  },
+  "body": { "id": "prod_001", "name": "Teclado mecánico", "price": 89.90 }
+}

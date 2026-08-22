@@ -1,0 +1,5 @@
+{
+  "status": 201,
+  "headers": { "Content-Type": "application/json" },
+  "body": { "id": "pay_001", "orderId": "ord_456", "amount": 99.90, "status": "completed" }
+}

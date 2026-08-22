@@ -1,0 +1,10 @@
+{
+  "status": 404,
+  "headers": { "Content-Type": "application/problem+json" },
+  "body": {
+    "type": "https://docs.api.example/errors/not-found",
+    "title": "Not Found",
+    "status": 404,
+    "detail": "Producto prod_999 no existe"
+  }
+}

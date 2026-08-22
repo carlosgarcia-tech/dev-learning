@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "jobId": "job_abc123",
+    "status": "completed",
+    "progress": 100,
+    "result": { "reportUrl": "/reports/rpt_789" }
+  }
+}

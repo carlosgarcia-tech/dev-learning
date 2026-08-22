@@ -1,0 +1,9 @@
+{
+  "jobId": "job_abc123",
+  "type": "monthly_sales_report",
+  "status": "running",
+  "progress": 45,
+  "createdAt": "2024-01-15T10:30:00Z",
+  "statusUrl": "/v1/jobs/job_abc123",
+  "result": null
+}

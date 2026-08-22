@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {
+    "results": [
+      { "index": 0, "status": "created", "id": "prod_010" },
+      { "index": 1, "status": "error", "error": { "code": "validation_failed", "message": "name vacío y price negativo" } },
+      { "index": 2, "status": "created", "id": "prod_011" }
+    ],
+    "summary": { "created": 2, "failed": 1 }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": { "jobId": "job_abc123", "status": "running", "progress": 45 }
+}
