@@ -1,0 +1,1 @@
+// Tu componente Tarjeta aquí
