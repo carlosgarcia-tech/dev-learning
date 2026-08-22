@@ -1,0 +1,11 @@
+{
+  "created_at": 1700000000,
+  "ttl_segundos": 3600,
+  "ultima_actividad": 1700001800,
+  "ahora": 1700002000,
+  "absolute_expires_at": null,
+  "absolute_valida": null,
+  "sliding_expires_at": null,
+  "sliding_valida": null,
+  "diferencia_segundos": null
+}

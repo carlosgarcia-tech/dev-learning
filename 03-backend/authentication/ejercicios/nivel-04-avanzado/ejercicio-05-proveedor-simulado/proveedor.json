@@ -1,0 +1,15 @@
+{
+  "proveedor": {
+    "nombre": "",
+    "issuer": "",
+    "authorization_endpoint": "",
+    "token_endpoint": "",
+    "userinfo_endpoint": ""
+  },
+  "cliente": {
+    "client_id": "",
+    "client_secret": "",
+    "redirect_uri": ""
+  },
+  "scopes_disponibles": []
+}

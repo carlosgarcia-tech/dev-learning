@@ -1,0 +1,9 @@
+{
+  "client_id": "client_123",
+  "client_secret": "secret_super_seguro",
+  "redirect_uri": "https://app.com/callback",
+  "scope": "openid profile email",
+  "authorization_endpoint": "https://auth.example.com/authorize",
+  "token_endpoint": "https://auth.example.com/token",
+  "resource_endpoint": "https://api.example.com/userinfo"
+}

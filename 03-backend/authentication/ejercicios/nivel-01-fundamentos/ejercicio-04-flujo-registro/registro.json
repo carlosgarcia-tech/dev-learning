@@ -1,0 +1,9 @@
+{
+  "status": "",
+  "user_id": "",
+  "email": "",
+  "email_valido": false,
+  "password_valida": false,
+  "password_hash": "",
+  "created_at": ""
+}

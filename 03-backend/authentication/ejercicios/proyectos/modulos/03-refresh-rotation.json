@@ -1,0 +1,39 @@
+{
+  "familia_id": "fam_001",
+  "user_id": "usr_alice_001",
+  "secret_usado": "filtropro-secret-key-2024",
+  "rotaciones": [
+    {
+      "num": 1,
+      "accion": "Login inicial",
+      "refresh_token_emitido": "refresh_1",
+      "refresh_token_estado": "activo",
+      "familia_invalidada": false
+    },
+    {
+      "num": 2,
+      "accion": "Canjear refresh_1 → access_2 + refresh_2",
+      "refresh_token_emitido": "refresh_2",
+      "refresh_token_anterior": "refresh_1",
+      "refresh_1_estado": "invalidado",
+      "refresh_2_estado": "activo",
+      "familia_invalidada": false
+    },
+    {
+      "num": 3,
+      "accion": "Canjear refresh_2 → access_3 + refresh_3",
+      "refresh_token_emitido": "refresh_3",
+      "refresh_token_anterior": "refresh_2",
+      "refresh_2_estado": "invalidado",
+      "refresh_3_estado": "activo",
+      "familia_invalidada": false
+    }
+  ],
+  "reuso_detectado": {
+    "accion": "Atacante intenta canjear refresh_1 (ya invalidado)",
+    "detectado": true,
+    "familia_invalidada": true,
+    "todos_tokens_invalidados": true,
+    "motivo": "Reuse detected: refresh_1 ya fue usado en la rotación 2. Se invalida toda la familia fam_001."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "idp": {
+    "entity_id": "",
+    "sso_url": ""
+  },
+  "sp": {
+    "entity_id": "",
+    "acs_url": ""
+  },
+  "asercion": {
+    "subject": "",
+    "issuer": "",
+    "audience": "",
+    "atributos": {},
+    "firmada": false,
+    "authn_instant": ""
+  },
+  "flujo": []
+}

@@ -1,0 +1,29 @@
+{
+  "registro": {
+    "challenge": "",
+    "rp": {
+      "name": "",
+      "id": ""
+    },
+    "user": {
+      "id": "",
+      "name": "",
+      "displayName": ""
+    },
+    "pubKeyCredParams": []
+  },
+  "registro_respuesta": {
+    "credential_id": "",
+    "public_key": ""
+  },
+  "login": {
+    "challenge": "",
+    "credential_id": ""
+  },
+  "login_respuesta": {
+    "signature": "",
+    "verified": false
+  },
+  "phishing_resistant": false,
+  "descripcion": ""
+}

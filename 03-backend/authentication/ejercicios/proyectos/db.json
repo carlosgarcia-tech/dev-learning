@@ -1,0 +1,10 @@
+{
+  "usuarios": [],
+  "sessions": [],
+  "refresh_token_families": [],
+  "totp_secrets": {},
+  "blacklist": [],
+  "rate_limit_state": {},
+  "password_reset_tokens": [],
+  "oauth_states": []
+}

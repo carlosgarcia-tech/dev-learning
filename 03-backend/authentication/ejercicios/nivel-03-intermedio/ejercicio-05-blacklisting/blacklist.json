@@ -1,0 +1,25 @@
+{
+  "jti": "",
+  "token_exp": null,
+  "ahora_logout": null,
+  "token_revocado": false,
+  "razon_revocacion": "",
+  "ttl_blacklist_segundos": null,
+  "verificacion": {
+    "antes_logout": {
+      "en_blacklist": false,
+      "expirado": false,
+      "acceso_permitido": false
+    },
+    "despues_logout": {
+      "en_blacklist": false,
+      "expirado": false,
+      "acceso_permitido": false
+    },
+    "despues_expiracion": {
+      "en_blacklist": false,
+      "expirado": false,
+      "acceso_permitido": false
+    }
+  }
+}

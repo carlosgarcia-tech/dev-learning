@@ -1,0 +1,42 @@
+{
+  "roles": {
+    "user": {
+      "descripcion": "Usuario estándar",
+      "permisos": ["photos:read", "photos:write"]
+    },
+    "admin": {
+      "descripcion": "Administrador",
+      "permisos": ["photos:read", "photos:write", "users:read", "users:write", "users:delete"]
+    }
+  },
+  "matriz_permisos": [
+    { "recurso": "photos:read", "user": true, "admin": true },
+    { "recurso": "photos:write", "user": true, "admin": true },
+    { "recurso": "users:read", "user": false, "admin": true },
+    { "recurso": "users:write", "user": false, "admin": true },
+    { "recurso": "users:delete", "user": false, "admin": true }
+  ],
+  "checks_autorizacion": [
+    {
+      "usuario": "alice@example.com",
+      "role": "admin",
+      "recurso_solicitado": "users:delete",
+      "permitido": true,
+      "motivo": "admin tiene users:delete en sus permisos"
+    },
+    {
+      "usuario": "bob@example.com",
+      "role": "user",
+      "recurso_solicitado": "users:read",
+      "permitido": false,
+      "motivo": "user NO tiene users:read en sus permisos"
+    },
+    {
+      "usuario": "bob@example.com",
+      "role": "user",
+      "recurso_solicitado": "photos:write",
+      "permitido": true,
+      "motivo": "user tiene photos:write en sus permisos"
+    }
+  ]
+}

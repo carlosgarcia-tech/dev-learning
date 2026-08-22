@@ -1,0 +1,13 @@
+{
+  "email": "alice@example.com",
+  "token": "",
+  "url_magic": "",
+  "ttl_segundos": null,
+  "usado": false,
+  "flujo": [],
+  "verificacion_reuso": {
+    "descripcion": "",
+    "denegado": false,
+    "motivo": ""
+  }
+}

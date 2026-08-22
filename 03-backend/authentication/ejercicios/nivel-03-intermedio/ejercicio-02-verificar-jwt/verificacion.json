@@ -1,0 +1,26 @@
+{
+  "secret_usado": "",
+  "resultados": [
+    {
+      "token_id": "token_1_valido",
+      "valido": false,
+      "firma_valida": false,
+      "expirado": false,
+      "motivo": ""
+    },
+    {
+      "token_id": "token_2_firma_invalida",
+      "valido": false,
+      "firma_valida": false,
+      "expirado": false,
+      "motivo": ""
+    },
+    {
+      "token_id": "token_3_expirado",
+      "valido": false,
+      "firma_valida": false,
+      "expirado": false,
+      "motivo": ""
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "app_name": "FiltroPro",
+  "jwt_secret": "filtropro-secret-key-2024",
+  "jwt_algorithm": "HS256",
+  "access_token_ttl": 900,
+  "refresh_token_ttl": 604800,
+  "totp_window": 30,
+  "totp_digits": 6,
+  "bcrypt_cost": 12,
+  "rate_limit": {
+    "max_attempts_ip": 5,
+    "window_seconds": 900,
+    "backoff_base": 2
+  },
+  "password_reset": {
+    "ttl_seconds": 900,
+    "max_attempts": 3
+  },
+  "oauth_google": {
+    "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+    "token_endpoint": "https://oauth2.googleapis.com/token",
+    "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo",
+    "client_id": "filtropro-client-id.apps.googleusercontent.com",
+    "client_secret": "GOCSPX-filtropro-secret",
+    "redirect_uri": "https://filtrophecho.com/auth/callback",
+    "scope": "openid email profile"
+  },
+  "cookie": {
+    "httponly": true,
+    "secure": true,
+    "samesite": "Lax",
+    "path": "/"
+  }
+}

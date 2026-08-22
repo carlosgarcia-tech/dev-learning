@@ -1,0 +1,13 @@
+{
+  "sesion_antigua": {
+    "id": "",
+    "invalidada": false
+  },
+  "sesion_nueva": {
+    "id": "",
+    "created_at": null,
+    "expires_at": null
+  },
+  "ttl_renovado": false,
+  "motivo": ""
+}

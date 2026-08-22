@@ -1,0 +1,21 @@
+{
+  "secret_usado": "",
+  "payload_decodificado": null,
+  "checks": [
+    {
+      "recurso": "users:read",
+      "permitido": false,
+      "motivo": ""
+    },
+    {
+      "recurso": "users:delete",
+      "permitido": false,
+      "motivo": ""
+    },
+    {
+      "recurso": "posts:write",
+      "permitido": false,
+      "motivo": ""
+    }
+  ]
+}

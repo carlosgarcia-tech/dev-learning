@@ -1,0 +1,35 @@
+{
+  "secret_usado": "filtropro-secret-key-2024",
+  "login_correcto": {
+    "email": "alice@example.com",
+    "password": "Secr3tP@ss",
+    "status": "success",
+    "user_id": "usr_alice_001",
+    "access_token": "",
+    "refresh_token": "",
+    "access_token_ttl": 900,
+    "refresh_token_ttl": 604800
+  },
+  "login_incorrecto": {
+    "email": "alice@example.com",
+    "password": "wrongpass",
+    "status": "error",
+    "authenticated": false,
+    "message": "credenciales inválidas"
+  },
+  "claims_access_token": {
+    "sub": "usr_alice_001",
+    "email": "alice@example.com",
+    "role": "admin",
+    "type": "access",
+    "iat": 1700000000,
+    "exp": 1700000900
+  },
+  "claims_refresh_token": {
+    "sub": "usr_alice_001",
+    "type": "refresh",
+    "family_id": "fam_001",
+    "iat": 1700000000,
+    "exp": 1700604800
+  }
+}

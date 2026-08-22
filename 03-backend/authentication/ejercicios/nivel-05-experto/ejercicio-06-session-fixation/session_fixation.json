@@ -1,0 +1,18 @@
+{
+  "ataque": {
+    "session_id_fijado": "",
+    "sin_rotacion": {
+      "vulnerable": false,
+      "atacante_accede": false,
+      "descripcion": ""
+    }
+  },
+  "defensa": {
+    "con_rotacion": {
+      "vulnerable": false,
+      "session_id_rotado": false,
+      "atacante_accede": false,
+      "descripcion": ""
+    }
+  }
+}

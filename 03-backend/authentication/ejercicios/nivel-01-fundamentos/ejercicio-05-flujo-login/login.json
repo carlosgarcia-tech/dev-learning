@@ -1,0 +1,20 @@
+{
+  "intentos": [
+    {
+      "email": "alice@example.com",
+      "password": "password123",
+      "status": "",
+      "authenticated": false,
+      "user_id": "",
+      "message": ""
+    },
+    {
+      "email": "alice@example.com",
+      "password": "wrongpass",
+      "status": "",
+      "authenticated": false,
+      "user_id": null,
+      "message": ""
+    }
+  ]
+}

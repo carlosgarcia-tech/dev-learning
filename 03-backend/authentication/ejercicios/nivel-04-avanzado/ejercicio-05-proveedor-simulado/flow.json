@@ -1,0 +1,9 @@
+{
+  "authorization_url": "",
+  "token_exchange": {
+    "method": "",
+    "url": "",
+    "params": {}
+  },
+  "userinfo_response": {}
+}

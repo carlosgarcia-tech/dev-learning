@@ -1,0 +1,41 @@
+{
+  "proveedor": {
+    "nombre": "Google",
+    "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+    "token_endpoint": "https://oauth2.googleapis.com/token",
+    "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo"
+  },
+  "cliente": {
+    "client_id": "filtropro-client-id.apps.googleusercontent.com",
+    "client_secret": "GOCSPX-filtropro-secret",
+    "redirect_uri": "https://filtrophecho.com/auth/callback",
+    "scope": "openid email profile"
+  },
+  "pkce": {
+    "code_verifier": "vZ8mF3kQ9wP2xN7tR5sL8jB6fH0cA4dG7eY1bK3mN9oP",
+    "code_challenge": "",
+    "code_challenge_method": "S256"
+  },
+  "flujo": {
+    "paso_1_authorization_request": "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=filtropro-client-id.apps.googleusercontent.com&redirect_uri=https://filtrophecho.com/auth/callback&scope=openid+email+profile&state=state_xyz123",
+    "paso_2_user_consent": true,
+    "paso_3_redirect_code": "https://filtrophecho.com/auth/callback?code=GOOGLE_AUTH_CODE_abc&state=state_xyz123",
+    "paso_4_token_exchange": {
+      "method": "POST",
+      "url": "https://oauth2.googleapis.com/token",
+      "grant_type": "authorization_code"
+    },
+    "paso_5_token_response": {
+      "access_token": "google_access_token_xyz",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "id_token": "google_id_token_jwt"
+    },
+    "paso_6_userinfo": {
+      "sub": "google_user_123",
+      "email": "alice@gmail.com",
+      "email_verified": true,
+      "name": "Alice García"
+    }
+  }
+}

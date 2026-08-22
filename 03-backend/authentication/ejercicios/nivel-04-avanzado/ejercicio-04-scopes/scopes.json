@@ -1,0 +1,5 @@
+{
+  "scopes_solicitados": ["openid", "profile", "email", "photos:read", "photos:write"],
+  "consentimiento": [],
+  "scopes_finales": []
+}

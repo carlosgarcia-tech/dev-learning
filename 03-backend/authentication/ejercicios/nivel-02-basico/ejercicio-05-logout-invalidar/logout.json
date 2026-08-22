@@ -1,0 +1,16 @@
+{
+  "session_id": "sess_a8b9c0d1e2f3",
+  "logout_correcto": {
+    "sesion_invalidada": false,
+    "cookie_borrada": false,
+    "token_reutilizable": null,
+    "descripcion": ""
+  },
+  "logout_incorrecto": {
+    "sesion_invalidada": false,
+    "cookie_borrada": false,
+    "token_reutilizable": null,
+    "descripcion": ""
+  },
+  "pasos": []
+}

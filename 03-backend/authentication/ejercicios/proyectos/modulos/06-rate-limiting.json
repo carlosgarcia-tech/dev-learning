@@ -1,0 +1,17 @@
+{
+  "ip_atacante": "192.168.1.100",
+  "max_intentos_ip": 5,
+  "ventana_segundos": 900,
+  "backoff_base": 2,
+  "intentos": [
+    { "n": 1, "ip": "192.168.1.100", "permitido": true, "backoff_segundos": 0, "resultado": "login fallido (contraseña incorrecta)" },
+    { "n": 2, "ip": "192.168.1.100", "permitido": true, "backoff_segundos": 0, "resultado": "login fallido" },
+    { "n": 3, "ip": "192.168.1.100", "permitido": true, "backoff_segundos": 0, "resultado": "login fallido" },
+    { "n": 4, "ip": "192.168.1.100", "permitido": true, "backoff_segundos": 0, "resultado": "login fallido" },
+    { "n": 5, "ip": "192.168.1.100", "permitido": true, "backoff_segundos": 0, "resultado": "login fallido - límite alcanzado" },
+    { "n": 6, "ip": "192.168.1.100", "permitido": false, "backoff_segundos": 2, "resultado": "bloqueado - backoff exponencial" },
+    { "n": 7, "ip": "192.168.1.100", "permitido": false, "backoff_segundos": 4, "resultado": "bloqueado - backoff exponencial" },
+    { "n": 8, "ip": "192.168.1.100", "permitido": false, "backoff_segundos": 8, "resultado": "bloqueado - backoff exponencial" }
+  ],
+  "estrategia": "Rate limiting por IP con backoff exponencial: tras 5 fallos, cada intento adicional duplica el tiempo de espera (2^n)"
+}

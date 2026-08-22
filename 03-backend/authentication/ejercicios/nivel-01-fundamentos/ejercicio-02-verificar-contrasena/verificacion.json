@@ -1,0 +1,10 @@
+{
+  "hash_almacenado": "$2b$12$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+  "password_correcta": "",
+  "resultados": [
+    { "password": "123456", "coincide": false },
+    { "password": "password123", "coincide": false },
+    { "password": "admin", "coincide": false },
+    { "password": "qwerty", "coincide": false }
+  ]
+}

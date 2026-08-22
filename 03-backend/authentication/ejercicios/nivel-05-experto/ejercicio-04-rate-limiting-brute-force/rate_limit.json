@@ -1,0 +1,6 @@
+{
+  "ip": "192.168.1.100",
+  "max_intentos_ip": 5,
+  "ventana_segundos": 900,
+  "intentos": []
+}

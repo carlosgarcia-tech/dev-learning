@@ -1,0 +1,7 @@
+{
+  "access_token_expirado": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.old.expired",
+  "refresh_token": "rt_abc123xyz_old",
+  "client_id": "client_123",
+  "client_secret": "secret_super_seguro",
+  "token_endpoint": "https://auth.example.com/token"
+}

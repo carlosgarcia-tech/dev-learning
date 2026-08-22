@@ -1,0 +1,14 @@
+{
+  "secret": "JBSWY3DPEHPK3PXP",
+  "user_id": "usr_alice_001",
+  "otpauth_uri": "otpauth://totp/FiltroPro:alice@example.com?secret=JBSWY3DPEHPK3PXP&issuer=FiltroPro&digits=6&period=30",
+  "timestamp_verificacion": 1700000000,
+  "codigo_generado": "",
+  "ventana_segundos": 30,
+  "algoritmo": "HMAC-SHA1",
+  "verificacion": {
+    "codigo_correcto": "",
+    "coincide": true,
+    "ventana_aceptada": "±30s (3 ventanas: -1, 0, +1)"
+  }
+}
