@@ -41,7 +41,7 @@ tema/
     └── proyectos/         # retos integradores
 ```
 
-Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript, Python) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`/`main.py`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`, `test_main.py`). En bases de datos, SQL y Redis usan carpetas con enunciado + schema/setup + solución + `test.sh` que verifica la salida (SQLite/redis-cli con podman).
+Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables y **solución al final** (también plegable). En los lenguajes reestructurados (C#, Go, Java, TypeScript, Python) cada ejercicio es una **carpeta** con su `README.md`, un stub (`Program.cs`/`Main.java`/`main.go`/`index.ts`/`main.py`), su runner de tests y la configuración de build (`*.csproj`, `go.mod`, `tsconfig`, `test_main.py`). En bases de datos, SQL y Redis usan carpetas con enunciado + schema/setup + solución + `test.sh` que verifica la salida (SQLite/redis-cli con podman). En DevOps, Backend y las nuevas bases de datos (PostgreSQL, MySQL, MongoDB) cada ejercicio incluye `test.sh` que valida la sintaxis y estructura.
 
 ## Niveles de dificultad / Difficulty levels
 
@@ -68,35 +68,73 @@ Cada **ejercicio** contiene: enunciado, requisitos (checklist), pistas plegables
 | [Rust](01-programming/rust/) | 6 | 30 (carpetas) | ✅ | Ownership, traits, concurrencia, Axum/Actix, testing, proyecto final |
 | Kotlin | — | — | — | Solo esqueleto de niveles |
 
+## Estado por sección
+
+### Bases de datos
+
+| Base de datos | Guías | Ejercicios | test.sh | Proyecto final | Estado |
+|---|---|---|---|---|---|
+| [SQL](02-databases/sql/) | 6 | 30 | ✅ | ✅ | Completo (SQLite) |
+| [Redis](02-databases/redis/) | 5 | 30 | ✅ | ✅ | Completo (redis-cli/podman) |
+| [PostgreSQL](02-databases/postgresql/) | 6 | 30 | 30 | ✅ | Completo (psql) |
+| [MongoDB](02-databases/mongodb/) | 5 | 30 | 31 | ✅ | Completo (mongosh) |
+| [MySQL](02-databases/mysql/) | 5 | 30 | 31 | ✅ | Completo (mysql/sqlite fallback) |
+
+### Backend
+
+| Tema | Guías | Ejercicios | test.sh | Proyecto final |
+|---|---|---|---|---|
+| [HTTP](03-backend/http/) | 5 | 30 | 31 | ✅ Servidor HTTP desde cero en Node.js |
+| [REST](03-backend/rest/) | 5 | 30 | 31 | ✅ API REST completa |
+| [GraphQL](03-backend/graphql/) | 5 | 30 | 31 | ✅ API GraphQL de red social |
+| [Authentication](03-backend/authentication/) | 5 | 30 | 31 | ✅ Sistema de auth completo |
+| [Architecture](03-backend/architecture/) | 5 | 30 | 31 | ✅ E-commerce arquitectónico |
+
+### DevOps
+
+| Tema | Guías | Ejercicios | test.sh | Proyecto final |
+|---|---|---|---|---|
+| [Linux](05-devops/linux/) | 5 | 30 | ✅ | ✅ Monitorización y backups |
+| [Git](05-devops/git/) | 5 | 30 | ✅ | ✅ Git Flow + hooks + CI |
+| [Docker](05-devops/docker/) | 5 | 30 | ✅ | ✅ Microservicios con Compose |
+| [Kubernetes](05-devops/kubernetes/) | 5 | 30 | ✅ | ✅ Microservicios en K8s |
+| [Nginx](05-devops/nginx/) | 5 | 30 | ✅ | ✅ Reverse proxy de producción |
+| [CI/CD](05-devops/ci-cd/) | 5 | 30 | ✅ | ✅ Pipeline completo CI/CD |
+
 ## Estado actual / Current status
 
 - [x] Estructura completa aplanada en la raíz
 - [x] Fase 1: JavaScript y SQL (guías + 5 niveles de ejercicios)
 - [x] Lenguajes completos con 30 ejercicios: C#, Go, Java, TypeScript, Python, PHP, Rust, Ruby
-- [x] Lenguajes con 30 ejercicios en formato plano: ninguno (todos en carpetas)
-- [x] Bases de datos: SQL (guías + 30 ejercicios + proyecto final) y Redis (5 guías + 30 ejercicios + proyecto final)
-- [ ] Bases de datos restantes (PostgreSQL, MySQL, MongoDB) — solo esqueleto
-- [ ] Backend (HTTP, REST, GraphQL, Auth, Arquitectura)
+- [x] Bases de datos completas: SQL, Redis, PostgreSQL, MySQL, MongoDB
+- [x] Backend completo: HTTP, REST, GraphQL, Authentication, Architecture
+- [x] DevOps completo: Linux, Git, Docker, Kubernetes, Nginx, CI/CD
 - [ ] Frontend (HTML, CSS, JS, React, Next.js)
-- [ ] DevOps (Linux, Git, Docker, K8s, Nginx, CI/CD)
 - [ ] Herramientas, conceptos, cheatsheets, errores, recursos
 - [ ] Kotlin: rellenar guías y ejercicios
 
 ## Scripts
 
+Todos los scripts se ejecutan desde cualquier directorio (resuelven la raíz del repo desde su propia ubicación). Los scripts por lenguaje toman `<nivel> <numero> <slug>`.
+
 ```bash
-scripts/init.sh                                  # regenera el esqueleto completo (no sobrescribe)
-scripts/new-topic.sh 02-databases/dynamodb       # nuevo tema con ejercicios
-scripts/new-guide.sh 01-programming/python oop   # nueva guía de estudio
-scripts/new-exercise.sh 01-programming/javascript 1 variables-y-tipos   # nuevo ejercicio (formato plano)
-scripts/new-exercise-java.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Java)
-scripts/new-exercise-typescript.sh nivel-01-fundamentos 07 hola-mundo  # ejercicio en carpeta (TS)
-scripts/new-exercise-csharp.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (C#)
-scripts/new-exercise-python.sh nivel-01-fundamentos 07 hola-mundo      # ejercicio en carpeta (Python)
-scripts/new-exercise-rust.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Rust)
-scripts/new-exercise-php.sh nivel-01-fundamentos 07 hola-mundo         # ejercicio en carpeta (PHP)
-scripts/new-exercise-ruby.sh nivel-01-fundamentos 07 hola-mundo        # ejercicio en carpeta (Ruby)
-scripts/new-exercise-sql.sh nivel-01-fundamentos 07 select-basico      # ejercicio en carpeta (SQL)
+# Esqueleto y scaffolding genérico
+scripts/init.sh                                              # regenera el esqueleto completo (no sobrescribe)
+scripts/new-topic.sh 02-databases/dynamodb                    # nuevo tema con ejercicios
+scripts/new-guide.sh 01-programming/python oop               # nueva guía de estudio
+scripts/new-exercise.sh 01-programming/javascript 1 variables-y-tipos  # ejercicio autodetectando el lenguaje
+
+# Ejercicios por lenguaje: <nivel> <numero> <slug>
+scripts/new-exercise-go.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-javascript.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-typescript.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-python.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-rust.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-java.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-csharp.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-php.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-ruby.sh nivel-01-fundamentos 07 hola-mundo
+scripts/new-exercise-sql.sh nivel-01-fundamentos 07 select-basico
 ```
 
 ## Empezar / Start here
