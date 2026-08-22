@@ -1,0 +1,10 @@
+{
+  "data": {
+    "createPost": {
+      "id": "1",
+      "title": "Intro a GraphQL",
+      "tags": ["graphql", "backend"],
+      "category": "tech"
+    }
+  }
+}

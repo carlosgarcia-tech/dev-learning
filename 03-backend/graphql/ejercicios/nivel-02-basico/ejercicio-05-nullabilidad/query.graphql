@@ -1,0 +1,10 @@
+query {
+  article(id: "1") {
+    id
+    title
+    optionalTags
+    strictTags
+    listNotNull
+    elementsNotNull
+  }
+}

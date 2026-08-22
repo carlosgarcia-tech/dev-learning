@@ -1,0 +1,106 @@
+# Schema de la red social GraphQL
+# Define tipos, queries, mutations, subscriptions y la directiva @auth.
+
+directive @auth on FIELD_DEFINITION
+
+scalar DateTime
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  bio: String
+  posts(limit: Int = 10, after: ID): PostConnection!
+  followers(limit: Int = 10): [User!]!
+  following(limit: Int = 10): [User!]!
+  createdAt: DateTime!
+}
+
+type Post {
+  id: ID!
+  content: String!
+  author: User!
+  comments(limit: Int = 10): [Comment!]!
+  likes: [User!]!
+  likeCount: Int!
+  commentCount: Int!
+  createdAt: DateTime!
+}
+
+type Comment {
+  id: ID!
+  body: String!
+  author: User!
+  post: Post!
+  createdAt: DateTime!
+}
+
+type Like {
+  user: User!
+  post: Post!
+  createdAt: DateTime!
+}
+
+type Follow {
+  follower: User!
+  following: User!
+  createdAt: DateTime!
+}
+
+type Notification {
+  id: ID!
+  type: NotificationType!
+  actor: User!
+  createdAt: DateTime!
+  read: Boolean!
+}
+
+enum NotificationType {
+  LIKE
+  COMMENT
+  FOLLOW
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: ID
+}
+
+type PostEdge {
+  node: Post!
+  cursor: ID!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  pageInfo: PageInfo!
+}
+
+type Query {
+  me: User @auth
+  user(id: ID!): User
+  posts(limit: Int = 10, after: ID): PostConnection!
+  post(id: ID!): Post
+  notifications: [Notification!]! @auth
+}
+
+type Mutation {
+  register(username: String!, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createPost(content: String!): Post! @auth
+  createComment(postId: ID!, body: String!): Comment! @auth
+  toggleLike(postId: ID!): Post! @auth
+  follow(userId: ID!): User! @auth
+  unfollow(userId: ID!): User! @auth
+  markNotificationRead(id: ID!): Notification! @auth
+}
+
+type Subscription {
+  postCreated: Post!
+  commentAdded(postId: ID!): Comment!
+}

@@ -1,0 +1,25 @@
+scalar DateTime
+
+interface Entity {
+  id: ID!
+  createdAt: DateTime!
+}
+
+type User implements Entity {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  email: String
+  posts: [Post!]!
+}
+
+type Post implements Entity {
+  id: ID!
+  createdAt: DateTime!
+  title: String!
+  body: String!
+}
+
+type Query {
+  entity(id: ID!): Entity
+}

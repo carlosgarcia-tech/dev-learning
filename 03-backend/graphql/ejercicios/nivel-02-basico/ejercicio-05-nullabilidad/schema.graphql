@@ -1,0 +1,12 @@
+type Article {
+  id: ID!
+  title: String!
+  optionalTags: [String]
+  strictTags: [String!]!
+  listNotNull: [String]!
+  elementsNotNull: [String!]
+}
+
+type Query {
+  article(id: ID!): Article
+}

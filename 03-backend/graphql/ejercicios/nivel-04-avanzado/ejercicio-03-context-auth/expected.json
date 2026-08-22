@@ -1,0 +1,9 @@
+{
+  "data": null,
+  "errors": [
+    {
+      "message": "Debes iniciar sesión",
+      "extensions": { "code": "UNAUTHENTICATED" }
+    }
+  ]
+}

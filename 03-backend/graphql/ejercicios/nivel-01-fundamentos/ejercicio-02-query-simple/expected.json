@@ -1,0 +1,11 @@
+{
+  "data": {
+    "post": {
+      "id": "1",
+      "title": "Hola GraphQL",
+      "author": {
+        "name": "Ana"
+      }
+    }
+  }
+}

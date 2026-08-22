@@ -1,0 +1,15 @@
+mutation {
+  createPost(input: {
+    title: "Intro a GraphQL"
+    body: "GraphQL es un lenguaje de consultas..."
+    metadata: {
+      tags: ["graphql", "backend"]
+      category: "tech"
+    }
+  }) {
+    id
+    title
+    tags
+    category
+  }
+}

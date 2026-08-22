@@ -1,0 +1,24 @@
+# Query cara: pide listas enormes anidadas.
+# Coste aproximado:
+#   feed(limit:100)      -> 2 * 100 = 200
+#   + author (x100)      -> 2 * 100 = 200
+#   + posts(limit:100)   -> 2 * 100 * 100 = 20000
+#   + comments(limit:100)-> 3 * 100 * 100 * 100 = 3000000
+# Total muy por encima del máximo permitido (1000).
+query {
+  feed(limit: 100) {
+    title
+    author {
+      name
+      posts(limit: 100) {
+        title
+        comments(limit: 100) {
+          body
+          author {
+            name
+          }
+        }
+      }
+    }
+  }
+}

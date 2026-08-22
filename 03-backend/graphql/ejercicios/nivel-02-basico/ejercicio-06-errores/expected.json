@@ -1,0 +1,10 @@
+{
+  "data": null,
+  "errors": [
+    {
+      "message": "User not found",
+      "path": ["user"],
+      "extensions": { "code": "NOT_FOUND" }
+    }
+  ]
+}

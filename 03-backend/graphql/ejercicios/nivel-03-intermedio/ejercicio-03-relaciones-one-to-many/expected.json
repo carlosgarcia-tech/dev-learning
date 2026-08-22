@@ -1,0 +1,16 @@
+{
+  "data": {
+    "user": {
+      "id": "1",
+      "name": "Ana",
+      "posts": [
+        { "id": "10", "title": "Hola", "author": { "name": "Ana" } }
+      ]
+    },
+    "post": {
+      "id": "10",
+      "title": "Hola",
+      "author": { "id": "1", "name": "Ana" }
+    }
+  }
+}

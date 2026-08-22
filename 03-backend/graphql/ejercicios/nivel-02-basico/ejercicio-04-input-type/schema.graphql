@@ -1,0 +1,26 @@
+input PostMetadataInput {
+  tags: [String!]!
+  category: String
+}
+
+input CreatePostInput {
+  title: String!
+  body: String!
+  metadata: PostMetadataInput
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  tags: [String!]!
+  category: String
+}
+
+type Query {
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): Post!
+}

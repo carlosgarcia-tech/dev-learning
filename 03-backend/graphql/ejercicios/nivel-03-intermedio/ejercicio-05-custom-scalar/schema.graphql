@@ -1,0 +1,18 @@
+scalar DateTime
+
+type User {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  post(id: ID!): Post
+}

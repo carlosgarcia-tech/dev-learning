@@ -1,0 +1,7 @@
+subscription {
+  postAdded {
+    id
+    title
+    body
+  }
+}

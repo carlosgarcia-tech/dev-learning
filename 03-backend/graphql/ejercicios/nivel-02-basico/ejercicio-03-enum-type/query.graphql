@@ -1,0 +1,7 @@
+mutation {
+  updatePostStatus(id: "1", status: PUBLISHED) {
+    id
+    title
+    status
+  }
+}

@@ -1,0 +1,14 @@
+fragment UserFields on User {
+  id
+  name
+  email
+}
+
+query {
+  admin: user(id: "1") {
+    ...UserFields
+  }
+  editor: user(id: "2") {
+    ...UserFields
+  }
+}

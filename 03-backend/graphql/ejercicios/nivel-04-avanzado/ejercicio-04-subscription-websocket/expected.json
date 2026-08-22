@@ -1,0 +1,9 @@
+{
+  "data": {
+    "postAdded": {
+      "id": "1",
+      "title": "Nuevo post",
+      "body": "Contenido del post"
+    }
+  }
+}

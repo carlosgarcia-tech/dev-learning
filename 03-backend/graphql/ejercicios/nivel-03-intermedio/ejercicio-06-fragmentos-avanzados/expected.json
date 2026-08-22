@@ -1,0 +1,13 @@
+{
+  "data": {
+    "entity": {
+      "id": "1",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "name": "Ana",
+      "email": "ana@x.com",
+      "posts": [
+        { "title": "Hola" }
+      ]
+    }
+  }
+}

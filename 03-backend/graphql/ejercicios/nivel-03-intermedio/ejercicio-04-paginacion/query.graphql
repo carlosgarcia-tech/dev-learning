@@ -1,0 +1,15 @@
+query {
+  posts(first: 2) {
+    edges {
+      cursor
+      node {
+        id
+        title
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

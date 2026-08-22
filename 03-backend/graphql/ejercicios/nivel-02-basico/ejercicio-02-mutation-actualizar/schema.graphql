@@ -1,0 +1,21 @@
+scalar DateTime
+
+input UpdateUserInput {
+  name: String
+  email: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  updatedAt: DateTime
+}
+
+type Query {
+  user(id: ID!): User
+}
+
+type Mutation {
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+}

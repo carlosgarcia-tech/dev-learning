@@ -1,0 +1,20 @@
+{
+  "data": {
+    "__schema": {
+      "types": [
+        { "name": "User", "kind": "OBJECT" },
+        { "name": "Query", "kind": "OBJECT" },
+        { "name": "String", "kind": "SCALAR" },
+        { "name": "ID", "kind": "SCALAR" }
+      ]
+    },
+    "userType": {
+      "name": "User",
+      "fields": [
+        { "name": "id" },
+        { "name": "name" },
+        { "name": "email" }
+      ]
+    }
+  }
+}

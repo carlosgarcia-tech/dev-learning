@@ -1,0 +1,19 @@
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+type Post {
+  id: ID!
+  title: String!
+  status: PostStatus!
+}
+
+type Query {
+  post(id: ID!): Post
+}
+
+type Mutation {
+  updatePostStatus(id: ID!, status: PostStatus!): Post!
+}

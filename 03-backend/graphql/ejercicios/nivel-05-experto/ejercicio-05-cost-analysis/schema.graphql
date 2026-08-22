@@ -1,0 +1,30 @@
+directive @cost(
+  complexity: Int
+  multipliers: [String!]
+  useMultipliers: Boolean
+) on FIELD_DEFINITION
+
+type User {
+  id: ID!
+  name: String!
+  posts(limit: Int! = 10): [Post!]! @cost(complexity: 2, multipliers: ["limit"], useMultipliers: true)
+}
+
+type Post {
+  id: ID!
+  title: String!
+  author: User! @cost(complexity: 2)
+  comments(limit: Int! = 10): [Comment!]! @cost(complexity: 3, multipliers: ["limit"], useMultipliers: true)
+}
+
+type Comment {
+  id: ID!
+  body: String!
+  author: User! @cost(complexity: 2)
+}
+
+type Query {
+  user(id: ID!): User @cost(complexity: 1)
+  users(limit: Int! = 10): [User!]! @cost(complexity: 1, multipliers: ["limit"], useMultipliers: true)
+  feed(limit: Int! = 20): [Post!]! @cost(complexity: 2, multipliers: ["limit"], useMultipliers: true)
+}

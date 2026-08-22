@@ -1,0 +1,14 @@
+query {
+  __schema {
+    types {
+      name
+      kind
+    }
+  }
+  userType: __type(name: "User") {
+    name
+    fields {
+      name
+    }
+  }
+}

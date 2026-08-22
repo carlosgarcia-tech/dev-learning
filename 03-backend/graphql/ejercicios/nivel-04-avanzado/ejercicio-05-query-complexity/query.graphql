@@ -1,0 +1,6 @@
+query {
+  users(limit: 10) {
+    id
+    name
+  }
+}

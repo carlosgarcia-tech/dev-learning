@@ -1,0 +1,21 @@
+scalar DateTime
+
+type User {
+  id: ID!
+  name: String!
+  email: String
+  age: Int
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  publishedAt: DateTime
+  author: User!
+}
+
+type Query {
+  me: User!
+  post(id: ID!): Post
+}

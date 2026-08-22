@@ -1,0 +1,25 @@
+fragment EntityFields on Entity {
+  id
+  createdAt
+}
+
+query GetEntity(
+  $id: ID!
+  $withEmail: Boolean!
+  $skipPosts: Boolean!
+) {
+  entity(id: $id) {
+    ...EntityFields
+    ... on User {
+      name
+      email @include(if: $withEmail)
+      posts @skip(if: $skipPosts) {
+        title
+      }
+    }
+    ... on Post {
+      title
+      body
+    }
+  }
+}

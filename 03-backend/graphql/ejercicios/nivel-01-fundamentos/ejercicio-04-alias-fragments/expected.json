@@ -1,0 +1,6 @@
+{
+  "data": {
+    "admin": { "id": "1", "name": "Ana", "email": "ana@x.com" },
+    "editor": { "id": "2", "name": "Luis", "email": "luis@x.com" }
+  }
+}

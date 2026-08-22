@@ -1,0 +1,9 @@
+{
+  "data": {
+    "updatePostStatus": {
+      "id": "1",
+      "title": "Hola GraphQL",
+      "status": "PUBLISHED"
+    }
+  }
+}

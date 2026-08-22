@@ -1,0 +1,17 @@
+directive @auth(requires: Role!) on FIELD_DEFINITION
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String @auth(requires: USER)
+}
+
+type Query {
+  me: User! @auth(requires: USER)
+  allUsers: [User!]! @auth(requires: ADMIN)
+}

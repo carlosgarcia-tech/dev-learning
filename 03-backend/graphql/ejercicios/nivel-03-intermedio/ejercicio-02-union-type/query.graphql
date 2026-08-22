@@ -1,0 +1,16 @@
+query {
+  search(term: "ana") {
+    ... on User {
+      id
+      name
+    }
+    ... on Post {
+      id
+      title
+    }
+    ... on Comment {
+      id
+      text
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": "1",
+        "name": "Ana",
+        "posts": [
+          { "id": "1", "title": "Hola" }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Luis",
+        "posts": [
+          { "id": "2", "title": "Mundo" }
+        ]
+      }
+    ]
+  }
+}

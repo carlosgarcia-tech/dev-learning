@@ -1,0 +1,10 @@
+query {
+  users(limit: 5) {
+    id
+    name
+  }
+  posts(limit: 3) {
+    id
+    title
+  }
+}

@@ -1,0 +1,11 @@
+directive @complexity(value: Int!, multipliers: [String!]) on FIELD_DEFINITION
+
+type User {
+  id: ID!
+  name: String!
+  friends: [User!]! @complexity(value: 2, multipliers: ["limit"])
+}
+
+type Query {
+  users(limit: Int = 10): [User!]! @complexity(value: 5, multipliers: ["limit"])
+}

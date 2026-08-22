@@ -1,0 +1,10 @@
+{
+  "data": {
+    "user": {
+      "name": "Ana",
+      "friends": [
+        { "name": "Luis" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "data": {
+    "article": {
+      "id": "1",
+      "title": "Nullabilidad en GraphQL",
+      "optionalTags": ["a", null, "b"],
+      "strictTags": ["a", "b", "c"],
+      "listNotNull": ["a", null],
+      "elementsNotNull": ["a", "b"]
+    }
+  }
+}

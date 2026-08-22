@@ -1,0 +1,11 @@
+{
+  "data": {
+    "user": {
+      "name": "Ana",
+      "posts": [
+        { "title": "Hola mundo" },
+        { "title": "Cost analysis" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# Query maliciosa: profundidad excesiva (sería rechazada por depthLimit)
+query {
+  user(id: "1") {
+    friends {
+      friends {
+        friends {
+          friends {
+            friends {
+              friends {
+                friends {
+                  friends {
+                    friends {
+                      friends {
+                        friends {
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation {
+  createUser(input: { name: "Ana", email: "ana@x.com" }) {
+    id
+    name
+    email
+  }
+}

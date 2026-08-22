@@ -1,0 +1,21 @@
+query {
+  user(id: "1") {
+    id
+    name
+    posts {
+      id
+      title
+      author {
+        name
+      }
+    }
+  }
+  post(id: "10") {
+    id
+    title
+    author {
+      id
+      name
+    }
+  }
+}

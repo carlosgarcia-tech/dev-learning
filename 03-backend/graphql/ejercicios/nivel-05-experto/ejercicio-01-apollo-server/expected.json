@@ -1,0 +1,8 @@
+{
+  "data": {
+    "login": {
+      "token": "eyJhbGciOiJIUzI1NiIs...",
+      "user": { "id": "1", "name": "Ana", "email": "ana@x.com" }
+    }
+  }
+}
