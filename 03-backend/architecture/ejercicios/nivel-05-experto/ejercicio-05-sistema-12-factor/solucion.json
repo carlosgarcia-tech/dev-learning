@@ -1,0 +1,16 @@
+{
+  "factores": [
+    { "id": "I", "nombre": "Codebase", "aplicacion": "1 repo git, multiples despliegues (dev, staging, prod)" },
+    { "id": "II", "nombre": "Dependencies", "aplicacion": "package.json declara dependencias; npm ci instala reproducible" },
+    { "id": "III", "nombre": "Config", "aplicacion": "DATABASE_URL y JWT_SECRET en variables de entorno, no en codigo" },
+    { "id": "IV", "nombre": "Backing services", "aplicacion": "BD y Redis tratados como recursos via URLs en env" },
+    { "id": "V", "nombre": "Build/release/run", "aplicacion": "CI build imagen, release taggea, run arranca contenedor" },
+    { "id": "VI", "nombre": "Processes", "aplicacion": "app stateless; sesion en Redis, no en memoria del proceso" },
+    { "id": "VII", "nombre": "Port binding", "aplicacion": "la app escucha PORT (process.env.PORT) y es el servidor" },
+    { "id": "VIII", "nombre": "Concurrency", "aplicacion": "escala horizontal con N procesos workers tras un LB" },
+    { "id": "IX", "nombre": "Disposability", "aplicacion": "arranque rapido y shutdown limpio (graceful)" },
+    { "id": "X", "nombre": "Logs", "aplicacion": "logs a stdout en JSON; el runtime los recolecta" },
+    { "id": "XI", "nombre": "Admin processes", "aplicacion": "migraciones como procesos 1-off: npm run migrate" },
+    { "id": "XII", "nombre": "Dev/prod parity", "aplicacion": "mismo stack en dev y prod (docker compose)" }
+  ]
+}

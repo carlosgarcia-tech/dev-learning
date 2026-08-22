@@ -1,0 +1,18 @@
+   ADAPTADORES DRIVING (entrada)          ADAPTADORES DRIVEN (salida)
+   ┌──────────────┐                       ┌─────────────────────┐
+   │HttpUserCtrl  │──post(body)──>┐       │ InMemoryUserRepo    │
+   └──────────────┘               │       │ (implementa el port)│
+                                  │       └──────────▲──────────┘
+                                  ▼                  │
+                          ┌───────────────┐  implementa
+                          │ PUERTO DRIVEN │
+                          │  UseCase ────>│  (UserRepositoryPort:
+                          │  execute(email)│   save, findByEmail)
+                          └───────────────┘
+                                  │ usa
+                                  ▼
+                          ┌───────────────┐
+                          │ NÚCLEO        │
+                          │ CreateUserUseCase
+                          │ (no conoce HTTP ni MySQL)
+                          └───────────────┘

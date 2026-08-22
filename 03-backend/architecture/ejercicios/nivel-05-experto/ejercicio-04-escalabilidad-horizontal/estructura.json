@@ -1,0 +1,7 @@
+{
+  "patron": "load-balancer-stateless",
+  "instancia": "Instancia (handle, health, conexiones)",
+  "load_balancer": "LoadBalancer (add, remove, distribute)",
+  "algoritmos": ["round-robin (cíclico)", "least-connections (menos carga)"],
+  "reglas": ["se saltan instancias down", "sin instancias up → error"]
+}

@@ -1,0 +1,9 @@
+{
+  "patron": "event-sourcing",
+  "event_store": "EventStore (append, load) - append-only por id",
+  "eventos": ["CuentaCreada", "Depositado", "Retirado"],
+  "aggregate": "CuentaBancaria",
+  "comandos": ["crear", "depositar", "retirar (valida saldo)"],
+  "reductor": "_reducir(evento) muta el estado según el tipo",
+  "reconstruccion": "from_history(eventos) aplica el reductor sin añadir a cambios"
+}

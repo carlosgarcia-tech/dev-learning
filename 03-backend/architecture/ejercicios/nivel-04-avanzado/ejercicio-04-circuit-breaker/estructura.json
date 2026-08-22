@@ -1,0 +1,7 @@
+{
+  "patron": "circuit-breaker",
+  "estados": ["closed", "open", "half_open"],
+  "parametros": ["umbral (fallos para abrir)", "reset_seg (segundos a half-open)"],
+  "metodo": "call(fn)",
+  "transiciones": "closed→(fallos>=umbral)→open; open→(reset_seg)→half_open; half_open+exito→closed; half_open+fallo→open"
+}

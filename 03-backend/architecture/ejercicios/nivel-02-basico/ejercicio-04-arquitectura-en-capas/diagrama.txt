@@ -1,0 +1,15 @@
+  HTTP POST /products {name, precio}
+     │
+     ▼
+  ┌──────────────────┐  createProduct(name, precio)  ┌──────────────────┐
+  │ ProductController│ ──────────────────────────────>│ ProductService   │
+  │ (presentación)   │                                 │ (negocio)        │
+  │ try/catch → HTTP │                                 │ valida precio>0  │
+  └──────────────────┘                                 └────────┬─────────┘
+                                                        save(product) │
+                                       ┌─────────────────────────▼──┐
+                                       │ ProductRepository          │
+                                       │ (datos) - Map simulado     │
+                                       └────────────────────────────┘
+  COMPOSICIÓN (único punto que conoce las 3):
+   new ProductController(new ProductService(new ProductRepository()))

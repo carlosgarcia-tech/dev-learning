@@ -1,0 +1,12 @@
+  Cliente ──request(path, token)──> [ApiGateway]
+                                       │
+                          ┌────────────┴────────────┐
+                          ▼                          ▼
+                    sin token?              buscar servicio
+                    → 401                  por prefijo de path
+                                                │
+                              ┌──────────────────┼──────────────────┐
+                              ▼                                      ▼
+                      match → 200 + service.handle(path)    no match → 404
+
+  routes: { "/users" → userService,  "/products" → productService }

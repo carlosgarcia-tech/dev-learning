@@ -1,0 +1,10 @@
+  PedidoService.crear("p-1", 100)
+         │
+         │ publish(PedidoCreado("p-1", 100))
+         ▼
+     [EventBus]  ──subscribe──> InventarioHandler.handle  → reservas=["p-1"]
+       │   │
+       │   └───────────────────> EnviosHandler.handle     → envios=["p-1"]
+       │
+   (PedidoService NO conoce a Inventario ni Envios; solo publica al bus)
+   (añadir un CRMHandler nuevo no requiere tocar PedidoService)

@@ -1,0 +1,16 @@
+{
+  "schema": {
+    "nombre": "string",
+    "bounded_context": "string",
+    "responsabilidad": "string",
+    "base_de_datos": {
+      "tipo": "string",
+      "nombre": "string",
+      "compartida": "false (debe ser propia)"
+    },
+    "endpoints": "array de {metodo, ruta, descripcion} (min 3)",
+    "eventos_publicados": "array de {nombre, campos} (min 1: PedidoCreado)",
+    "eventos_consumidos": "array de {nombre, accion} (min 1)"
+  },
+  "nota": "solucion.json debe cumplir este schema"
+}

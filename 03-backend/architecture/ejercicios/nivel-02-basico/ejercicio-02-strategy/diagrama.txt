@@ -1,0 +1,13 @@
+  CalculadoraEnvio (contexto)
+   ─ setEstrategia(e)  ← cambia en runtime
+   ─ calcular(peso, distancia) → delega a estrategia.calcular(...)
+            │
+            │ depende de (abstracción)
+            ▼
+     EstrategiaEnvio (interfaz)
+        △
+   ┌────┴────┬─────────────┐
+   │        │             │
+ Estandar  Express    Internacional
+ (×1+×0.5) (×2+×1)    (×3+×2)
+   (mismo método, distinto algoritmo)

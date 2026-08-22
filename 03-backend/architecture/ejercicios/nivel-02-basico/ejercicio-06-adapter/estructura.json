@@ -1,0 +1,8 @@
+{
+  "patron": "adapter",
+  "interfaz": "Pago",
+  "legacy": "PagoLegacy.haz_pago(centavos) - no modificable",
+  "adapter": "PagoAdapter implementa Pago y delega en PagoLegacy",
+  "conversion": "euros → centavos (int(round(euros * 100)))",
+  "beneficio": "la app usa pagar(euros) sin saber que hay un legacy detrás"
+}

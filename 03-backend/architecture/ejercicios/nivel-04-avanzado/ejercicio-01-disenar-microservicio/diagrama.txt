@@ -1,0 +1,18 @@
+  ┌─────────────────────────────────────────────┐
+  │  pedidos-service   (bounded context: Pedidos)│
+  │  ┌───────────────────────────────────────┐  │
+  │  │ API REST                              │  │
+  │  │  POST /pedidos                        │  │
+  │  │  GET  /pedidos/:id                    │  │
+  │  │  GET  /pedidos                        │  │
+  │  │  PATCH /pedidos/:id/cancelar          │  │
+  │  └───────────────────────────────────────┘  │
+  │  ┌───────────────────────────────────────┐  │
+  │  │  pedidos_db (Postgres, PROPIA)        │  │  ← no compartida
+  │  └───────────────────────────────────────┘  │
+  └──────────┬───────────────────────┬───────────┘
+             │ PUBLICA               │ CONSUME
+             ▼                       ▼
+      [PedidoCreado]            [PagoConfirmado]   → marca pagado
+      [PedidoCancelado]          [ProductoAgotado]  → cancela pedido
+             (event bus / topic compartido, no la BD)

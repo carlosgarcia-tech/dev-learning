@@ -1,0 +1,16 @@
+  Cliente ──req──> [LoadBalancer]
+                      │ distribute(req, algoritmo)
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+       Inst1       Inst2       Inst3
+       (up)        (up)        (down) ← se salta
+       conex=2     conex=0
+
+  round-robin:        least-connections:
+   req1→Inst1          → Inst2 (conex=0, la mínima)
+   req2→Inst2
+   req3→Inst1 (cíclico entre las up)
+
+  stateless: cualquier instancia sirve (sin estado en memoria)
+  si todas down → error "no hay instancias disponibles"

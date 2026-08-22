@@ -1,0 +1,11 @@
+  EventoBus (sujeto)
+   ─ suscribir(obs)     ──> observers: [obs1, obs2, obs3]
+   ─ desuscribir(obs)   ──> quita de la lista
+   ─ publicar(evento, datos)
+            │
+            │ para cada observer suscrito:
+            ▼
+      observer.actualizar(evento, datos)
+         ├─ LoggerObservador  → guarda (evento, datos) en self.logs
+         └─ ContadorObservador → self.count += 1
+   (1 publicación → N notificaciones)

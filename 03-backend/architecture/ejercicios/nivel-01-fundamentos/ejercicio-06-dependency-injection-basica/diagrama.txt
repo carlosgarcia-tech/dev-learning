@@ -1,0 +1,11 @@
+  SIN DIP (acoplado):                  CON DIP (desacoplado):
+
+  class LoggerService {                class LoggerService {
+    constructor() {                      constructor(logger) {  // inyectado
+      this.logger = new ConsoleLogger()   this.logger = logger
+    }                                    }
+    registrar(m) { this.logger.log(m) }  registrar(m) { this.logger.log(m) }
+  }                                    }
+                                              △
+  // solo sabe usar ConsoleLogger       ConsoleLogger  MemoryLogger
+  // imposible testear sin consola       (inyectas el que quieras)

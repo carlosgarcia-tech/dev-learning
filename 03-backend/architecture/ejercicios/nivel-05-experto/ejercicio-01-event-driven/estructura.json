@@ -1,0 +1,8 @@
+{
+  "patron": "event-driven",
+  "bus": "EventBus (publish, subscribe)",
+  "evento": "PedidoCreado (pedido_id, total)",
+  "publicador": "PedidoService.crear() - publica, no conoce consumidores",
+  "consumidores": ["InventarioHandler", "EnviosHandler"],
+  "regla": "el publicador no referencia a los handlers (desacoplamiento)"
+}

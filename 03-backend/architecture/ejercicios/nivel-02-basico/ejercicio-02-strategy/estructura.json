@@ -1,0 +1,8 @@
+{
+  "patron": "strategy",
+  "interfaz": "EstrategiaEnvio",
+  "implementaciones": ["EnvioEstandar", "EnvioExpress", "EnvioInternacional"],
+  "contexto": "CalculadoraEnvio",
+  "metodos": ["calcular(peso, distancia)", "setEstrategia(e)"],
+  "regla": "sin if por tipo; el comportamiento cambia al cambiar la estrategia"
+}

@@ -1,0 +1,11 @@
+{
+  "patron": "api-gateway",
+  "clase": "ApiGateway",
+  "metodos": ["register(prefix, service)", "request(path, token)"],
+  "reglas": {
+    "sin_token": "401",
+    "path_no_registrado": "404",
+    "path_registrado_con_token": "200 con respuesta del servicio"
+  },
+  "responsabilidades": ["auth", "routing", "agregación"]
+}

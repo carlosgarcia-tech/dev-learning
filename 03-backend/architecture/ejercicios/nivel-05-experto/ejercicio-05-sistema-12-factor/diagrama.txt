@@ -1,0 +1,14 @@
+  12-factor app - cumplimiento
+
+  I   Codebase ─────────────── 1 repo, N despliegues
+  II  Dependencies ─────────── package.json + npm ci
+  III Config ───────────────── env vars (no secrets en código)
+  IV  Backing services ─────── BD/Redis como URLs en env
+  V   Build/release/run ───── 3 fases separadas
+  VI  Processes ───────────── stateless (sesión en Redis)
+  VII Port binding ────────── app escucha PORT (es el server)
+  VIII Concurrency ────────── escala por procesos
+  IX  Disposability ───────── arranque rápido + graceful shutdown
+  X   Logs ────────────────── stdout JSON (runtime recolecta)
+  XI  Admin processes ─────── migraciones como 1-off
+  XII Dev/prod parity ─────── mismo stack (docker)

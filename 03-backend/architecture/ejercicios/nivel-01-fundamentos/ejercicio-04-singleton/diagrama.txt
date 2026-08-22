@@ -1,0 +1,14 @@
+  Primera llamada              Segunda llamada
+  c1 = Config()                c2 = Config()
+       │                              │
+       ▼                              ▼
+  ┌─────────────────┐          ┌─────────────────┐
+  │ _instance=None? │          │ _instance=None? │
+  │  sí → crear     │          │  no → devuelve  │
+  │  y guardar      │          │  la MISMA       │
+  └────────┬────────┘          └────────┬────────┘
+           │                            │
+           └────────────┬───────────────┘
+                        ▼
+               c1 is c2 == True
+               (misma instancia, mismos _valores)

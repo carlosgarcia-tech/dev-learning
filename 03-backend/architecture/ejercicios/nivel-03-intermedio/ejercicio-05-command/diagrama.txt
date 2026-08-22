@@ -1,0 +1,9 @@
+  ControlRemoto.pulsar(EncenderLuz(luz))
+         │
+         ▼
+  cmd.ejecutar() → luz.encender()   (luz.encendida = True)
+  historial.append(cmd)              [EncenderLuz]
+         │
+         ▼  ControlRemoto.undo()
+  historial.pop().deshacer() → luz.apagar()  (luz.encendida = False)
+  (la última acción se deshace)

@@ -1,0 +1,24 @@
+{
+  "nombre": "pedidos-service",
+  "bounded_context": "gestión de pedidos",
+  "responsabilidad": "crear, consultar y gestionar el ciclo de vida de los pedidos de un e-commerce",
+  "base_de_datos": {
+    "tipo": "postgres",
+    "nombre": "pedidos_db",
+    "compartida": false
+  },
+  "endpoints": [
+    { "metodo": "POST", "ruta": "/pedidos", "descripcion": "crea un pedido" },
+    { "metodo": "GET", "ruta": "/pedidos/:id", "descripcion": "obtiene un pedido por id" },
+    { "metodo": "GET", "ruta": "/pedidos", "descripcion": "lista pedidos" },
+    { "metodo": "PATCH", "ruta": "/pedidos/:id/cancelar", "descripcion": "cancela un pedido" }
+  ],
+  "eventos_publicados": [
+    { "nombre": "PedidoCreado", "campos": ["pedido_id", "cliente_id", "total"] },
+    { "nombre": "PedidoCancelado", "campos": ["pedido_id", "motivo"] }
+  ],
+  "eventos_consumidos": [
+    { "nombre": "PagoConfirmado", "accion": "marcar pedido como pagado" },
+    { "nombre": "ProductoAgotado", "accion": "cancelar pedido pendiente" }
+  ]
+}

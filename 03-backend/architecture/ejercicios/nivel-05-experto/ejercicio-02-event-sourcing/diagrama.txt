@@ -1,0 +1,13 @@
+  Event Store (append-only)              Reconstrucción
+  ┌──────┬──────────────────────┬────────────┐
+  │ seq  │ evento               │ estado     │
+  ├──────┼──────────────────────┼────────────┤
+  │ 1    │ CuentaCreada("c1")   │ id=c1,saldo=0
+  │ 2    │ Depositado(100)      │ saldo=100  │
+  │ 3    │ Retirado(30)         │ saldo=70   │
+  │ 4    │ Depositado(20)       │ saldo=90   │
+  └──────┴──────────────────────┴────────────┘
+                    │
+                    ▼ from_history([e1,e2,e3,e4])
+              CuentaBancaria { id="c1", saldo=90 }
+   (el estado NO se guarda; se DERIVA de los eventos)

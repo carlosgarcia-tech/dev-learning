@@ -1,0 +1,11 @@
+┌─────────────────────────────────────────────────────────────┐
+│  PRESENTACIÓN  UserController.postUser(body)                │
+│  ─ traduce HTTP, valida formato, devuelve {status, body}    │
+├─────────────────────────────────────────────────────────────┤
+│  NEGOCIO      UserService.createUser(name, email)           │
+│  ─ valida email con '@', crea usuario, llama al repo        │
+├─────────────────────────────────────────────────────────────┤
+│  DATOS        UserRepository.save(user)                     │
+│  ─ persiste (INSERT simulado con Map)                       │
+└─────────────────────────────────────────────────────────────┘
+        ▲ dependencias hacia abajo, inyección por constructor

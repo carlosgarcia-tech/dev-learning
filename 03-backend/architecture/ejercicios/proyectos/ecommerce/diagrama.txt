@@ -1,0 +1,30 @@
+  ARQUITECTURA MICROSERVICIOS E-COMMERCE "TiendaNube"
+
+                    ┌──────────────┐
+                    │   Cliente    │
+                    └──────┬───────┘
+                           │ HTTP (Bearer token)
+                           ▼
+                  ┌──────────────────┐
+                  │   API Gateway    │  auth + routing + rate limit
+                  └─┬──────┬──────┬──┘
+            ┌───────┘      │      └────────┐
+            ▼              ▼               ▼
+     ┌────────────┐  ┌───────────┐  ┌────────────┐  ┌───────────┐
+     │ usuarios   │  │ productos  │  │  pedidos    │  │  pagos    │
+     │  service   │  │  service  │  │  service    │  │  service  │
+     │  (BD)      │  │ (BD+cache)│  │ (DDD+CQRS)  │  │  (BD)     │
+     └─────┬──────┘  └─────┬─────┘  └──────┬──────┘  └─────┬─────┘
+           │               │               │               │
+           └───────────────┴───────────────┴───────────────┘
+                           │ EventBus (async, en memoria)
+                           ▼
+                  ┌──────────────────┐
+                  │  PedidoCreado    │  → productos (reserva), pagos (cobra)
+                  │  PagoConfirmado  │  → pedidos (marca pagado)
+                  │  PagoFallido     │  → productos (libera), pedidos (cancela)
+                  └──────────────────┘
+   SAGA coreografiada: si PagoFallido → compensaciones automáticas
+
+   RESILIENCIA: Circuit Breaker envuelve llamadas sincronas
+   OBSERVABILIDAD: trace_id propagado del gateway a todos los servicios

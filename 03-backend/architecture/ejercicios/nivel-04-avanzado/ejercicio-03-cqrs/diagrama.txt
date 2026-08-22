@@ -1,0 +1,12 @@
+  COMMAND (write)                          QUERY (read)
+  ┌───────────────────────┐               ┌───────────────────────┐
+  │ CrearUsuarioHandler    │               │ ObtenerUsuarioHandler  │
+  │  handle(cmd)           │               │  handle(query)         │
+  │  → write_model.append  │               │  → read_model[id]      │
+  │  → publica UsuarioCreado│              └───────────▲────────────┘
+  └───────────┬───────────┘                           │
+              │ evento                                 │ sincroniza
+              ▼                                        │
+        [Bus] ──> UsuarioProjector.on_usuario_creado ─┘
+                      → read_model[id] = {id, email, email_domain}
+   (write y read son estructuras distintas; el projector las sincroniza)

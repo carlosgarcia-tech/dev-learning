@@ -1,0 +1,16 @@
+  App (cliente)
+   ─ pago.pagar(9.99)   usa interfaz Pago
+        │
+        ▼
+  ┌──────────────┐
+  │  PagoAdapter │  (implementa Pago)
+  │  pagar(euros) │
+  │   → centavos = int(round(euros * 100))  = 999
+  └──────┬───────┘
+         │ delega
+         ▼
+  ┌──────────────────┐
+  │  PagoLegacy       │  (NO modificable)
+  │  haz_pago(999)    │
+  │  → "Pagados 999 centavos"
+  └──────────────────┘

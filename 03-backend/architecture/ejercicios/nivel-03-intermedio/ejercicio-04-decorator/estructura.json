@@ -1,0 +1,12 @@
+{
+  "patron": "decorator",
+  "componente": "Cafe",
+  "base": "CafeSimple (2€)",
+  "decorador_base": "CafeDecorator envuelve un Cafe y delega",
+  "decoradores": {
+    "Leche": "+0.5",
+    "Azucar": "+0.2",
+    "ExtraShot": "+0.8"
+  },
+  "uso": "combinable anidando: new Azucar(new Leche(new CafeSimple()))"
+}

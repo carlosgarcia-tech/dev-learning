@@ -1,0 +1,10 @@
+{
+  "patron": "layered-architecture",
+  "capas": {
+    "controller": "ProductController - traduce HTTP, no tiene lógica ni SQL",
+    "service": "ProductService - valida precio > 0, no conoce HTTP ni SQL",
+    "repository": "ProductRepository - persiste (Map), no conoce reglas"
+  },
+  "flujo": "Controller → Service → Repository (solo hacia abajo)",
+  "composicion": "createApp() cablea las 3 capas con inyección por constructor"
+}

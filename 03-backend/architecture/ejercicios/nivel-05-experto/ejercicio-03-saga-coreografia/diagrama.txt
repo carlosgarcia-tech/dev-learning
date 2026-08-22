@@ -1,0 +1,17 @@
+  ÉXITO (pago ok):
+    Pedidos.crear("p1") ──PedidoCreado──> Inventario.on_pedido_creado
+                                            │ reserva, publica InventarioReservado
+                                            ▼
+                                       Pagos.on_inventario_reservado
+                                            │ cobra, publica PagoConfirmado
+                                            ▼
+                                       Pedidos.on_pago_confirmado → "pagado"
+
+  FALLO (pago falla):
+    Pedidos.crear("p1") ──PedidoCreado──> Inventario (reserva) ──InventarioReservado──> Pagos
+                                                                                              │ falla
+                                                                                              ▼
+                                                                    ┌── PagoFallido ──┐
+                                                                    ▼                  ▼
+                                                          Inventario.libera     Pedidos.cancela
+   (ningún servicio conoce a los demás; reaccionan a eventos)

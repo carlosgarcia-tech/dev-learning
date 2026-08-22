@@ -1,0 +1,9 @@
+{
+  "patron": "cqrs",
+  "write_model": "lista normalizada [{id, email, creado_en}]",
+  "read_model": "dict denormalizado {id: {id, email, email_domain}}",
+  "command_handler": "CrearUsuarioHandler.handle(command) - muta write, publica evento",
+  "projector": "UsuarioProjector.on_usuario_creado - actualiza read model",
+  "query_handler": "ObtenerUsuarioHandler.handle(query) - lee read model",
+  "regla": "read y write son estructuras distintas; se sincronizan por eventos"
+}

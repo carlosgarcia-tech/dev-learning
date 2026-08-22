@@ -1,0 +1,11 @@
+{
+  "patron": "clean-architecture",
+  "capas": {
+    "entities": "Pedido (total, sin dependencias externas)",
+    "use_cases": "CrearPedidoUseCase (valida invariante total>0, llama repo)",
+    "interface_adapters": "PedidoController (traduce HTTP)",
+    "frameworks": "InMemoryPedidoRepository (implementa el puerto)"
+  },
+  "puerto": "PedidoRepository (abstracto, save)",
+  "dependency_rule": "las dependencias van hacia dentro; use case y entity no importan HTTP/BD"
+}

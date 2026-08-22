@@ -1,0 +1,31 @@
+{
+  "servicios": {
+    "usuarios-service": {
+      "bd": "usuarios_db (propia)",
+      "eventos_publicados": ["UsuarioCreado"],
+      "eventos_consumidos": []
+    },
+    "productos-service": {
+      "bd": "productos_db (propia)",
+      "cache": "Redis (catalogo)",
+      "eventos_publicados": ["ProductoActualizado"],
+      "eventos_consumidos": ["PedidoCreado (reserva stock)", "PagoFallido (libera stock)"]
+    },
+    "pedidos-service": {
+      "bd": "pedidos_db (propia)",
+      "patrones": ["DDD aggregate", "CQRS"],
+      "eventos_publicados": ["PedidoCreado", "PedidoCancelado"],
+      "eventos_consumidos": ["PagoConfirmado (marca pagado)", "PagoFallido (cancela)"]
+    },
+    "pagos-service": {
+      "bd": "pagos_db (propia)",
+      "eventos_publicados": ["PagoConfirmado", "PagoFallido"],
+      "eventos_consumidos": ["PedidoCreado (cobra)"]
+    }
+  },
+  "gateway": "ApiGateway (auth + routing)",
+  "comunicacion": "EventBus en memoria (async, event-driven)",
+  "saga": "CrearPedido coreografiada con compensaciones",
+  "resiliencia": "Circuit Breaker en llamadas sincronas",
+  "observabilidad": "logs JSON + metricas + tracing con trace_id"
+}

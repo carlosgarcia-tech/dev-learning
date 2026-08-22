@@ -1,0 +1,16 @@
+  Saga "CrearPedido" (orquestación)
+
+  ÉXITO (todos van bien):
+    1. Pedidos.execute()  → pedido_creado
+    2. Inventario.execute() → stock_reservado
+    3. Pagos.execute()     → pago_cobrado
+    → [pedido_creado, stock_reservado, pago_cobrado]
+
+  FALLO en paso 3 (Pagos):
+    1. Pedidos.execute()  ✓  (hecho)
+    2. Inventario.execute() ✓ (hecho)
+    3. Pagos.execute()    ✗  (falla)
+    → COMPENSAR en orden inverso:
+       2c. Inventario.compensate() → stock_liberado
+       1c. Pedidos.compensate()    → pedido_cancelado
+    (sistema queda consistente)

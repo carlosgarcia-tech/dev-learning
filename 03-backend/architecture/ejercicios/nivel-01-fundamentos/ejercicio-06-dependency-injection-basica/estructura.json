@@ -1,0 +1,8 @@
+{
+  "patron": "dependency-injection",
+  "principio": "DIP - inversion de dependencias",
+  "interfaz": "Logger",
+  "implementaciones": ["ConsoleLogger", "MemoryLogger"],
+  "service": "LoggerService recibe logger por constructor (no lo crea)",
+  "beneficio": "testable: en tests inyectas MemoryLogger y verificas mensajes"
+}

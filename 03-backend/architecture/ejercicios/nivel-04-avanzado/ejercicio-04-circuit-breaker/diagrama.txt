@@ -1,0 +1,7 @@
+  CLOSED ──(fallos >= umbral)──> OPEN
+     ▲                               │
+     │                               │ (reset_seg)
+     │ éxito                         ▼
+     └──────────────── HALF-OPEN ◄───┘
+  (deja pasar 1 petición de prueba;
+   éxito→CLOSED, fallo→OPEN)

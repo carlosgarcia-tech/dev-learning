@@ -1,0 +1,15 @@
+  trace_id: abc123 (común a toda la cadena)
+  ┌───────────────────────────────────────────────────────────────┐
+  │ span: ServicioA (span_id s1)                                  │
+  │   log: "ServicioA procesando" (trace_id=abc123)               │
+  │   metric: ServicioA_requests++ ; observe latencia             │
+  │   ┌─────────────────────────────────────────────────────────┐  │
+  │   │ span: ServicioB (span_id s2, MISMO trace_id)            │  │
+  │   │   log: "ServicioB procesando" (trace_id=abc123)         │  │
+  │   │   metric: ServicioB_requests++ ; observe latencia       │  │
+  │   │   ┌──────────────────────────────────────────────────┐   │  │
+  │   │   │ span: ServicioC (span_id s3, MISMO trace_id)     │   │  │
+  │   │   └──────────────────────────────────────────────────┘   │  │
+  │   └─────────────────────────────────────────────────────────┘  │
+  └───────────────────────────────────────────────────────────────┘
+  (con el trace_id puedes reconstruir el flujo completo en logs/métricas)

@@ -1,0 +1,8 @@
+{
+  "patron": "command",
+  "interfaz": "Comando (ejecutar, deshacer)",
+  "receptor": "Luz (encender, apagar)",
+  "comandos": ["EncenderLuz", "ApagarLuz"],
+  "invocador": "ControlRemoto (pulsar, undo)",
+  "regla": "undo deshace la última acción ejecutada"
+}

@@ -1,0 +1,10 @@
+{
+  "patron": "observability-distributed",
+  "componentes": {
+    "Tracer": "start_span(nombre, trace_id) - span con trace_id y span_id",
+    "Logger": "log(level, msg, trace_id) - logs estructurados con trace_id",
+    "Metrics": "inc(counter), observe(histogram, valor)",
+    "ServicioDistribuido": "abre span, loguea, mide latencia, propaga trace_id al siguiente"
+  },
+  "regla": "el trace_id se propaga entre servicios para seguir una petición distribuida"
+}

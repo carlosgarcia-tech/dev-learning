@@ -1,0 +1,12 @@
+  new Azucar(new Leche(new CafeSimple()))
+                │           │            │
+                │           │            ▼
+                │           │     CafeSimple: coste 2, "Café"
+                │           ▼
+                │      Leche.envuelve(CafeSimple)
+                │      coste = 2 + 0.5 = 2.5  desc = "Café + Leche"
+                ▼
+      Azucar.envuelve(Leche(CafeSimple))
+      coste = 2.5 + 0.2 = 2.7  desc = "Café + Leche + Azúcar"
+
+  (cada decorador suma su parte sobre el anterior; combinable sin límite)

@@ -1,0 +1,8 @@
+{
+  "patron": "hexagonal-ports-adapters",
+  "puerto_driven": "UserRepositoryPort (save, findByEmail)",
+  "puerto_driving": "CreateUserUseCase.execute(email)",
+  "adaptador_driving": "HttpUserController.post(body) - traduce HTTP",
+  "adaptador_driven": "InMemoryUserRepository - implementa UserRepositoryPort",
+  "regla": "el núcleo no conoce HTTP ni la BD concreta; todo por puertos"
+}

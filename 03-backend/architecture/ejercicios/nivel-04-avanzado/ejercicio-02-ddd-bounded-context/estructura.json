@@ -1,0 +1,8 @@
+{
+  "patron": "ddd",
+  "value_object": "Dinero (inmutable, cantidad>=0, moneda)",
+  "aggregate_root": "Pedido (id, items, estado, eventos)",
+  "invariante": "no se puede añadir items a un pedido confirmado",
+  "domain_event": "PedidoCreado (pedido_id, total)",
+  "metodos": ["add_item", "confirmar", "total"]
+}

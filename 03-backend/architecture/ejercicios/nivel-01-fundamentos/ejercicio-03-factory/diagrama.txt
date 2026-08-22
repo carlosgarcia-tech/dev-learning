@@ -1,0 +1,13 @@
+       Cliente
+         │  crear("email")
+         ▼
+  ┌───────────────────────┐
+  │  NotificacionFactory   │
+  │  crear(tipo) ──────────┼─> EmailNotificacion   (si tipo=="email")
+  │                        │─> SMSNotificacion     (si tipo=="sms")
+  │                        │─> PushNotificacion    (si tipo=="push")
+  └───────────────────────┘─> ValueError            (si tipo desconocido)
+              │
+              ▼ devuelve Notificacion (interfaz común)
+        n.enviar("Hola")
+        → "[Email] Hola" / "[SMS] Hola" / "[Push] Hola"

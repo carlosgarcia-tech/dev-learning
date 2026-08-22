@@ -1,0 +1,15 @@
+  AGGREGATE "Pedido" (root)
+  ┌───────────────────────────────────────────────┐
+  │  Pedido                                        │
+  │   .id  .estado  .eventos[]                    │
+  │   ├── items: [Item, Item, ...]                 │
+  │   │     Item(nombre, precio: Dinero)            │
+  │   └── garantiza invariante:                    │
+  │       si estado=='confirmado' → add_item lanza │
+  │                                                │
+  │  confirmar() → estado='confirmado'             │
+  │              → eventos.append(PedidoCreado)   │
+  └───────────────────────────────────────────────┘
+
+  VALUE OBJECT: Dinero(cantidad, moneda) — inmutable, valida >=0
+  EVENT: PedidoCreado(pedido_id, total)

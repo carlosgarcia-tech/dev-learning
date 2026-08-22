@@ -1,0 +1,18 @@
+{
+  "metodologia": "12-factor-app",
+  "factores": [
+    "I Codebase",
+    "II Dependencies",
+    "III Config",
+    "IV Backing services",
+    "V Build/release/run",
+    "VI Processes (stateless)",
+    "VII Port binding",
+    "VIII Concurrency",
+    "IX Disposability",
+    "X Logs (stdout)",
+    "XI Admin processes",
+    "XII Dev/prod parity"
+  ],
+  "entregables": ["solucion.json describe cada factor", "app.js ejemplifica stateless + config env + logs stdout"]
+}

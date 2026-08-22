@@ -1,0 +1,17 @@
+  Clean Architecture (dependency rule: hacia dentro)
+
+  ┌──────────────────────────────────────────────────────────┐
+  │  Frameworks & Drivers    InMemoryPedidoRepository        │
+  │   ┌──────────────────────────────────────────────────┐   │
+  │   │  Interface Adapters   PedidoController.post(body) │   │
+  │   │   ┌──────────────────────────────────────────┐   │   │
+  │   │   │  Use Cases   CrearPedidoUseCase.execute  │   │   │
+  │   │   │   ┌──────────────────────────────────┐   │   │   │
+  │   │   │   │  Entities  Pedido.total()        │   │   │   │
+  │   │   │   └──────────────────────────────────┘   │   │   │
+  │   │   └──────────────────────────────────────────┘   │   │
+  │   └──────────────────────────────────────────────────┘   │
+  └──────────────────────────────────────────────────────────┘
+   ▲ todas las flechas de dependencia apuntan hacia DENTRO
+   (Controller depende de UseCase; UseCase depende de la interfaz PedidoRepository;
+    InMemoryRepo implementa la interfaz → su dependencia va hacia dentro)

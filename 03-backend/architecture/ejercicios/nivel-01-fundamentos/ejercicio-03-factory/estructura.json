@@ -1,0 +1,7 @@
+{
+  "patron": "factory-method",
+  "interfaz": "Notificacion",
+  "implementaciones": ["EmailNotificacion", "SMSNotificacion", "PushNotificacion"],
+  "factory": "NotificacionFactory.crear(tipo)",
+  "errores": "ValueError para tipo desconocido"
+}

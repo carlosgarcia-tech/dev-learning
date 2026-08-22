@@ -1,0 +1,19 @@
+┌──────────────────────────────────────────────────────────────────┐
+│  Factura (dominio)                                               │
+│  ─ total() = Σ(precio × cantidad)   ← UNA razón: reglas cálculo │
+└──────────────────────────────────────────────────────────────────┘
+           │ usado por
+           ▼
+┌─────────────────────┐  ┌────────────────────┐  ┌──────────────────┐
+│ FacturaRepository   │  │ FacturaSerializer  │  │ FacturaMailer    │
+│ ─ save(factura)     │  │ ─ toXML(factura)   │  │ ─ enviar(factura)│
+│ UNA razón: BD       │  │ UNA razón: formato │  │ UNA razón: email │
+└─────────────────────┘  └────────────────────┘  └──────────────────┘
+           ▲                ▲                      ▲
+           │                │                      │
+           └────────────────┼──────────────────────┘
+                            │
+              ┌─────────────────────────┐
+              │  FacturaService          │  ← coordina, no tiene
+              │  ─ procesar()             │    lógica propia
+              └─────────────────────────┘

@@ -1,0 +1,7 @@
+{
+  "patron": "dependency-injection-container",
+  "clase": "Container",
+  "metodos": ["register(interfaz, impl)", "resolve(interfaz)"],
+  "mecanismo": "cada impl declara deps=[...]; resolve inyecta recursivamente",
+  "ejemplo": "UserService.deps=[UserRepository] → resolve inyecta el repo"
+}

@@ -1,0 +1,10 @@
+{
+  "responsabilidades": ["calculo", "persistencia", "serializacion", "email"],
+  "clases": {
+    "Factura": "calculo del total (dominio)",
+    "FacturaRepository": "persistencia (datos)",
+    "FacturaSerializer": "serializacion a XML (formato)",
+    "FacturaMailer": "envio de email (comunicacion)",
+    "FacturaService": "orquestacion (coordina las 4)"
+  }
+}

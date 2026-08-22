@@ -1,0 +1,7 @@
+{
+  "patron": "builder",
+  "clase": "QueryBuilder",
+  "metodos": ["select", "from_", "where", "order_by", "limit", "build"],
+  "api": "fluida (cada método devuelve self para encadenar)",
+  "salida": "build() devuelve SQL string con WHERE unidos por AND"
+}

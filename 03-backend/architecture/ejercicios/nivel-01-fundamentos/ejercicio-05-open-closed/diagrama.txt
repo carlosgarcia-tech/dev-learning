@@ -1,0 +1,12 @@
+  ANTES (viola OCP):                    DESPUÉS (OCP):
+
+  function precioFinal(tipo, base) {    function precioFinal(descuento, base) {
+    if (tipo === 'normal') return base;   return descuento.aplicar(base);
+    if (tipo === 'vip') return base*0.8;  // sin if, sin if, sin if
+    if (tipo === 'bf') return base*0.5; }
+    // añadir descuento = tocar aquí    }
+
+  (cada if nuevo = modificar código)    Descuento (base)
+                                          △
+                              SinDescuento  VIP  BlackFriday
+                              (añadir Navidad: nueva clase, sin tocar precioFinal)

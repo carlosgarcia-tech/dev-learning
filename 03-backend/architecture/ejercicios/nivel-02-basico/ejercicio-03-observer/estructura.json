@@ -1,0 +1,8 @@
+{
+  "patron": "observer",
+  "interfaz": "Observador",
+  "observadores": ["LoggerObservador", "ContadorObservador"],
+  "sujeto": "EventoBus",
+  "metodos": ["suscribir", "publicar", "desuscribir"],
+  "regla": "al publicar, todos los suscritos reciben actualizar; tras desuscribir, ya no"
+}

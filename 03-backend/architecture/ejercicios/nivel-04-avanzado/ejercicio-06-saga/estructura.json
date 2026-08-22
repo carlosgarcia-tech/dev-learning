@@ -1,0 +1,7 @@
+{
+  "patron": "saga-orchestration",
+  "servicios": ["PedidosService", "InventarioService", "PagosService"],
+  "metodos": ["execute", "compensate"],
+  "orquestador": "CrearPedidoSaga.execute()",
+  "regla": "si falla el paso N, se compensan los pasos 0..N-1 en orden inverso"
+}

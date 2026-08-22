@@ -1,0 +1,13 @@
+  QueryBuilder()
+     .select("id, name")        ─┐
+     .from_("users")             │  method chaining
+     .where("age > 18")          │  (cada método devuelve self)
+     .where("active = 1")        │
+     .order_by("name")           │
+     .limit(10)                 ─┘
+     .build()
+        │
+        ▼
+  "SELECT id, name FROM users
+   WHERE age > 18 AND active = 1
+   ORDER BY name LIMIT 10"

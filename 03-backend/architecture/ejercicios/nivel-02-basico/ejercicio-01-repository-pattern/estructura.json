@@ -1,0 +1,8 @@
+{
+  "patron": "repository",
+  "puerto": "UserRepository (interfaz abstracta)",
+  "implementaciones": ["InMemoryUserRepository", "MySQLUserRepository"],
+  "dominio": "UserService depende de UserRepository (la interfaz), no de MySQL",
+  "metodos": ["save", "find_by_id", "find_by_email"],
+  "beneficio": "tests con InMemory, prod con MySQL, sin tocar el dominio"
+}

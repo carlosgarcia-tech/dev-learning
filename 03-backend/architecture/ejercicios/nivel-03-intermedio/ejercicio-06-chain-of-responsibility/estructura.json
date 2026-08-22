@@ -1,0 +1,7 @@
+{
+  "patron": "chain-of-responsibility",
+  "base": "Manejador (setNext, manejar)",
+  "manejadores": ["AuthHandler (401 si no token)", "LogHandler (log + pasa)", "NegocioHandler (200 OK)"],
+  "construccion": "auth.setNext(log).setNext(biz)",
+  "flujo": "cada uno decide procesar o pasar al siguiente"
+}

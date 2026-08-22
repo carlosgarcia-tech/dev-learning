@@ -1,0 +1,12 @@
+  DOMINIO (no conoce la BD)                    INFRAESTRUCTURA (detalles)
+  ┌──────────────────────────┐                 ┌──────────────────────────────┐
+  │  UserService              │                 │ InMemoryUserRepository       │
+  │  ─ register(email)         │                 │   (dict, para tests)          │
+  │  ─ usa repo.find_by_email │ ──interfaz──    │ MySQLUserRepository           │
+  │  ─ usa repo.save           │                 │   (simula INSERT/SELECT)      │
+  └────────────┬─────────────┘                 └──────────────────────────────┘
+               │ depende de
+               ▼
+        UserRepository (ABC / puerto)
+        save / find_by_id / find_by_email
+        (la flecha va del dominio a la abstracción; las impl. también dependen de ella)

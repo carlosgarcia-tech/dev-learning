@@ -1,0 +1,11 @@
+{
+  "patron": "saga-choreography",
+  "bus": "EventBus (publish, subscribe)",
+  "eventos": ["PedidoCreado", "InventarioReservado", "PagoConfirmado", "PagoFallido"],
+  "servicios": {
+    "PedidosService": "publica PedidoCreado; cancela en PagoFallido",
+    "InventarioService": "reserva en PedidoCreado; libera en PagoFallido",
+    "PagosService": "cobra en InventarioReservado; publica PagoConfirmado o PagoFallido"
+  },
+  "regla": "ningún servicio referencia a otro directamente (coreografía por eventos)"
+}

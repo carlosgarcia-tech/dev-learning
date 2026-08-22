@@ -1,0 +1,8 @@
+{
+  "capas": ["controller", "service", "repository"],
+  "reglas": {
+    "controller": "solo traduce HTTP, no tiene lógica ni SQL",
+    "service": "valida reglas de negocio, no conoce HTTP ni SQL",
+    "repository": "persiste datos, no conoce reglas de negocio"
+  }
+}

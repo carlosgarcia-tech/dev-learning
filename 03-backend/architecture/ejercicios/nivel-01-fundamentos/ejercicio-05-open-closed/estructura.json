@@ -1,0 +1,7 @@
+{
+  "patron": "open-closed",
+  "interfaz": "Descuento",
+  "implementaciones": ["SinDescuento", "DescuentoVIP", "DescuentoBlackFriday"],
+  "regla": "precioFinal NO contiene if por tipo; añadir descuento no la modifica",
+  "principio": "abierto a extension, cerrado a modificacion"
+}

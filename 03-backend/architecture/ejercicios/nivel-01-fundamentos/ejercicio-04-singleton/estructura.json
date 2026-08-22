@@ -1,0 +1,7 @@
+{
+  "patron": "singleton",
+  "clase": "Config",
+  "garantia": "una sola instancia (__new__ override)",
+  "metodos": ["set(clave, valor)", "get(clave, default)"],
+  "verificacion": "Config() is Config() == True"
+}

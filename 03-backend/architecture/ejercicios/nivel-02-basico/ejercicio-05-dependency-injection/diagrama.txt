@@ -1,0 +1,13 @@
+  Container
+   ─ register(UserRepository, UserRepository)
+   ─ register(UserService, UserService)
+   ─ resolve(UserService)
+            │
+            │ 1. Lee UserService.deps = [UserRepository]
+            │ 2. resolve(UserRepository) → instancia sin deps
+            │ 3. new UserService(repo_inyectado)
+            ▼
+       UserService con su repo inyectado
+       svc.get_user(1) → {"id":1,"name":"Ana"}
+
+  (el container conoce el grafo de dependencias; las clases solo declaran deps)

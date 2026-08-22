@@ -1,0 +1,10 @@
+  req = { path: "/x" }  (sin token)
+   │
+   ▼
+  AuthHandler ── no hay token ──> {status:401, body:'no autorizado'}  (corta la cadena)
+
+  req = { path: "/x", token: 1 }
+   │
+   ▼
+  AuthHandler ── ok, pasa ──> LogHandler ── log, pasa ──> NegocioHandler ──> {status:200, body:'OK'}
+   (cada eslabón decide procesar o delegar al siguiente)
